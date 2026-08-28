@@ -1,7 +1,20 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="google-site-verification" content="nnRW_neMHt_nhXWgQK8UZsR6quQK6bGo2gjKd7uGCBI"><title>StudySmart Tools - Free Student Calculators</title><meta name="description" content="Free student tools including GPA, CGPA, percentage, BMI, age, discount, interest, exam marks, unit conversion, calculator and quizzes."><meta name="robots" content="index, follow"><link rel="canonical" href="https://drbilal46.github.io/Studysmart-tools/"><style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="google-site-verification" content="nnRW_neMHt_nhXWgQK8UZsR6quQK6bGo2gjKd7uGCBI">
+
+<title>StudySmart Tools - Free Student Calculators</title>
+
+<meta name="description" content="Free student calculators for GPA, CGPA, percentage, BMI, age, discount, interest, exam marks, unit conversion, basic calculations and quizzes.">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical" href="https://drbilal46.github.io/Studysmart-tools/">
+
+<style>
 *{
     box-sizing:border-box;
     margin:0;
@@ -41,8 +54,8 @@ header{
 }
 
 nav a{
-    text-decoration:none;
     color:#333;
+    text-decoration:none;
     margin-left:15px;
     font-size:14px;
 }
@@ -288,224 +301,936 @@ footer a{
         grid-template-columns:1fr;
     }
 }
-</style></head><body><header><div class="logo">
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
 Study<span>Smart</span> Tools
-</div><nav>
+</div>
+
+<nav>
 <a href="#tools">Tools</a>
 <a href="#about">About</a>
 <a href="#premium">Premium</a>
-</nav></header><section class="hero"><h1>Free <span>Student Tools</span></h1><p>
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>
+Free <span>Student Tools</span>
+</h1>
+
+<p>
 Useful calculators and study tools for students worldwide.
 Calculate GPA, CGPA, percentage, BMI, age, exam marks and more.
-</p></section><main class="container" id="tools"><h2 class="section-title">
+</p>
+
+</section>
+
+<main class="container" id="tools">
+
+<h2 class="section-title">
 Popular Free Student Tools
-</h2><div class="search-box"><input
+</h2>
+
+<div class="search-box">
+
+<input
 type="search"
 id="toolSearch"
 placeholder="🔍 Search a tool..."
 aria-label="Search a tool"
+>
 
-«»
+</div>
 
-</div><div class="tools" id="toolsGrid"><!-- PERCENTAGE --><div class="card tool-card"><h3>📊 Percentage Calculator</h3><p>Calculate percentage from obtained and total marks.</p><div class="field">
-<label for="percentageObtained">Obtained Marks</label>
-<input id="percentageObtained" type="number" min="0">
-</div><div class="field">
-<label for="percentageTotal">Total Marks</label>
-<input id="percentageTotal" type="number" min="1">
-</div><button type="button" onclick="calculatePercentage()">
+<div class="tools" id="toolsGrid">
+
+<!-- PERCENTAGE -->
+
+<div class="card tool-card">
+
+<h3>📊 Percentage Calculator</h3>
+
+<p>
+Calculate percentage from obtained and total marks.
+</p>
+
+<div class="field">
+
+<label for="percentageObtained">
+Obtained Marks
+</label>
+
+<input
+id="percentageObtained"
+type="number"
+min="0"
+step="any"
+>
+
+</div>
+
+<div class="field">
+
+<label for="percentageTotal">
+Total Marks
+</label>
+
+<input
+id="percentageTotal"
+type="number"
+min="0.01"
+step="any"
+>
+
+</div>
+
+<button type="button" id="percentageBtn">
 Calculate Percentage
-</button><div class="result" id="percentageResult">
+</button>
+
+<div class="result" id="percentageResult">
 Result will appear here
-</div></div><!-- GPA --><div class="card tool-card"><h3>🎓 GPA Calculator</h3><p>
+</div>
+
+</div>
+
+
+<!-- GPA -->
+
+<div class="card tool-card">
+
+<h3>🎓 GPA Calculator</h3>
+
+<p>
 Calculate weighted GPA for any number of subjects.
-</p><div id="gpaList"><div class="dynamic-item"><div class="dynamic-title">
-Subject 1
-</div><div class="field">
-<label>GPA (0 - 4)</label>
-<input class="gpa-input" type="number" min="0" max="4" step="0.01">
-</div><div class="field">
-<label>Credit Hours</label>
-<input class="credit-input" type="number" min="0.1" step="0.1">
-</div></div><div class="dynamic-item"><div class="dynamic-title">
-Subject 2
-</div><div class="field">
-<label>GPA (0 - 4)</label>
-<input class="gpa-input" type="number" min="0" max="4" step="0.01">
-</div><div class="field">
-<label>Credit Hours</label>
-<input class="credit-input" type="number" min="0.1" step="0.1">
-</div></div></div><button type="button" onclick="addGpaSubject()">
+</p>
+
+<div id="gpaList"></div>
+
+<button type="button" id="addGpaBtn">
 ➕ Add Subject
-</button><button type="button" class="secondary" onclick="calculateGPA()">
+</button>
+
+<button type="button" class="secondary" id="calculateGpaBtn">
 Calculate GPA
-</button><div class="result" id="gpaResult">
+</button>
+
+<div class="result" id="gpaResult">
 Enter GPA and credit hours
-</div></div><!-- CGPA --><div class="card tool-card"><h3>📚 CGPA Calculator</h3><p>
+</div>
+
+</div>
+
+
+<!-- CGPA -->
+
+<div class="card tool-card">
+
+<h3>📚 CGPA Calculator</h3>
+
+<p>
 Calculate weighted CGPA for any number of semesters.
-</p><div id="cgpaList"><div class="dynamic-item"><div class="dynamic-title">
-Semester 1
-</div><div class="field">
-<label>Semester GPA (0 - 4)</label>
-<input class="cgpa-input" type="number" min="0" max="4" step="0.01">
-</div><div class="field">
-<label>Total Semester Credit Hours</label>
-<input class="cgpa-credit-input" type="number" min="0.1" step="0.1">
-</div></div><div class="dynamic-item"><div class="dynamic-title">
-Semester 2
-</div><div class="field">
-<label>Semester GPA (0 - 4)</label>
-<input class="cgpa-input" type="number" min="0" max="4" step="0.01">
-</div><div class="field">
-<label>Total Semester Credit Hours</label>
-<input class="cgpa-credit-input" type="number" min="0.1" step="0.1">
-</div></div></div><button type="button" onclick="addCgpaSemester()">
+</p>
+
+<div id="cgpaList"></div>
+
+<button type="button" id="addCgpaBtn">
 ➕ Add Semester
-</button><button type="button" class="secondary" onclick="calculateCGPA()">
+</button>
+
+<button type="button" class="secondary" id="calculateCgpaBtn">
 Calculate CGPA
-</button><div class="result" id="cgpaResult">
+</button>
+
+<div class="result" id="cgpaResult">
 Enter semester GPA and credit hours
-</div></div><!-- BMI --><div class="card tool-card"><h3>⚖️ BMI Calculator</h3><p>Calculate BMI using your weight and height.</p><div class="field"><label for="bmiWeight">
+</div>
+
+</div>
+
+
+<!-- BMI -->
+
+<div class="card tool-card">
+
+<h3>⚖️ BMI Calculator</h3>
+
+<p>
+Calculate BMI using your weight and height.
+</p>
+
+<div class="field">
+
+<label for="bmiWeight">
 Weight (kg)
-</label><input
+</label>
+
+<input
 id="bmiWeight"
 type="number"
 min="0.1"
 step="0.1"
 placeholder="Example: 60"
+>
 
-«»
+</div>
 
-</div><div class="field"><label for="bmiHeight">
+<div class="field">
+
+<label for="bmiHeight">
 Height (cm)
-</label><input
+</label>
+
+<input
 id="bmiHeight"
 type="number"
 min="1"
 step="0.1"
 placeholder="Example: 165"
+>
 
-«»
+</div>
 
-</div><button type="button" onclick="calculateBMI()">
+<button type="button" id="bmiBtn">
 Calculate BMI
-</button><div class="result" id="bmiResult">
+</button>
+
+<div class="result" id="bmiResult">
 Enter weight and height
-</div></div><!-- AGE --><div class="card tool-card"><h3>🎂 Age Calculator</h3><p>Calculate your age from your date of birth.</p><div class="field"><label for="dateOfBirth">
+</div>
+
+</div>
+
+
+<!-- AGE -->
+
+<div class="card tool-card">
+
+<h3>🎂 Age Calculator</h3>
+
+<p>
+Calculate your exact age from your date of birth.
+</p>
+
+<div class="field">
+
+<label for="dateOfBirth">
 Date of Birth
-</label><input
+</label>
+
+<input
 id="dateOfBirth"
 type="date"
+>
 
-«»
+</div>
 
-</div><button type="button" onclick="calculateAge()">
+<button type="button" id="ageBtn">
 Calculate Age
-</button><div class="result" id="ageResult">
+</button>
+
+<div class="result" id="ageResult">
 Select your birth date
-</div></div><!-- DISCOUNT --><div class="card tool-card"><h3>💰 Discount Calculator</h3><p>Calculate discount amount and final price.</p><div class="field">
-<label for="originalPrice">Original Price</label>
-<input id="originalPrice" type="number" min="0">
-</div><div class="field">
-<label for="discountPercent">Discount (%)</label>
-<input id="discountPercent" type="number" min="0" max="100" step="0.01">
-</div><button type="button" onclick="calculateDiscount()">
+</div>
+
+</div>
+
+
+<!-- DISCOUNT -->
+
+<div class="card tool-card">
+
+<h3>💰 Discount Calculator</h3>
+
+<p>
+Calculate discount amount and final price.
+</p>
+
+<div class="field">
+
+<label for="originalPrice">
+Original Price
+</label>
+
+<input
+id="originalPrice"
+type="number"
+min="0"
+step="any"
+>
+
+</div>
+
+<div class="field">
+
+<label for="discountPercent">
+Discount (%)
+</label>
+
+<input
+id="discountPercent"
+type="number"
+min="0"
+max="100"
+step="any"
+>
+
+</div>
+
+<button type="button" id="discountBtn">
 Calculate Discount
-</button><div class="result" id="discountResult">
+</button>
+
+<div class="result" id="discountResult">
 Result will appear here
-</div></div><!-- SIMPLE INTEREST --><div class="card tool-card"><h3>💵 Simple Interest</h3><p>Calculate simple interest easily.</p><div class="field">
-<label for="principal">Principal</label>
-<input id="principal" type="number" min="0">
-</div><div class="field">
-<label for="interestRate">Rate (%)</label>
-<input id="interestRate" type="number" min="0" step="0.01">
-</div><div class="field">
-<label for="interestYears">Time (Years)</label>
-<input id="interestYears" type="number" min="0" step="0.1">
-</div><button type="button" onclick="calculateInterest()">
+</div>
+
+</div>
+
+
+<!-- SIMPLE INTEREST -->
+
+<div class="card tool-card">
+
+<h3>💵 Simple Interest</h3>
+
+<p>
+Calculate simple interest and total amount.
+</p>
+
+<div class="field">
+
+<label for="principal">
+Principal
+</label>
+
+<input
+id="principal"
+type="number"
+min="0"
+step="any"
+>
+
+</div>
+
+<div class="field">
+
+<label for="interestRate">
+Rate (%)
+</label>
+
+<input
+id="interestRate"
+type="number"
+min="0"
+step="any"
+>
+
+</div>
+
+<div class="field">
+
+<label for="interestYears">
+Time (Years)
+</label>
+
+<input
+id="interestYears"
+type="number"
+min="0"
+step="any"
+>
+
+</div>
+
+<button type="button" id="interestBtn">
 Calculate Interest
-</button><div class="result" id="interestResult">
+</button>
+
+<div class="result" id="interestResult">
 Result will appear here
-</div></div><!-- EXAM MARKS --><div class="card tool-card"><h3>📝 Exam Marks Calculator</h3><p>Calculate percentage and grade from exam marks.</p><div class="field">
-<label for="examObtained">Obtained Marks</label>
-<input id="examObtained" type="number" min="0">
-</div><div class="field">
-<label for="examTotal">Total Marks</label>
-<input id="examTotal" type="number" min="1">
-</div><button type="button" onclick="calculateExam()">
+</div>
+
+</div>
+
+
+<!-- EXAM MARKS -->
+
+<div class="card tool-card">
+
+<h3>📝 Exam Marks Calculator</h3>
+
+<p>
+Calculate percentage and grade from exam marks.
+</p>
+
+<div class="field">
+
+<label for="examObtained">
+Obtained Marks
+</label>
+
+<input
+id="examObtained"
+type="number"
+min="0"
+step="any"
+>
+
+</div>
+
+<div class="field">
+
+<label for="examTotal">
+Total Marks
+</label>
+
+<input
+id="examTotal"
+type="number"
+min="0.01"
+step="any"
+>
+
+</div>
+
+<button type="button" id="examBtn">
 Calculate Grade
-</button><div class="result" id="examResult">
+</button>
+
+<div class="result" id="examResult">
 Result will appear here
-</div></div><!-- UNIT CONVERTER --><div class="card tool-card"><h3>📏 Unit Converter</h3><p>Convert common length units.</p><div class="field"><label for="unitValue">
+</div>
+
+</div>
+
+
+<!-- UNIT CONVERTER -->
+
+<div class="card tool-card">
+
+<h3>📏 Unit Converter</h3>
+
+<p>
+Convert common length units.
+</p>
+
+<div class="field">
+
+<label for="unitValue">
 Value
-</label><input
+</label>
+
+<input
 id="unitValue"
 type="number"
 step="any"
 placeholder="Enter value"
+>
 
-«»
+</div>
 
-</div><div class="field"><label for="unitType">
+<div class="field">
+
+<label for="unitType">
 Conversion
-</label><select id="unitType"><option value="cm-m">
+</label>
+
+<select id="unitType">
+
+<option value="cm-m">
 Centimeter → Meter
-</option><option value="m-cm">
+</option>
+
+<option value="m-cm">
 Meter → Centimeter
-</option><option value="m-km">
+</option>
+
+<option value="m-km">
 Meter → Kilometer
-</option><option value="km-m">
+</option>
+
+<option value="km-m">
 Kilometer → Meter
-</option></select></div><button type="button" onclick="convertUnit()">
+</option>
+
+</select>
+
+</div>
+
+<button type="button" id="unitBtn">
 Convert
-</button><div class="result" id="unitResult">
+</button>
+
+<div class="result" id="unitResult">
 Result will appear here
-</div></div><!-- CALCULATOR --><div class="card tool-card"><h3>🧮 Basic Calculator</h3><p>Perform basic mathematical calculations.</p><div class="field"><label for="calculatorInput">
+</div>
+
+</div>
+
+
+<!-- BASIC CALCULATOR -->
+
+<div class="card tool-card">
+
+<h3>🧮 Basic Calculator</h3>
+
+<p>
+Perform basic mathematical calculations.
+</p>
+
+<div class="field">
+
+<label for="calculatorInput">
 Calculation
-</label><input
+</label>
+
+<input
 id="calculatorInput"
 type="text"
 inputmode="decimal"
 placeholder="Example: 25 + 5 × 2"
+>
 
-«»
+</div>
 
-</div><button type="button" onclick="calculateExpression()">
+<button type="button" id="calculatorBtn">
 Calculate
-</button><div class="result" id="calculatorResult">
-Result will appear here
-</div></div><!-- QUICK QUIZ --><div class="card tool-card"><h3>🧠 Student Quiz</h3><p>Test your knowledge with multiple questions.</p><div class="quiz-progress" id="quizProgress">
-Question 1 of 10
-</div><div class="quiz-question" id="quizQuestion">
-Question will appear here
-</div><div class="quiz-options" id="quizOptions">
-</div><button type="button" id="quizButton" onclick="nextQuizQuestion()">
-Next Question
-</button><div class="result" id="quizResult">
-Your score will appear here
-</div></div></div><!-- ABOUT --><section class="info" id="about"><h2>About StudySmart Tools</h2><p>
-StudySmart Tools is a free online platform created to provide simple and useful tools for students.
-</p><br><p>
-Our goal is to make everyday academic calculations easier and more accessible on mobile phones, tablets and computers.
-</p><br><p>
-The website provides calculators for GPA, CGPA, percentage, BMI, age, exam marks, discount, interest and other useful student tasks.
-</p></section><!-- PREMIUM --><section class="premium" id="premium"><h2>🚀 Premium Study Tools</h2><p>
-Advanced MCQs, AI study tools, exam preparation resources and additional features are coming soon.
-</p><button type="button" onclick="showPremiumMessage()">
-Coming Soon
-</button></section></main><footer>© 2026 StudySmart Tools
+</button>
 
-<br>Free student tools for students worldwide.
+<div class="result" id="calculatorResult">
+Result will appear here
+</div>
+
+</div>
+
+
+<!-- QUIZ -->
+
+<div class="card tool-card">
+
+<h3>🧠 Student Quiz</h3>
+
+<p>
+Test your knowledge with 10 questions.
+</p>
+
+<div
+class="quiz-progress"
+id="quizProgress">
+Question 1 of 10
+</div>
+
+<div
+class="quiz-question"
+id="quizQuestion">
+Question will appear here
+</div>
+
+<div
+class="quiz-options"
+id="quizOptions">
+</div>
+
+<button
+type="button"
+id="quizBtn">
+Next Question
+</button>
+
+<div
+class="result"
+id="quizResult">
+Your score will appear here
+</div>
+
+</div>
+
+</div>
+
+
+<!-- ABOUT -->
+
+<section class="info" id="about">
+
+<h2>
+About StudySmart Tools
+</h2>
+
+<p>
+StudySmart Tools is a free online platform created to provide simple and useful tools for students.
+</p>
+
+<br>
+
+<p>
+Our goal is to make everyday academic calculations easier and more accessible on mobile phones, tablets and computers.
+</p>
+
+<br>
+
+<p>
+The website provides calculators for GPA, CGPA, percentage, BMI, age, exam marks, discount, interest and other useful student tasks.
+</p>
+
+</section>
+
+
+<!-- PREMIUM -->
+
+<section class="premium" id="premium">
+
+<h2>
+🚀 Premium Study Tools
+</h2>
+
+<p>
+Advanced MCQs, AI study tools, exam preparation resources and additional features are coming soon.
+</p>
+
+<button
+type="button"
+id="premiumBtn">
+Coming Soon
+</button>
+
+</section>
+
+</main>
+
+
+<footer>
+
+© 2026 StudySmart Tools
+
+<br>
+
+Free student tools for students worldwide.
 
 <br><br>
 
-<a href="about.html">About Us</a>
-  |  
-<a href="privacy.html">Privacy Policy</a>
-  |  
-<a href="contact.html">Contact Us</a>
+<a href="about.html">
+About Us
+</a>
 
-</footer><script>
+&nbsp; | &nbsp;
+
+<a href="privacy.html">
+Privacy Policy
+</a>
+
+&nbsp; | &nbsp;
+
+<a href="contact.html">
+Contact Us
+</a>
+
+</footer>
+
+
+<script>
+
+"use strict";
+
+
+/* =========================
+   HELPER FUNCTIONS
+========================= */
+
+function getElement(id){
+    return document.getElementById(id);
+}
+
+
+function setResult(id,message){
+    getElement(id).textContent = message;
+}
+
+
+function isValidNumber(value){
+    return Number.isFinite(value);
+}
+
+
+function formatNumber(value){
+    return Number(value).toLocaleString(
+        undefined,
+        {
+            maximumFractionDigits:2
+        }
+    );
+}
+
+
+/* =========================
+   GPA SUBJECTS
+========================= */
+
+function createGpaSubject(){
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "dynamic-item";
+
+    item.innerHTML = `
+
+        <div class="dynamic-title">
+        </div>
+
+        <div class="field">
+
+            <label>
+            GPA (0 - 4)
+            </label>
+
+            <input
+                class="gpa-input"
+                type="number"
+                min="0"
+                max="4"
+                step="0.01"
+                placeholder="Example: 3.50"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>
+            Credit Hours
+            </label>
+
+            <input
+                class="credit-input"
+                type="number"
+                min="0.1"
+                step="0.1"
+                placeholder="Example: 3"
+            >
+
+        </div>
+
+        <div class="dynamic-actions">
+
+            <button
+                type="button"
+                class="small-btn danger remove-gpa"
+            >
+            Remove
+            </button>
+
+        </div>
+
+    `;
+
+
+    item
+    .querySelector(".remove-gpa")
+    .addEventListener(
+        "click",
+        function(){
+
+            const list =
+                getElement("gpaList");
+
+            if(list.children.length <= 1){
+
+                setResult(
+                    "gpaResult",
+                    "At least one subject is required."
+                );
+
+                return;
+            }
+
+            item.remove();
+
+            updateGpaTitles();
+
+        }
+    );
+
+
+    return item;
+}
+
+
+function updateGpaTitles(){
+
+    const items =
+        document.querySelectorAll(
+            "#gpaList .dynamic-item"
+        );
+
+
+    items.forEach(
+        function(item,index){
+
+            item
+            .querySelector(
+                ".dynamic-title"
+            )
+            .textContent =
+                "Subject " + (index + 1);
+
+        }
+    );
+}
+
+
+function addGpaSubject(){
+
+    const list =
+        getElement("gpaList");
+
+    list.appendChild(
+        createGpaSubject()
+    );
+
+    updateGpaTitles();
+}
+
+
+/* =========================
+   CGPA SEMESTERS
+========================= */
+
+function createCgpaSemester(){
+
+    const item =
+        document.createElement("div");
+
+    item.className =
+        "dynamic-item";
+
+    item.innerHTML = `
+
+        <div class="dynamic-title">
+        </div>
+
+        <div class="field">
+
+            <label>
+            Semester GPA (0 - 4)
+            </label>
+
+            <input
+                class="cgpa-input"
+                type="number"
+                min="0"
+                max="4"
+                step="0.01"
+                placeholder="Example: 3.50"
+            >
+
+        </div>
+
+        <div class="field">
+
+            <label>
+            Total Semester Credit Hours
+            </label>
+
+            <input
+                class="cgpa-credit-input"
+                type="number"
+                min="0.1"
+                step="0.1"
+                placeholder="Example: 18"
+            >
+
+        </div>
+
+        <div class="dynamic-actions">
+
+            <button
+                type="button"
+                class="small-btn danger remove-cgpa"
+            >
+            Remove
+            </button>
+
+        </div>
+
+    `;
+
+
+    item
+    .querySelector(".remove-cgpa")
+    .addEventListener(
+        "click",
+        function(){
+
+            const list =
+                getElement("cgpaList");
+
+            if(list.children.length <= 1){
+
+                setResult(
+                    "cgpaResult",
+                    "At least one semester is required."
+                );
+
+                return;
+            }
+
+            item.remove();
+
+            updateCgpaTitles();
+
+        }
+    );
+
+
+    return item;
+}
+
+
+function updateCgpaTitles(){
+
+    const items =
+        document.querySelectorAll(
+            "#cgpaList .dynamic-item"
+        );
+
+
+    items.forEach(
+        function(item,index){
+
+            item
+            .querySelector(
+                ".dynamic-title"
+            )
+            .textContent =
+                "Semester " + (index + 1);
+
+        }
+    );
+}
+
+
+function addCgpaSemester(){
+
+    const list =
+        getElement("cgpaList");
+
+    list.appendChild(
+        createCgpaSemester()
+    );
+
+    updateCgpaTitles();
+}
+
 
 /* =========================
    PERCENTAGE
@@ -513,524 +1238,185 @@ Coming Soon
 
 function calculatePercentage(){
 
-const obtained =
-parseFloat(document.getElementById("percentageObtained").value);
+    const obtained =
+        parseFloat(
+            getElement(
+                "percentageObtained"
+            ).value
+        );
 
-const total =
-parseFloat(document.getElementById("percentageTotal").value);
+    const total =
+        parseFloat(
+            getElement(
+                "percentageTotal"
+            ).value
+        );
 
-const result =
-document.getElementById("percentageResult");
 
-if(
-!Number.isFinite(obtained) ||
-!Number.isFinite(total) ||
-obtained < 0 ||
-total <= 0 ||
-obtained > total
-){
+    if(
+        !isValidNumber(obtained) ||
+        !isValidNumber(total) ||
+        obtained < 0 ||
+        total <= 0 ||
+        obtained > total
+    ){
 
-result.textContent =
-"Please enter valid marks.";
+        setResult(
+            "percentageResult",
+            "Please enter valid marks."
+        );
 
-return;
-}
+        return;
+    }
 
-const percentage =
-(obtained / total) * 100;
 
-result.textContent =
-"Percentage: " + percentage.toFixed(2) + "%";
+    const percentage =
+        (obtained / total) * 100;
 
+
+    setResult(
+        "percentageResult",
+        "Percentage: " +
+        percentage.toFixed(2) +
+        "%"
+    );
 }
 
 
 /* =========================
-   GPA
+   GPA CALCULATOR
 ========================= */
-
-function addGpaSubject(){
-
-const list =
-document.getElementById("gpaList");
-
-const count =
-list.querySelectorAll(".dynamic-item").length + 1;
-
-const item =
-document.createElement("div");
-
-item.className =
-"dynamic-item";
-
-item.innerHTML = `
-
-<div class="dynamic-title">
-Subject ${count}
-</div>
-
-<div class="field">
-
-<label>GPA (0 - 4)</label>
-
-<input
-class="gpa-input"
-type="number"
-min="0"
-max="4"
-step="0.01"
->
-
-</div>
-
-<div class="field">
-
-<label>Credit Hours</label>
-
-<input
-class="credit-input"
-type="number"
-min="0.1"
-step="0.1"
->
-
-</div>
-
-<div class="dynamic-actions">
-
-<button
-type="button"
-class="small-btn danger"
-onclick="removeGpaSubject(this)"
->
-Remove
-</button>
-
-</div>
-
-`;
-
-list.appendChild(item);
-
-updateGpaNumbers();
-
-}
-
-
-function removeGpaSubject(button){
-
-const list =
-document.getElementById("gpaList");
-
-const items =
-list.querySelectorAll(".dynamic-item");
-
-if(items.length <= 1){
-
-document.getElementById("gpaResult").textContent =
-"At least one subject is required.";
-
-return;
-}
-
-button.closest(".dynamic-item").remove();
-
-updateGpaNumbers();
-
-}
-
-
-function updateGpaNumbers(){
-
-const items =
-document.querySelectorAll("#gpaList .dynamic-item");
-
-items.forEach(function(item,index){
-
-item.querySelector(".dynamic-title").textContent =
-"Subject " + (index + 1);
-
-});
-
-}
-
 
 function calculateGPA(){
 
-const gpas =
-document.querySelectorAll(".gpa-input");
+    const gpas =
+        document.querySelectorAll(
+            ".gpa-input"
+        );
 
-const credits =
-document.querySelectorAll(".credit-input");
+    const credits =
+        document.querySelectorAll(
+            ".credit-input"
+        );
 
-const result =
-document.getElementById("gpaResult");
 
-let totalPoints = 0;
-let totalCredits = 0;
+    let totalPoints = 0;
 
-for(let i = 0; i < gpas.length; i++){
+    let totalCredits = 0;
 
-const gpa =
-parseFloat(gpas[i].value);
 
-const credit =
-parseFloat(credits[i].value);
+    for(
+        let i = 0;
+        i < gpas.length;
+        i++
+    ){
 
-if(
-!Number.isFinite(gpa) ||
-!Number.isFinite(credit) ||
-gpa < 0 ||
-gpa > 4 ||
-credit <= 0
-){
+        const gpa =
+            parseFloat(
+                gpas[i].value
+            );
 
-result.textContent =
-"Please enter valid GPA (0-4) and credit hours for every subject.";
+        const credit =
+            parseFloat(
+                credits[i].value
+            );
 
-return;
-}
 
-totalPoints += gpa * credit;
-totalCredits += credit;
+        if(
+            !isValidNumber(gpa) ||
+            !isValidNumber(credit) ||
+            gpa < 0 ||
+            gpa > 4 ||
+            credit <= 0
+        ){
 
-}
+            setResult(
+                "gpaResult",
+                "Please enter valid GPA (0-4) and credit hours for every subject."
+            );
 
-if(totalCredits <= 0){
+            return;
+        }
 
-result.textContent =
-"Please enter credit hours.";
 
-return;
-}
+        totalPoints +=
+            gpa * credit;
 
-const finalGPA =
-totalPoints / totalCredits;
+        totalCredits +=
+            credit;
+    }
 
-result.textContent =
-"Weighted GPA: " + finalGPA.toFixed(2);
 
+    if(totalCredits <= 0){
+
+        setResult(
+            "gpaResult",
+            "Please enter credit hours."
+        );
+
+        return;
+    }
+
+
+    const finalGPA =
+        totalPoints / totalCredits;
+
+
+    setResult(
+        "gpaResult",
+        "Weighted GPA: " +
+        finalGPA.toFixed(2)
+    );
 }
 
 
 /* =========================
-   CGPA
+   CGPA CALCULATOR
 ========================= */
-
-function addCgpaSemester(){
-
-const list =
-document.getElementById("cgpaList");
-
-const count =
-list.querySelectorAll(".dynamic-item").length + 1;
-
-const item =
-document.createElement("div");
-
-item.className =
-"dynamic-item";
-
-item.innerHTML = `
-
-<div class="dynamic-title">
-Semester ${count}
-</div>
-
-<div class="field">
-
-<label>Semester GPA (0 - 4)</label>
-
-<input
-class="cgpa-input"
-type="number"
-min="0"
-max="4"
-step="0.01"
->
-
-</div>
-
-<div class="field">
-
-<label>Total Semester Credit Hours</label>
-
-<input
-class="cgpa-credit-input"
-type="number"
-min="0.1"
-step="0.1"
->
-
-</div>
-
-<div class="dynamic-actions">
-
-<button
-type="button"
-class="small-btn danger"
-onclick="removeCgpaSemester(this)"
->
-Remove
-</button>
-
-</div>
-
-`;
-
-list.appendChild(item);
-
-updateCgpaNumbers();
-
-}
-
-
-function removeCgpaSemester(button){
-
-const list =
-document.getElementById("cgpaList");
-
-const items =
-list.querySelectorAll(".dynamic-item");
-
-if(items.length <= 1){
-
-document.getElementById("cgpaResult").textContent =
-"At least one semester is required.";
-
-return;
-}
-
-button.closest(".dynamic-item").remove();
-
-updateCgpaNumbers();
-
-}
-
-
-function updateCgpaNumbers(){
-
-const items =
-document.querySelectorAll("#cgpaList .dynamic-item");
-
-items.forEach(function(item,index){
-
-item.querySelector(".dynamic-title").textContent =
-"Semester " + (index + 1);
-
-});
-
-}
-
 
 function calculateCGPA(){
 
-const gpas =
-document.querySelectorAll(".cgpa-input");
+    const gpas =
+        document.querySelectorAll(
+            ".cgpa-input"
+        );
 
-const credits =
-document.querySelectorAll(".cgpa-credit-input");
+    const credits =
+        document.querySelectorAll(
+            ".cgpa-credit-input"
+        );
 
-const result =
-document.getElementById("cgpaResult");
 
-let totalPoints = 0;
-let totalCredits = 0;
+    let totalPoints = 0;
 
-for(let i = 0; i < gpas.length; i++){
+    let totalCredits = 0;
 
-const gpa =
-parseFloat(gpas[i].value);
 
-const credit =
-parseFloat(credits[i].value);
+    for(
+        let i = 0;
+        i < gpas.length;
+        i++
+    ){
 
-if(
-!Number.isFinite(gpa) ||
-!Number.isFinite(credit) ||
-gpa < 0 ||
-gpa > 4 ||
-credit <= 0
-){
+        const gpa =
+            parseFloat(
+                gpas[i].value
+            );
 
-result.textContent =
-"Please enter valid GPA (0-4) and credit hours for every semester.";
+        const credit =
+            parseFloat(
+                credits[i].value
+            );
 
-return;
-}
 
-totalPoints += gpa * credit;
-totalCredits += credit;
+        if(
+            !isValidNumber(gpa) ||
+            !isValidNumber(credit) ||
+            gpa < 0 ||
+            gpa > 4 ||
+            credit <= 0
+        ){
 
-}
-
-if(totalCredits <= 0){
-
-result.textContent =
-"Please enter credit hours.";
-
-return;
-}
-
-const finalCGPA =
-totalPoints / totalCredits;
-
-result.textContent =
-"Weighted CGPA: " + finalCGPA.toFixed(2);
-
-}
-
-
-/* =========================
-   BMI
-========================= */
-
-function calculateBMI(){
-
-const weight =
-parseFloat(document.getElementById("bmiWeight").value);
-
-const height =
-parseFloat(document.getElementById("bmiHeight").value);
-
-const result =
-document.getElementById("bmiResult");
-
-if(
-!Number.isFinite(weight) ||
-!Number.isFinite(height) ||
-weight <= 0 ||
-height <= 0
-){
-
-result.textContent =
-"Please enter valid weight and height.";
-
-return;
-}
-
-const bmi =
-weight / Math.pow(height / 100,2);
-
-let category;
-
-if(bmi < 18.5){
-
-category = "Underweight";
-
-}
-else if(bmi < 25){
-
-category = "Normal weight";
-
-}
-else if(bmi < 30){
-
-category = "Overweight";
-
-}
-else{
-
-category = "Obesity";
-
-}
-
-result.textContent =
-"BMI: " + bmi.toFixed(2) +
-" | " + category;
-
-}
-
-
-/* =========================
-   AGE
-========================= */
-
-function calculateAge(){
-
-const value =
-document.getElementById("dateOfBirth").value;
-
-const result =
-document.getElementById("ageResult");
-
-if(!value){
-
-result.textContent =
-"Please select your date of birth.";
-
-return;
-}
-
-const birth =
-new Date(value + "T00:00:00");
-
-const today =
-new Date();
-
-if(birth > today){
-
-result.textContent =
-"Birth date cannot be in the future.";
-
-return;
-}
-
-let years =
-today.getFullYear() -
-birth.getFullYear();
-
-let months =
-today.getMonth() -
-birth.getMonth();
-
-let days =
-today.getDate() -
-birth.getDate();
-
-if(days < 0){
-
-months--;
-
-const previousMonth =
-new Date(
-today.getFullYear(),
-today.getMonth(),
-0
-);
-
-days +=
-previousMonth.getDate();
-
-}
-
-if(months < 0){
-
-years--;
-months += 12;
-
-}
-
-result.textContent =
-"Age: " +
-years +
-" years, " +
-months +
-" months, " +
-days +
-" days";
-
-}
-
-
-/* =========================
-   DISCOUNT
-========================= */
-
-function calculateDiscount(){
-
-const price =
-parseFloat(document.getElementById("originalPrice").value);
-
-const discount =
-parseFloat(doc
+            setResult(
+                "cgpaResult",
+                "Please e

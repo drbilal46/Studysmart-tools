@@ -1,17 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-
-<meta name="google-site-verification" content="nnRW_neMHt_nhXWgQK8UZsR6quQK6bGo2gjKd7uGCBI" />
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>StudySmart Tools - Free GPA, CGPA, Percentage & Student Calculators</title>
-
-<meta name="description" content="Free online GPA, CGPA, percentage, BMI, age, discount, exam marks and other useful calculators for students.">
-
-<style>
+<!DOCTYPE html><html lang="en">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="google-site-verification" content="nnRW_neMHt_nhXWgQK8UZsR6quQK6bGo2gjKd7uGCBI"><title>StudySmart Tools | Free GPA, CGPA, Percentage & Student Calculators</title><meta name="description" content="StudySmart Tools offers free online GPA, CGPA, percentage, exam marks, BMI, age, discount, interest, scientific calculator and unit converter tools for students."><meta name="keywords" content="GPA calculator, CGPA calculator, percentage calculator, student calculator, exam marks calculator, BMI calculator, age calculator, unit converter, scientific calculator, StudySmart Tools"><meta name="robots" content="index, follow"><link rel="canonical" href="https://drbilal46.github.io/Studysmart-tools/"><style>
 *{
 box-sizing:border-box;
 margin:0;
@@ -152,6 +141,10 @@ border-radius:15px;
 box-shadow:0 4px 18px rgba(0,0,0,.06)
 }
 
+.info h2{
+margin-bottom:12px
+}
+
 .premium{
 margin-top:30px;
 background:#111827;
@@ -180,7 +173,13 @@ color:#687386;
 font-size:14px
 }
 
+footer a{
+color:#2563eb;
+text-decoration:none
+}
+
 @media(max-width:600px){
+
 .hero h1{
 font-size:30px
 }
@@ -188,386 +187,152 @@ font-size:30px
 nav a{
 display:none
 }
+
 }
-</style>
-</head>
-
-<body>
-
-<header>
-
-<div class="logo">
+</style></head><body><header><div class="logo">
 Study<span>Smart</span> Tools
-</div>
-
-<nav>
+</div><nav>
 <a href="#tools">Tools</a>
 <a href="#about">About</a>
 <a href="#premium">Premium</a>
-</nav>
-
-</header>
-
-
-<section class="hero">
-
-<h1>Free <span>Student Tools</span></h1>
-
-<p>
-Useful calculators and study tools for students worldwide.
-</p>
-
-</section>
-
-
-<div class="container" id="tools">
-
-<h2 class="section-title">
-Popular Free Tools
-</h2>
-  
-<div style="max-width:600px;margin:0 auto 25px;">
-<input
+</nav></header><section class="hero"><h1>Free <span>Student Tools</span></h1><p>
+StudySmart Tools provides free online calculators for students, including GPA, CGPA, percentage, exam marks, BMI, age, discount and other useful study tools.
+</p></section><main class="container" id="tools"><h2 class="section-title">
+Popular Free Student Tools
+</h2><div style="max-width:600px;margin:0 auto 25px;"><input
 type="text"
 id="toolSearch"
 placeholder="🔍 Search a tool..."
-onkeyup="searchTools()"
+onkeyup="searchTools"
+aria-label="Search student tools"
 style="width:100%;padding:14px;border:2px solid #d5dbe5;border-radius:10px;font-size:16px;"
->
-</div>
 
-<div class="tools">
+«»
 
-
-<!-- Percentage -->
-
-<div class="card">
-
+</div><div class="tools"><div class="card">
 <h3>📊 Percentage Calculator</h3>
-
-<p>Calculate percentage from obtained and total marks.</p>
-
-<input id="obtained" type="number" placeholder="Obtained Marks">
-
-<input id="total" type="number" placeholder="Total Marks">
-
-<button onclick="percentage()">Calculate</button>
+<p>Calculate percentage from obtained and total marks.</p><input id="obtained" type="number" placeholder="Obtained Marks">
+<input id="total" type="number" placeholder="Total Marks"><button onclick="percentage()">Calculate</button>
 
 <div class="result" id="percentageResult">
 Result will appear here
 </div>
-
-</div>
-
-
-<!-- GPA -->
-
-<div class="card">
-
+</div><div class="card">
 <h3>🎓 GPA Calculator</h3>
-
-<p>Calculate average GPA from your subjects.</p>
-
-<input id="g1" type="number" step="0.01" placeholder="Subject 1 GPA">
-
+<p>Calculate average GPA from your subjects.</p><input id="g1" type="number" step="0.01" placeholder="Subject 1 GPA">
 <input id="g2" type="number" step="0.01" placeholder="Subject 2 GPA">
-
 <input id="g3" type="number" step="0.01" placeholder="Subject 3 GPA">
-
-<input id="g4" type="number" step="0.01" placeholder="Subject 4 GPA">
-
-<button onclick="gpa()">Calculate GPA</button>
+<input id="g4" type="number" step="0.01" placeholder="Subject 4 GPA"><button onclick="gpa()">Calculate GPA</button>
 
 <div class="result" id="gpaResult">
 Result will appear here
 </div>
-
-</div>
-
-
-<!-- CGPA -->
-
-<div class="card">
-
+</div><div class="card">
 <h3>📚 CGPA Calculator</h3>
-
-<p>Calculate average CGPA from semester GPAs.</p>
-
-<input id="c1" type="number" step="0.01" placeholder="Semester 1 GPA">
-
+<p>Calculate average CGPA from semester GPAs.</p><input id="c1" type="number" step="0.01" placeholder="Semester 1 GPA">
 <input id="c2" type="number" step="0.01" placeholder="Semester 2 GPA">
-
 <input id="c3" type="number" step="0.01" placeholder="Semester 3 GPA">
-
-<input id="c4" type="number" step="0.01" placeholder="Semester 4 GPA">
-
-<button onclick="cgpa()">Calculate CGPA</button>
+<input id="c4" type="number" step="0.01" placeholder="Semester 4 GPA"><button onclick="cgpa()">Calculate CGPA</button>
 
 <div class="result" id="cgpaResult">
 Result will appear here
 </div>
-
-</div>
-
-
-<!-- Age -->
-
-<div class="card">
-
+</div><div class="card">
 <h3>🎂 Age Calculator</h3>
-
-<p>Calculate your age from your date of birth.</p>
-
-<input id="dob" type="date">
-
-<button onclick="age()">Calculate Age</button>
+<p>Calculate your age from your date of birth.</p><input id="dob" type="date"><button onclick="age()">Calculate Age</button>
 
 <div class="result" id="ageResult">
 Result will appear here
 </div>
-
-</div>
-
-
-<!-- BMI -->
-
-<div class="card">
-
+</div><div class="card">
 <h3>⚖️ BMI Calculator</h3>
-
-<p>Calculate BMI using height and weight.</p>
-
-<input id="weight" type="number" placeholder="Weight (kg)">
-
-<input id="height" type="number" placeholder="Height (cm)">
-
-<button onclick="bmi()">Calculate BMI</button>
+<p>Calculate BMI using height and weight.</p><input id="weight" type="number" placeholder="Weight (kg)">
+<input id="height" type="number" placeholder="Height (cm)"><button onclick="bmi()">Calculate BMI</button>
 
 <div class="result" id="bmiResult">
 Result will appear here
 </div>
-
-</div>
-
-
-<!-- Discount -->
-
-<div class="card">
-
+</div><div class="card">
 <h3>💰 Discount Calculator</h3>
-
-<p>Find discount amount and final price.</p>
-
-<input id="price" type="number" placeholder="Original Price">
-
-<input id="discount" type="number" placeholder="Discount %">
-
-<button onclick="discountCalc()">Calculate</button>
+<p>Find discount amount and final price.</p><input id="price" type="number" placeholder="Original Price">
+<input id="discount" type="number" placeholder="Discount %"><button onclick="discountCalc()">Calculate</button>
 
 <div class="result" id="discountResult">
 Result will appear here
 </div>
-
-</div>
-
-
-<!-- Simple Interest -->
-
-<div class="card">
-
-<h3>💵 Simple Interest</h3>
-
-<p>Calculate simple interest easily.</p>
-
-<input id="principal" type="number" placeholder="Principal">
-
+</div><div class="card">
+<h3>💵 Simple Interest Calculator</h3>
+<p>Calculate simple interest easily.</p><input id="principal" type="number" placeholder="Principal">
 <input id="rate" type="number" placeholder="Rate %">
-
-<input id="years" type="number" placeholder="Time (Years)">
-
-<button onclick="interest()">Calculate</button>
+<input id="years" type="number" placeholder="Time (Years)"><button onclick="interest()">Calculate</button>
 
 <div class="result" id="interestResult">
 Result will appear here
 </div>
-
-</div>
-
-
-<!-- Quiz -->
-
-<div class="card">
-
+</div><div class="card">
 <h3>🔢 Quick Quiz</h3>
-
-<p>Test your basic knowledge.</p>
-
-<p><b>How many days are there in one week?</b></p>
-
-<select id="quizAnswer">
-
+<p>Test your basic knowledge.</p><p><b>How many days are there in one week?</b></p><select id="quizAnswer">
 <option value="">Select Answer</option>
-
 <option value="5">5</option>
-
 <option value="7">7</option>
-
 <option value="10">10</option>
-
-</select>
-
-<button onclick="quiz()">Check Answer</button>
+</select><button onclick="quiz()">Check Answer</button>
 
 <div class="result" id="quizResult">
 Your result will appear here
 </div>
-
-</div>
-
-
-<!-- Scientific Calculator -->
-
-<div class="card">
-
+</div><div class="card">
 <h3>🧮 Scientific Calculator</h3>
-
-<p>Perform basic mathematical calculations.</p>
-
-<input id="scientificInput" type="text" placeholder="Example: 25+5*2">
-
-<button onclick="scientific()">Calculate</button>
+<p>Perform basic mathematical calculations.</p><input id="scientificInput" type="text" placeholder="Example: 25+5*2"><button onclick="scientific()">Calculate</button>
 
 <div class="result" id="scientificResult">
 Result will appear here
 </div>
-
-</div>
-
-
-<!-- Unit Converter -->
-
-<div class="card">
-
+</div><div class="card">
 <h3>📏 Unit Converter</h3>
-
-<p>Convert centimeters, meters and kilometers.</p>
-
-<input id="unitValue" type="number" placeholder="Enter value">
-
-<select id="unitType">
-
+<p>Convert centimeters, meters and kilometers.</p><input id="unitValue" type="number" placeholder="Enter value"><select id="unitType">
 <option value="cm-m">Centimeter → Meter</option>
-
 <option value="m-cm">Meter → Centimeter</option>
-
 <option value="m-km">Meter → Kilometer</option>
-
 <option value="km-m">Kilometer → Meter</option>
-
-</select>
-
-<button onclick="convertUnit()">Convert</button>
+</select><button onclick="convertUnit()">Convert</button>
 
 <div class="result" id="unitResult">
 Result will appear here
 </div>
-
-</div>
-
-
-<!-- Exam Marks -->
-
-<div class="card">
-
+</div><div class="card">
 <h3>📝 Exam Marks Calculator</h3>
-
-<p>Calculate percentage and grade.</p>
-
-<input id="examObtained" type="number" placeholder="Obtained Marks">
-
-<input id="examTotal" type="number" placeholder="Total Marks">
-
-<button onclick="examMarks()">Calculate Grade</button>
+<p>Calculate exam percentage and grade.</p><input id="examObtained" type="number" placeholder="Obtained Marks">
+<input id="examTotal" type="number" placeholder="Total Marks"><button onclick="examMarks()">Calculate Grade</button>
 
 <div class="result" id="examResult">
 Result will appear here
 </div>
-
-</div>
-
-
-</div>
-
-
-<section class="info" id="about">
-
-<h2>About StudySmart Tools</h2>
-
-<p>
-StudySmart Tools provides simple and free online tools
-to help students with calculations, study preparation
-and everyday academic tasks.
-</p>
-
-<br>
-
-<p>
-Our goal is to make useful student tools accessible
-on mobile phones and computers.
-</p>
-
-</section>
-
-
-<section class="premium" id="premium">
-
-<h2>🚀 Premium Study Tools</h2>
-
-<p>
-Advanced MCQs, AI study tools, exam preparation packs
-and additional features are coming soon.
-</p>
-
-<button onclick="premiumMessage()">
+</div></div><section class="info" id="about"><h2>About StudySmart Tools</h2><p>
+StudySmart Tools provides simple and free online calculators and study tools to help students with academic calculations, exam preparation and everyday study tasks.
+</p><br><p>
+Our goal is to make useful student tools accessible on mobile phones, tablets and computers.
+</p></section><section class="premium" id="premium"><h2>🚀 Premium Study Tools</h2><p>
+Advanced MCQs, AI study tools, exam preparation packs and additional features are coming soon.
+</p><button onclick="premiumMessage()">
 Coming Soon
-</button>
+</button></section></main><footer>© 2026 StudySmart Tools
 
-</section>
-
-
-<footer>
-
-© 2026 StudySmart Tools
-
-<br>
-
-Free student tools for students worldwide.
-
-<footer>
-
-© 2026 StudySmart Tools
-
-<br>
-
-Free student tools for students worldwide.
+<br>Free student tools for students worldwide.
 
 <br><br>
 
 <a href="about.html">About Us</a>
-&nbsp; | &nbsp;
+  |  
 <a href="privacy.html">Privacy Policy</a>
-&nbsp; | &nbsp;
+  |  
 <a href="contact.html">Contact Us</a>
 
-</footer>
-
-
-<script>
+</footer><script>
 
 function percentage(){
 
 let a=parseFloat(document.getElementById("obtained").value);
-
 let b=parseFloat(document.getElementById("total").value);
 
 if(isNaN(a)||isNaN(b)||b<=0){
@@ -586,15 +351,10 @@ document.getElementById("percentageResult").innerText=
 function gpa(){
 
 let v=[
-
 parseFloat(document.getElementById("g1").value),
-
 parseFloat(document.getElementById("g2").value),
-
 parseFloat(document.getElementById("g3").value),
-
 parseFloat(document.getElementById("g4").value)
-
 ].filter(x=>!isNaN(x));
 
 if(v.length===0){
@@ -615,15 +375,10 @@ document.getElementById("gpaResult").innerText=
 function cgpa(){
 
 let v=[
-
 parseFloat(document.getElementById("c1").value),
-
 parseFloat(document.getElementById("c2").value),
-
 parseFloat(document.getElementById("c3").value),
-
 parseFloat(document.getElementById("c4").value)
-
 ].filter(x=>!isNaN(x));
 
 if(v.length===0){
@@ -654,17 +409,13 @@ return;
 }
 
 let birth=new Date(d);
-
 let today=new Date();
 
 let y=today.getFullYear()-birth.getFullYear();
-
 let m=today.getMonth()-birth.getMonth();
 
 if(m<0||(m===0&&today.getDate()<birth.getDate())){
-
 y--;
-
 }
 
 document.getElementById("ageResult").innerText=
@@ -675,7 +426,6 @@ document.getElementById("ageResult").innerText=
 function bmi(){
 
 let w=parseFloat(document.getElementById("weight").value);
-
 let h=parseFloat(document.getElementById("height").value);
 
 if(isNaN(w)||isNaN(h)||h<=0){
@@ -696,10 +446,9 @@ document.getElementById("bmiResult").innerText=
 function discountCalc(){
 
 let p=parseFloat(document.getElementById("price").value);
-
 let d=parseFloat(document.getElementById("discount").value);
 
-if(isNaN(p)||isNaN(d)){
+if(isNaN(p)||isNaN(d)||p<0||d<0){
 
 document.getElementById("discountResult").innerText=
 "Enter valid values.";
@@ -708,7 +457,6 @@ return;
 }
 
 let saved=p*d/100;
-
 let finalPrice=p-saved;
 
 document.getElementById("discountResult").innerText=
@@ -719,9 +467,7 @@ document.getElementById("discountResult").innerText=
 function interest(){
 
 let p=parseFloat(document.getElementById("principal").value);
-
 let r=parseFloat(document.getElementById("rate").value);
-
 let t=parseFloat(document.getElementById("years").value);
 
 if(isNaN(p)||isNaN(r)||isNaN(t)){
@@ -766,12 +512,20 @@ document.getElementById("quizResult").innerText=
 function scientific(){
 
 let expression=
-document.getElementById("scientificInput").value;
+document.getElementById("scientificInput").value.trim();
 
 if(!expression){
 
 document.getElementById("scientificResult").innerText=
 "Enter a calculation.";
+
+return;
+}
+
+if(!/^[0-9+\-*/().%\s]+$/.test(expression)){
+
+document.getElementById("scientificResult").innerText=
+"Invalid calculation.";
 
 return;
 }
@@ -851,7 +605,6 @@ result=value*1000;
 
 document.getElementById("unitResult").innerText=
 result+" meters";
-
 }
 }
 
@@ -877,39 +630,22 @@ let percent=(obtained/total)*100;
 let grade;
 
 if(percent>=80){
-
 grade="A+";
-
 }
-
 else if(percent>=70){
-
 grade="A";
-
 }
-
 else if(percent>=60){
-
 grade="B";
-
 }
-
 else if(percent>=50){
-
 grade="C";
-
 }
-
 else if(percent>=40){
-
 grade="D";
-
 }
-
 else{
-
 grade="F";
-
 }
 
 document.getElementById("examResult").innerText=
@@ -922,7 +658,8 @@ function premiumMessage(){
 alert("Premium features will be available soon!");
 
 }
-  
+
+
 function searchTools(){
 
 let input=document.getElementById("toolSearch").value.toLowerCase();
@@ -944,7 +681,5 @@ card.style.display="none";
 
 }
 
-</script>
-
-</body>
+</script></body>
   </html>

@@ -78,5 +78,26 @@ $('gpaList').addEventListener('click',e=>{if(e.target.classList.contains('remove
 $('cgpaList').addEventListener('click',e=>{if(e.target.classList.contains('remove-cgpa')){if($('cgpaList').children.length>1){e.target.closest('.dynamic-item').remove();updateCgpaTitles();}else setResult('cgpaResult','At least one semester is required.');}});
 $('toolSearch').addEventListener('input',()=>{const q=$('toolSearch').value.toLowerCase().trim();document.querySelectorAll('.tool-card').forEach(c=>c.classList.toggle('hidden',!c.innerText.toLowerCase().includes(q)));});
 addGpaSubject();addGpaSubject();addCgpaSemester();addCgpaSemester();renderQuiz();
+document.getElementById("calculateHealthyWeight").addEventListener("click", function () {
+    const heightCm = parseFloat(document.getElementById("heightHealthy").value);
+    const result = document.getElementById("healthyWeightResult");
+
+    if (!heightCm || heightCm <= 0) {
+        result.textContent = "Please enter a valid height.";
+        return;
+    }
+
+    const heightM = heightCm / 100;
+
+    const minWeight = 18.5 * heightM * heightM;
+    const maxWeight = 24.9 * heightM * heightM;
+
+    result.textContent =
+        "Approximate healthy weight range: " +
+        minWeight.toFixed(1) +
+        " kg – " +
+        maxWeight.toFixed(1) +
+        " kg";
+});
 </script>
 </body></html>

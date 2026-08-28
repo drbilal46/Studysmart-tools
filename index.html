@@ -1,17 +1,18 @@
 <!DOCTYPE html><html lang="en">
 <head><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="google-site-verification" content="nnRW_neMHt_nhXWgQK8UZsR6quQK6bGo2gjKd7uGCBI"><title>StudySmart Tools | Free GPA, CGPA, Percentage & Student Calculators</title><meta name="description" content="StudySmart Tools offers free online GPA, CGPA, percentage, exam marks, BMI, age, discount, interest, scientific calculator and unit converter tools for students."><meta name="keywords" content="GPA calculator, CGPA calculator, percentage calculator, student calculator, exam marks calculator, BMI calculator, age calculator, unit converter, scientific calculator, StudySmart Tools"><meta name="robots" content="index, follow"><link rel="canonical" href="https://drbilal46.github.io/Studysmart-tools/"><style>
+
 *{
 box-sizing:border-box;
 margin:0;
-padding:0
+padding:0;
 }
 
 body{
 font-family:Arial,sans-serif;
 background:#f5f7fb;
 color:#172033;
-line-height:1.6
+line-height:1.6;
 }
 
 header{
@@ -23,80 +24,80 @@ align-items:center;
 box-shadow:0 2px 10px rgba(0,0,0,.08);
 position:sticky;
 top:0;
-z-index:10
+z-index:10;
 }
 
 .logo{
 font-size:22px;
-font-weight:bold
+font-weight:bold;
 }
 
 .logo span{
-color:#2563eb
+color:#2563eb;
 }
 
 nav a{
 text-decoration:none;
 color:#333;
 margin-left:15px;
-font-size:14px
+font-size:14px;
 }
 
 .hero{
 text-align:center;
 padding:55px 20px;
-background:linear-gradient(135deg,#eaf2ff,#fff)
+background:linear-gradient(135deg,#eaf2ff,#fff);
 }
 
 .hero h1{
 font-size:38px;
-margin-bottom:12px
+margin-bottom:12px;
 }
 
 .hero h1 span{
-color:#2563eb
+color:#2563eb;
 }
 
 .hero p{
-max-width:700px;
+max-width:750px;
 margin:auto;
 color:#596579;
-font-size:17px
+font-size:17px;
 }
 
 .container{
 max-width:1100px;
 margin:auto;
-padding:25px 18px
+padding:25px 18px;
 }
 
 .section-title{
 text-align:center;
 margin:20px 0 25px;
-font-size:28px
+font-size:28px;
 }
 
 .tools{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-gap:18px
+gap:18px;
 }
 
 .card{
 background:#fff;
 padding:22px;
 border-radius:15px;
-box-shadow:0 4px 18px rgba(0,0,0,.07)
+box-shadow:0 4px 18px rgba(0,0,0,.07);
 }
 
 .card h3{
-margin-bottom:7px
+margin-bottom:7px;
 }
 
 .card p{
 color:#687386;
 font-size:14px;
-margin-bottom:12px
+margin-bottom:12px;
 }
 
 input,select{
@@ -105,7 +106,7 @@ padding:12px;
 margin:6px 0;
 border:1px solid #d5dbe5;
 border-radius:8px;
-font-size:15px
+font-size:15px;
 }
 
 button{
@@ -117,11 +118,22 @@ background:#2563eb;
 color:#fff;
 font-size:15px;
 cursor:pointer;
-margin-top:7px
+margin-top:7px;
 }
 
 button:hover{
-opacity:.9
+opacity:.9;
+}
+
+.small-button{
+width:auto;
+padding:9px 14px;
+margin-top:8px;
+font-size:13px;
+}
+
+.remove-button{
+background:#dc2626;
 }
 
 .result{
@@ -130,7 +142,21 @@ padding:12px;
 border-radius:8px;
 background:#eef5ff;
 font-weight:bold;
-text-align:center
+text-align:center;
+}
+
+.dynamic-row{
+border:1px solid #e1e6ef;
+border-radius:10px;
+padding:12px;
+margin-top:10px;
+background:#fafbfe;
+}
+
+.dynamic-row strong{
+display:block;
+margin-bottom:5px;
+font-size:14px;
 }
 
 .info{
@@ -138,11 +164,11 @@ margin-top:30px;
 background:#fff;
 padding:25px;
 border-radius:15px;
-box-shadow:0 4px 18px rgba(0,0,0,.06)
+box-shadow:0 4px 18px rgba(0,0,0,.06);
 }
 
 .info h2{
-margin-bottom:12px
+margin-bottom:12px;
 }
 
 .premium{
@@ -151,17 +177,17 @@ background:#111827;
 color:#fff;
 text-align:center;
 padding:35px 20px;
-border-radius:18px
+border-radius:18px;
 }
 
 .premium p{
 color:#d1d5db;
-margin:10px 0 20px
+margin:10px 0 20px;
 }
 
 .premium button{
 max-width:250px;
-background:#f59e0b
+background:#f59e0b;
 }
 
 footer{
@@ -170,25 +196,26 @@ padding:30px 15px;
 margin-top:30px;
 background:#fff;
 color:#687386;
-font-size:14px
+font-size:14px;
 }
 
 footer a{
 color:#2563eb;
-text-decoration:none
+text-decoration:none;
 }
 
 @media(max-width:600px){
 
 .hero h1{
-font-size:30px
+font-size:30px;
 }
 
 nav a{
-display:none
+display:none;
 }
 
 }
+
 </style></head><body><header><div class="logo">
 Study<span>Smart</span> Tools
 </div><nav>
@@ -203,112 +230,245 @@ Popular Free Student Tools
 type="text"
 id="toolSearch"
 placeholder="🔍 Search a tool..."
-onkeyup="searchTools"
+onkeyup="searchTools()"
 aria-label="Search student tools"
 style="width:100%;padding:14px;border:2px solid #d5dbe5;border-radius:10px;font-size:16px;"
 
 «»
 
-</div><div class="tools"><div class="card">
-<h3>📊 Percentage Calculator</h3>
-<p>Calculate percentage from obtained and total marks.</p><input id="obtained" type="number" placeholder="Obtained Marks">
-<input id="total" type="number" placeholder="Total Marks"><button onclick="percentage()">Calculate</button>
+</div><div class="tools"><!-- Percentage --><div class="card"><h3>📊 Percentage Calculator</h3><p>Calculate percentage from obtained and total marks.</p><input id="obtained" type="number" min="0" placeholder="Obtained Marks"><input id="total" type="number" min="1" placeholder="Total Marks"><button onclick="percentage()">Calculate</button>
 
 <div class="result" id="percentageResult">
 Result will appear here
-</div>
-</div><div class="card">
-<h3>🎓 GPA Calculator</h3>
-<p>Calculate average GPA from your subjects.</p><input id="g1" type="number" step="0.01" placeholder="Subject 1 GPA">
-<input id="g2" type="number" step="0.01" placeholder="Subject 2 GPA">
-<input id="g3" type="number" step="0.01" placeholder="Subject 3 GPA">
-<input id="g4" type="number" step="0.01" placeholder="Subject 4 GPA"><button onclick="gpa()">Calculate GPA</button>
+</div></div><!-- GPA --><div class="card"><h3>🎓 GPA Calculator</h3><p>Calculate weighted GPA using subjects and credit hours.</p><div id="gpaSubjects"><div class="dynamic-row"><strong>Subject 1</strong>
 
-<div class="result" id="gpaResult">
+<input
+class="gpa-value"
+type="number"
+min="0"
+max="4"
+step="0.01"
+placeholder="GPA (0 - 4)"
+
+«»
+
+<input
+class="gpa-credit"
+type="number"
+min="0.1"
+step="0.5"
+placeholder="Credit Hours"
+
+«»
+
+</div><div class="dynamic-row"><strong>Subject 2</strong>
+
+<input
+class="gpa-value"
+type="number"
+min="0"
+max="4"
+step="0.01"
+placeholder="GPA (0 - 4)"
+
+«»
+
+<input
+class="gpa-credit"
+type="number"
+min="0.1"
+step="0.5"
+placeholder="Credit Hours"
+
+«»
+
+</div></div><button onclick="addGpaSubject()">
+➕ Add Subject
+</button><button onclick="gpa()">
+Calculate GPA
+</button><div class="result" id="gpaResult">
 Result will appear here
-</div>
-</div><div class="card">
-<h3>📚 CGPA Calculator</h3>
-<p>Calculate average CGPA from semester GPAs.</p><input id="c1" type="number" step="0.01" placeholder="Semester 1 GPA">
-<input id="c2" type="number" step="0.01" placeholder="Semester 2 GPA">
-<input id="c3" type="number" step="0.01" placeholder="Semester 3 GPA">
-<input id="c4" type="number" step="0.01" placeholder="Semester 4 GPA"><button onclick="cgpa()">Calculate CGPA</button>
+</div></div><!-- CGPA --><div class="card"><h3>📚 CGPA Calculator</h3><p>Calculate weighted CGPA from multiple semesters.</p><div id="cgpaSemesters"><div class="dynamic-row"><strong>Semester 1</strong>
 
-<div class="result" id="cgpaResult">
+<input
+class="cgpa-value"
+type="number"
+min="0"
+max="4"
+step="0.01"
+placeholder="Semester GPA (0 - 4)"
+
+«»
+
+<input
+class="cgpa-credit"
+type="number"
+min="0.1"
+step="0.5"
+placeholder="Semester Credit Hours"
+
+«»
+
+</div><div class="dynamic-row"><strong>Semester 2</strong>
+
+<input
+class="cgpa-value"
+type="number"
+min="0"
+max="4"
+step="0.01"
+placeholder="Semester GPA (0 - 4)"
+
+«»
+
+<input
+class="cgpa-credit"
+type="number"
+min="0.1"
+step="0.5"
+placeholder="Semester Credit Hours"
+
+«»
+
+</div></div><button onclick="addCgpaSemester()">
+➕ Add Semester
+</button><button onclick="cgpa()">
+Calculate CGPA
+</button><div class="result" id="cgpaResult">
 Result will appear here
-</div>
-</div><div class="card">
-<h3>🎂 Age Calculator</h3>
-<p>Calculate your age from your date of birth.</p><input id="dob" type="date"><button onclick="age()">Calculate Age</button>
-
-<div class="result" id="ageResult">
+</div></div><!-- Age --><div class="card"><h3>🎂 Age Calculator</h3><p>Calculate your age from your date of birth.</p><input id="dob" type="date"><button onclick="age()">
+Calculate Age
+</button><div class="result" id="ageResult">
 Result will appear here
-</div>
-</div><div class="card">
-<h3>⚖️ BMI Calculator</h3>
-<p>Calculate BMI using height and weight.</p><input id="weight" type="number" placeholder="Weight (kg)">
-<input id="height" type="number" placeholder="Height (cm)"><button onclick="bmi()">Calculate BMI</button>
+</div></div><!-- BMI --><div class="card"><h3>⚖️ BMI Calculator</h3><p>Calculate BMI using height and weight.</p><input
+id="weight"
+type="number"
+min="0"
+step="0.1"
+placeholder="Weight (kg)"
 
-<div class="result" id="bmiResult">
+«»
+
+<input
+id="height"
+type="number"
+min="0"
+step="0.1"
+placeholder="Height (cm)"
+
+«»
+
+<button onclick="bmi()">
+Calculate BMI
+</button><div class="result" id="bmiResult">
 Result will appear here
-</div>
-</div><div class="card">
-<h3>💰 Discount Calculator</h3>
-<p>Find discount amount and final price.</p><input id="price" type="number" placeholder="Original Price">
-<input id="discount" type="number" placeholder="Discount %"><button onclick="discountCalc()">Calculate</button>
+</div></div><!-- Discount --><div class="card"><h3>💰 Discount Calculator</h3><p>Find discount amount and final price.</p><input
+id="price"
+type="number"
+min="0"
+placeholder="Original Price"
 
-<div class="result" id="discountResult">
+«»
+
+<input
+id="discount"
+type="number"
+min="0"
+max="100"
+placeholder="Discount %"
+
+«»
+
+<button onclick="discountCalc()">
+Calculate
+</button><div class="result" id="discountResult">
 Result will appear here
-</div>
-</div><div class="card">
-<h3>💵 Simple Interest Calculator</h3>
-<p>Calculate simple interest easily.</p><input id="principal" type="number" placeholder="Principal">
-<input id="rate" type="number" placeholder="Rate %">
-<input id="years" type="number" placeholder="Time (Years)"><button onclick="interest()">Calculate</button>
+</div></div><!-- Simple Interest --><div class="card"><h3>💵 Simple Interest Calculator</h3><p>Calculate simple interest easily.</p><input
+id="principal"
+type="number"
+min="0"
+placeholder="Principal"
 
-<div class="result" id="interestResult">
+«»
+
+<input
+id="rate"
+type="number"
+min="0"
+placeholder="Rate %"
+
+«»
+
+<input
+id="years"
+type="number"
+min="0"
+step="0.1"
+placeholder="Time (Years)"
+
+«»
+
+<button onclick="interest()">
+Calculate
+</button><div class="result" id="interestResult">
 Result will appear here
-</div>
-</div><div class="card">
-<h3>🔢 Quick Quiz</h3>
-<p>Test your basic knowledge.</p><p><b>How many days are there in one week?</b></p><select id="quizAnswer">
-<option value="">Select Answer</option>
-<option value="5">5</option>
-<option value="7">7</option>
-<option value="10">10</option>
-</select><button onclick="quiz()">Check Answer</button>
-
-<div class="result" id="quizResult">
+</div></div><!-- Quiz --><div class="card"><h3>🔢 Quick Quiz</h3><p>Test your basic knowledge.</p><p><b>How many days are there in one week?</b></p><select id="quizAnswer"><option value="">
+Select Answer
+</option><option value="5">5</option><option value="7">7</option><option value="10">10</option></select><button onclick="quiz()">
+Check Answer
+</button><div class="result" id="quizResult">
 Your result will appear here
-</div>
-</div><div class="card">
-<h3>🧮 Scientific Calculator</h3>
-<p>Perform basic mathematical calculations.</p><input id="scientificInput" type="text" placeholder="Example: 25+5*2"><button onclick="scientific()">Calculate</button>
+</div></div><!-- Scientific Calculator --><div class="card"><h3>🧮 Scientific Calculator</h3><p>Perform basic mathematical calculations.</p><input
+id="scientificInput"
+type="text"
+placeholder="Example: 25+5*2"
 
-<div class="result" id="scientificResult">
-Result will appear here
-</div>
-</div><div class="card">
-<h3>📏 Unit Converter</h3>
-<p>Convert centimeters, meters and kilometers.</p><input id="unitValue" type="number" placeholder="Enter value"><select id="unitType">
-<option value="cm-m">Centimeter → Meter</option>
-<option value="m-cm">Meter → Centimeter</option>
-<option value="m-km">Meter → Kilometer</option>
-<option value="km-m">Kilometer → Meter</option>
-</select><button onclick="convertUnit()">Convert</button>
+«»
 
-<div class="result" id="unitResult">
+<button onclick="scientific()">
+Calculate
+</button><div class="result" id="scientificResult">
 Result will appear here
-</div>
-</div><div class="card">
-<h3>📝 Exam Marks Calculator</h3>
-<p>Calculate exam percentage and grade.</p><input id="examObtained" type="number" placeholder="Obtained Marks">
-<input id="examTotal" type="number" placeholder="Total Marks"><button onclick="examMarks()">Calculate Grade</button>
+</div></div><!-- Unit Converter --><div class="card"><h3>📏 Unit Converter</h3><p>Convert centimeters, meters and kilometers.</p><input
+id="unitValue"
+type="number"
+placeholder="Enter value"
 
-<div class="result" id="examResult">
+«»
+
+<select id="unitType"><option value="cm-m">
+Centimeter → Meter
+</option><option value="m-cm">
+Meter → Centimeter
+</option><option value="m-km">
+Meter → Kilometer
+</option><option value="km-m">
+Kilometer → Meter
+</option></select><button onclick="convertUnit()">
+Convert
+</button><div class="result" id="unitResult">
 Result will appear here
-</div>
-</div></div><section class="info" id="about"><h2>About StudySmart Tools</h2><p>
+</div></div><!-- Exam Marks --><div class="card"><h3>📝 Exam Marks Calculator</h3><p>Calculate exam percentage and grade.</p><input
+id="examObtained"
+type="number"
+min="0"
+placeholder="Obtained Marks"
+
+«»
+
+<input
+id="examTotal"
+type="number"
+min="1"
+placeholder="Total Marks"
+
+«»
+
+<button onclick="examMarks()">
+Calculate Grade
+</button><div class="result" id="examResult">
+Result will appear here
+</div></div></div><section class="info" id="about"><h2>About StudySmart Tools</h2><p>
 StudySmart Tools provides simple and free online calculators and study tools to help students with academic calculations, exam preparation and everyday study tasks.
 </p><br><p>
 Our goal is to make useful student tools accessible on mobile phones, tablets and computers.
@@ -323,82 +483,315 @@ Coming Soon
 <br><br>
 
 <a href="about.html">About Us</a>
+
   |  
+
 <a href="privacy.html">Privacy Policy</a>
+
   |  
+
 <a href="contact.html">Contact Us</a>
 
 </footer><script>
 
+
+/* Percentage */
+
 function percentage(){
 
-let a=parseFloat(document.getElementById("obtained").value);
-let b=parseFloat(document.getElementById("total").value);
+let a=parseFloat(
+document.getElementById("obtained").value
+);
 
-if(isNaN(a)||isNaN(b)||b<=0){
+let b=parseFloat(
+document.getElementById("total").value
+);
+
+if(
+isNaN(a) ||
+isNaN(b) ||
+a<0 ||
+b<=0 ||
+a>b
+){
 
 document.getElementById("percentageResult").innerText=
 "Enter valid marks.";
 
 return;
+
 }
 
 document.getElementById("percentageResult").innerText=
 "Percentage: "+((a/b)*100).toFixed(2)+"%";
+
 }
 
+
+/* GPA - Add Subject */
+
+function addGpaSubject(){
+
+let container=
+document.getElementById("gpaSubjects");
+
+let count=
+container.querySelectorAll(".dynamic-row").length+1;
+
+let row=
+document.createElement("div");
+
+row.className="dynamic-row";
+
+row.innerHTML=`
+
+<strong>Subject ${count}</strong>
+
+<input
+class="gpa-value"
+type="number"
+min="0"
+max="4"
+step="0.01"
+placeholder="GPA (0 - 4)"
+>
+
+<input
+class="gpa-credit"
+type="number"
+min="0.1"
+step="0.5"
+placeholder="Credit Hours"
+>
+
+<button
+type="button"
+class="small-button remove-button"
+onclick="this.parentElement.remove(); updateGpaNumbers();"
+>
+Remove
+</button>
+
+`;
+
+container.appendChild(row);
+
+}
+
+
+/* Update GPA subject numbers */
+
+function updateGpaNumbers(){
+
+let rows=
+document.querySelectorAll("#gpaSubjects .dynamic-row");
+
+rows.forEach(function(row,index){
+
+row.querySelector("strong").innerText=
+"Subject "+(index+1);
+
+});
+
+}
+
+
+/* GPA Calculator */
 
 function gpa(){
 
-let v=[
-parseFloat(document.getElementById("g1").value),
-parseFloat(document.getElementById("g2").value),
-parseFloat(document.getElementById("g3").value),
-parseFloat(document.getElementById("g4").value)
-].filter(x=>!isNaN(x));
+let values=
+document.querySelectorAll(".gpa-value");
 
-if(v.length===0){
+let credits=
+document.querySelectorAll(".gpa-credit");
+
+let totalPoints=0;
+
+let totalCredits=0;
+
+if(values.length===0){
 
 document.getElementById("gpaResult").innerText=
-"Enter GPA values.";
+"Add at least one subject.";
 
 return;
+
 }
 
-let r=v.reduce((a,b)=>a+b,0)/v.length;
+for(let i=0;i<values.length;i++){
+
+let grade=
+parseFloat(values[i].value);
+
+let credit=
+parseFloat(credits[i].value);
+
+if(
+isNaN(grade) ||
+isNaN(credit) ||
+grade<0 ||
+grade>4 ||
+credit<=0
+){
 
 document.getElementById("gpaResult").innerText=
-"GPA: "+r.toFixed(2);
+"Enter valid GPA (0-4) and credit hours.";
+
+return;
+
 }
 
+totalPoints += grade*credit;
+
+totalCredits += credit;
+
+}
+
+let result=
+totalPoints/totalCredits;
+
+document.getElementById("gpaResult").innerText=
+"Weighted GPA: "+result.toFixed(2);
+
+}
+
+
+/* CGPA - Add Semester */
+
+function addCgpaSemester(){
+
+let container=
+document.getElementById("cgpaSemesters");
+
+let count=
+container.querySelectorAll(".dynamic-row").length+1;
+
+let row=
+document.createElement("div");
+
+row.className="dynamic-row";
+
+row.innerHTML=`
+
+<strong>Semester ${count}</strong>
+
+<input
+class="cgpa-value"
+type="number"
+min="0"
+max="4"
+step="0.01"
+placeholder="Semester GPA (0 - 4)"
+>
+
+<input
+class="cgpa-credit"
+type="number"
+min="0.1"
+step="0.5"
+placeholder="Semester Credit Hours"
+>
+
+<button
+type="button"
+class="small-button remove-button"
+onclick="this.parentElement.remove(); updateCgpaNumbers();"
+>
+Remove
+</button>
+
+`;
+
+container.appendChild(row);
+
+}
+
+
+/* Update CGPA semester numbers */
+
+function updateCgpaNumbers(){
+
+let rows=
+document.querySelectorAll("#cgpaSemesters .dynamic-row");
+
+rows.forEach(function(row,index){
+
+row.querySelector("strong").innerText=
+"Semester "+(index+1);
+
+});
+
+}
+
+
+/* CGPA Calculator */
 
 function cgpa(){
 
-let v=[
-parseFloat(document.getElementById("c1").value),
-parseFloat(document.getElementById("c2").value),
-parseFloat(document.getElementById("c3").value),
-parseFloat(document.getElementById("c4").value)
-].filter(x=>!isNaN(x));
+let values=
+document.querySelectorAll(".cgpa-value");
 
-if(v.length===0){
+let credits=
+document.querySelectorAll(".cgpa-credit");
+
+let totalPoints=0;
+
+let totalCredits=0;
+
+if(values.length===0){
 
 document.getElementById("cgpaResult").innerText=
-"Enter semester GPAs.";
+"Add at least one semester.";
 
 return;
+
 }
 
-let r=v.reduce((a,b)=>a+b,0)/v.length;
+for(let i=0;i<values.length;i++){
+
+let grade=
+parseFloat(values[i].value);
+
+let credit=
+parseFloat(credits[i].value);
+
+if(
+isNaN(grade) ||
+isNaN(credit) ||
+grade<0 ||
+grade>4 ||
+credit<=0
+){
 
 document.getElementById("cgpaResult").innerText=
-"CGPA: "+r.toFixed(2);
+"Enter valid GPA (0-4) and credit hours.";
+
+return;
+
 }
 
+totalPoints += grade*credit;
+
+totalCredits += credit;
+
+}
+
+let result=
+totalPoints/totalCredits;
+
+document.getElementById("cgpaResult").innerText=
+"Weighted CGPA: "+result.toFixed(2);
+
+}
+
+
+/* Age */
 
 function age(){
 
-let d=document.getElementById("dob").value;
+let d=
+document.getElementById("dob").value;
 
 if(!d){
 
@@ -406,108 +799,200 @@ document.getElementById("ageResult").innerText=
 "Select your birth date.";
 
 return;
+
 }
 
-let birth=new Date(d);
-let today=new Date();
+let birth=
+new Date(d);
 
-let y=today.getFullYear()-birth.getFullYear();
-let m=today.getMonth()-birth.getMonth();
+let today=
+new Date();
 
-if(m<0||(m===0&&today.getDate()<birth.getDate())){
+if(birth>today){
+
+document.getElementById("ageResult").innerText=
+"Birth date cannot be in the future.";
+
+return;
+
+}
+
+let y=
+today.getFullYear()-birth.getFullYear();
+
+let m=
+today.getMonth()-birth.getMonth();
+
+if(
+m<0 ||
+(m===0 && today.getDate()<birth.getDate())
+){
+
 y--;
+
 }
 
 document.getElementById("ageResult").innerText=
 "Your age: "+y+" years";
+
 }
 
+
+/* BMI */
 
 function bmi(){
 
-let w=parseFloat(document.getElementById("weight").value);
-let h=parseFloat(document.getElementById("height").value);
+let w=
+parseFloat(
+document.getElementById("weight").value
+);
 
-if(isNaN(w)||isNaN(h)||h<=0){
+let h=
+parseFloat(
+document.getElementById("height").value
+);
+
+if(
+isNaN(w) ||
+isNaN(h) ||
+w<=0 ||
+h<=0
+){
 
 document.getElementById("bmiResult").innerText=
 "Enter valid values.";
 
 return;
+
 }
 
-let r=w/Math.pow(h/100,2);
+let r=
+w/Math.pow(h/100,2);
 
 document.getElementById("bmiResult").innerText=
 "BMI: "+r.toFixed(2);
+
 }
 
+
+/* Discount */
 
 function discountCalc(){
 
-let p=parseFloat(document.getElementById("price").value);
-let d=parseFloat(document.getElementById("discount").value);
+let p=
+parseFloat(
+document.getElementById("price").value
+);
 
-if(isNaN(p)||isNaN(d)||p<0||d<0){
+let d=
+parseFloat(
+document.getElementById("discount").value
+);
+
+if(
+isNaN(p) ||
+isNaN(d) ||
+p<0 ||
+d<0 ||
+d>100
+){
 
 document.getElementById("discountResult").innerText=
 "Enter valid values.";
 
 return;
+
 }
 
-let saved=p*d/100;
-let finalPrice=p-saved;
+let saved=
+p*d/100;
+
+let finalPrice=
+p-saved;
 
 document.getElementById("discountResult").innerText=
-"Save: "+saved.toFixed(2)+" | Final Price: "+finalPrice.toFixed(2);
+"Save: "+saved.toFixed(2)+
+" | Final Price: "+finalPrice.toFixed(2);
+
 }
 
+
+/* Simple Interest */
 
 function interest(){
 
-let p=parseFloat(document.getElementById("principal").value);
-let r=parseFloat(document.getElementById("rate").value);
-let t=parseFloat(document.getElementById("years").value);
+let p=
+parseFloat(
+document.getElementById("principal").value
+);
 
-if(isNaN(p)||isNaN(r)||isNaN(t)){
+let r=
+parseFloat(
+document.getElementById("rate").value
+);
+
+let t=
+parseFloat(
+document.getElementById("years").value
+);
+
+if(
+isNaN(p) ||
+isNaN(r) ||
+isNaN(t) ||
+p<0 ||
+r<0 ||
+t<0
+){
 
 document.getElementById("interestResult").innerText=
 "Enter valid values.";
 
 return;
+
 }
 
-let si=(p*r*t)/100;
+let si=
+(p*r*t)/100;
 
 document.getElementById("interestResult").innerText=
 "Simple Interest: "+si.toFixed(2);
+
 }
 
 
+/* Quiz */
+
 function quiz(){
 
-let a=document.getElementById("quizAnswer").value;
+let a=
+document.getElementById("quizAnswer").value;
 
 if(a==="7"){
 
 document.getElementById("quizResult").innerText=
 "✅ Correct!";
+
 }
 
 else if(a===""){
 
 document.getElementById("quizResult").innerText=
 "Select an answer.";
+
 }
 
 else{
 
 document.getElementById("quizResult").innerText=
 "❌ Incorrect. Answer: 7";
-}
+
 }
 
+}
+
+
+/* Scientific Calculator */
 
 function scientific(){
 
@@ -520,6 +1005,7 @@ document.getElementById("scientificResult").innerText=
 "Enter a calculation.";
 
 return;
+
 }
 
 if(!/^[0-9+\-*/().%\s]+$/.test(expression)){
@@ -528,11 +1014,17 @@ document.getElementById("scientificResult").innerText=
 "Invalid calculation.";
 
 return;
+
 }
 
 try{
 
-let result=Function('"use strict";return ('+expression+')')();
+let result=
+Function(
+'"use strict";return ('+
+expression+
+')'
+)();
 
 if(!isFinite(result)){
 
@@ -551,13 +1043,18 @@ document.getElementById("scientificResult").innerText=
 "Invalid calculation.";
 
 }
+
 }
 
+
+/* Unit Converter */
 
 function convertUnit(){
 
 let value=
-parseFloat(document.getElementById("unitValue").value);
+parseFloat(
+document.getElementById("unitValue").value
+);
 
 let type=
 document.getElementById("unitType").value;
@@ -568,6 +1065,7 @@ document.getElementById("unitResult").innerText=
 "Enter a valid value.";
 
 return;
+
 }
 
 let result;
@@ -605,76 +1103,117 @@ result=value*1000;
 
 document.getElementById("unitResult").innerText=
 result+" meters";
-}
+
 }
 
+}
+
+
+/* Exam Marks */
 
 function examMarks(){
 
 let obtained=
-parseFloat(document.getElementById("examObtained").value);
+parseFloat(
+document.getElementById("examObtained").value
+);
 
 let total=
-parseFloat(document.getElementById("examTotal").value);
+parseFloat(
+document.getElementById("examTotal").value
+);
 
-if(isNaN(obtained)||isNaN(total)||total<=0){
+if(
+isNaN(obtained) ||
+isNaN(total) ||
+obtained<0 ||
+total<=0 ||
+obtained>total
+){
 
 document.getElementById("examResult").innerText=
 "Enter valid marks.";
 
 return;
+
 }
 
-let percent=(obtained/total)*100;
+let percent=
+(obtained/total)*100;
 
 let grade;
 
 if(percent>=80){
 grade="A+";
 }
+
 else if(percent>=70){
 grade="A";
 }
+
 else if(percent>=60){
 grade="B";
 }
+
 else if(percent>=50){
 grade="C";
 }
+
 else if(percent>=40){
 grade="D";
 }
+
 else{
 grade="F";
 }
 
 document.getElementById("examResult").innerText=
-"Percentage: "+percent.toFixed(2)+"% | Grade: "+grade;
+"Percentage: "+
+percent.toFixed(2)+
+"% | Grade: "+
+grade;
+
 }
 
+
+/* Premium */
 
 function premiumMessage(){
 
-alert("Premium features will be available soon!");
+alert(
+"Premium features will be available soon!"
+);
 
 }
 
+
+/* Search Tools */
 
 function searchTools(){
 
-let input=document.getElementById("toolSearch").value.toLowerCase();
+let input=
+document.getElementById("toolSearch").value
+.toLowerCase()
+.trim();
 
-let cards=document.querySelectorAll(".tools .card");
+let cards=
+document.querySelectorAll(".tools .card");
 
 cards.forEach(function(card){
 
-let text=card.innerText.toLowerCase();
+let text=
+card.innerText.toLowerCase();
 
 if(text.includes(input)){
+
 card.style.display="";
+
 }
+
 else{
+
 card.style.display="none";
+
 }
 
 });

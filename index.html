@@ -222,6 +222,16 @@ Useful calculators and study tools for students worldwide.
 <h2 class="section-title">
 Popular Free Tools
 </h2>
+  
+<div style="max-width:600px;margin:0 auto 25px;">
+<input
+type="text"
+id="toolSearch"
+placeholder="🔍 Search a tool..."
+onkeyup="searchTools()"
+style="width:100%;padding:14px;border:2px solid #d5dbe5;border-radius:10px;font-size:16px;"
+>
+</div>
 
 <div class="tools">
 
@@ -891,6 +901,27 @@ document.getElementById("examResult").innerText=
 function premiumMessage(){
 
 alert("Premium features will be available soon!");
+
+}
+  
+function searchTools(){
+
+let input=document.getElementById("toolSearch").value.toLowerCase();
+
+let cards=document.querySelectorAll(".tools .card");
+
+cards.forEach(function(card){
+
+let text=card.innerText.toLowerCase();
+
+if(text.includes(input)){
+card.style.display="";
+}
+else{
+card.style.display="none";
+}
+
+});
 
 }
 

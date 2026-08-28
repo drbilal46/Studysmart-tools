@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About Us | StudySmart Tools</title>
+
+<meta name="description" content="Learn more about StudySmart Tools and our free student tools.">
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+color:#172033;
+line-height:1.7;
+margin:0;
+}
+
+header{
+background:#fff;
+padding:18px 20px;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+}
+
+.logo{
+font-size:22px;
+font-weight:bold;
+}
+
+.logo span{
+color:#2563eb;
+}
+
+.container{
+max-width:800px;
+margin:40px auto;
+padding:30px 20px;
+}
+
+.box{
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 4px 18px rgba(0,0,0,.07);
+}
+
+h1{
+color:#2563eb;
+margin-bottom:20px;
+}
+
+h2{
+margin-top:25px;
+}
+
+a{
+color:#2563eb;
+text-decoration:none;
+}
+
+footer{
+text-align:center;
+padding:25px;
+margin-top:40px;
+background:#fff;
+color:#687386;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+Study<span>Smart</span> Tools
+</div>
+
+</header>
+
+<div class="container">
+
+<div class="box">
+
+<h1>About StudySmart Tools</h1>
+
+<p>
+Welcome to StudySmart Tools, a free online platform
+created to provide simple and useful tools for students.
+</p>
+
+<h2>Our Mission</h2>
+
+<p>
+Our mission is to make everyday academic calculations
+and study-related tasks easier, faster and accessible
+on mobile phones and computers.
+</p>
+
+<h2>Our Tools</h2>
+
+<p>
+StudySmart Tools provides calculators such as
+percentage, GPA, CGPA, age, BMI, discount,
+simple interest and other useful student tools.
+</p>
+
+<h2>For Students</h2>
+
+<p>
+Our tools are designed to be simple and easy to use
+for students around the world.
+</p>
+
+<p>
+<a href="index.html">← Back to StudySmart Tools</a>
+</p>
+
+</div>
+
+</div>
+
+<footer>
+
+© 2026 StudySmart Tools
+
+</footer>
+
+</body>
+</html>

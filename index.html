@@ -136,7 +136,31 @@ const level3Questions=[
 ['Which respiratory process involves movement of oxygen and carbon dioxide across the alveolar membrane?',['Ventilation','Gas exchange','Perfusion','Expiration'],1]
 ];
 let currentLevel=1,quizIndex=0,score=0,answered=false;
-function renderQuiz(){const q=(currentLevel===1?level1Questions:currentLevel===2?level2Questions:level3Questions)[quizIndex];$('quizProgress').textContent=`Question ${quizIndex+1} of ${questions.length}`;$('quizQuestion').textContent=q[0];$('quizOptions').innerHTML=q[1].map((x,i)=>`<label><input type="radio" name="quiz" value="${i}"> ${x}</label>`).join('');$('quizBtn').textContent=quizIndex===questions.length-1?'Finish Quiz':'Next Question';setResult('quizResult','');answered=false;}
+function renderQuiz(){
+    const questionsList =
+        currentLevel===1 ? level1Questions :
+        currentLevel===2 ? level2Questions :
+        level3Questions;
+
+    const q=questionsList[quizIndex];
+
+    $('quizProgress').textContent =
+        `Level ${currentLevel} — Question ${quizIndex+1} of ${questionsList.length}`;
+
+    $('quizQuestion').textContent=q[0];
+
+    $('quizOptions').innerHTML=q[1]
+        .map((x,i)=>`<label><input type="radio" name="quiz" value="${i}"> ${x}</label>`)
+        .join('');
+
+    $('quizBtn').textContent =
+        quizIndex===questionsList.length-1
+        ? 'Finish Level'
+        : 'Next Question';
+
+    setResult('quizResult','');
+    answered=false;
+    }
 function nextQuiz(){
     if(answered)return;
 

@@ -161,16 +161,19 @@ function renderQuiz(){
     setResult('quizResult','');
     answered=false;
     }
+
+    const percentage=Math.round((score/totalQuestions)*100);
 function nextQuiz(){
     if(answered)return;
 
     const chosen=document.querySelector('input[name="quiz"]:checked');
 
     if(!chosen){
-        return setResult('quizResult','Please select an answer.');
+        setResult('quizResult','Please select an answer.');
+        return;
     }
 
-    const questionsList=
+    const questionsList =
         currentLevel===1 ? level1Questions :
         currentLevel===2 ? level2Questions :
         level3Questions;
@@ -181,55 +184,57 @@ function nextQuiz(){
 
     answered=true;
 
-    if(quizIndex<questionsList.length-1){
+    if(quizIndex < questionsList.length-1){
         quizIndex++;
         renderQuiz();
-    }else{
-        const totalQuestions=questionsList.length;
-        const percentage=Math.round((score/totalQuestions)*100);
-
-        if(currentLevel===1){
-            setResult('quizResult',
-                `Level 1 complete! Score: ${score}/${totalQuestions} (${percentage}%). Level 2 unlocked!`
-            );
-
-            currentLevel=2;
-            $('quizBtn').textContent='Start Level 2';
-
-            $('quizBtn').onclick=()=>{
-                quizIndex=0;
-                score=0;
-                $('quizBtn').onclick=nextQuiz;
-                renderQuiz();
-            };
-
-        }else if(currentLevel===2){
-            setResult('quizResult',
-                `Level 2 complete! Score: ${score}/${totalQuestions} (${percentage}%). Level 3 unlocked!`
-            );
-
-            currentLevel=3;
-            $('quizBtn').textContent='Start Level 3';
-
-            $('quizBtn').onclick=()=>{
-                quizIndex=0;
-                score=0;
-                $('quizBtn').onclick=nextQuiz;
-                renderQuiz();
-            };
-
-        }else{
-            setResult('quizResult',
-                `Level 3 complete! Score: ${score}/${totalQuestions} (${percentage}%). All levels completed!`
-            );
-
-            $('quizBtn').textContent='Restart Quiz';
-            $('quizBtn').onclick=restartQuiz;
-        }
+        return;
     }
-    }
+
+    const totalQuestions=questionsList.length;
     const percentage=Math.round((score/totalQuestions)*100);
 
+    if(currentLevel===1){
+        setResult(
+            'quizResult',
+            `Level 1 complete! Score: ${score}/${totalQuestions} (${percentage}%). Level 2 unlocked!`
+        );
+
+        currentLevel=2;
+        quizIndex=0;
+        score=0;
+        $('quizBtn').textContent='Start Level 2';
+
+        $('quizBtn').onclick=function(){
+            $('quizBtn').onclick=nextQuiz;
+            renderQuiz();
+        };
+
+    }else if(currentLevel===2){
+        setResult(
+            'quizResult',
+            `Level 2 complete! Score: ${score}/${totalQuestions} (${percentage}%). Level 3 unlocked!`
+        );
+
+        currentLevel=3;
+        quizIndex=0;
+        score=0;
+        $('quizBtn').textContent='Start Level 3';
+
+        $('quizBtn').onclick=function(){
+            $('quizBtn').onclick=nextQuiz;
+            renderQuiz();
+        };
+
+    }else{
+        setResult(
+            'quizResult',
+            `Level 3 complete! Score: ${score}/${totalQuestions} (${percentage}%). All levels completed!`
+        );
+
+        $('quizBtn').textContent='Restart Quiz';
+        $('quizBtn').onclick=restartQuiz;
+    }
+    }
     if(currentLevel===1){
         setResult('quizResult',`Level 1 complete! Score: ${score}/${totalQuestions} (${percentage}%). Level 2 unlocked!`);
         currentLevel=2;

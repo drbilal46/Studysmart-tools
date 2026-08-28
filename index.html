@@ -96,10 +96,95 @@ function convertUnit(){const v=num('unitValue');if(!Number.isFinite(v))return se
     'kg-g':[v*1000,'grams']
 };const [r,u]=map[type];setResult('unitResult',r+' '+u);}
 function calculateExpression(){let s=$('calcInput').value.trim().replaceAll('×','*').replaceAll('÷','/').replace(/[^0-9+\-*/().%\s]/g,'');if(!s||s!==$('calcInput').value.trim().replaceAll('×','*').replaceAll('÷','/').replace(/[^0-9+\-*/().%\s]/g,''))return setResult('calcResult','Invalid calculation. Use numbers and + − × ÷ only.');try{if(/[/*+\-]{2,}/.test(s.replace(/\s/g,'')))throw Error();const result=Function('"use strict";return ('+s+')')();if(!Number.isFinite(result))throw Error();setResult('calcResult','Result: '+result);}catch(e){setResult('calcResult','Invalid calculation.');}}
-const questions=[['How many days are in one week?',['5','7','10','12'],1],['What is H₂O commonly called?',['Oxygen','Hydrogen','Water','Salt'],2],['How many hours are in one day?',['12','18','24','48'],2],['Which organ pumps blood?',['Liver','Heart','Kidney','Lung'],1],['What is 5 × 6?',['11','20','30','35'],2],['Which planet is known as the Red Planet?',['Earth','Mars','Venus','Jupiter'],1],['How many centimeters are in 1 meter?',['10','50','100','1000'],2],['What is 50% of 200?',['50','100','150','200'],1],['Which gas do humans need for normal respiration?',['Oxygen','Helium','Neon','Hydrogen'],0],['What is 2 + 8?',['8','9','10','12'],2]];
-let quizIndex=0,score=0,answered=false;
-function renderQuiz(){const q=questions[quizIndex];$('quizProgress').textContent=`Question ${quizIndex+1} of ${questions.length}`;$('quizQuestion').textContent=q[0];$('quizOptions').innerHTML=q[1].map((x,i)=>`<label><input type="radio" name="quiz" value="${i}"> ${x}</label>`).join('');$('quizBtn').textContent=quizIndex===questions.length-1?'Finish Quiz':'Next Question';setResult('quizResult','');answered=false;}
-function nextQuiz(){if(answered)return;const chosen=document.querySelector('input[name="quiz"]:checked');if(!chosen)return setResult('quizResult','Please select an answer.');if(Number(chosen.value)===questions[quizIndex][2])score++;answered=true;if(quizIndex<questions.length-1){quizIndex++;renderQuiz();}else{setResult('quizResult',`Quiz finished! Score: ${score}/${questions.length}`);$('quizBtn').textContent='Restart Quiz';$('quizBtn').onclick=restartQuiz;}}
+const level1Questions=[['How many days are in one week?',['5','7','10','12'],1],['What is H₂O commonly called?',['Oxygen','Hydrogen','Water','Salt'],2],['How many hours are in one day?',['12','18','24','48'],2],['Which organ pumps blood?',['Liver','Heart','Kidney','Lung'],1],['What is 5 × 6?',['11','20','30','35'],2],['Which planet is known as the Red Planet?',['Earth','Mars','Venus','Jupiter'],1],['How many centimeters are in 1 meter?',['10','50','100','1000'],2],['What is 50% of 200?',['50','100','150','200'],1],['Which gas do humans need for normal respiration?',['Oxygen','Helium','Neon','Hydrogen'],0],['What is 2 + 8?',['8','9','10','12'],2]];const level2Questions=[
+['Which part of the cell contains genetic material?',['Nucleus','Ribosome','Lysosome','Golgi body'],0],
+['What is the normal pH of blood approximately?',['5.5','6.5','7.4','8.5'],2],
+['Which organ is primarily responsible for filtering blood?',['Heart','Kidney','Lung','Stomach'],1],
+['What is the powerhouse of the cell?',['Nucleus','Mitochondria','Ribosome','Cell wall'],1],
+['Which vitamin is mainly produced in skin by sunlight?',['Vitamin A','Vitamin B12','Vitamin C','Vitamin D'],3],
+['What is the basic unit of heredity?',['Gene','Cell','Tissue','Organ'],0],
+['Which blood cells help fight infection?',['Red blood cells','White blood cells','Platelets','Plasma'],1],
+['What is the chemical symbol for sodium?',['So','Na','S','Sd'],1],
+['Which process converts glucose into energy in cells?',['Respiration','Digestion','Filtration','Diffusion'],0],
+['Which organ produces insulin?',['Liver','Kidney','Pancreas','Lung'],2],
+['What is the approximate normal body temperature?',['25°C','30°C','37°C','45°C'],2],
+['Which molecule carries oxygen in red blood cells?',['Insulin','Hemoglobin','Keratin','Collagen'],1],
+['What is diffusion?',['Movement from high to low concentration','Movement from low to high concentration','Cell division','Protein synthesis'],0],
+['Which chamber pumps oxygenated blood to the body?',['Right atrium','Right ventricle','Left atrium','Left ventricle'],3],
+['Which nutrient is the main source of energy for the body?',['Carbohydrates','Vitamins','Minerals','Water'],0]
+];
+const level3Questions=[
+['Which receptor is primarily responsible for sensing arterial pressure?',['Chemoreceptor','Baroreceptor','Photoreceptor','Nociceptor'],1],
+['Which phase of the cardiac cycle involves ventricular contraction?',['Diastole','Systole','Filling','Relaxation'],1],
+['Which hormone increases sodium reabsorption in the kidney?',['Insulin','Aldosterone','Thyroxine','Melatonin'],1],
+['What is the main neurotransmitter released by most postganglionic parasympathetic neurons?',['Dopamine','Norepinephrine','Acetylcholine','Serotonin'],2],
+['Which part of the nephron is mainly responsible for glucose reabsorption?',['Collecting duct','Proximal convoluted tubule','Loop of Henle','Distal convoluted tubule'],1],
+['What is the normal resting membrane potential of a typical neuron approximately?',['+30 mV','0 mV','-70 mV','-10 mV'],2],
+['Which blood vessel carries oxygenated blood from the lungs to the heart?',['Pulmonary artery','Pulmonary vein','Aorta','Vena cava'],1],
+['Which enzyme begins protein digestion in the stomach?',['Amylase','Pepsin','Lipase','Trypsin'],1],
+['Which vitamin is essential for synthesis of clotting factors?',['Vitamin A','Vitamin C','Vitamin D','Vitamin K'],3],
+['Which ECG wave represents ventricular depolarization?',['P wave','QRS complex','T wave','U wave'],1],
+['What is the primary function of hemoglobin?',['Blood clotting','Oxygen transport','Hormone production','Digestion'],1],
+['Which immunoglobulin is most abundant in normal plasma?',['IgA','IgE','IgG','IgM'],2],
+['Which process moves molecules against their concentration gradient using energy?',['Simple diffusion','Osmosis','Active transport','Filtration'],2],
+['Which organelle is mainly responsible for protein synthesis?',['Lysosome','Ribosome','Mitochondrion','Centrosome'],1],
+['What is the main extracellular cation?',['Potassium','Sodium','Calcium','Magnesium'],1],
+['Which hormone lowers blood glucose concentration?',['Glucagon','Cortisol','Insulin','Adrenaline'],2],
+['Which blood cells are primarily involved in adaptive immunity?',['Erythrocytes','Lymphocytes','Platelets','Neutrophils'],1],
+['What is stroke volume?',['Heart rate per minute','Blood pumped by a ventricle per beat','Blood pressure during systole','Total blood volume'],1],
+['Which structure normally initiates the heartbeat?',['AV node','SA node','Bundle of His','Purkinje fibers'],1],
+['Which respiratory process involves movement of oxygen and carbon dioxide across the alveolar membrane?',['Ventilation','Gas exchange','Perfusion','Expiration'],1]
+];
+let currentLevel=1,quizIndex=0,score=0,answered=false;
+function renderQuiz(){const q=(currentLevel===1?level1Questions:currentLevel===2?level2Questions:level3Questions)[quizIndex];$('quizProgress').textContent=`Question ${quizIndex+1} of ${questions.length}`;$('quizQuestion').textContent=q[0];$('quizOptions').innerHTML=q[1].map((x,i)=>`<label><input type="radio" name="quiz" value="${i}"> ${x}</label>`).join('');$('quizBtn').textContent=quizIndex===questions.length-1?'Finish Quiz':'Next Question';setResult('quizResult','');answered=false;}
+function nextQuiz(){if(answered)return;const chosen=document.querySelector('input[name="quiz"]:checked');if(!chosen)return setResult('quizResult','Please select an answer.');if(Number(chosen.value)===questions[quizIndex][2])score++;answered=true;if(quizIndex<questions.length-1){quizIndex++;renderQuiz();else{
+    const totalQuestions=(currentLevel===1?level1Questions:currentLevel===2?level2Questions:level3Questions).length;
+    const percentage=Math.round((score/totalQuestions)*100);
+
+    if(currentLevel===1){
+        setResult('quizResult',`Level 1 complete! Score: ${score}/${totalQuestions} (${percentage}%). Level 2 unlocked!`);
+        currentLevel=2;
+        $('quizBtn').textContent='Start Level 2';
+        $('quizBtn').onclick=()=>{
+            quizIndex=0;
+            score=0;
+            $('quizBtn').onclick=nextQuiz;
+            renderQuiz();
+        };
+    }else if(currentLevel===2){
+        setResult('quizResult',`Level 2 complete! Score: ${score}/${totalQuestions} (${percentage}%). Level 3 unlocked!`);
+        currentLevel=3;
+        $('quizBtn').textContent='Start Level 3';
+        $('quizBtn').onclick=()=>{
+            quizIndex=0;
+            score=0;
+            $('quizBtn').onclick=nextQuiz;
+            renderQuiz();
+        };
+    }else{
+        setResult('quizResult',`Level 3 complete! Score: ${score}/${totalQuestions} (${percentage}%). All levels completed!`);
+        $('quizBtn').textContent='Restart Quiz';
+        $('quizBtn').onclick=restartQuiz;
+    }
+    }
+    const percentage=Math.round((score/totalQuestions)*100);
+
+    if(currentLevel===1){
+        setResult('quizResult',`Level 1 complete! Score: ${score}/${totalQuestions} (${percentage}%). Level 2 unlocked!`);
+        currentLevel=2;
+        $('quizBtn').textContent='Start Level 2';
+        $('quizBtn').onclick=()=>{
+            quizIndex=0;
+            score=0;
+            $('quizBtn').onclick=nextQuiz;
+            renderQuiz();
+        };
+    }else{
+        setResult('quizResult',`Level 2 complete! Score: ${score}/${totalQuestions} (${percentage}%).`);
+        $('quizBtn').textContent='Restart Level 2';
+        $('quizBtn').onclick=restartQuiz;
+    }
+  }
 function restartQuiz(){quizIndex=0;score=0;$('quizBtn').onclick=nextQuiz;renderQuiz();}
 $('pctBtn').onclick=calculatePercentage;$('addGpa').onclick=addGpaSubject;$('calcGpa').onclick=calculateGPA;$('addCgpa').onclick=addCgpaSemester;$('calcCgpa').onclick=calculateCGPA;$('bmiBtn').onclick=calculateBMI;$('calculateHealthyWeight').onclick=calculateHealthyWeight;$('ageBtn').onclick=calculateAge;$('discountBtn').onclick=calculateDiscount;$('interestBtn').onclick=calculateInterest;$('examBtn').onclick=calculateExam;$('unitBtn').onclick=convertUnit;$('calcBtn').onclick=calculateExpression;$('quizBtn').onclick=nextQuiz;$('premiumBtn').onclick=()=>alert('Premium features will be available soon!');
 $('gpaList').addEventListener('click',e=>{if(e.target.classList.contains('remove-gpa')){if($('gpaList').children.length>1){e.target.closest('.dynamic-item').remove();updateGpaTitles();}else setResult('gpaResult','At least one subject is required.');}});

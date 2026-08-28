@@ -4,179 +4,168 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>StudySmart Tools - Free Student Tools</title>
+<title>StudySmart Tools | Free Student Calculators</title>
 
-<meta name="description" content="Free student tools for percentage, GPA, CGPA, age calculation, quizzes and study preparation.">
+<meta name="description" content="Free online calculators and study tools for students in Pakistan, India and worldwide.">
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
-  font-family:Arial,sans-serif;
-  background:#f5f7fb;
-  color:#172033;
-  line-height:1.6;
+font-family:Arial,sans-serif;
+background:#f5f7fb;
+color:#172033;
+line-height:1.6
 }
 
 header{
-  background:#ffffff;
-  padding:18px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  box-shadow:0 2px 10px rgba(0,0,0,.08);
-  position:sticky;
-  top:0;
-  z-index:10;
+background:#fff;
+padding:18px 20px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 2px 10px rgba(0,0,0,.08);
+position:sticky;
+top:0;
+z-index:10
 }
 
 .logo{
-  font-size:22px;
-  font-weight:bold;
+font-size:22px;
+font-weight:bold
 }
 
-.logo span{
-  color:#2563eb;
-}
+.logo span{color:#2563eb}
 
 nav a{
-  text-decoration:none;
-  margin-left:15px;
-  color:#333;
-  font-size:14px;
+text-decoration:none;
+color:#333;
+margin-left:15px;
+font-size:14px
 }
 
 .hero{
-  text-align:center;
-  padding:55px 20px 40px;
-  background:linear-gradient(135deg,#eaf2ff,#ffffff);
+text-align:center;
+padding:55px 20px;
+background:linear-gradient(135deg,#eaf2ff,#fff)
 }
 
 .hero h1{
-  font-size:38px;
-  margin-bottom:12px;
+font-size:38px;
+margin-bottom:12px
 }
 
-.hero h1 span{
-  color:#2563eb;
-}
+.hero h1 span{color:#2563eb}
 
 .hero p{
-  max-width:650px;
-  margin:auto;
-  color:#596579;
-  font-size:17px;
+max-width:700px;
+margin:auto;
+color:#596579;
+font-size:17px
 }
 
 .container{
-  max-width:1050px;
-  margin:auto;
-  padding:25px 18px;
+max-width:1100px;
+margin:auto;
+padding:25px 18px
 }
 
 .section-title{
-  text-align:center;
-  margin:20px 0 25px;
-  font-size:27px;
+text-align:center;
+margin:20px 0 25px;
+font-size:28px
 }
 
 .tools{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:18px
 }
 
 .card{
-  background:white;
-  padding:22px;
-  border-radius:15px;
-  box-shadow:0 4px 18px rgba(0,0,0,.07);
+background:#fff;
+padding:22px;
+border-radius:15px;
+box-shadow:0 4px 18px rgba(0,0,0,.07)
 }
 
-.card h3{
-  margin-bottom:8px;
-}
+.card h3{margin-bottom:7px}
 
 .card p{
-  color:#687386;
-  font-size:14px;
-  margin-bottom:15px;
+color:#687386;
+font-size:14px;
+margin-bottom:12px
 }
 
 input,select{
-  width:100%;
-  padding:12px;
-  margin:7px 0;
-  border:1px solid #d5dbe5;
-  border-radius:8px;
-  font-size:15px;
+width:100%;
+padding:12px;
+margin:6px 0;
+border:1px solid #d5dbe5;
+border-radius:8px;
+font-size:15px
 }
 
 button{
-  width:100%;
-  padding:12px;
-  border:0;
-  border-radius:8px;
-  background:#2563eb;
-  color:white;
-  font-size:15px;
-  cursor:pointer;
-  margin-top:7px;
-}
-
-button:hover{
-  opacity:.9;
+width:100%;
+padding:12px;
+border:0;
+border-radius:8px;
+background:#2563eb;
+color:#fff;
+font-size:15px;
+cursor:pointer;
+margin-top:7px
 }
 
 .result{
-  margin-top:12px;
-  padding:12px;
-  border-radius:8px;
-  background:#eef5ff;
-  font-weight:bold;
-  text-align:center;
+margin-top:12px;
+padding:12px;
+border-radius:8px;
+background:#eef5ff;
+font-weight:bold;
+text-align:center
+}
+
+.info{
+margin-top:30px;
+background:#fff;
+padding:25px;
+border-radius:15px;
+box-shadow:0 4px 18px rgba(0,0,0,.06)
 }
 
 .premium{
-  margin-top:35px;
-  background:#111827;
-  color:white;
-  text-align:center;
-  padding:35px 20px;
-  border-radius:18px;
+margin-top:30px;
+background:#111827;
+color:#fff;
+text-align:center;
+padding:35px 20px;
+border-radius:18px
 }
 
 .premium p{
-  color:#d1d5db;
-  margin:10px 0 20px;
+color:#d1d5db;
+margin:10px 0 20px
 }
 
 .premium button{
-  max-width:250px;
-  background:#f59e0b;
+max-width:250px;
+background:#f59e0b
 }
 
 footer{
-  text-align:center;
-  padding:30px 15px;
-  margin-top:30px;
-  background:#ffffff;
-  color:#687386;
-  font-size:14px;
+text-align:center;
+padding:30px 15px;
+margin-top:30px;
+background:#fff;
+color:#687386;
+font-size:14px
 }
 
 @media(max-width:600px){
-  .hero h1{
-    font-size:30px;
-  }
-
-  nav a{
-    display:none;
-  }
+.hero h1{font-size:30px}
+nav a{display:none}
 }
 </style>
 </head>
@@ -184,198 +173,252 @@ footer{
 <body>
 
 <header>
-  <div class="logo">Study<span>Smart</span> Tools</div>
+<div class="logo">Study<span>Smart</span> Tools</div>
 
-  <nav>
-    <a href="#tools">Tools</a>
-    <a href="#premium">Premium</a>
-  </nav>
+<nav>
+<a href="#tools">Tools</a>
+<a href="#about">About</a>
+<a href="#premium">Premium</a>
+</nav>
 </header>
 
 
 <section class="hero">
 
-  <h1>Free <span>Study Tools</span> for Students</h1>
+<h1>Free <span>Student Tools</span></h1>
 
-  <p>
-    Calculate GPA, CGPA, percentage and age.
-    More study tools and AI features are coming soon.
-  </p>
+<p>
+Useful calculators and study tools for students in Pakistan,
+India and worldwide.
+</p>
 
 </section>
 
 
 <div class="container" id="tools">
 
-  <h2 class="section-title">Student Tools</h2>
+<h2 class="section-title">Popular Free Tools</h2>
 
-  <div class="tools">
+<div class="tools">
 
 
-    <!-- Percentage Calculator -->
+<div class="card">
 
-    <div class="card">
+<h3>📊 Percentage Calculator</h3>
 
-      <h3>📊 Percentage Calculator</h3>
+<p>Calculate percentage from obtained and total marks.</p>
 
-      <p>Calculate your percentage instantly.</p>
+<input id="obtained" type="number" placeholder="Obtained Marks">
 
-      <input id="obtained" type="number" placeholder="Obtained Marks">
+<input id="total" type="number" placeholder="Total Marks">
 
-      <input id="total" type="number" placeholder="Total Marks">
+<button onclick="percentage()">Calculate</button>
 
-      <button onclick="percentage()">Calculate</button>
+<div class="result" id="percentageResult">
+Result will appear here
+</div>
 
-      <div class="result" id="percentageResult">
-        Result will appear here
-      </div>
+</div>
 
-    </div>
 
+<div class="card">
 
-    <!-- GPA Calculator -->
+<h3>🎓 GPA Calculator</h3>
 
-    <div class="card">
+<p>Calculate average GPA from your subjects.</p>
 
-      <h3>🎓 GPA Calculator</h3>
+<input id="g1" type="number" step="0.01" placeholder="Subject 1 GPA">
 
-      <p>Calculate GPA from grade points.</p>
+<input id="g2" type="number" step="0.01" placeholder="Subject 2 GPA">
 
-      <input id="g1" type="number" step="0.01" placeholder="Subject 1 Grade Point">
+<input id="g3" type="number" step="0.01" placeholder="Subject 3 GPA">
 
-      <input id="g2" type="number" step="0.01" placeholder="Subject 2 Grade Point">
+<input id="g4" type="number" step="0.01" placeholder="Subject 4 GPA">
 
-      <input id="g3" type="number" step="0.01" placeholder="Subject 3 Grade Point">
+<button onclick="gpa()">Calculate GPA</button>
 
-      <input id="g4" type="number" step="0.01" placeholder="Subject 4 Grade Point">
+<div class="result" id="gpaResult">
+Result will appear here
+</div>
 
-      <button onclick="gpa()">Calculate GPA</button>
+</div>
 
-      <div class="result" id="gpaResult">
-        Result will appear here
-      </div>
 
-    </div>
+<div class="card">
 
+<h3>📚 CGPA Calculator</h3>
 
-    <!-- CGPA Calculator -->
+<p>Calculate average CGPA from semester GPAs.</p>
 
-    <div class="card">
+<input id="c1" type="number" step="0.01" placeholder="Semester 1 GPA">
 
-      <h3>📚 CGPA Calculator</h3>
+<input id="c2" type="number" step="0.01" placeholder="Semester 2 GPA">
 
-      <p>Calculate CGPA from semester GPAs.</p>
+<input id="c3" type="number" step="0.01" placeholder="Semester 3 GPA">
 
-      <input id="c1" type="number" step="0.01" placeholder="Semester 1 GPA">
+<input id="c4" type="number" step="0.01" placeholder="Semester 4 GPA">
 
-      <input id="c2" type="number" step="0.01" placeholder="Semester 2 GPA">
+<button onclick="cgpa()">Calculate CGPA</button>
 
-      <input id="c3" type="number" step="0.01" placeholder="Semester 3 GPA">
+<div class="result" id="cgpaResult">
+Result will appear here
+</div>
 
-      <input id="c4" type="number" step="0.01" placeholder="Semester 4 GPA">
+</div>
 
-      <button onclick="cgpa()">Calculate CGPA</button>
 
-      <div class="result" id="cgpaResult">
-        Result will appear here
-      </div>
+<div class="card">
 
-    </div>
+<h3>🎂 Age Calculator</h3>
 
+<p>Calculate your age from your date of birth.</p>
 
-    <!-- Age Calculator -->
+<input id="dob" type="date">
 
-    <div class="card">
+<button onclick="age()">Calculate Age</button>
 
-      <h3>🎂 Age Calculator</h3>
+<div class="result" id="ageResult">
+Result will appear here
+</div>
 
-      <p>Find your current age.</p>
+</div>
 
-      <input id="dob" type="date">
 
-      <button onclick="age()">Calculate Age</button>
+<div class="card">
 
-      <div class="result" id="ageResult">
-        Result will appear here
-      </div>
+<h3>⚖️ BMI Calculator</h3>
 
-    </div>
+<p>Calculate BMI using your height and weight.</p>
 
+<input id="weight" type="number" placeholder="Weight (kg)">
 
-    <!-- Study Quiz -->
+<input id="height" type="number" placeholder="Height (cm)">
 
-    <div class="card">
+<button onclick="bmi()">Calculate BMI</button>
 
-      <h3>🧠 Quick Quiz</h3>
+<div class="result" id="bmiResult">
+Result will appear here
+</div>
 
-      <p>Test your basic knowledge.</p>
+</div>
 
-      <p><b>What is the normal human body temperature?</b></p>
 
-      <select id="quizAnswer">
-        <option value="">Select Answer</option>
-        <option value="35">35°C</option>
-        <option value="37">37°C</option>
-        <option value="40">40°C</option>
-      </select>
+<div class="card">
 
-      <button onclick="quiz()">Check Answer</button>
+<h3>💰 Discount Calculator</h3>
 
-      <div class="result" id="quizResult">
-        Your score will appear here
-      </div>
+<p>Find the discount amount and final price.</p>
 
-    </div>
+<input id="price" type="number" placeholder="Original Price">
 
+<input id="discount" type="number" placeholder="Discount %">
 
-    <!-- Study Notes -->
+<button onclick="discountCalc()">Calculate</button>
 
-    <div class="card">
+<div class="result" id="discountResult">
+Result will appear here
+</div>
 
-      <h3>📝 Study Notes</h3>
+</div>
 
-      <p>Enter a topic to get a basic study prompt.</p>
 
-      <input id="topic" placeholder="Example: Cardiac Cycle">
+<div class="card">
 
-      <button onclick="notes()">Generate</button>
+<h3>💵 Simple Interest</h3>
 
-      <div class="result" id="notesResult">
-        Your study topic will appear here
-      </div>
+<p>Calculate simple interest easily.</p>
 
-    </div>
+<input id="principal" type="number" placeholder="Principal">
 
-  </div>
+<input id="rate" type="number" placeholder="Rate %">
 
+<input id="years" type="number" placeholder="Time (Years)">
 
-  <!-- Premium -->
+<button onclick="interest()">Calculate</button>
 
-  <section class="premium" id="premium">
+<div class="result" id="interestResult">
+Result will appear here
+</div>
 
-    <h2>🚀 Premium Study Pack</h2>
+</div>
 
-    <p>
-      Advanced MCQs, exam notes, quizzes and AI study tools
-      are coming soon.
-    </p>
 
-    <button onclick="premiumMessage()">
-      Get Premium
-    </button>
+<div class="card">
 
-  </section>
+<h3>🔢 Quick Quiz</h3>
+
+<p>Test your basic knowledge.</p>
+
+<p><b>How many days are there in one week?</b></p>
+
+<select id="quizAnswer">
+
+<option value="">Select Answer</option>
+
+<option value="5">5</option>
+
+<option value="7">7</option>
+
+<option value="10">10</option>
+
+</select>
+
+<button onclick="quiz()">Check Answer</button>
+
+<div class="result" id="quizResult">
+Your result will appear here
+</div>
+
+</div>
+
+</div>
+
+
+<section class="info" id="about">
+
+<h2>About StudySmart Tools</h2>
+
+<p>
+StudySmart Tools provides simple and free online tools
+to help students with calculations, study preparation
+and everyday academic tasks.
+</p>
+
+<br>
+
+<p>
+Our goal is to make useful student tools accessible
+on mobile phones and computers.
+</p>
+
+</section>
+
+
+<section class="premium" id="premium">
+
+<h2>🚀 Premium Study Tools</h2>
+
+<p>
+Advanced MCQs, AI study tools, exam preparation packs
+and additional features are coming soon.
+</p>
+
+<button onclick="premiumMessage()">
+Coming Soon
+</button>
+
+</section>
 
 </div>
 
 
 <footer>
 
-  © 2026 StudySmart Tools
+© 2026 StudySmart Tools
 
-  <br>
+<br>
 
-  Free tools for students in Pakistan, India and worldwide.
+Free student tools for Pakistan, India and worldwide.
 
 </footer>
 
@@ -384,159 +427,156 @@ footer{
 
 function percentage(){
 
-  let obtained =
-    parseFloat(document.getElementById("obtained").value);
+let a=parseFloat(document.getElementById("obtained").value);
+let b=parseFloat(document.getElementById("total").value);
 
-  let total =
-    parseFloat(document.getElementById("total").value);
+if(isNaN(a)||isNaN(b)||b<=0){
+document.getElementById("percentageResult").innerText="Enter valid marks.";
+return;
+}
 
-  if(!obtained || !total || total <= 0){
-
-    document.getElementById("percentageResult").innerText =
-      "Please enter valid marks.";
-
-    return;
-  }
-
-  let result = (obtained / total) * 100;
-
-  document.getElementById("percentageResult").innerText =
-    "Percentage: " + result.toFixed(2) + "%";
+document.getElementById("percentageResult").innerText=
+"Percentage: "+((a/b)*100).toFixed(2)+"%";
 }
 
 
 function gpa(){
 
-  let values = [
-    parseFloat(document.getElementById("g1").value),
-    parseFloat(document.getElementById("g2").value),
-    parseFloat(document.getElementById("g3").value),
-    parseFloat(document.getElementById("g4").value)
-  ].filter(x => !isNaN(x));
+let v=[
+parseFloat(document.getElementById("g1").value),
+parseFloat(document.getElementById("g2").value),
+parseFloat(document.getElementById("g3").value),
+parseFloat(document.getElementById("g4").value)
+].filter(x=>!isNaN(x));
 
-  if(values.length === 0){
+if(v.length===0){
+document.getElementById("gpaResult").innerText="Enter GPA values.";
+return;
+}
 
-    document.getElementById("gpaResult").innerText =
-      "Enter at least one grade point.";
+let r=v.reduce((a,b)=>a+b,0)/v.length;
 
-    return;
-  }
-
-  let total = values.reduce((a,b) => a+b,0);
-
-  let result = total / values.length;
-
-  document.getElementById("gpaResult").innerText =
-    "GPA: " + result.toFixed(2);
+document.getElementById("gpaResult").innerText=
+"GPA: "+r.toFixed(2);
 }
 
 
 function cgpa(){
 
-  let values = [
-    parseFloat(document.getElementById("c1").value),
-    parseFloat(document.getElementById("c2").value),
-    parseFloat(document.getElementById("c3").value),
-    parseFloat(document.getElementById("c4").value)
-  ].filter(x => !isNaN(x));
+let v=[
+parseFloat(document.getElementById("c1").value),
+parseFloat(document.getElementById("c2").value),
+parseFloat(document.getElementById("c3").value),
+parseFloat(document.getElementById("c4").value)
+].filter(x=>!isNaN(x));
 
-  if(values.length === 0){
+if(v.length===0){
+document.getElementById("cgpaResult").innerText="Enter semester GPAs.";
+return;
+}
 
-    document.getElementById("cgpaResult").innerText =
-      "Enter at least one semester GPA.";
+let r=v.reduce((a,b)=>a+b,0)/v.length;
 
-    return;
-  }
-
-  let total = values.reduce((a,b) => a+b,0);
-
-  let result = total / values.length;
-
-  document.getElementById("cgpaResult").innerText =
-    "CGPA: " + result.toFixed(2);
+document.getElementById("cgpaResult").innerText=
+"CGPA: "+r.toFixed(2);
 }
 
 
 function age(){
 
-  let dob = document.getElementById("dob").value;
+let d=document.getElementById("dob").value;
 
-  if(!dob){
+if(!d){
+document.getElementById("ageResult").innerText="Select your birth date.";
+return;
+}
 
-    document.getElementById("ageResult").innerText =
-      "Please select your date of birth.";
+let birth=new Date(d);
+let today=new Date();
 
-    return;
-  }
+let y=today.getFullYear()-birth.getFullYear();
 
-  let birth = new Date(dob);
+let m=today.getMonth()-birth.getMonth();
 
-  let today = new Date();
+if(m<0||(m===0&&today.getDate()<birth.getDate())) y--;
 
-  let years = today.getFullYear() - birth.getFullYear();
+document.getElementById("ageResult").innerText=
+"Your age: "+y+" years";
+}
 
-  let month = today.getMonth() - birth.getMonth();
 
-  if(
-    month < 0 ||
-    (month === 0 && today.getDate() < birth.getDate())
-  ){
-    years--;
-  }
+function bmi(){
 
-  document.getElementById("ageResult").innerText =
-    "Your age: " + years + " years";
+let w=parseFloat(document.getElementById("weight").value);
+let h=parseFloat(document.getElementById("height").value);
+
+if(isNaN(w)||isNaN(h)||h<=0){
+document.getElementById("bmiResult").innerText="Enter valid values.";
+return;
+}
+
+let r=w/Math.pow(h/100,2);
+
+document.getElementById("bmiResult").innerText=
+"BMI: "+r.toFixed(2);
+}
+
+
+function discountCalc(){
+
+let p=parseFloat(document.getElementById("price").value);
+let d=parseFloat(document.getElementById("discount").value);
+
+if(isNaN(p)||isNaN(d)){
+document.getElementById("discountResult").innerText="Enter valid values.";
+return;
+}
+
+let saved=p*d/100;
+let finalPrice=p-saved;
+
+document.getElementById("discountResult").innerText=
+"Save: "+saved.toFixed(2)+" | Final Price: "+finalPrice.toFixed(2);
+}
+
+
+function interest(){
+
+let p=parseFloat(document.getElementById("principal").value);
+let r=parseFloat(document.getElementById("rate").value);
+let t=parseFloat(document.getElementById("years").value);
+
+if(isNaN(p)||isNaN(r)||isNaN(t)){
+document.getElementById("interestResult").innerText="Enter valid values.";
+return;
+}
+
+let si=(p*r*t)/100;
+
+document.getElementById("interestResult").innerText=
+"Simple Interest: "+si.toFixed(2);
 }
 
 
 function quiz(){
 
-  let answer =
-    document.getElementById("quizAnswer").value;
+let a=document.getElementById("quizAnswer").value;
 
-  if(answer === "37"){
-
-    document.getElementById("quizResult").innerText =
-      "✅ Correct! Your answer is 37°C.";
-
-  }else if(answer === ""){
-
-    document.getElementById("quizResult").innerText =
-      "Please select an answer.";
-
-  }else{
-
-    document.getElementById("quizResult").innerText =
-      "❌ Incorrect. Correct answer: 37°C.";
-  }
+if(a==="7"){
+document.getElementById("quizResult").innerText="✅ Correct!";
 }
-
-
-function notes(){
-
-  let topic =
-    document.getElementById("topic").value.trim();
-
-  if(!topic){
-
-    document.getElementById("notesResult").innerText =
-      "Please enter a study topic.";
-
-    return;
-  }
-
-  document.getElementById("notesResult").innerText =
-    "Study topic selected: " + topic +
-    ". Detailed AI notes will be available soon.";
+else if(a===""){
+document.getElementById("quizResult").innerText="Select an answer.";
+}
+else{
+document.getElementById("quizResult").innerText="❌ Incorrect. Answer: 7";
+}
 }
 
 
 function premiumMessage(){
 
-  alert(
-    "Premium features are coming soon. Stay tuned!"
-  );
-
+alert("Premium features will be available soon!");
 }
 
 </script>

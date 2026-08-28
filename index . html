@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>StudySmart Tools - Free Student Tools</title>
+
+<meta name="description" content="Free student tools for percentage, GPA, CGPA, age calculation, quizzes and study preparation.">
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f7fb;
+  color:#172033;
+  line-height:1.6;
+}
+
+header{
+  background:#ffffff;
+  padding:18px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  font-size:22px;
+  font-weight:bold;
+}
+
+.logo span{
+  color:#2563eb;
+}
+
+nav a{
+  text-decoration:none;
+  margin-left:15px;
+  color:#333;
+  font-size:14px;
+}
+
+.hero{
+  text-align:center;
+  padding:55px 20px 40px;
+  background:linear-gradient(135deg,#eaf2ff,#ffffff);
+}
+
+.hero h1{
+  font-size:38px;
+  margin-bottom:12px;
+}
+
+.hero h1 span{
+  color:#2563eb;
+}
+
+.hero p{
+  max-width:650px;
+  margin:auto;
+  color:#596579;
+  font-size:17px;
+}
+
+.container{
+  max-width:1050px;
+  margin:auto;
+  padding:25px 18px;
+}
+
+.section-title{
+  text-align:center;
+  margin:20px 0 25px;
+  font-size:27px;
+}
+
+.tools{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+
+.card{
+  background:white;
+  padding:22px;
+  border-radius:15px;
+  box-shadow:0 4px 18px rgba(0,0,0,.07);
+}
+
+.card h3{
+  margin-bottom:8px;
+}
+
+.card p{
+  color:#687386;
+  font-size:14px;
+  margin-bottom:15px;
+}
+
+input,select{
+  width:100%;
+  padding:12px;
+  margin:7px 0;
+  border:1px solid #d5dbe5;
+  border-radius:8px;
+  font-size:15px;
+}
+
+button{
+  width:100%;
+  padding:12px;
+  border:0;
+  border-radius:8px;
+  background:#2563eb;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  margin-top:7px;
+}
+
+button:hover{
+  opacity:.9;
+}
+
+.result{
+  margin-top:12px;
+  padding:12px;
+  border-radius:8px;
+  background:#eef5ff;
+  font-weight:bold;
+  text-align:center;
+}
+
+.premium{
+  margin-top:35px;
+  background:#111827;
+  color:white;
+  text-align:center;
+  padding:35px 20px;
+  border-radius:18px;
+}
+
+.premium p{
+  color:#d1d5db;
+  margin:10px 0 20px;
+}
+
+.premium button{
+  max-width:250px;
+  background:#f59e0b;
+}
+
+footer{
+  text-align:center;
+  padding:30px 15px;
+  margin-top:30px;
+  background:#ffffff;
+  color:#687386;
+  font-size:14px;
+}
+
+@media(max-width:600px){
+  .hero h1{
+    font-size:30px;
+  }
+
+  nav a{
+    display:none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Study<span>Smart</span> Tools</div>
+
+  <nav>
+    <a href="#tools">Tools</a>
+    <a href="#premium">Premium</a>
+  </nav>
+</header>
+
+
+<section class="hero">
+
+  <h1>Free <span>Study Tools</span> for Students</h1>
+
+  <p>
+    Calculate GPA, CGPA, percentage and age.
+    More study tools and AI features are coming soon.
+  </p>
+
+</section>
+
+
+<div class="container" id="tools">
+
+  <h2 class="section-title">Student Tools</h2>
+
+  <div class="tools">
+
+
+    <!-- Percentage Calculator -->
+
+    <div class="card">
+
+      <h3>📊 Percentage Calculator</h3>
+
+      <p>Calculate your percentage instantly.</p>
+
+      <input id="obtained" type="number" placeholder="Obtained Marks">
+
+      <input id="total" type="number" placeholder="Total Marks">
+
+      <button onclick="percentage()">Calculate</button>
+
+      <div class="result" id="percentageResult">
+        Result will appear here
+      </div>
+
+    </div>
+
+
+    <!-- GPA Calculator -->
+
+    <div class="card">
+
+      <h3>🎓 GPA Calculator</h3>
+
+      <p>Calculate GPA from grade points.</p>
+
+      <input id="g1" type="number" step="0.01" placeholder="Subject 1 Grade Point">
+
+      <input id="g2" type="number" step="0.01" placeholder="Subject 2 Grade Point">
+
+      <input id="g3" type="number" step="0.01" placeholder="Subject 3 Grade Point">
+
+      <input id="g4" type="number" step="0.01" placeholder="Subject 4 Grade Point">
+
+      <button onclick="gpa()">Calculate GPA</button>
+
+      <div class="result" id="gpaResult">
+        Result will appear here
+      </div>
+
+    </div>
+
+
+    <!-- CGPA Calculator -->
+
+    <div class="card">
+
+      <h3>📚 CGPA Calculator</h3>
+
+      <p>Calculate CGPA from semester GPAs.</p>
+
+      <input id="c1" type="number" step="0.01" placeholder="Semester 1 GPA">
+
+      <input id="c2" type="number" step="0.01" placeholder="Semester 2 GPA">
+
+      <input id="c3" type="number" step="0.01" placeholder="Semester 3 GPA">
+
+      <input id="c4" type="number" step="0.01" placeholder="Semester 4 GPA">
+
+      <button onclick="cgpa()">Calculate CGPA</button>
+
+      <div class="result" id="cgpaResult">
+        Result will appear here
+      </div>
+
+    </div>
+
+
+    <!-- Age Calculator -->
+
+    <div class="card">
+
+      <h3>🎂 Age Calculator</h3>
+
+      <p>Find your current age.</p>
+
+      <input id="dob" type="date">
+
+      <button onclick="age()">Calculate Age</button>
+
+      <div class="result" id="ageResult">
+        Result will appear here
+      </div>
+
+    </div>
+
+
+    <!-- Study Quiz -->
+
+    <div class="card">
+
+      <h3>🧠 Quick Quiz</h3>
+
+      <p>Test your basic knowledge.</p>
+
+      <p><b>What is the normal human body temperature?</b></p>
+
+      <select id="quizAnswer">
+        <option value="">Select Answer</option>
+        <option value="35">35°C</option>
+        <option value="37">37°C</option>
+        <option value="40">40°C</option>
+      </select>
+
+      <button onclick="quiz()">Check Answer</button>
+
+      <div class="result" id="quizResult">
+        Your score will appear here
+      </div>
+
+    </div>
+
+
+    <!-- Study Notes -->
+
+    <div class="card">
+
+      <h3>📝 Study Notes</h3>
+
+      <p>Enter a topic to get a basic study prompt.</p>
+
+      <input id="topic" placeholder="Example: Cardiac Cycle">
+
+      <button onclick="notes()">Generate</button>
+
+      <div class="result" id="notesResult">
+        Your study topic will appear here
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Premium -->
+
+  <section class="premium" id="premium">
+
+    <h2>🚀 Premium Study Pack</h2>
+
+    <p>
+      Advanced MCQs, exam notes, quizzes and AI study tools
+      are coming soon.
+    </p>
+
+    <button onclick="premiumMessage()">
+      Get Premium
+    </button>
+
+  </section>
+
+</div>
+
+
+<footer>
+
+  © 2026 StudySmart Tools
+
+  <br>
+
+  Free tools for students in Pakistan, India and worldwide.
+
+</footer>
+
+
+<script>
+
+function percentage(){
+
+  let obtained =
+    parseFloat(document.getElementById("obtained").value);
+
+  let total =
+    parseFloat(document.getElementById("total").value);
+
+  if(!obtained || !total || total <= 0){
+
+    document.getElementById("percentageResult").innerText =
+      "Please enter valid marks.";
+
+    return;
+  }
+
+  let result = (obtained / total) * 100;
+
+  document.getElementById("percentageResult").innerText =
+    "Percentage: " + result.toFixed(2) + "%";
+}
+
+
+function gpa(){
+
+  let values = [
+    parseFloat(document.getElementById("g1").value),
+    parseFloat(document.getElementById("g2").value),
+    parseFloat(document.getElementById("g3").value),
+    parseFloat(document.getElementById("g4").value)
+  ].filter(x => !isNaN(x));
+
+  if(values.length === 0){
+
+    document.getElementById("gpaResult").innerText =
+      "Enter at least one grade point.";
+
+    return;
+  }
+
+  let total = values.reduce((a,b) => a+b,0);
+
+  let result = total / values.length;
+
+  document.getElementById("gpaResult").innerText =
+    "GPA: " + result.toFixed(2);
+}
+
+
+function cgpa(){
+
+  let values = [
+    parseFloat(document.getElementById("c1").value),
+    parseFloat(document.getElementById("c2").value),
+    parseFloat(document.getElementById("c3").value),
+    parseFloat(document.getElementById("c4").value)
+  ].filter(x => !isNaN(x));
+
+  if(values.length === 0){
+
+    document.getElementById("cgpaResult").innerText =
+      "Enter at least one semester GPA.";
+
+    return;
+  }
+
+  let total = values.reduce((a,b) => a+b,0);
+
+  let result = total / values.length;
+
+  document.getElementById("cgpaResult").innerText =
+    "CGPA: " + result.toFixed(2);
+}
+
+
+function age(){
+
+  let dob = document.getElementById("dob").value;
+
+  if(!dob){
+
+    document.getElementById("ageResult").innerText =
+      "Please select your date of birth.";
+
+    return;
+  }
+
+  let birth = new Date(dob);
+
+  let today = new Date();
+
+  let years = today.getFullYear() - birth.getFullYear();
+
+  let month = today.getMonth() - birth.getMonth();
+
+  if(
+    month < 0 ||
+    (month === 0 && today.getDate() < birth.getDate())
+  ){
+    years--;
+  }
+
+  document.getElementById("ageResult").innerText =
+    "Your age: " + years + " years";
+}
+
+
+function quiz(){
+
+  let answer =
+    document.getElementById("quizAnswer").value;
+
+  if(answer === "37"){
+
+    document.getElementById("quizResult").innerText =
+      "✅ Correct! Your answer is 37°C.";
+
+  }else if(answer === ""){
+
+    document.getElementById("quizResult").innerText =
+      "Please select an answer.";
+
+  }else{
+
+    document.getElementById("quizResult").innerText =
+      "❌ Incorrect. Correct answer: 37°C.";
+  }
+}
+
+
+function notes(){
+
+  let topic =
+    document.getElementById("topic").value.trim();
+
+  if(!topic){
+
+    document.getElementById("notesResult").innerText =
+      "Please enter a study topic.";
+
+    return;
+  }
+
+  document.getElementById("notesResult").innerText =
+    "Study topic selected: " + topic +
+    ". Detailed AI notes will be available soon.";
+}
+
+
+function premiumMessage(){
+
+  alert(
+    "Premium features are coming soon. Stay tuned!"
+  );
+
+}
+
+</script>
+
+</body>
+</html>

@@ -4,254 +4,65 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="nnRW_neMHt_nhXWgQK8UZsR6quQK6bGo2gjKd7uGCBI">
-<meta name="description" content="Free student calculators for GPA, CGPA, percentage, BMI, age, discount, interest, exam marks, unit conversion and quizzes.">
-<meta name="robots" content="index,follow">
+<meta name="description" content="Free student calculators for percentage, GPA, CGPA, BMI, age, discount, interest, exam marks, unit conversion and quizzes.">
+<meta name="robots" content="index, follow">
 <link rel="canonical" href="https://drbilal46.github.io/Studysmart-tools/">
 <title>StudySmart Tools - Free Student Calculators</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Arial,sans-serif;background:#f5f7fb;color:#172033;line-height:1.6}
-header{background:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px rgba(0,0,0,.08);position:sticky;top:0;z-index:100}
-.logo{font-size:22px;font-weight:bold}.logo span{color:#2563eb}
-nav a{color:#333;text-decoration:none;margin-left:15px;font-size:14px}
-.hero{text-align:center;padding:55px 20px;background:linear-gradient(135deg,#eaf2ff,#fff)}
-.hero h1{font-size:38px;margin-bottom:12px}.hero h1 span{color:#2563eb}
-.hero p{max-width:750px;margin:auto;color:#596579;font-size:17px}
-.container{max-width:1100px;margin:auto;padding:25px 18px}
-.section-title{text-align:center;margin:20px 0 25px;font-size:28px}
-.search-box{max-width:600px;margin:0 auto 25px}.search-box input{width:100%;padding:14px;border:2px solid #d5dbe5;border-radius:10px;font-size:16px}
-.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
-.card{background:#fff;padding:22px;border-radius:15px;box-shadow:0 4px 18px rgba(0,0,0,.07)}
-.card h3{margin-bottom:7px}.card p{color:#687386;font-size:14px;margin-bottom:14px}
-.field{margin-bottom:10px}.field label{display:block;font-size:14px;font-weight:bold;margin-bottom:4px}
-input,select{width:100%;padding:12px;border:1px solid #d5dbe5;border-radius:8px;font-size:15px;background:#fff}
-button{width:100%;padding:12px;border:0;border-radius:8px;background:#2563eb;color:#fff;font-size:15px;cursor:pointer;margin-top:7px}
-button:hover{opacity:.9}.secondary{background:#475569}.danger{background:#dc2626}
-.small-btn{width:auto;padding:8px 12px;font-size:13px}
-.result{margin-top:12px;padding:12px;border-radius:8px;background:#eef5ff;font-weight:bold;text-align:center;min-height:44px}
-.dynamic-item{border:1px solid #e1e6ef;background:#fafbfe;border-radius:10px;padding:12px;margin-bottom:10px}
-.dynamic-title{font-weight:bold;margin-bottom:8px}.dynamic-actions{text-align:right}
-.quiz-progress{color:#687386;font-size:13px}.quiz-question{font-weight:bold;margin:12px 0}
-.quiz-options label{display:block;padding:8px;border:1px solid #e1e6ef;border-radius:8px;margin:7px 0;cursor:pointer}
-.quiz-options input{width:auto;margin-right:8px}
-.info,.premium{margin-top:30px;border-radius:15px;padding:25px;box-shadow:0 4px 18px rgba(0,0,0,.06)}
-.info{background:#fff}.info h2{margin-bottom:10px}.premium{background:#111827;color:#fff;text-align:center;padding:35px 20px;border-radius:18px}
-.premium p{color:#d1d5db;margin:10px 0 20px}.premium button{max-width:250px;background:#f59e0b}
-footer{text-align:center;padding:30px 15px;margin-top:30px;background:#fff;color:#687386;font-size:14px}
-footer a{color:#2563eb;text-decoration:none}.hidden{display:none!important}
-@media(max-width:600px){.hero h1{font-size:30px}nav a{display:none}.tools{grid-template-columns:1fr}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033;line-height:1.6}header{position:sticky;top:0;z-index:10;background:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px #0001}.logo{font-size:22px;font-weight:700}.logo span,h1 span{color:#2563eb}nav a{margin-left:16px;text-decoration:none;color:#333}.hero{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#eaf2ff,#fff)}.hero h1{font-size:38px;margin:0 0 10px}.hero p{max-width:760px;margin:auto;color:#596579}.container{max-width:1100px;margin:auto;padding:25px 18px}.section-title{text-align:center;font-size:28px}.search-box{max-width:650px;margin:0 auto 25px}.search-box input{width:100%;padding:14px;border:2px solid #d5dbe5;border-radius:10px;font-size:16px}.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.card,.info{background:#fff;padding:22px;border-radius:15px;box-shadow:0 4px 18px #00000012}.card h3{margin:0 0 7px}.card p{color:#687386;font-size:14px}.field{margin:10px 0}.field label{display:block;font-size:14px;font-weight:700;margin-bottom:4px}input,select{width:100%;padding:11px;border:1px solid #d5dbe5;border-radius:8px;font-size:15px;background:#fff}button{width:100%;padding:12px;border:0;border-radius:8px;background:#2563eb;color:#fff;font-size:15px;cursor:pointer;margin-top:7px}.secondary{background:#475569}.danger{background:#dc2626}.small-btn{width:auto;padding:7px 11px;font-size:13px}.result{margin-top:12px;padding:12px;border-radius:8px;background:#eef5ff;font-weight:700;text-align:center;min-height:44px}.dynamic-item{border:1px solid #e1e6ef;background:#fafbfe;border-radius:10px;padding:12px;margin:10px 0}.dynamic-title{font-weight:700}.dynamic-actions{text-align:right}.quiz-question{font-weight:700;margin:12px 0}.quiz-options label{display:block;padding:9px;border:1px solid #e1e6ef;border-radius:8px;margin:7px 0;cursor:pointer}.quiz-options input{width:auto;margin-right:8px}.quiz-progress{color:#687386;font-size:13px}.info{margin-top:30px}.premium{margin-top:30px;background:#111827;color:#fff;text-align:center;padding:35px 20px;border-radius:18px}.premium p{color:#d1d5db}.premium button{max-width:250px;background:#f59e0b}footer{text-align:center;padding:30px 15px;margin-top:30px;background:#fff;color:#687386;font-size:14px}footer a{color:#2563eb;text-decoration:none}.hidden{display:none!important}@media(max-width:600px){.hero h1{font-size:30px}nav{display:none}.tools{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <header><div class="logo">Study<span>Smart</span> Tools</div><nav><a href="#tools">Tools</a><a href="#about">About</a><a href="#premium">Premium</a></nav></header>
-<section class="hero"><h1>Free <span>Student Tools</span></h1><p>Useful calculators and study tools for students worldwide.</p></section>
+<section class="hero"><h1>Free <span>Student Tools</span></h1><p>Useful calculators and study tools for students worldwide. Calculate GPA, CGPA, percentage, BMI, age, exam marks and more.</p></section>
 <main class="container" id="tools">
 <h2 class="section-title">Popular Free Student Tools</h2>
-<div class="search-box"><input id="toolSearch" type="search" placeholder="Search a tool..." aria-label="Search a tool"></div>
-<div class="tools">
-
-<div class="card tool-card"><h3>📊 Percentage Calculator</h3><p>Calculate percentage from obtained and total marks.</p>
-<div class="field"><label for="percentageObtained">Obtained Marks</label><input id="percentageObtained" type="number" min="0" step="any"></div>
-<div class="field"><label for="percentageTotal">Total Marks</label><input id="percentageTotal" type="number" min="0.01" step="any"></div>
-<button type="button" id="percentageBtn">Calculate Percentage</button><div class="result" id="percentageResult">Result will appear here</div></div>
-
-<div class="card tool-card"><h3>🎓 GPA Calculator</h3><p>Calculate weighted GPA for any number of subjects.</p>
-<div id="gpaList"></div><button type="button" id="addGpaBtn">➕ Add Subject</button><button type="button" class="secondary" id="calcGpaBtn">Calculate GPA</button><div class="result" id="gpaResult">Enter GPA and credit hours.</div></div>
-
-<div class="card tool-card"><h3>📚 CGPA Calculator</h3><p>Calculate weighted CGPA for any number of semesters.</p>
-<div id="cgpaList"></div><button type="button" id="addCgpaBtn">➕ Add Semester</button><button type="button" class="secondary" id="calcCgpaBtn">Calculate CGPA</button><div class="result" id="cgpaResult">Enter semester GPA and credit hours.</div></div>
-
-<div class="card tool-card"><h3>⚖️ BMI Calculator</h3><p>Calculate BMI using weight and height.</p>
-<div class="field"><label for="bmiWeight">Weight (kg)</label><input id="bmiWeight" type="number" min="0.1" step="0.1" placeholder="Example: 60"></div>
-<div class="field"><label for="bmiHeight">Height (cm)</label><input id="bmiHeight" type="number" min="1" step="0.1" placeholder="Example: 165"></div>
-<button type="button" id="bmiBtn">Calculate BMI</button><div class="result" id="bmiResult">Enter weight and height.</div></div>
-
-<div class="card tool-card"><h3>🎂 Age Calculator</h3><p>Calculate your exact age from your date of birth.</p>
-<div class="field"><label for="dateOfBirth">Date of Birth</label><input id="dateOfBirth" type="date"></div>
-<button type="button" id="ageBtn">Calculate Age</button><div class="result" id="ageResult">Select your birth date.</div></div>
-
-<div class="card tool-card"><h3>💰 Discount Calculator</h3><p>Calculate discount amount and final price.</p>
-<div class="field"><label for="originalPrice">Original Price</label><input id="originalPrice" type="number" min="0" step="any"></div>
-<div class="field"><label for="discountPercent">Discount (%)</label><input id="discountPercent" type="number" min="0" max="100" step="any"></div>
-<button type="button" id="discountBtn">Calculate Discount</button><div class="result" id="discountResult">Result will appear here.</div></div>
-
-<div class="card tool-card"><h3>💵 Simple Interest</h3><p>Calculate simple interest and total amount.</p>
-<div class="field"><label for="principal">Principal</label><input id="principal" type="number" min="0" step="any"></div>
-<div class="field"><label for="interestRate">Rate (%)</label><input id="interestRate" type="number" min="0" step="any"></div>
-<div class="field"><label for="interestYears">Time (Years)</label><input id="interestYears" type="number" min="0" step="any"></div>
-<button type="button" id="interestBtn">Calculate Interest</button><div class="result" id="interestResult">Result will appear here.</div></div>
-
-<div class="card tool-card"><h3>📝 Exam Marks Calculator</h3><p>Calculate percentage and grade from exam marks.</p>
-<div class="field"><label for="examObtained">Obtained Marks</label><input id="examObtained" type="number" min="0" step="any"></div>
-<div class="field"><label for="examTotal">Total Marks</label><input id="examTotal" type="number" min="0.01" step="any"></div>
-<button type="button" id="examBtn">Calculate Grade</button><div class="result" id="examResult">Result will appear here.</div></div>
-
-<div class="card tool-card"><h3>📏 Unit Converter</h3><p>Convert common length units.</p>
-<div class="field"><label for="unitValue">Value</label><input id="unitValue" type="number" step="any"></div>
-<div class="field"><label for="unitType">Conversion</label><select id="unitType"><option value="cm-m">Centimeter → Meter</option><option value="m-cm">Meter → Centimeter</option><option value="m-km">Meter → Kilometer</option><option value="km-m">Kilometer → Meter</option></select></div>
-<button type="button" id="unitBtn">Convert</button><div class="result" id="unitResult">Result will appear here.</div></div>
-
-<div class="card tool-card"><h3>🧮 Basic Calculator</h3><p>Perform safe basic mathematical calculations.</p>
-<div class="field"><label for="calculatorInput">Calculation</label><input id="calculatorInput" type="text" inputmode="decimal" placeholder="Example: 25 + 5 * 2"></div>
-<button type="button" id="calculatorBtn">Calculate</button><div class="result" id="calculatorResult">Result will appear here.</div></div>
-
-<div class="card tool-card"><h3>🧠 Student Quiz</h3><p>Test your knowledge with 10 questions.</p>
-<div class="quiz-progress" id="quizProgress"></div><div class="quiz-question" id="quizQuestion"></div><div class="quiz-options" id="quizOptions"></div>
-<button type="button" id="quizBtn">Next Question</button><div class="result" id="quizResult">Your score will appear here.</div></div>
-
+<div class="search-box"><input id="toolSearch" type="search" inputmode="search" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="Search a tool..." aria-label="Search a tool"></div>
+<div class="tools" id="toolsGrid">
+<div class="card tool-card"><h3>📊 Percentage Calculator</h3><p>Calculate percentage from obtained and total marks.</p><div class="field"><label>Obtained Marks</label><input id="pctObtained" type="number" min="0" step="any"></div><div class="field"><label>Total Marks</label><input id="pctTotal" type="number" min="0.01" step="any"></div><button id="pctBtn">Calculate Percentage</button><div class="result" id="pctResult">Result will appear here</div></div>
+<div class="card tool-card"><h3>🎓 GPA Calculator</h3><p>Calculate weighted GPA for any number of subjects.</p><div id="gpaList"></div><button id="addGpa" type="button">➕ Add Subject</button><button id="calcGpa" type="button" class="secondary">Calculate GPA</button><div class="result" id="gpaResult">Enter GPA and credit hours</div></div>
+<div class="card tool-card"><h3>📚 CGPA Calculator</h3><p>Calculate weighted CGPA for any number of semesters.</p><div id="cgpaList"></div><button id="addCgpa" type="button">➕ Add Semester</button><button id="calcCgpa" type="button" class="secondary">Calculate CGPA</button><div class="result" id="cgpaResult">Enter semester GPA and credit hours</div></div>
+<div class="card tool-card"><h3>⚖️ BMI Calculator</h3><p>Calculate BMI using weight and height.</p><div class="field"><label>Weight (kg)</label><input id="bmiWeight" type="number" min="0.1" step="0.1" placeholder="Example: 60"></div><div class="field"><label>Height (cm)</label><input id="bmiHeight" type="number" min="1" step="0.1" placeholder="Example: 165"></div><button id="bmiBtn">Calculate BMI</button><div class="result" id="bmiResult">Enter weight and height</div></div>
+<div class="card tool-card"><h3>🎂 Age Calculator</h3><p>Calculate age from date of birth.</p><div class="field"><label>Date of Birth</label><input id="dob" type="date"></div><button id="ageBtn">Calculate Age</button><div class="result" id="ageResult">Select your birth date</div></div>
+<div class="card tool-card"><h3>💰 Discount Calculator</h3><p>Calculate discount and final price.</p><div class="field"><label>Original Price</label><input id="price" type="number" min="0" step="any"></div><div class="field"><label>Discount (%)</label><input id="discount" type="number" min="0" max="100" step="any"></div><button id="discountBtn">Calculate Discount</button><div class="result" id="discountResult">Result will appear here</div></div>
+<div class="card tool-card"><h3>💵 Simple Interest</h3><p>Calculate simple interest and total amount.</p><div class="field"><label>Principal</label><input id="principal" type="number" min="0" step="any"></div><div class="field"><label>Rate (%)</label><input id="rate" type="number" min="0" step="any"></div><div class="field"><label>Time (Years)</label><input id="years" type="number" min="0" step="any"></div><button id="interestBtn">Calculate Interest</button><div class="result" id="interestResult">Result will appear here</div></div>
+<div class="card tool-card"><h3>📝 Exam Marks Calculator</h3><p>Calculate percentage and grade.</p><div class="field"><label>Obtained Marks</label><input id="examObtained" type="number" min="0" step="any"></div><div class="field"><label>Total Marks</label><input id="examTotal" type="number" min="0.01" step="any"></div><button id="examBtn">Calculate Grade</button><div class="result" id="examResult">Result will appear here</div></div>
+<div class="card tool-card"><h3>📏 Unit Converter</h3><p>Convert common length units.</p><div class="field"><label>Value</label><input id="unitValue" type="number" step="any"></div><div class="field"><label>Conversion</label><select id="unitType"><option value="cm-m">Centimeter → Meter</option><option value="m-cm">Meter → Centimeter</option><option value="m-km">Meter → Kilometer</option><option value="km-m">Kilometer → Meter</option></select></div><button id="unitBtn">Convert</button><div class="result" id="unitResult">Result will appear here</div></div>
+<div class="card tool-card"><h3>🧮 Basic Calculator</h3><p>Calculate basic arithmetic safely.</p><div class="field"><label>Calculation</label><input id="calcInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Example: 25 + 5 × 2"></div><button id="calcBtn">Calculate</button><div class="result" id="calcResult">Result will appear here</div></div>
+<div class="card tool-card"><h3>🧠 Student Quiz</h3><p>Test your knowledge with 10 questions.</p><div class="quiz-progress" id="quizProgress"></div><div class="quiz-question" id="quizQuestion"></div><div class="quiz-options" id="quizOptions"></div><button id="quizBtn">Next Question</button><div class="result" id="quizResult">Your score will appear here</div></div>
 </div>
-<section class="info" id="about"><h2>About StudySmart Tools</h2><p>StudySmart Tools is a free online platform created to provide simple and useful tools for students.</p><br><p>Our goal is to make everyday academic calculations easier and more accessible on mobile phones, tablets and computers.</p><br><p>The website provides calculators for GPA, CGPA, percentage, BMI, age, exam marks, discount, interest and other useful student tasks.</p></section>
-<section class="premium" id="premium"><h2>🚀 Premium Study Tools</h2><p>Advanced MCQs, AI study tools, exam preparation resources and additional features are coming soon.</p><button type="button" id="premiumBtn">Coming Soon</button></section>
+<section class="info" id="about"><h2>About StudySmart Tools</h2><p>StudySmart Tools is a free online platform created to provide simple and useful tools for students.</p><p>Our goal is to make everyday academic calculations easier and more accessible on mobile phones, tablets and computers.</p></section>
+<section class="premium" id="premium"><h2>🚀 Premium Study Tools</h2><p>Advanced MCQs, AI study tools, exam preparation resources and additional features are coming soon.</p><button id="premiumBtn">Coming Soon</button></section>
 </main>
 <footer>© 2026 StudySmart Tools<br>Free student tools for students worldwide.<br><br><a href="about.html">About Us</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy Policy</a> &nbsp;|&nbsp; <a href="contact.html">Contact Us</a></footer>
-
 <script>
-"use strict";
-
-const $ = (id) => document.getElementById(id);
-
-function setResult(id, text) { $(id).textContent = text; }
-
-function addGpaSubject() {
-  const list = $("gpaList");
-  const n = list.querySelectorAll(".gpa-item").length + 1;
-  const item = document.createElement("div");
-  item.className = "dynamic-item gpa-item";
-  item.innerHTML = '<div class="dynamic-title">Subject ' + n + '</div>' +
-    '<div class="field"><label>GPA (0 - 4)</label><input class="gpa-input" type="number" min="0" max="4" step="0.01"></div>' +
-    '<div class="field"><label>Credit Hours</label><input class="credit-input" type="number" min="0.1" step="0.1"></div>' +
-    '<div class="dynamic-actions"><button type="button" class="small-btn danger remove-gpa">Remove</button></div>';
-  list.appendChild(item);
-}
-function addCgpaSemester() {
-  const list = $("cgpaList");
-  const n = list.querySelectorAll(".cgpa-item").length + 1;
-  const item = document.createElement("div");
-  item.className = "dynamic-item cgpa-item";
-  item.innerHTML = '<div class="dynamic-title">Semester ' + n + '</div>' +
-    '<div class="field"><label>Semester GPA (0 - 4)</label><input class="cgpa-input" type="number" min="0" max="4" step="0.01"></div>' +
-    '<div class="field"><label>Total Semester Credit Hours</label><input class="cgpa-credit-input" type="number" min="0.1" step="0.1"></div>' +
-    '<div class="dynamic-actions"><button type="button" class="small-btn danger remove-cgpa">Remove</button></div>';
-  list.appendChild(item);
-}
-function renumber(selector, label) {
-  document.querySelectorAll(selector).forEach((item, i) => {
-    item.querySelector(".dynamic-title").textContent = label + " " + (i + 1);
-  });
-}
-function calculateGPA() {
-  const gpas = document.querySelectorAll(".gpa-input");
-  const credits = document.querySelectorAll(".credit-input");
-  let points = 0, total = 0;
-  if (!gpas.length) return setResult("gpaResult", "Add at least one subject.");
-  for (let i=0;i<gpas.length;i++) {
-    const g = Number(gpas[i].value), c = Number(credits[i].value);
-    if (!Number.isFinite(g) || !Number.isFinite(c) || g < 0 || g > 4 || c <= 0) return setResult("gpaResult", "Enter valid GPA (0-4) and credit hours for every subject.");
-    points += g*c; total += c;
-  }
-  setResult("gpaResult", "Weighted GPA: " + (points/total).toFixed(2));
-}
-function calculateCGPA() {
-  const gpas = document.querySelectorAll(".cgpa-input");
-  const credits = document.querySelectorAll(".cgpa-credit-input");
-  let points = 0, total = 0;
-  if (!gpas.length) return setResult("cgpaResult", "Add at least one semester.");
-  for (let i=0;i<gpas.length;i++) {
-    const g = Number(gpas[i].value), c = Number(credits[i].value);
-    if (!Number.isFinite(g) || !Number.isFinite(c) || g < 0 || g > 4 || c <= 0) return setResult("cgpaResult", "Enter valid GPA (0-4) and credit hours for every semester.");
-    points += g*c; total += c;
-  }
-  setResult("cgpaResult", "Weighted CGPA: " + (points/total).toFixed(2));
-}
-function calculatePercentage() {
-  const a=Number($("percentageObtained").value), b=Number($("percentageTotal").value);
-  if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<=0||a>b) return setResult("percentageResult","Please enter valid marks.");
-  setResult("percentageResult","Percentage: "+((a/b)*100).toFixed(2)+"%");
-}
-function calculateBMI() {
-  const w=Number($("bmiWeight").value), h=Number($("bmiHeight").value);
-  if(!Number.isFinite(w)||!Number.isFinite(h)||w<=0||h<=0) return setResult("bmiResult","Please enter valid weight and height.");
-  const value=w/Math.pow(h/100,2);
-  let category="Obesity";
-  if(value<18.5) category="Underweight"; else if(value<25) category="Normal weight"; else if(value<30) category="Overweight";
-  setResult("bmiResult","BMI: "+value.toFixed(2)+" | "+category);
-}
-function calculateAge() {
-  const v=$("dateOfBirth").value;
-  if(!v) return setResult("ageResult","Please select your date of birth.");
-  const birth=new Date(v+"T00:00:00"), now=new Date();
-  if(birth>now) return setResult("ageResult","Birth date cannot be in the future.");
-  let y=now.getFullYear()-birth.getFullYear(), m=now.getMonth()-birth.getMonth(), d=now.getDate()-birth.getDate();
-  if(d<0){m--; d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}
-  if(m<0){y--;m+=12;}
-  setResult("ageResult","Age: "+y+" years, "+m+" months, "+d+" days");
-}
-function calculateDiscount() {
-  const p=Number($("originalPrice").value), d=Number($("discountPercent").value);
-  if(!Number.isFinite(p)||!Number.isFinite(d)||p<0||d<0||d>100) return setResult("discountResult","Please enter a valid price and discount (0-100%).");
-  const saved=p*d/100; setResult("discountResult","Discount: "+saved.toFixed(2)+" | Final Price: "+(p-saved).toFixed(2));
-}
-function calculateInterest() {
-  const p=Number($("principal").value), r=Number($("interestRate").value), t=Number($("interestYears").value);
-  if(!Number.isFinite(p)||!Number.isFinite(r)||!Number.isFinite(t)||p<0||r<0||t<0) return setResult("interestResult","Please enter valid values.");
-  const si=p*r*t/100; setResult("interestResult","Interest: "+si.toFixed(2)+" | Total: "+(p+si).toFixed(2));
-}
-function calculateExam() {
-  const a=Number($("examObtained").value), b=Number($("examTotal").value);
-  if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<=0||a>b) return setResult("examResult","Please enter valid marks.");
-  const p=a/b*100; let grade="F";
-  if(p>=80)grade="A+"; else if(p>=70)grade="A"; else if(p>=60)grade="B"; else if(p>=50)grade="C"; else if(p>=40)grade="D";
-  setResult("examResult","Percentage: "+p.toFixed(2)+"% | Grade: "+grade);
-}
-function convertUnit() {
-  const v=Number($("unitValue").value); if(!Number.isFinite(v)) return setResult("unitResult","Please enter a valid value.");
-  const type=$("unitType").value; const map={"cm-m":[v/100,"meters"],"m-cm":[v*100,"centimeters"],"m-km":[v/1000,"kilometers"],"km-m":[v*1000,"meters"]};
-  const out=map[type]; setResult("unitResult",out[0]+" "+out[1]);
-}
-function calculateExpression() {
-  let s=$("calculatorInput").value.trim().replace(/×/g,"*").replace(/÷/g,"/");
-  if(!s) return setResult("calculatorResult","Enter a calculation.");
-  if(!/^[0-9+*/().%\\s-]+$/.test(s)) return setResult("calculatorResult","Only basic numbers and + - × ÷ % are allowed.");
-  try { const result=Function('"use strict"; return ('+s+')')(); if(!Number.isFinite(result)) throw new Error(); setResult("calculatorResult","Result: "+result); }
-  catch(e){ setResult("calculatorResult","Invalid calculation."); }
-}
-const quizData=[
-["Which organ pumps blood around the body?",["Lungs","Heart","Kidney","Liver"],1],
-["How many days are in one week?",["5","7","10","12"],1],
-["What is H2O commonly called?",["Oxygen","Salt","Water","Hydrogen"],2],
-["How many sides does a triangle have?",["2","3","4","5"],1],
-["Which planet is known as the Red Planet?",["Earth","Mars","Jupiter","Venus"],1],
-["What is 12 × 5?",["50","60","70","80"],1],
-["Which gas do plants mainly use for photosynthesis?",["Oxygen","Nitrogen","Carbon dioxide","Helium"],2],
-["What is the capital of Pakistan?",["Lahore","Karachi","Islamabad","Peshawar"],2],
-["How many hours are in one day?",["12","18","24","30"],2],
-["Which is the largest ocean?",["Atlantic","Indian","Arctic","Pacific"],3]
-];
-let quizIndex=0, quizScore=0, quizAnswered=false;
-function renderQuiz(){
-  const q=quizData[quizIndex]; $("quizProgress").textContent="Question "+(quizIndex+1)+" of "+quizData.length;
-  $("quizQuestion").textContent=q[0]; $("quizOptions").innerHTML="";
-  q[1].forEach((text,i)=>{const label=document.createElement("label"); label.innerHTML='<input type="radio" name="quizAnswer" value="'+i+'"> '+text; $("quizOptions").appendChild(label);});
-  quizAnswered=false; $("quizBtn").textContent=quizIndex===quizData.length-1?"Finish Quiz":"Next Question"; setResult("quizResult","Your score will appear here.");
-}
-function nextQuizQuestion(){
-  if(!quizAnswered){
-    const selected=document.querySelector('input[name="quizAnswer"]:checked');
-    if(!selected) return setResult("quizResult","Please select an answer.");
-    if(Number(selected.value)===quizData[quizIndex][2]) quizScore++;
-    quizAnswered=true;
-    if(quizIndex<quizData.length-1){quizIndex++;renderQuiz();} else {setResult("quizResult","Quiz complete! Score: "+quizScore+" / "+quizData.length);$("quizBtn").textContent="Restart Quiz";$("quizProgress").textContent="Completed";}
-  } else if(quizIndex===quizData.length-1 && $("quizBtn").textContent==="Restart Quiz"){quizIndex=0;quizScore=0;renderQuiz();}
-}
-function showPremiumMessage(){alert("Premium features will be available soon!");}
-
-$("percentageBtn").addEventListener("click",calculatePercentage);
-$("addGpaBtn").addEventListener("click",addGpaSubject); $("calcGpaBtn").addEventListener("click",calculateGPA);
-$("addCgpaBtn").addEventListener("click",addCgpaSemester); $("calcCgpaBtn").addEventListener("click",calculateCGPA);
-$("bmiBtn").addEventListener("click",calculateBMI); $("ageBtn").addEventListener("click",calculateAge);
-$("discountBtn").addEventListener("click",calculateDiscount); $("interestBtn").addEventListener("click",calculateInterest);
-$("examBtn").addEventListener("click",calculateExam); $("unitBtn").addEventListener("click",convertUnit);
-$("calculatorBtn").addEventListener("click",calculateExpression); $("quizBtn").addEventListener("click",nextQuizQuestion); $("premiumBtn").addEventListener("click",showPremiumMessage);
-$("gpaList").addEventListener("click",e=>{if(e.target.classList.contains("remove-gpa")){const items=$("gpaList").querySelectorAll(".gpa-item");if(items.length>1){e.target.closest(".gpa-item").remove();renumber("#gpaList .gpa-item","Subject");}else setResult("gpaResult","At least one subject is required.");}});
-$("cgpaList"
+'use strict';
+const $=id=>document.getElementById(id);
+const num=id=>parseFloat($(id).value);
+function setResult(id,text){$(id).textContent=text;}
+function addGpaSubject(){const list=$('gpaList'), n=list.children.length+1;const item=document.createElement('div');item.className='dynamic-item';item.innerHTML='<div class="dynamic-title">Subject '+n+'</div><div class="field"><label>GPA (0 - 4)</label><input class="gpa-value" type="number" min="0" max="4" step="0.01"></div><div class="field"><label>Credit Hours</label><input class="gpa-credit" type="number" min="0.1" step="0.1"></div><div class="dynamic-actions"><button type="button" class="small-btn danger remove-gpa">Remove</button></div>';list.appendChild(item);}
+function updateGpaTitles(){[...$('gpaList').children].forEach((x,i)=>x.querySelector('.dynamic-title').textContent='Subject '+(i+1));}
+function addCgpaSemester(){const list=$('cgpaList'), n=list.children.length+1;const item=document.createElement('div');item.className='dynamic-item';item.innerHTML='<div class="dynamic-title">Semester '+n+'</div><div class="field"><label>Semester GPA (0 - 4)</label><input class="cgpa-value" type="number" min="0" max="4" step="0.01"></div><div class="field"><label>Total Semester Credit Hours</label><input class="cgpa-credit" type="number" min="0.1" step="0.1"></div><div class="dynamic-actions"><button type="button" class="small-btn danger remove-cgpa">Remove</button></div>';list.appendChild(item);}
+function updateCgpaTitles(){[...$('cgpaList').children].forEach((x,i)=>x.querySelector('.dynamic-title').textContent='Semester '+(i+1));}
+function calculatePercentage(){const a=num('pctObtained'),b=num('pctTotal');if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<=0||a>b)return setResult('pctResult','Please enter valid marks.');setResult('pctResult','Percentage: '+((a/b)*100).toFixed(2)+'%');}
+function calculateGPA(){const rows=[...$('gpaList').children];let points=0,credits=0;for(const row of rows){const g=parseFloat(row.querySelector('.gpa-value').value),c=parseFloat(row.querySelector('.gpa-credit').value);if(!Number.isFinite(g)||g<0||g>4||!Number.isFinite(c)||c<=0)return setResult('gpaResult','Please enter valid GPA (0–4) and credit hours for every subject.');points+=g*c;credits+=c;}setResult('gpaResult','Weighted GPA: '+(points/credits).toFixed(2));}
+function calculateCGPA(){const rows=[...$('cgpaList').children];let points=0,credits=0;for(const row of rows){const g=parseFloat(row.querySelector('.cgpa-value').value),c=parseFloat(row.querySelector('.cgpa-credit').value);if(!Number.isFinite(g)||g<0||g>4||!Number.isFinite(c)||c<=0)return setResult('cgpaResult','Please enter valid GPA (0–4) and credit hours for every semester.');points+=g*c;credits+=c;}setResult('cgpaResult','Weighted CGPA: '+(points/credits).toFixed(2));}
+function calculateBMI(){const w=num('bmiWeight'),h=num('bmiHeight');if(!Number.isFinite(w)||!Number.isFinite(h)||w<=0||h<=0)return setResult('bmiResult','Please enter valid weight and height.');const bmi=w/((h/100)**2);let cat=bmi<18.5?'Underweight':bmi<25?'Normal weight':bmi<30?'Overweight':'Obesity';setResult('bmiResult','BMI: '+bmi.toFixed(2)+' | '+cat);}
+function calculateAge(){const v=$('dob').value;if(!v)return setResult('ageResult','Please select your birth date.');const birth=new Date(v+'T00:00:00'),now=new Date();if(birth>now)return setResult('ageResult','Birth date cannot be in the future.');let y=now.getFullYear()-birth.getFullYear(),m=now.getMonth()-birth.getMonth(),d=now.getDate()-birth.getDate();if(d<0){m--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}if(m<0){y--;m+=12;}setResult('ageResult',`Age: ${y} years, ${m} months, ${d} days`);}
+function calculateDiscount(){const p=num('price'),d=num('discount');if(!Number.isFinite(p)||!Number.isFinite(d)||p<0||d<0||d>100)return setResult('discountResult','Please enter valid price and discount.');const saved=p*d/100;setResult('discountResult',`Discount: ${saved.toFixed(2)} | Final Price: ${(p-saved).toFixed(2)}`);}
+function calculateInterest(){const p=num('principal'),r=num('rate'),t=num('years');if(!Number.isFinite(p)||!Number.isFinite(r)||!Number.isFinite(t)||p<0||r<0||t<0)return setResult('interestResult','Please enter valid values.');const si=p*r*t/100;setResult('interestResult',`Simple Interest: ${si.toFixed(2)} | Total: ${(p+si).toFixed(2)}`);}
+function calculateExam(){const a=num('examObtained'),b=num('examTotal');if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<=0||a>b)return setResult('examResult','Please enter valid marks.');const p=a/b*100,g=p>=80?'A+':p>=70?'A':p>=60?'B':p>=50?'C':p>=40?'D':'F';setResult('examResult',`Percentage: ${p.toFixed(2)}% | Grade: ${g}`);}
+function convertUnit(){const v=num('unitValue');if(!Number.isFinite(v))return setResult('unitResult','Please enter a valid value.');const type=$('unitType').value;const map={'cm-m':[v/100,'meters'],'m-cm':[v*100,'centimeters'],'m-km':[v/1000,'kilometers'],'km-m':[v*1000,'meters']};const [r,u]=map[type];setResult('unitResult',r+' '+u);}
+function calculateExpression(){let s=$('calcInput').value.trim().replaceAll('×','*').replaceAll('÷','/').replace(/[^0-9+\-*/().%\s]/g,'');if(!s||s!==$('calcInput').value.trim().replaceAll('×','*').replaceAll('÷','/').replace(/[^0-9+\-*/().%\s]/g,''))return setResult('calcResult','Invalid calculation. Use numbers and + − × ÷ only.');try{if(/[/*+\-]{2,}/.test(s.replace(/\s/g,'')))throw Error();const result=Function('"use strict";return ('+s+')')();if(!Number.isFinite(result))throw Error();setResult('calcResult','Result: '+result);}catch(e){setResult('calcResult','Invalid calculation.');}}
+const questions=[['How many days are in one week?',['5','7','10','12'],1],['What is H₂O commonly called?',['Oxygen','Hydrogen','Water','Salt'],2],['How many hours are in one day?',['12','18','24','48'],2],['Which organ pumps blood?',['Liver','Heart','Kidney','Lung'],1],['What is 5 × 6?',['11','20','30','35'],2],['Which planet is known as the Red Planet?',['Earth','Mars','Venus','Jupiter'],1],['How many centimeters are in 1 meter?',['10','50','100','1000'],2],['What is 50% of 200?',['50','100','150','200'],1],['Which gas do humans need for normal respiration?',['Oxygen','Helium','Neon','Hydrogen'],0],['What is 2 + 8?',['8','9','10','12'],2]];
+let quizIndex=0,score=0,answered=false;
+function renderQuiz(){const q=questions[quizIndex];$('quizProgress').textContent=`Question ${quizIndex+1} of ${questions.length}`;$('quizQuestion').textContent=q[0];$('quizOptions').innerHTML=q[1].map((x,i)=>`<label><input type="radio" name="quiz" value="${i}"> ${x}</label>`).join('');$('quizBtn').textContent=quizIndex===questions.length-1?'Finish Quiz':'Next Question';setResult('quizResult','');answered=false;}
+function nextQuiz(){if(answered)return;const chosen=document.querySelector('input[name="quiz"]:checked');if(!chosen)return setResult('quizResult','Please select an answer.');if(Number(chosen.value)===questions[quizIndex][2])score++;answered=true;if(quizIndex<questions.length-1){quizIndex++;renderQuiz();}else{setResult('quizResult',`Quiz finished! Score: ${score}/${questions.length}`);$('quizBtn').textContent='Restart Quiz';$('quizBtn').onclick=restartQuiz;}}
+function restartQuiz(){quizIndex=0;score=0;$('quizBtn').onclick=nextQuiz;renderQuiz();}
+$('pctBtn').onclick=calculatePercentage;$('addGpa').onclick=addGpaSubject;$('calcGpa').onclick=calculateGPA;$('addCgpa').onclick=addCgpaSemester;$('calcCgpa').onclick=calculateCGPA;$('bmiBtn').onclick=calculateBMI;$('ageBtn').onclick=calculateAge;$('discountBtn').onclick=calculateDiscount;$('interestBtn').onclick=calculateInterest;$('examBtn').onclick=calculateExam;$('unitBtn').onclick=convertUnit;$('calcBtn').onclick=calculateExpression;$('quizBtn').onclick=nextQuiz;$('premiumBtn').onclick=()=>alert('Premium features will be available soon!');
+$('gpaList').addEventListener('click',e=>{if(e.target.classList.contains('remove-gpa')){if($('gpaList').children.length>1){e.target.closest('.dynamic-item').remove();updateGpaTitles();}else setResult('gpaResult','At least one subject is required.');}});
+$('cgpaList').addEventListener('click',e=>{if(e.target.classList.contains('remove-cgpa')){if($('cgpaList').children.length>1){e.target.closest('.dynamic-item').remove();updateCgpaTitles();}else setResult('cgpaResult','At least one semester is required.');}});
+$('toolSearch').addEventListener('input',()=>{const q=$('toolSearch').value.toLowerCase().trim();document.querySelectorAll('.tool-card').forEach(c=>c.classList.toggle('hidden',!c.innerText.toLowerCase().includes(q)));});
+addGpaSubject();addGpaSubject();addCgpaSemester();addCgpaSemester();renderQuiz();
+</script>
+</body></html>

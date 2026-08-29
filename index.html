@@ -24,6 +24,23 @@
 <div class="card tool-card"><h3>🎓 GPA Calculator</h3><p>Calculate weighted GPA for any number of subjects.</p><div id="gpaList"></div><button id="addGpa" type="button">➕ Add Subject</button><button id="calcGpa" type="button" class="secondary">Calculate GPA</button><div class="result" id="gpaResult">Enter GPA and credit hours</div></div>
 <div class="card tool-card"><h3>📚 CGPA Calculator</h3><p>Calculate weighted CGPA for any number of semesters.</p><div id="cgpaList"></div><button id="addCgpa" type="button">➕ Add Semester</button><button id="calcCgpa" type="button" class="secondary">Calculate CGPA</button><div class="result" id="cgpaResult">Enter semester GPA and credit hours</div></div>
 <div class="card tool-card"><h3>⚖️ BMI Calculator</h3><p>Calculate BMI using weight and height.</p><div class="field"><label>Weight (kg)</label><input id="bmiWeight" type="number" min="0.1" step="0.1" placeholder="Example: 60"></div><div class="field"><label>Height (cm)</label><input id="bmiHeight" type="number" min="1" step="0.1" placeholder="Example: 165"></div><button id="bmiBtn">Calculate BMI</button><div class="result" id="bmiResult">Enter weight and height</div></div>
+<div class="card tool-card">
+   <h3>⚖️ Healthy Weight Range</h3>
+    <p>Calculate an approximate healthy weight range based on height.</p>
+
+    <div class="field">
+        <label>Height (cm)</label>
+        <input id="heightHealthy" type="number" min="1" step="0.1" placeholder="Example: 165">
+    </div>
+
+    <button id="calculateHealthyWeight" type="button">
+        Calculate Healthy Weight
+    </button>
+
+    <div class="result" id="healthyWeightResult">
+        Enter your height
+    </div>
+</div>
 <div class="card tool-card"><h3>🎂 Age Calculator</h3><p>Calculate age from date of birth.</p><div class="field"><label>Date of Birth</label><input id="dob" type="date"></div><button id="ageBtn">Calculate Age</button><div class="result" id="ageResult">Select your birth date</div></div>
 <div class="card tool-card"><h3>💰 Discount Calculator</h3><p>Calculate discount and final price.</p><div class="field"><label>Original Price</label><input id="price" type="number" min="0" step="any"></div><div class="field"><label>Discount (%)</label><input id="discount" type="number" min="0" max="100" step="any"></div><button id="discountBtn">Calculate Discount</button><div class="result" id="discountResult">Result will appear here</div></div>
 <div class="card tool-card"><h3>💵 Simple Interest</h3><p>Calculate simple interest and total amount.</p><div class="field"><label>Principal</label><input id="principal" type="number" min="0" step="any"></div><div class="field"><label>Rate (%)</label><input id="rate" type="number" min="0" step="any"></div><div class="field"><label>Time (Years)</label><input id="years" type="number" min="0" step="any"></div><button id="interestBtn">Calculate Interest</button><div class="result" id="interestResult">Result will appear here</div></div>
@@ -49,6 +66,25 @@ function calculatePercentage(){const a=num('pctObtained'),b=num('pctTotal');if(!
 function calculateGPA(){const rows=[...$('gpaList').children];let points=0,credits=0;for(const row of rows){const g=parseFloat(row.querySelector('.gpa-value').value),c=parseFloat(row.querySelector('.gpa-credit').value);if(!Number.isFinite(g)||g<0||g>4||!Number.isFinite(c)||c<=0)return setResult('gpaResult','Please enter valid GPA (0–4) and credit hours for every subject.');points+=g*c;credits+=c;}setResult('gpaResult','Weighted GPA: '+(points/credits).toFixed(2));}
 function calculateCGPA(){const rows=[...$('cgpaList').children];let points=0,credits=0;for(const row of rows){const g=parseFloat(row.querySelector('.cgpa-value').value),c=parseFloat(row.querySelector('.cgpa-credit').value);if(!Number.isFinite(g)||g<0||g>4||!Number.isFinite(c)||c<=0)return setResult('cgpaResult','Please enter valid GPA (0–4) and credit hours for every semester.');points+=g*c;credits+=c;}setResult('cgpaResult','Weighted CGPA: '+(points/credits).toFixed(2));}
 function calculateBMI(){const w=num('bmiWeight'),h=num('bmiHeight');if(!Number.isFinite(w)||!Number.isFinite(h)||w<=0||h<=0)return setResult('bmiResult','Please enter valid weight and height.');const bmi=w/((h/100)**2);let cat=bmi<18.5?'Underweight':bmi<25?'Normal weight':bmi<30?'Overweight':'Obesity';setResult('bmiResult','BMI: '+bmi.toFixed(2)+' | '+cat);}
+function calculateHealthyWeight(){
+    const h = parseFloat($('heightHealthy').value);
+
+    if(!Number.isFinite(h) || h <= 0){
+        return setResult(
+            'healthyWeightResult',
+            'Please enter a valid height.'
+        );
+    }
+
+    const heightM = h / 100;
+    const minWeight = 18.5 * heightM * heightM;
+    const maxWeight = 24.9 * heightM * heightM;
+
+    setResult(
+        'healthyWeightResult',
+        `Approximate healthy weight range: ${minWeight.toFixed(1)} kg – ${maxWeight.toFixed(1)} kg`
+    );
+  }
 function calculateAge(){const v=$('dob').value;if(!v)return setResult('ageResult','Please select your birth date.');const birth=new Date(v+'T00:00:00'),now=new Date();if(birth>now)return setResult('ageResult','Birth date cannot be in the future.');let y=now.getFullYear()-birth.getFullYear(),m=now.getMonth()-birth.getMonth(),d=now.getDate()-birth.getDate();if(d<0){m--;d+=new Date(now.getFullYear(),now.getMonth(),0).getDate();}if(m<0){y--;m+=12;}setResult('ageResult',`Age: ${y} years, ${m} months, ${d} days`);}
 function calculateDiscount(){const p=num('price'),d=num('discount');if(!Number.isFinite(p)||!Number.isFinite(d)||p<0||d<0||d>100)return setResult('discountResult','Please enter valid price and discount.');const saved=p*d/100;setResult('discountResult',`Discount: ${saved.toFixed(2)} | Final Price: ${(p-saved).toFixed(2)}`);}
 function calculateInterest(){const p=num('principal'),r=num('rate'),t=num('years');if(!Number.isFinite(p)||!Number.isFinite(r)||!Number.isFinite(t)||p<0||r<0||t<0)return setResult('interestResult','Please enter valid values.');const si=p*r*t/100;setResult('interestResult',`Simple Interest: ${si.toFixed(2)} | Total: ${(p+si).toFixed(2)}`);}
@@ -65,5 +101,6 @@ $('gpaList').addEventListener('click',e=>{if(e.target.classList.contains('remove
 $('cgpaList').addEventListener('click',e=>{if(e.target.classList.contains('remove-cgpa')){if($('cgpaList').children.length>1){e.target.closest('.dynamic-item').remove();updateCgpaTitles();}else setResult('cgpaResult','At least one semester is required.');}});
 $('toolSearch').addEventListener('input',()=>{const q=$('toolSearch').value.toLowerCase().trim();document.querySelectorAll('.tool-card').forEach(c=>c.classList.toggle('hidden',!c.innerText.toLowerCase().includes(q)));});
 addGpaSubject();addGpaSubject();addCgpaSemester();addCgpaSemester();renderQuiz();
+$('calculateHealthyWeight').addEventListener('click', calculateHealthyWeight);
 </script>
 </body></html>

@@ -49,26 +49,24 @@
 <div class="card tool-card"><h3>🧮 Basic Calculator</h3><p>Calculate basic arithmetic safely.</p><div class="field"><label>Calculation</label><input id="calcInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Example: 25 + 5 × 2"></div><button id="calcBtn">Calculate</button><div class="result" id="calcResult">Result will appear here</div></div>
 <div class="card tool-card"><h3>🧠 Student Quiz</h3><p>Test your knowledge with 10 questions.</p><div class="quiz-progress" id="quizProgress"></div><div class="quiz-question" id="quizQuestion"></div><div class="quiz-options" id="quizOptions"></div><button id="quizBtn">Next Question</button><div class="result" id="quizResult">Your score will appear here</div></div>
 </div>
-<!-- DAILY QUIZ -->
-<div class="card tool-card">
+<!-- DAILY QUIZ --><div class="card tool-card">
     <h3>📅 Daily Quiz</h3>
-    <p>Answer today's question and test your knowledge.</p>
+    <p>Answer 10 questions every day and test your knowledge.</p><div class="quiz-progress" id="dailyQuizProgress"></div>
 
-    <div class="quiz-progress" id="dailyQuizProgress"></div>
+<div class="quiz-question" id="dailyQuizQuestion">
+    Loading today's quiz...
+</div>
 
-    <div class="quiz-question" id="dailyQuizQuestion">
-        Loading today's question...
-    </div>
+<div class="quiz-options" id="dailyQuizOptions"></div>
 
-    <div class="quiz-options" id="dailyQuizOptions"></div>
+<button type="button" id="dailyQuizBtn">
+    Submit Answer
+</button>
 
-    <button type="button" id="dailyQuizBtn">
-        Submit Answer
-    </button>
+<div class="result" id="dailyQuizResult">
+    Select an answer.
+</div>
 
-    <div class="result" id="dailyQuizResult">
-        Select an answer.
-    </div>
 </div>
 <section class="info" id="about"><h2>About StudySmart Tools</h2><p>StudySmart Tools is a free online platform created to provide simple and useful tools for students.</p><p>Our goal is to make everyday academic calculations easier and more accessible on mobile phones, tablets and computers.</p></section>
 <section class="premium" id="premium"><h2>🚀 Premium Study Tools</h2><p>Advanced MCQs, AI study tools, exam preparation resources and additional features are coming soon.</p><button id="premiumBtn">Coming Soon</button></section>
@@ -285,7 +283,7 @@ $('toolSearch').addEventListener('input',()=>{const q=$('toolSearch').value.toLo
 addGpaSubject();addGpaSubject();addCgpaSemester();addCgpaSemester();renderQuiz();
 $('calculateHealthyWeight').addEventListener('click', calculateHealthyWeight);
 /* =========================
-   DAILY QUIZ
+   DAILY QUIZ - 10 QUESTIONS
    ========================= */
 
 const dailyQuizQuestions = [
@@ -323,25 +321,92 @@ const dailyQuizQuestions = [
         question: "Which blood cells help fight infections?",
         options: ["Red blood cells", "White blood cells", "Platelets", "Plasma"],
         answer: 1
+    },
+    {
+        question: "What is the normal pH of blood approximately?",
+        options: ["5.5", "6.5", "7.4", "8.5"],
+        answer: 2
+    },
+    {
+        question: "Which molecule carries oxygen in red blood cells?",
+        options: ["Insulin", "Hemoglobin", "Keratin", "Collagen"],
+        answer: 1
+    },
+    {
+        question: "Which organ produces insulin?",
+        options: ["Liver", "Kidney", "Pancreas", "Lung"],
+        answer: 2
     }
 ];
 
-/* Get a question based on today's date */
-function getDailyQuizQuestion() {
-    const today = new Date();
+let dailyQuizIndex = 0;
+let dailyQuizScore = 0;
+let dailyQuizAnswered = false;
 
-    const dayNumber =
-        today.getFullYear() * 10000 +
-        (today.getMonth() + 1) * 100 +
-        today.getDate();
+function renderDailyQuiz() {
 
-    const index =
-        dayNumber % dailyQuizQuestions.length;
+    const q = dailyQuizQuestions[dailyQuizIndex];
 
-    return dailyQuizQuestions[index];
+    $('dailyQuizProgress').textContent =
+        `Daily Quiz — Question ${dailyQuizIndex + 1} of ${dailyQuizQuestions.length}`;
+
+    $('dailyQuizQuestion').textContent = q.question;
+
+    $('dailyQuizOptions').innerHTML =
+        q.options.map((option, index) => `
+            <label>
+                <input
+                    type="radio"
+                    name="dailyQuizAnswer"
+                    value="${index}"
+                >
+                ${option}
+            </label>
+        `).join('');
+
+    $('dailyQuizResult').textContent =
+        'Select an answer.';
+
+    $('dailyQuizBtn').textContent =
+        'Submit Answer';
+
+    $('dailyQuizBtn').disabled = false;
+
+    dailyQuizAnswered = false;
 }
 
-/* Show today's question */
+function submitDailyQuiz() {
+
+    if (dailyQuizAnswered) return;
+
+    const selected =
+        document.querySelector(
+            'input[name="dailyQuizAnswer"]:checked'
+        );
+
+    if (!selected) {
+        setResult(
+            'dailyQuizResult',
+            'Please select an answer.'
+        );
+        return;
+    }
+
+    const q = dailyQuizQuestions[dailyQuizIndex];
+
+    if (Number(selected.value) === q.answer) {
+
+        dailyQuizScore++;
+
+        setResult(
+            'dailyQuizResult',
+            '✅ Correct! Well done.'
+        );
+
+    } else {
+
+        setResult(
+            'dailyQuizResult',
 function renderDailyQuiz() {
     const q = getDailyQuizQuestion();
 

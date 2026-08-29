@@ -366,325 +366,1487 @@
 <script>
 'use strict';
 
-/* =========================================================
-   STUDYSMART TOOLS — COMPLETE JAVASCRIPT
-   ========================================================= */
+document.addEventListener('DOMContentLoaded', function () {
 
-const $ = id => document.getElementById(id);
+    /* =========================================================
+       STUDYSMART TOOLS - COMPLETE JAVASCRIPT
+       ========================================================= */
 
-function setResult(id, text) {
-    const element = $(id);
-    if (element) element.textContent = text;
-}
+    const $ = id => document.getElementById(id);
 
-function num(id) {
-    const element = $(id);
-    return element ? parseFloat(element.value) : NaN;
-}
-
-
-/* =========================================================
-   1. PERCENTAGE CALCULATOR
-   ========================================================= */
-
-function calculatePercentage() {
-    const obtained = num('pctObtained');
-    const total = num('pctTotal');
-
-    if (
-        !Number.isFinite(obtained) ||
-        !Number.isFinite(total) ||
-        obtained < 0 ||
-        total <= 0 ||
-        obtained > total
-    ) {
-        return setResult(
-            'pctResult',
-            'Please enter valid marks.'
-        );
+    function setResult(id, text) {
+        const el = $(id);
+        if (el) el.textContent = text;
     }
 
-    const percentage = (obtained / total) * 100;
-
-    setResult(
-        'pctResult',
-        `Percentage: ${percentage.toFixed(2)}%`
-    );
-}
-
-
-/* =========================================================
-   2. GPA CALCULATOR
-   ========================================================= */
-
-function addGpaSubject() {
-    const list = $('gpaList');
-
-    if (!list) return;
-
-    const item = document.createElement('div');
-
-    item.className = 'dynamic-item';
-
-    item.innerHTML = `
-        <div class="dynamic-title">
-            Subject ${list.children.length + 1}
-        </div>
-
-        <div class="field">
-            <label>GPA (0 - 4)</label>
-            <input
-                class="gpa-value"
-                type="number"
-                min="0"
-                max="4"
-                step="0.01"
-                placeholder="Example: 3.50"
-            >
-        </div>
-
-        <div class="field">
-            <label>Credit Hours</label>
-            <input
-                class="gpa-credit"
-                type="number"
-                min="0.1"
-                step="0.1"
-                placeholder="Example: 3"
-            >
-        </div>
-
-        <div class="dynamic-actions">
-            <button
-                type="button"
-                class="small-btn danger remove-gpa"
-            >
-                Remove
-            </button>
-        </div>
-    `;
-
-    list.appendChild(item);
-    updateGpaTitles();
-}
-
-function updateGpaTitles() {
-    const list = $('gpaList');
-
-    if (!list) return;
-
-    [...list.children].forEach((item, index) => {
-        const title = item.querySelector('.dynamic-title');
-
-        if (title) {
-            title.textContent =
-                `Subject ${index + 1}`;
-        }
-    });
-}
-
-function calculateGPA() {
-    const list = $('gpaList');
-
-    if (!list || list.children.length === 0) {
-        return setResult(
-            'gpaResult',
-            'Please add at least one subject.'
-        );
+    function num(id) {
+        const el = $(id);
+        return el ? parseFloat(el.value) : NaN;
     }
 
-    let totalPoints = 0;
-    let totalCredits = 0;
+    /* =========================================================
+       SEARCH
+       ========================================================= */
 
-    const rows = [...list.children];
+    const toolSearch = $('toolSearch');
 
-    for (const row of rows) {
-        const gpa = parseFloat(
-            row.querySelector('.gpa-value').value
-        );
+    if (toolSearch) {
+        toolSearch.addEventListener('input', function () {
 
-        const credit = parseFloat(
-            row.querySelector('.gpa-credit').value
-        );
+            const query = this.value.trim().toLowerCase();
+
+            document.querySelectorAll('#toolsGrid .tool-card')
+                .forEach(card => {
+
+                    const text = card.textContent.toLowerCase();
+
+                    card.classList.toggle(
+                        'hidden',
+                        query !== '' && !text.includes(query)
+                    );
+                });
+        });
+    }
+
+
+    /* =========================================================
+       PERCENTAGE
+       ========================================================= */
+
+    function calculatePercentage() {
+
+        const obtained = num('pctObtained');
+        const total = num('pctTotal');
 
         if (
-            !Number.isFinite(gpa) ||
-            gpa < 0 ||
-            gpa > 4 ||
-            !Number.isFinite(credit) ||
-            credit <= 0
+            !Number.isFinite(obtained) ||
+            !Number.isFinite(total) ||
+            obtained < 0 ||
+            total <= 0 ||
+            obtained > total
         ) {
+            return setResult(
+                'pctResult',
+                'Please enter valid marks.'
+            );
+        }
+
+        const percentage = (obtained / total) * 100;
+
+        setResult(
+            'pctResult',
+            'Percentage: ' + percentage.toFixed(2) + '%'
+        );
+    }
+
+
+    /* =========================================================
+       GPA
+       ========================================================= */
+
+    function updateGpaTitles() {
+
+        const list = $('gpaList');
+
+        if (!list) return;
+
+        [...list.children].forEach((row, index) => {
+
+            const title = row.querySelector('.dynamic-title');
+
+            if (title) {
+                title.textContent = 'Subject ' + (index + 1);
+            }
+        });
+    }
+
+
+    function addGpaSubject() {
+
+        const list = $('gpaList');
+
+        if (!list) return;
+
+        const item = document.createElement('div');
+
+        item.className = 'dynamic-item';
+
+        item.innerHTML = `
+            <div class="dynamic-title">Subject 1</div>
+
+            <div class="field">
+                <label>GPA (0 - 4)</label>
+                <input
+                    class="gpa-value"
+                    type="number"
+                    min="0"
+                    max="4"
+                    step="0.01"
+                    placeholder="Example: 3.50"
+                >
+            </div>
+
+            <div class="field">
+                <label>Credit Hours</label>
+                <input
+                    class="gpa-credit"
+                    type="number"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="Example: 3"
+                >
+            </div>
+
+            <div class="dynamic-actions">
+                <button
+                    type="button"
+                    class="small-btn danger remove-gpa"
+                >
+                    Remove
+                </button>
+            </div>
+        `;
+
+        list.appendChild(item);
+
+        updateGpaTitles();
+    }
+
+
+    function calculateGPA() {
+
+        const list = $('gpaList');
+
+        if (!list || list.children.length === 0) {
+
             return setResult(
                 'gpaResult',
-                'Please enter valid GPA (0–4) and credit hours for every subject.'
+                'Please add at least one subject.'
             );
         }
 
-        totalPoints += gpa * credit;
-        totalCredits += credit;
-    }
+        let totalPoints = 0;
+        let totalCredits = 0;
 
-    const result =
-        totalPoints / totalCredits;
+        for (const row of list.children) {
 
-    setResult(
-        'gpaResult',
-        `Weighted GPA: ${result.toFixed(2)}`
-    );
-}
+            const gpa = parseFloat(
+                row.querySelector('.gpa-value').value
+            );
 
+            const credit = parseFloat(
+                row.querySelector('.gpa-credit').value
+            );
 
-/* =========================================================
-   3. CGPA CALCULATOR
-   ========================================================= */
+            if (
+                !Number.isFinite(gpa) ||
+                gpa < 0 ||
+                gpa > 4 ||
+                !Number.isFinite(credit) ||
+                credit <= 0
+            ) {
+                return setResult(
+                    'gpaResult',
+                    'Please enter valid GPA (0–4) and credit hours for every subject.'
+                );
+            }
 
-function addCgpaSemester() {
-    const list = $('cgpaList');
-
-    if (!list) return;
-
-    const item = document.createElement('div');
-
-    item.className = 'dynamic-item';
-
-    item.innerHTML = `
-        <div class="dynamic-title">
-            Semester ${list.children.length + 1}
-        </div>
-
-        <div class="field">
-            <label>Semester GPA (0 - 4)</label>
-            <input
-                class="cgpa-value"
-                type="number"
-                min="0"
-                max="4"
-                step="0.01"
-                placeholder="Example: 3.40"
-            >
-        </div>
-
-        <div class="field">
-            <label>Total Semester Credit Hours</label>
-            <input
-                class="cgpa-credit"
-                type="number"
-                min="0.1"
-                step="0.1"
-                placeholder="Example: 18"
-            >
-        </div>
-
-        <div class="dynamic-actions">
-            <button
-                type="button"
-                class="small-btn danger remove-cgpa"
-            >
-                Remove
-            </button>
-        </div>
-    `;
-
-    list.appendChild(item);
-    updateCgpaTitles();
-}
-
-function updateCgpaTitles() {
-    const list = $('cgpaList');
-
-    if (!list) return;
-
-    [...list.children].forEach((item, index) => {
-        const title =
-            item.querySelector('.dynamic-title');
-
-        if (title) {
-            title.textContent =
-                `Semester ${index + 1}`;
+            totalPoints += gpa * credit;
+            totalCredits += credit;
         }
-    });
-}
 
-function calculateCGPA() {
-    const list = $('cgpaList');
+        const result = totalPoints / totalCredits;
 
-    if (!list || list.children.length === 0) {
-        return setResult(
-            'cgpaResult',
-            'Please add at least one semester.'
+        setResult(
+            'gpaResult',
+            'Weighted GPA: ' + result.toFixed(2)
         );
     }
 
-    let totalPoints = 0;
-    let totalCredits = 0;
 
-    const rows = [...list.children];
+    /* =========================================================
+       CGPA
+       ========================================================= */
 
-    for (const row of rows) {
-        const gpa = parseFloat(
-            row.querySelector('.cgpa-value').value
-        );
+    function updateCgpaTitles() {
 
-        const credit = parseFloat(
-            row.querySelector('.cgpa-credit').value
-        );
+        const list = $('cgpaList');
 
-        if (
-            !Number.isFinite(gpa) ||
-            gpa < 0 ||
-            gpa > 4 ||
-            !Number.isFinite(credit) ||
-            credit <= 0
-        ) {
+        if (!list) return;
+
+        [...list.children].forEach((row, index) => {
+
+            const title = row.querySelector('.dynamic-title');
+
+            if (title) {
+                title.textContent = 'Semester ' + (index + 1);
+            }
+        });
+    }
+
+
+    function addCgpaSemester() {
+
+        const list = $('cgpaList');
+
+        if (!list) return;
+
+        const item = document.createElement('div');
+
+        item.className = 'dynamic-item';
+
+        item.innerHTML = `
+            <div class="dynamic-title">Semester 1</div>
+
+            <div class="field">
+                <label>Semester GPA (0 - 4)</label>
+                <input
+                    class="cgpa-value"
+                    type="number"
+                    min="0"
+                    max="4"
+                    step="0.01"
+                    placeholder="Example: 3.40"
+                >
+            </div>
+
+            <div class="field">
+                <label>Total Semester Credit Hours</label>
+                <input
+                    class="cgpa-credit"
+                    type="number"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="Example: 18"
+                >
+            </div>
+
+            <div class="dynamic-actions">
+                <button
+                    type="button"
+                    class="small-btn danger remove-cgpa"
+                >
+                    Remove
+                </button>
+            </div>
+        `;
+
+        list.appendChild(item);
+
+        updateCgpaTitles();
+    }
+
+
+    function calculateCGPA() {
+
+        const list = $('cgpaList');
+
+        if (!list || list.children.length === 0) {
+
             return setResult(
                 'cgpaResult',
-                'Please enter valid GPA (0–4) and credit hours for every semester.'
+                'Please add at least one semester.'
             );
         }
 
-        totalPoints += gpa * credit;
-        totalCredits += credit;
+        let totalPoints = 0;
+        let totalCredits = 0;
+
+        for (const row of list.children) {
+
+            const gpa = parseFloat(
+                row.querySelector('.cgpa-value').value
+            );
+
+            const credit = parseFloat(
+                row.querySelector('.cgpa-credit').value
+            );
+
+            if (
+                !Number.isFinite(gpa) ||
+                gpa < 0 ||
+                gpa > 4 ||
+                !Number.isFinite(credit) ||
+                credit <= 0
+            ) {
+                return setResult(
+                    'cgpaResult',
+                    'Please enter valid GPA (0–4) and credit hours for every semester.'
+                );
+            }
+
+            totalPoints += gpa * credit;
+            totalCredits += credit;
+        }
+
+        const result = totalPoints / totalCredits;
+
+        setResult(
+            'cgpaResult',
+            'Weighted CGPA: ' + result.toFixed(2)
+        );
     }
 
-    const result =
-        totalPoints / totalCredits;
 
-    setResult(
-        'cgpaResult',
-        `Weighted CGPA: ${result.toFixed(2)}`
+    /* =========================================================
+       AGGREGATE CALCULATOR
+       ========================================================= */
+
+    function updateAggregateTitles() {
+
+        const list = $('aggregateList');
+
+        if (!list) return;
+
+        [...list.children].forEach((row, index) => {
+
+            const title = row.querySelector('.dynamic-title');
+
+            if (title) {
+                title.textContent =
+                    'Component ' + (index + 1);
+            }
+        });
+    }
+
+
+    function addAggregateComponent() {
+
+        const list = $('aggregateList');
+
+        if (!list) return;
+
+        const item = document.createElement('div');
+
+        item.className =
+            'dynamic-item aggregate-item';
+
+        item.innerHTML = `
+            <div class="dynamic-title">
+                Component 1
+            </div>
+
+            <div class="field">
+                <label>Obtained Marks</label>
+                <input
+                    class="aggregate-obtained"
+                    type="number"
+                    min="0"
+                    step="any"
+                    placeholder="Example: 850"
+                >
+            </div>
+
+            <div class="field">
+                <label>Total Marks</label>
+                <input
+                    class="aggregate-total"
+                    type="number"
+                    min="0.01"
+                    step="any"
+                    placeholder="Example: 1100"
+                >
+            </div>
+
+            <div class="field">
+                <label>Weightage (%)</label>
+                <input
+                    class="aggregate-weight"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="any"
+                    placeholder="Example: 30"
+                >
+            </div>
+
+            <div class="dynamic-actions">
+                <button
+                    type="button"
+                    class="small-btn danger remove-aggregate"
+                >
+                    Remove
+                </button>
+            </div>
+        `;
+
+        list.appendChild(item);
+
+        updateAggregateTitles();
+    }
+
+
+    function calculateAggregate() {
+
+        const list = $('aggregateList');
+
+        if (!list || list.children.length === 0) {
+
+            return setResult(
+                'aggregateResult',
+                'Please add at least one component.'
+            );
+        }
+
+        let aggregate = 0;
+        let totalWeight = 0;
+
+        for (const row of list.children) {
+
+            const obtained = parseFloat(
+                row.querySelector('.aggregate-obtained').value
+            );
+
+            const total = parseFloat(
+                row.querySelector('.aggregate-total').value
+            );
+
+            const weight = parseFloat(
+                row.querySelector('.aggregate-weight').value
+            );
+
+            if (
+                !Number.isFinite(obtained) ||
+                !Number.isFinite(total) ||
+                !Number.isFinite(weight) ||
+                obtained < 0 ||
+                total <= 0 ||
+                obtained > total ||
+                weight < 0 ||
+                weight > 100
+            ) {
+                return setResult(
+                    'aggregateResult',
+                    'Please enter valid marks and weightage for every component.'
+                );
+            }
+
+            aggregate +=
+                (obtained / total) * weight;
+
+            totalWeight += weight;
+        }
+
+        if (Math.abs(totalWeight - 100) > 0.000001) {
+
+            return setResult(
+                'aggregateResult',
+                'Total weightage must be exactly 100%. Current total: ' +
+                totalWeight.toFixed(2) + '%'
+            );
+        }
+
+        setResult(
+            'aggregateResult',
+            'Final Aggregate: ' +
+            aggregate.toFixed(2) + '%'
+        );
+    }
+
+
+    /* =========================================================
+       BMI
+       ========================================================= */
+
+    function calculateBMI() {
+
+        const weight = num('bmiWeight');
+        const height = num('bmiHeight');
+
+        if (
+            !Number.isFinite(weight) ||
+            !Number.isFinite(height) ||
+            weight <= 0 ||
+            height <= 0
+        ) {
+            return setResult(
+                'bmiResult',
+                'Please enter valid weight and height.'
+            );
+        }
+
+        const bmi =
+            weight / ((height / 100) ** 2);
+
+        let category;
+
+        if (bmi < 18.5) {
+            category = 'Underweight';
+        } else if (bmi < 25) {
+            category = 'Normal weight';
+        } else if (bmi < 30) {
+            category = 'Overweight';
+        } else {
+            category = 'Obesity';
+        }
+
+        setResult(
+            'bmiResult',
+            'BMI: ' + bmi.toFixed(2) +
+            ' | ' + category
+        );
+    }
+
+
+    /* =========================================================
+       HEALTHY WEIGHT
+       ========================================================= */
+
+    function calculateHealthyWeight() {
+
+        const height = num('heightHealthy');
+
+        if (
+            !Number.isFinite(height) ||
+            height <= 0
+        ) {
+            return setResult(
+                'healthyWeightResult',
+                'Please enter a valid height.'
+            );
+        }
+
+        const heightM = height / 100;
+
+        const minimum =
+            18.5 * heightM * heightM;
+
+        const maximum =
+            24.9 * heightM * heightM;
+
+        setResult(
+            'healthyWeightResult',
+            'Approximate healthy weight range: ' +
+            minimum.toFixed(1) +
+            ' kg – ' +
+            maximum.toFixed(1) +
+            ' kg'
+        );
+    }
+
+
+    /* =========================================================
+       AGE
+       ========================================================= */
+
+    function calculateAge() {
+
+        const value = $('dob')?.value;
+
+        if (!value) {
+            return setResult(
+                'ageResult',
+                'Please select your birth date.'
+            );
+        }
+
+        const birth = new Date(value + 'T00:00:00');
+        const now = new Date();
+
+        if (birth > now) {
+            return setResult(
+                'ageResult',
+                'Birth date cannot be in the future.'
+            );
+        }
+
+        let years =
+            now.getFullYear() -
+            birth.getFullYear();
+
+        let months =
+            now.getMonth() -
+            birth.getMonth();
+
+        let days =
+            now.getDate() -
+            birth.getDate();
+
+        if (days < 0) {
+
+            months--;
+
+            const previousMonth =
+                new Date(
+                    now.getFullYear(),
+                    now.getMonth(),
+                    0
+                );
+
+            days +=
+                previousMonth.getDate();
+        }
+
+        if (months < 0) {
+
+            years--;
+            months += 12;
+        }
+
+        setResult(
+            'ageResult',
+            `Age: ${years} years, ${months} months, ${days} days`
+        );
+    }
+
+
+    /* =========================================================
+       DISCOUNT
+       ========================================================= */
+
+    function calculateDiscount() {
+
+        const price = num('price');
+        const discount = num('discount');
+
+        if (
+            !Number.isFinite(price) ||
+            !Number.isFinite(discount) ||
+            price < 0 ||
+            discount < 0 ||
+            discount > 100
+        ) {
+            return setResult(
+                'discountResult',
+                'Please enter valid price and discount.'
+            );
+        }
+
+        const saved =
+            price * discount / 100;
+
+        const finalPrice =
+            price - saved;
+
+        setResult(
+            'discountResult',
+            `Discount: ${saved.toFixed(2)} | Final Price: ${finalPrice.toFixed(2)}`
+        );
+    }
+
+
+    /* =========================================================
+       SIMPLE INTEREST
+       ========================================================= */
+
+    function calculateInterest() {
+
+        const principal = num('principal');
+        const rate = num('rate');
+        const years = num('years');
+
+        if (
+            !Number.isFinite(principal) ||
+            !Number.isFinite(rate) ||
+            !Number.isFinite(years) ||
+            principal < 0 ||
+            rate < 0 ||
+            years < 0
+        ) {
+            return setResult(
+                'interestResult',
+                'Please enter valid values.'
+            );
+        }
+
+        const interest =
+            principal * rate * years / 100;
+
+        const total =
+            principal + interest;
+
+        setResult(
+            'interestResult',
+            `Simple Interest: ${interest.toFixed(2)} | Total: ${total.toFixed(2)}`
+        );
+    }
+
+
+    /* =========================================================
+       EXAM MARKS
+       ========================================================= */
+
+    function calculateExam() {
+
+        const obtained = num('examObtained');
+        const total = num('examTotal');
+
+        if (
+            !Number.isFinite(obtained) ||
+            !Number.isFinite(total) ||
+            obtained < 0 ||
+            total <= 0 ||
+            obtained > total
+        ) {
+            return setResult(
+                'examResult',
+                'Please enter valid marks.'
+            );
+        }
+
+        const percentage =
+            obtained / total * 100;
+
+        let grade;
+
+        if (percentage >= 80) {
+            grade = 'A+';
+        } else if (percentage >= 70) {
+            grade = 'A';
+        } else if (percentage >= 60) {
+            grade = 'B';
+        } else if (percentage >= 50) {
+            grade = 'C';
+        } else if (percentage >= 40) {
+            grade = 'D';
+        } else {
+            grade = 'F';
+        }
+
+        setResult(
+            'examResult',
+            `Percentage: ${percentage.toFixed(2)}% | Grade: ${grade}`
+        );
+    }
+
+
+    /* =========================================================
+       UNIT CONVERTER
+       ========================================================= */
+
+    function convertUnit() {
+
+        const value = num('unitValue');
+
+        if (!Number.isFinite(value)) {
+
+            return setResult(
+                'unitResult',
+                'Please enter a valid value.'
+            );
+        }
+
+        const type = $('unitType')?.value;
+
+        const conversions = {
+
+            'cm-m': [
+                value / 100,
+                'meters'
+            ],
+
+            'm-cm': [
+                value * 100,
+                'centimeters'
+            ],
+
+            'm-km': [
+                value / 1000,
+                'kilometers'
+            ],
+
+            'km-m': [
+                value * 1000,
+                'meters'
+            ]
+        };
+
+        const result = conversions[type];
+
+        if (!result) {
+
+            return setResult(
+                'unitResult',
+                'Please select a valid conversion.'
+            );
+        }
+
+        setResult(
+            'unitResult',
+            result[0].toFixed(6).replace(/\.?0+$/, '') +
+            ' ' + result[1]
+        );
+    }
+
+
+    /* =========================================================
+       SCIENTIFIC CALCULATOR
+       ========================================================= */
+
+    let angleMode = 'DEG';
+    let calculatorAnswer = 0;
+
+    function toRadians(value) {
+
+        return angleMode === 'DEG'
+            ? value * Math.PI / 180
+            : value;
+    }
+
+
+    function calcSin(value) {
+        return Math.sin(toRadians(value));
+    }
+
+    function calcCos(value) {
+        return Math.cos(toRadians(value));
+    }
+
+    function calcTan(value) {
+        return Math.tan(toRadians(value));
+   /* =========================
+   CONTINUE AFTER calcTan()
+   ========================= */
+
+/* Inverse trigonometric functions */
+
+function calcAsin(value) {
+    const result = Math.asin(value);
+
+    return calculatorAngleMode === 'DEG'
+        ? result * 180 / Math.PI
+        : result;
+}
+
+function calcAcos(value) {
+    const result = Math.acos(value);
+
+    return calculatorAngleMode === 'DEG'
+        ? result * 180 / Math.PI
+        : result;
+}
+
+function calcAtan(value) {
+    const result = Math.atan(value);
+
+    return calculatorAngleMode === 'DEG'
+        ? result * 180 / Math.PI
+        : result;
+}
+
+
+/* Calculator number formatting */
+
+function formatCalculatorNumber(value) {
+
+    if (!Number.isFinite(value)) {
+        return 'Error';
+    }
+
+    if (Number.isInteger(value)) {
+        return String(value);
+    }
+
+    return Number(value.toPrecision(12)).toString();
+}
+
+
+/* Insert value into calculator */
+
+function calculatorInsert(value) {
+
+    const input = $('calcInput');
+
+    if (!input) return;
+
+    const start =
+        input.selectionStart ?? input.value.length;
+
+    const end =
+        input.selectionEnd ?? input.value.length;
+
+    input.value =
+        input.value.slice(0, start) +
+        value +
+        input.value.slice(end);
+
+    input.focus();
+
+    const position =
+        start + value.length;
+
+    input.setSelectionRange(
+        position,
+        position
     );
 }
 
 
-/* =========================================================
-   4. AGGREGATE CALCULATOR
-   ========================================================= */
+/* Scientific calculator actions */
 
-function updateAggregateTitles() {
-    const list = $('aggregateList');
+function calculatorScientificAction(action) {
 
-    if (!list) return;
+    const input = $('calcInput');
 
-    [...list.children].forEach((item, index) => {
-        const title =
-            item.querySelector('.dynamic-title');
+    if (!input) return;
 
-        if (title) {
-            title.textContent =
-                `Component ${index + 1}`;
+    const currentValue =
+        input.value.trim();
+
+
+    if (action === 'clear') {
+
+        input.value = '';
+
+        calculatorAnswer = 0;
+
+        setResult(
+            'calcResult',
+            'Result will appear here'
+        );
+
+        input.focus();
+
+        return;
+    }
+
+
+    if (action === 'backspace') {
+
+        const start =
+            input.selectionStart ?? input.value.length;
+
+        const end =
+            input.selectionEnd ?? input.value.length;
+
+
+        if (start !== end) {
+
+            input.value =
+                input.value.slice(0, start) +
+                input.value.slice(end);
+
+            input.setSelectionRange(
+                start,
+                start
+            );
+
+        } else if (start > 0) {
+
+            input.value =
+                input.value.slice(0, start - 1) +
+                input.value.slice(start);
+
+            input.setSelectionRange(
+                start - 1,
+                start - 1
+            );
         }
-    });
+
+        input.focus();
+
+        return;
+    }
+
+
+    if (action === 'pi') {
+        calculatorInsert('π');
+        return;
+    }
+
+
+    if (action === 'e') {
+        calculatorInsert('e');
+        return;
+    }
+
+
+    if (action === 'ans') {
+
+        calculatorInsert(
+            formatCalculatorNumber(
+                calculatorAnswer
+            )
+        );
+
+        return;
+    }
+
+
+    if (action === 'sqrt') {
+        calculatorInsert('sqrt(');
+        return;
+    }
+
+
+    if (action === 'square') {
+        calculatorInsert('^2');
+        return;
+    }
+
+
+    if (action === 'power') {
+        calculatorInsert('^');
+        return;
+    }
+
+
+    if (action === 'sin') {
+        calculatorInsert('sin(');
+        return;
+    }
+
+
+    if (action === 'cos') {
+        calculatorInsert('cos(');
+        return;
+    }
+
+
+    if (action === 'tan') {
+        calculatorInsert('tan(');
+        return;
+    }
+
+
+    if (action === 'asin') {
+        calculatorInsert('asin(');
+        return;
+    }
+
+
+    if (action === 'acos') {
+        calculatorInsert('acos(');
+        return;
+    }
+
+
+    if (action === 'atan') {
+        calculatorInsert('atan(');
+        return;
+    }
+
+
+    if (action === 'log') {
+        calculatorInsert('log(');
+        return;
+    }
+
+
+    if (action === 'ln') {
+        calculatorInsert('ln(');
+        return;
+    }
+
+
+    if (action === 'inverse') {
+
+        calculatorInsert('1/(');
+
+        return;
+    }
+
+
+    if (action === 'sign') {
+
+        if (currentValue) {
+
+            input.value =
+                '-(' + currentValue + ')';
+
+        } else {
+
+            input.value = '-';
+        }
+
+        input.focus();
+
+        return;
+    }
+
+
+    if (action === 'factorial') {
+
+        const value =
+            Number(currentValue);
+
+
+        if (
+            !Number.isInteger(value) ||
+            value < 0 ||
+            value > 170
+        ) {
+
+            return setResult(
+                'calcResult',
+                'Factorial requires a whole number from 0 to 170.'
+            );
+        }
+
+
+        let result = 1;
+
+        for (
+            let i = 2;
+            i <= value;
+            i++
+        ) {
+            result *= i;
+        }
+
+
+        calculatorAnswer = result;
+
+
+        setResult(
+            'calcResult',
+            'Result: ' +
+            formatCalculatorNumber(result)
+        );
+
+        return;
+    }
 }
 
+
+/* =========================
+   SCIENTIFIC CALCULATOR
+   EXPRESSION ENGINE
+   ========================= */
+
+function calculateExpression() {
+
+    const input =
+        $('calcInput');
+
+    if (!input) return;
+
+    let expression =
+        input.value.trim();
+
+
+    if (!expression) {
+
+        return setResult(
+            'calcResult',
+            'Please enter a calculation.'
+        );
+    }
+
+
+    try {
+
+        expression =
+            expression
+                .replaceAll('×', '*')
+                .replaceAll('÷', '/')
+                .replaceAll('−', '-')
+                .replaceAll('π', 'Math.PI')
+                .replace(/\be\b/g, 'Math.E')
+                .replace(/\^/g, '**');
+
+
+        /*
+         * Percentage:
+         * 50% becomes 50/100
+         */
+
+        expression =
+            expression.replace(
+                /(\d+(?:\.\d+)?)%/g,
+                '($1/100)'
+            );
+
+
+        /*
+         * Function names
+         */
+
+        expression =
+            expression
+                .replace(/\bsin\(/g, 'calcSin(')
+                .replace(/\bcos\(/g, 'calcCos(')
+                .replace(/\btan\(/g, 'calcTan(')
+                .replace(/\basin\(/g, 'calcAsin(')
+                .replace(/\bacos\(/g, 'calcAcos(')
+                .replace(/\batan\(/g, 'calcAtan(')
+                .replace(/\bsqrt\(/g, 'Math.sqrt(')
+                .replace(/\blog\(/g, 'Math.log10(')
+                .replace(/\bln\(/g, 'Math.log(');
+
+
+        /*
+         * Security check
+         */
+
+        if (
+            !/^[0-9+\-*/().\sA-Za-z]+$/.test(
+                expression
+            )
+        ) {
+            throw new Error(
+                'Invalid characters'
+            );
+        }
+
+
+        /*
+         * Remove allowed function names
+         * before checking letters.
+         */
+
+        let testExpression =
+            expression
+                .replaceAll('Math.PI', '')
+                .replaceAll('Math.E', '')
+                .replaceAll('Math.sqrt', '')
+                .replaceAll('Math.log10', '')
+                .replaceAll('Math.log', '')
+                .replaceAll('calcSin', '')
+                .replaceAll('calcCos', '')
+                .replaceAll('calcTan', '')
+                .replaceAll('calcAsin', '')
+                .replaceAll('calcAcos', '')
+                .replaceAll('calcAtan', '');
+
+
+        if (/[A-Za-z]/.test(testExpression)) {
+
+            throw new Error(
+                'Invalid function'
+            );
+        }
+
+
+        const result =
+            Function(
+                'calcSin',
+                'calcCos',
+                'calcTan',
+                'calcAsin',
+                'calcAcos',
+                'calcAtan',
+                '"use strict"; return (' +
+                expression +
+                ')'
+            )(
+                calcSin,
+                calcCos,
+                calcTan,
+                calcAsin,
+                calcAcos,
+                calcAtan
+            );
+
+
+        if (!Number.isFinite(result)) {
+
+            throw new Error(
+                'Invalid result'
+            );
+        }
+
+
+        calculatorAnswer =
+            result;
+
+
+        setResult(
+            'calcResult',
+            'Result: ' +
+            formatCalculatorNumber(result)
+        );
+
+
+    } catch (error) {
+
+        setResult(
+            'calcResult',
+            'Invalid calculation.'
+        );
+    }
+}
+
+
+/* =========================
+   DEG / RAD
+   ========================= */
+
+const calcDegBtn =
+    $('calcDegBtn');
+
+const calcRadBtn =
+    $('calcRadBtn');
+
+
+if (calcDegBtn) {
+
+    calcDegBtn.addEventListener(
+        'click',
+        function () {
+
+            calculatorAngleMode =
+                'DEG';
+
+            calcDegBtn.classList.add(
+                'active'
+            );
+
+            if (calcRadBtn) {
+
+                calcRadBtn.classList.remove(
+                    'active'
+                );
+            }
+        }
+    );
+}
+
+
+if (calcRadBtn) {
+
+    calcRadBtn.addEventListener(
+        'click',
+        function () {
+
+            calculatorAngleMode =
+                'RAD';
+
+            calcRadBtn.classList.add(
+                'active'
+            );
+
+            if (calcDegBtn) {
+
+                calcDegBtn.classList.remove(
+                    'active'
+                );
+            }
+        }
+    );
+}
+
+
+/* Calculator keypad */
+
+document
+    .querySelectorAll('.calc-key')
+    .forEach(function (button) {
+
+        button.addEventListener(
+            'click',
+            function () {
+
+                const value =
+                    this.dataset.value;
+
+                const action =
+                    this.dataset.calc;
+
+
+                if (this.id === 'calcBtn') {
+
+                    calculateExpression();
+
+                    return;
+                }
+
+
+                if (
+                    value !== undefined
+                ) {
+
+                    calculatorInsert(
+                        value
+                    );
+
+                    return;
+                }
+
+
+                if (action) {
+
+                    calculatorScientificAction(
+                        action
+                    );
+                }
+            }
+        );
+    });
+
+
+/* Calculator keyboard */
+
+const calculatorInput =
+    $('calcInput');
+
+
+if (calculatorInput) {
+
+    calculatorInput.addEventListener(
+        'keydown',
+        function (event) {
+
+            if (event.key === 'Enter') {
+
+                event.preventDefault();
+
+                calculateExpression();
+
+                return;
+            }
+
+
+            if (event.key === 'Escape') {
+
+                event.preventDefault();
+
+                calculatorScientificAction(
+                    'clear'
+                );
+            }
+        }
+    );
+}
+
+
+/* =========================
+   AGGREGATE CALCULATOR
+   ========================= */
+
+function updateAggregateTitles() {
+
+    const rows =
+        document.querySelectorAll(
+            '#aggregateList .aggregate-item'
+        );
+
+
+    rows.forEach(
+        function (row, index) {
+
+            const title =
+                row.querySelector(
+                    '.dynamic-title'
+                );
+
+
+            if (title) {
+
+                title.textContent =
+                    'Component ' +
+                    (index + 1);
+            }
+        }
+    );
+}
+
+
 function addAggregateComponent() {
-    const list = $('aggregateList');
+
+    const list =
+        $('aggregateList');
 
     if (!list) return;
 
-    const item = document.createElement('div');
+
+    const item =
+        document.createElement('div');
+
 
     item.className =
         'dynamic-item aggregate-item';
+
 
     item.innerHTML = `
         <div class="dynamic-title">
@@ -707,7 +1869,7 @@ function addAggregateComponent() {
             <input
                 class="aggregate-total"
                 type="number"
-                min="0.01"
+                min="0"
                 step="any"
                 placeholder="Example: 1100"
             >
@@ -735,43 +1897,62 @@ function addAggregateComponent() {
         </div>
     `;
 
+
     list.appendChild(item);
+
     updateAggregateTitles();
 }
 
-function calculateAggregate() {
-    const list = $('aggregateList');
 
-    if (!list || list.children.length === 0) {
+function calculateAggregate() {
+
+    const rows =
+        [
+            ...document.querySelectorAll(
+                '#aggregateList .aggregate-item'
+            )
+        ];
+
+
+    if (rows.length === 0) {
+
         return setResult(
             'aggregateResult',
             'Please add at least one component.'
         );
     }
 
+
     let aggregate = 0;
+
     let totalWeightage = 0;
 
-    const rows = [...list.children];
 
     for (const row of rows) {
-        const obtained = parseFloat(
-            row.querySelector(
-                '.aggregate-obtained'
-            ).value
-        );
 
-        const total = parseFloat(
-            row.querySelector(
-                '.aggregate-total'
-            ).value
-        );
+        const obtained =
+            parseFloat(
+                row.querySelector(
+                    '.aggregate-obtained'
+                ).value
+            );
 
-        const weight = parseFloat(
-            row.querySelector(
-                '.aggregate-weight'
-            ).value
-        );
+
+        const total =
+            parseFloat(
+                row.querySelector(
+                    '.aggregate-total'
+                ).value
+            );
+
+
+        const weight =
+            parseFloat(
+                row.querySelector(
+                    '.aggregate-weight'
+                ).value
+            );
+
 
         if (
             !Number.isFinite(obtained) ||
@@ -780,42 +1961,628 @@ function calculateAggregate() {
             total <= 0 ||
             obtained < 0 ||
             obtained > total ||
-            weight < 0 ||
+            weight <= 0 ||
             weight > 100
         ) {
+
             return setResult(
                 'aggregateResult',
                 'Please enter valid marks and weightage for every component.'
             );
         }
 
-        aggregate +=
-            (obtained / total) * weight;
 
-        totalWeightage += weight;
+        aggregate +=
+            (obtained / total) *
+            weight;
+
+
+        totalWeightage +=
+            weight;
     }
 
-    if (Math.abs(totalWeightage - 100) > 0.000001) {
+
+    if (
+        Math.abs(
+            totalWeightage - 100
+        ) > 0.000001
+    ) {
+
         return setResult(
             'aggregateResult',
-            `Total weightage must be exactly 100%. Current total: ${totalWeightage.toFixed(2)}%`
+            'Total weightage must be exactly 100%. Current total: ' +
+            totalWeightage.toFixed(2) +
+            '%'
         );
     }
 
+
     setResult(
         'aggregateResult',
-        `Final Aggregate: ${aggregate.toFixed(2)}%`
+        'Final Aggregate: ' +
+        aggregate.toFixed(2) +
+        '%'
     );
 }
 
 
-/* =========================================================
-   5. BMI
-   ========================================================= */
+/* Aggregate buttons */
+
+const addAggregateButton =
+    $('addAggregate');
+
+
+if (addAggregateButton) {
+
+    addAggregateButton.addEventListener(
+        'click',
+        addAggregateComponent
+    );
+}
+
+
+const calculateAggregateButton =
+    $('calculateAggregate');
+
+
+if (calculateAggregateButton) {
+
+    calculateAggregateButton.addEventListener(
+        'click',
+        calculateAggregate
+    );
+}
+
+
+const aggregateList =
+    $('aggregateList');
+
+
+if (aggregateList) {
+
+    aggregateList.addEventListener(
+        'click',
+        function (event) {
+
+            if (
+                event.target.classList.contains(
+                    'remove-aggregate'
+                )
+            ) {
+
+                const rows =
+                    aggregateList.querySelectorAll(
+                        '.aggregate-item'
+                    );
+
+
+                if (rows.length > 1) {
+
+                    event.target
+                        .closest(
+                            '.aggregate-item'
+                        )
+                        .remove();
+
+
+                    updateAggregateTitles();
+
+                } else {
+
+                    setResult(
+                        'aggregateResult',
+                        'At least one component is required.'
+                    );
+                }
+            }
+        }
+    );
+}
+
+
+/* =========================
+   GPA / CGPA
+   ========================= */
+
+function addGpaSubject() {
+
+    const list =
+        $('gpaList');
+
+    if (!list) return;
+
+
+    const item =
+        document.createElement('div');
+
+
+    item.className =
+        'dynamic-item';
+
+
+    item.innerHTML = `
+        <div class="dynamic-title">
+            Subject ${list.children.length + 1}
+        </div>
+
+        <div class="field">
+            <label>GPA (0 - 4)</label>
+            <input
+                class="gpa-value"
+                type="number"
+                min="0"
+                max="4"
+                step="0.01"
+            >
+        </div>
+
+        <div class="field">
+            <label>Credit Hours</label>
+            <input
+                class="gpa-credit"
+                type="number"
+                min="0.1"
+                step="0.1"
+            >
+        </div>
+
+        <div class="dynamic-actions">
+            <button
+                type="button"
+                class="small-btn danger remove-gpa"
+            >
+                Remove
+            </button>
+        </div>
+    `;
+
+
+    list.appendChild(item);
+
+    updateGpaTitles();
+}
+
+
+function updateGpaTitles() {
+
+    const list =
+        $('gpaList');
+
+    if (!list) return;
+
+
+    [
+        ...list.children
+    ].forEach(
+        function (item, index) {
+
+            const title =
+                item.querySelector(
+                    '.dynamic-title'
+                );
+
+            if (title) {
+
+                title.textContent =
+                    'Subject ' +
+                    (index + 1);
+            }
+        }
+    );
+}
+
+
+function addCgpaSemester() {
+
+    const list =
+        $('cgpaList');
+
+    if (!list) return;
+
+
+    const item =
+        document.createElement('div');
+
+
+    item.className =
+        'dynamic-item';
+
+
+    item.innerHTML = `
+        <div class="dynamic-title">
+            Semester ${list.children.length + 1}
+        </div>
+
+        <div class="field">
+            <label>Semester GPA (0 - 4)</label>
+            <input
+                class="cgpa-value"
+                type="number"
+                min="0"
+                max="4"
+                step="0.01"
+            >
+        </div>
+
+        <div class="field">
+            <label>Total Semester Credit Hours</label>
+            <input
+                class="cgpa-credit"
+                type="number"
+                min="0.1"
+                step="0.1"
+            >
+        </div>
+
+        <div class="dynamic-actions">
+            <button
+                type="button"
+                class="small-btn danger remove-cgpa"
+            >
+                Remove
+            </button>
+        </div>
+    `;
+
+
+    list.appendChild(item);
+
+    updateCgpaTitles();
+}
+
+
+function updateCgpaTitles() {
+
+    const list =
+        $('cgpaList');
+
+    if (!list) return;
+
+
+    [
+        ...list.children
+    ].forEach(
+        function (item, index) {
+
+            const title =
+                item.querySelector(
+                    '.dynamic-title'
+                );
+
+            if (title) {
+
+                title.textContent =
+                    'Semester ' +
+                    (index + 1);
+            }
+        }
+    );
+}
+
+
+function calculateGPA() {
+
+    const list =
+        $('gpaList');
+
+    if (!list) return;
+
+
+    const rows =
+        [
+            ...list.children
+        ];
+
+
+    if (rows.length === 0) {
+
+        return setResult(
+            'gpaResult',
+            'Please add at least one subject.'
+        );
+    }
+
+
+    let points = 0;
+
+    let credits = 0;
+
+
+    for (const row of rows) {
+
+        const g =
+            parseFloat(
+                row.querySelector(
+                    '.gpa-value'
+                ).value
+            );
+
+
+        const c =
+            parseFloat(
+                row.querySelector(
+                    '.gpa-credit'
+                ).value
+            );
+
+
+        if (
+            !Number.isFinite(g) ||
+            g < 0 ||
+            g > 4 ||
+ !Number.isFinite(c) ||
+        c <= 0
+    ) {
+
+        return setResult(
+            'gpaResult',
+            'Please enter valid GPA and credit hours for every subject.'
+        );
+    }
+
+
+    points += g * c;
+
+    credits += c;
+}
+
+
+setResult(
+    'gpaResult',
+    'Weighted GPA: ' +
+    (points / credits).toFixed(2)
+);
+}
+
+
+/* =========================
+   CALCULATE CGPA
+   ========================= */
+
+function calculateCGPA() {
+
+    const list =
+        $('cgpaList');
+
+    if (!list) return;
+
+
+    const rows =
+        [
+            ...list.children
+        ];
+
+
+    if (rows.length === 0) {
+
+        return setResult(
+            'cgpaResult',
+            'Please add at least one semester.'
+        );
+    }
+
+
+    let points = 0;
+
+    let credits = 0;
+
+
+    for (const row of rows) {
+
+        const g =
+            parseFloat(
+                row.querySelector(
+                    '.cgpa-value'
+                ).value
+            );
+
+
+        const c =
+            parseFloat(
+                row.querySelector(
+                    '.cgpa-credit'
+                ).value
+            );
+
+
+        if (
+            !Number.isFinite(g) ||
+            g < 0 ||
+            g > 4 ||
+            !Number.isFinite(c) ||
+            c <= 0
+        ) {
+
+            return setResult(
+                'cgpaResult',
+                'Please enter valid GPA and credit hours for every semester.'
+            );
+        }
+
+
+        points += g * c;
+
+        credits += c;
+    }
+
+
+    setResult(
+        'cgpaResult',
+        'Weighted CGPA: ' +
+        (points / credits).toFixed(2)
+    );
+}
+
+
+/* =========================
+   GPA / CGPA EVENTS
+   ========================= */
+
+const addGpa =
+    $('addGpa');
+
+if (addGpa) {
+
+    addGpa.addEventListener(
+        'click',
+        addGpaSubject
+    );
+}
+
+
+const calcGpa =
+    $('calcGpa');
+
+if (calcGpa) {
+
+    calcGpa.addEventListener(
+        'click',
+        calculateGPA
+    );
+}
+
+
+const addCgpa =
+    $('addCgpa');
+
+if (addCgpa) {
+
+    addCgpa.addEventListener(
+        'click',
+        addCgpaSemester
+    );
+}
+
+
+const calcCgpa =
+    $('calcCgpa');
+
+if (calcCgpa) {
+
+    calcCgpa.addEventListener(
+        'click',
+        calculateCGPA
+    );
+}
+
+
+/* =========================
+   GPA REMOVE
+   ========================= */
+
+const gpaList =
+    $('gpaList');
+
+if (gpaList) {
+
+    gpaList.addEventListener(
+        'click',
+        function (event) {
+
+            if (
+                event.target.classList.contains(
+                    'remove-gpa'
+                )
+            ) {
+
+                const row =
+                    event.target.closest(
+                        '.dynamic-item'
+                    );
+
+                if (row) {
+
+                    row.remove();
+
+                    updateGpaTitles();
+                }
+            }
+        }
+    );
+}
+
+
+/* =========================
+   CGPA REMOVE
+   ========================= */
+
+const cgpaList =
+    $('cgpaList');
+
+if (cgpaList) {
+
+    cgpaList.addEventListener(
+        'click',
+        function (event) {
+
+            if (
+                event.target.classList.contains(
+                    'remove-cgpa'
+                )
+            ) {
+
+                const row =
+                    event.target.closest(
+                        '.dynamic-item'
+                    );
+
+                if (row) {
+
+                    row.remove();
+
+                    updateCgpaTitles();
+                }
+            }
+        }
+    );
+}
+
+
+/* =========================
+   OTHER CALCULATORS
+   ========================= */
+
+function calculatePercentage() {
+
+    const a =
+        num('pctObtained');
+
+    const b =
+        num('pctTotal');
+
+
+    if (
+        !Number.isFinite(a) ||
+        !Number.isFinite(b) ||
+        a < 0 ||
+        b <= 0 ||
+        a > b
+    ) {
+
+        return setResult(
+            'pctResult',
+            'Please enter valid marks.'
+        );
+    }
+
+
+    setResult(
+        'pctResult',
+        'Percentage: ' +
+        ((a / b) * 100).toFixed(2) +
+        '%'
+    );
+}
+
 
 function calculateBMI() {
-    const weight = num('bmiWeight');
-    const height = num('bmiHeight');
+
+    const weight =
+        num('bmiWeight');
+
+    const height =
+        num('bmiHeight');
+
 
     if (
         !Number.isFinite(weight) ||
@@ -823,131 +2590,196 @@ function calculateBMI() {
         weight <= 0 ||
         height <= 0
     ) {
+
         return setResult(
             'bmiResult',
             'Please enter valid weight and height.'
         );
     }
 
-    const heightM = height / 100;
+
     const bmi =
-        weight / (heightM * heightM);
+        weight /
+        ((height / 100) ** 2);
+
 
     let category;
 
+
     if (bmi < 18.5) {
-        category = 'Underweight';
+
+        category =
+            'Underweight';
+
     } else if (bmi < 25) {
-        category = 'Normal weight';
+
+        category =
+            'Normal weight';
+
     } else if (bmi < 30) {
-        category = 'Overweight';
+
+        category =
+            'Overweight';
+
     } else {
-        category = 'Obesity';
+
+        category =
+            'Obesity';
     }
+
 
     setResult(
         'bmiResult',
-        `BMI: ${bmi.toFixed(2)} | ${category}`
+        'BMI: ' +
+        bmi.toFixed(2) +
+        ' | ' +
+        category
     );
 }
 
 
-/* =========================================================
-   6. HEALTHY WEIGHT
-   ========================================================= */
-
 function calculateHealthyWeight() {
-    const height = num('heightHealthy');
 
-    if (!Number.isFinite(height) || height <= 0) {
+    const height =
+        num('heightHealthy');
+
+
+    if (
+        !Number.isFinite(height) ||
+        height <= 0
+    ) {
+
         return setResult(
             'healthyWeightResult',
             'Please enter a valid height.'
         );
     }
 
-    const heightM = height / 100;
+
+    const heightM =
+        height / 100;
+
 
     const minWeight =
-        18.5 * heightM * heightM;
+        18.5 *
+        heightM *
+        heightM;
+
 
     const maxWeight =
-        24.9 * heightM * heightM;
+        24.9 *
+        heightM *
+        heightM;
+
 
     setResult(
         'healthyWeightResult',
-        `Approximate healthy weight range: ${minWeight.toFixed(1)} kg – ${maxWeight.toFixed(1)} kg`
+        'Approximate healthy weight range: ' +
+        minWeight.toFixed(1) +
+        ' kg – ' +
+        maxWeight.toFixed(1) +
+        ' kg'
     );
 }
 
 
-/* =========================================================
-   7. AGE CALCULATOR
-   ========================================================= */
-
 function calculateAge() {
-    const value = $('dob');
 
-    if (!value || !value.value) {
+    const dobInput =
+        $('dob');
+
+    if (!dobInput) return;
+
+
+    const value =
+        dobInput.value;
+
+
+    if (!value) {
+
         return setResult(
             'ageResult',
             'Please select your birth date.'
         );
     }
 
-    const birth =
-        new Date(value.value + 'T00:00:00');
 
-    const now = new Date();
+    const birth =
+        new Date(
+            value + 'T00:00:00'
+        );
+
+
+    const now =
+        new Date();
+
 
     if (birth > now) {
+
         return setResult(
             'ageResult',
             'Birth date cannot be in the future.'
         );
     }
 
+
     let years =
         now.getFullYear() -
         birth.getFullYear();
+
 
     let months =
         now.getMonth() -
         birth.getMonth();
 
+
     let days =
         now.getDate() -
         birth.getDate();
 
+
     if (days < 0) {
+
         months--;
 
-        days += new Date(
-            now.getFullYear(),
-            now.getMonth(),
-            0
-        ).getDate();
+        days +=
+            new Date(
+                now.getFullYear(),
+                now.getMonth(),
+                0
+            ).getDate();
     }
 
+
     if (months < 0) {
+
         years--;
+
         months += 12;
     }
 
+
     setResult(
         'ageResult',
-        `Age: ${years} years, ${months} months, ${days} days`
+        'Age: ' +
+        years +
+        ' years, ' +
+        months +
+        ' months, ' +
+        days +
+        ' days'
     );
 }
 
 
-/* =========================================================
-   8. DISCOUNT CALCULATOR
-   ========================================================= */
-
 function calculateDiscount() {
-    const price = num('price');
-    const discount = num('discount');
+
+    const price =
+        num('price');
+
+    const discount =
+        num('discount');
+
 
     if (
         !Number.isFinite(price) ||
@@ -956,33 +2788,43 @@ function calculateDiscount() {
         discount < 0 ||
         discount > 100
     ) {
+
         return setResult(
             'discountResult',
             'Please enter valid price and discount.'
         );
     }
 
+
     const saved =
         price * discount / 100;
+
 
     const finalPrice =
         price - saved;
 
+
     setResult(
         'discountResult',
-        `Discount: ${saved.toFixed(2)} | Final Price: ${finalPrice.toFixed(2)}`
+        'Discount: ' +
+        saved.toFixed(2) +
+        ' | Final Price: ' +
+        finalPrice.toFixed(2)
     );
 }
 
 
-/* =========================================================
-   9. SIMPLE INTEREST
-   ========================================================= */
-
 function calculateInterest() {
-    const principal = num('principal');
-    const rate = num('rate');
-    const years = num('years');
+
+    const principal =
+        num('principal');
+
+    const rate =
+        num('rate');
+
+    const years =
+        num('years');
+
 
     if (
         !Number.isFinite(principal) ||
@@ -992,32 +2834,39 @@ function calculateInterest() {
         rate < 0 ||
         years < 0
     ) {
+
         return setResult(
             'interestResult',
             'Please enter valid values.'
         );
     }
 
-    const interest =
-        principal * rate * years / 100;
 
-    const total =
-        principal + interest;
+    const interest =
+        principal *
+        rate *
+        years /
+        100;
+
 
     setResult(
         'interestResult',
-        `Simple Interest: ${interest.toFixed(2)} | Total: ${total.toFixed(2)}`
+        'Simple Interest: ' +
+        interest.toFixed(2) +
+        ' | Total: ' +
+        (principal + interest).toFixed(2)
     );
 }
 
 
-/* =========================================================
-   10. EXAM MARKS & GRADE
-   ========================================================= */
-
 function calculateExam() {
-    const obtained = num('examObtained');
-    const total = num('examTotal');
+
+    const obtained =
+        num('examObtained');
+
+    const total =
+        num('examTotal');
+
 
     if (
         !Number.isFinite(obtained) ||
@@ -1026,56 +2875,86 @@ function calculateExam() {
         total <= 0 ||
         obtained > total
     ) {
+
         return setResult(
             'examResult',
             'Please enter valid marks.'
         );
     }
 
+
     const percentage =
-        obtained / total * 100;
+        obtained /
+        total *
+        100;
+
 
     let grade;
 
+
     if (percentage >= 80) {
+
         grade = 'A+';
+
     } else if (percentage >= 70) {
+
         grade = 'A';
+
     } else if (percentage >= 60) {
+
         grade = 'B';
+
     } else if (percentage >= 50) {
+
         grade = 'C';
+
     } else if (percentage >= 40) {
+
         grade = 'D';
+
     } else {
+
         grade = 'F';
     }
 
+
     setResult(
         'examResult',
-        `Percentage: ${percentage.toFixed(2)}% | Grade: ${grade}`
+        'Percentage: ' +
+        percentage.toFixed(2) +
+        '% | Grade: ' +
+        grade
     );
 }
 
 
-/* =========================================================
-   11. UNIT CONVERTER
-   ========================================================= */
-
 function convertUnit() {
-    const value = num('unitValue');
+
+    const value =
+        num('unitValue');
+
 
     if (!Number.isFinite(value)) {
+
         return setResult(
             'unitResult',
             'Please enter a valid value.'
         );
     }
 
+
+    const unitType =
+        $('unitType');
+
+    if (!unitType) return;
+
+
     const type =
-        $('unitType')?.value;
+        unitType.value;
+
 
     const conversions = {
+
         'cm-m': [
             value / 100,
             'meters'
@@ -1094,190 +2973,1002 @@ function convertUnit() {
         'km-m': [
             value * 1000,
             'meters'
+        ],
+
+        'kg-lb': [
+            value * 2.20462,
+            'pounds'
+        ],
+
+        'lb-kg': [
+            value / 2.20462,
+            'kilograms'
+        ],
+
+        'g-kg': [
+            value / 1000,
+            'kilograms'
+        ],
+
+        'kg-g': [
+            value * 1000,
+            'grams'
         ]
     };
+
 
     const result =
         conversions[type];
 
+
     if (!result) {
+
         return setResult(
             'unitResult',
             'Please select a valid conversion.'
         );
     }
 
+
     setResult(
         'unitResult',
-        `${result[0].toFixed(4)} ${result[1]}`
+        result[0].toFixed(2) +
+        ' ' +
+        result[1]
     );
 }
 
 
-/* =========================================================
-   12. SCIENTIFIC CALCULATOR
-   ========================================================= */
+/* =========================
+   OTHER CALCULATOR BUTTONS
+   ========================= */
 
-let calculatorAngleMode = 'DEG';
-let calculatorAnswer = 0;
+const calculatorButtons = [
 
-function toRadians(value) {
-    return calculatorAngleMode === 'DEG'
-        ? value * Math.PI / 180
-        : value;
+    ['pctBtn', calculatePercentage],
+
+    ['bmiBtn', calculateBMI],
+
+    [
+        'calculateHealthyWeight',
+        calculateHealthyWeight
+    ],
+
+    ['ageBtn', calculateAge],
+
+    ['discountBtn', calculateDiscount],
+
+    ['interestBtn', calculateInterest],
+
+    ['examBtn', calculateExam],
+
+    ['unitBtn', convertUnit]
+];
+
+
+calculatorButtons.forEach(
+    function (item) {
+
+        const button =
+            $(item[0]);
+
+        if (button) {
+
+            button.addEventListener(
+                'click',
+                item[1]
+            );
+        }
+    }
+);
+
+
+/* =========================
+   STUDENT QUIZ
+   ========================= */
+
+const level1Questions = [
+
+    [
+        'How many days are in one week?',
+        ['5', '7', '10', '12'],
+        1
+    ],
+
+    [
+        'What is H₂O commonly called?',
+        ['Oxygen', 'Hydrogen', 'Water', 'Salt'],
+        2
+    ],
+
+    [
+        'How many hours are in one day?',
+        ['12', '18', '24', '48'],
+        2
+    ],
+
+    [
+        'Which organ pumps blood?',
+        ['Liver', 'Heart', 'Kidney', 'Lung'],
+        1
+    ],
+
+    [
+        'What is 5 × 6?',
+        ['11', '20', '30', '35'],
+        2
+    ],
+
+    [
+        'Which planet is known as the Red Planet?',
+        ['Earth', 'Mars', 'Venus', 'Jupiter'],
+        1
+    ],
+
+    [
+        'How many centimeters are in 1 meter?',
+        ['10', '50', '100', '1000'],
+        2
+    ],
+
+    [
+        'What is 50% of 200?',
+        ['50', '100', '150', '200'],
+        1
+    ],
+
+    [
+        'Which gas do humans need for normal respiration?',
+        ['Oxygen', 'Helium', 'Neon', 'Hydrogen'],
+        0
+    ],
+
+    [
+        'What is 2 + 8?',
+        ['8', '9', '10', '12'],
+        2
+    ]
+];
+
+
+const level2Questions = [
+
+    [
+        'Which part of the cell contains genetic material?',
+        ['Nucleus', 'Ribosome', 'Lysosome', 'Golgi body'],
+        0
+    ],
+
+    [
+        'What is the normal pH of blood approximately?',
+        ['5.5', '6.5', '7.4', '8.5'],
+        2
+    ],
+
+    [
+        'Which organ is primarily responsible for filtering blood?',
+        ['Heart', 'Kidney', 'Lung', 'Stomach'],
+        1
+    ],
+
+    [
+        'What is the powerhouse of the cell?',
+        ['Nucleus', 'Mitochondria', 'Ribosome', 'Cell wall'],
+        1
+    ],
+
+    [
+        'Which vitamin is mainly produced in skin by sunlight?',
+        ['Vitamin A', 'Vitamin B12', 'Vitamin C', 'Vitamin D'],
+        3
+    ],
+
+    [
+        'What is the basic unit of heredity?',
+        ['Gene', 'Cell', 'Tissue', 'Organ'],
+        0
+    ],
+
+    [
+        'Which blood cells help fight infection?',
+        ['Red blood cells', 'White blood cells', 'Platelets', 'Plasma'],
+        1
+    ],
+
+    [
+        'What is the chemical symbol for sodium?',
+        ['So', 'Na', 'S', 'Sd'],
+        1
+    ],
+
+    [
+        'Which process converts glucose into usable cellular energy?',
+        ['Respiration', 'Digestion', 'Filtration', 'Diffusion'],
+        0
+    ],
+
+    [
+        'Which organ produces insulin?',
+        ['Liver', 'Kidney', 'Pancreas', 'Lung'],
+        2
+    ]
+];
+
+
+const level3Questions = [
+
+    [
+        'Which receptor senses arterial pressure?',
+        ['Chemoreceptor', 'Baroreceptor', 'Photoreceptor', 'Nociceptor'],
+        1
+    ],
+
+    [
+        'Which phase of the cardiac cycle involves ventricular contraction?',
+        ['Diastole', 'Systole', 'Filling', 'Relaxation'],
+        1
+    ],
+
+    [
+        'Which hormone increases sodium reabsorption in the kidney?',
+        ['Insulin', 'Aldosterone', 'Thyroxine', 'Melatonin'],
+        1
+    ],
+
+    [
+        'What is the main neurotransmitter released by most postganglionic parasympathetic neurons?',
+        ['Dopamine', 'Norepinephrine', 'Acetylcholine', 'Serotonin'],
+        2
+    ],
+
+    [
+        'Which part of the nephron mainly reabsorbs glucose?',
+        ['Collecting duct', 'Proximal convoluted tubule', 'Loop of Henle', 'Distal convoluted tubule'],
+        1
+    ],
+
+    [
+        'What is the normal resting membrane potential of a typical neuron?',
+        ['+30 mV', '0 mV', '-70 mV', '-10 mV'],
+        2
+    ],
+
+    [
+        'Which blood vessel carries oxygenated blood from the lungs to the heart?',
+        ['Pulmonary artery', 'Pulmonary vein', 'Aorta', 'Vena cava'],
+        1
+    ],
+
+    [
+        'Which enzyme begins protein digestion in the stomach?',
+        ['Amylase', 'Pepsin', 'Lipase', 'Trypsin'],
+        1
+    ],
+
+    [
+        'Which vitamin is essential for synthesis of clotting factors?',
+        ['Vitamin A', 'Vitamin C', 'Vitamin D', 'Vitamin K'],
+        3
+    ],
+
+    [
+        'Which ECG wave represents ventricular depolarization?',
+        ['P wave', 'QRS complex', 'T wave', 'U wave'],
+        1
+    ]
+];
+
+
+let currentLevel = 1;
+
+let quizIndex = 0;
+
+let score = 0;
+
+let answered = false;
+
+
+function getCurrentQuestions() {
+
+    if (currentLevel === 1) {
+        return level1Questions;
+    }
+
+    if (currentLevel === 2) {
+        return level2Questions;
+    }
+
+    return level3Questions;
 }
 
-function calcSin(value) {
-    return Math.sin(toRadians(value));
+
+function renderQuiz() {
+
+    const questions =
+        getCurrentQuestions();
+
+
+    const q =
+        questions[quizIndex];
+
+
+    if (!q) return;
+
+
+    $('quizProgress').textContent =
+        'Level ' +
+        currentLevel +
+        ' — Question ' +
+        (quizIndex + 1) +
+        ' of ' +
+        questions.length;
+
+
+    $('quizQuestion').textContent =
+        q[0];
+
+
+    $('quizOptions').innerHTML =
+        q[1].map(
+            function (option, index) {
+
+                return `
+                    <label>
+                        <input
+                            type="radio"
+                            name="quiz"
+                            value="${index}"
+                        >
+                        ${option}
+                    </label>
+                `;
+            }
+        ).join('');
+
+
+    $('quizBtn').textContent =
+        'Submit Answer';
+
+
+    setResult(
+        'quizResult',
+        'Select an answer.'
+    );
+
+
+    answered = false;
 }
 
-function calcCos(value) {
-    return Math.cos(toRadians(value));
-}
 
-function calcTan(value) {
-    return Math.tan(toRadians(value));
-}
+function nextQuiz() {
 
-function calcAsin(value) {
-    const result = Math.asin(value);
+    if (answered) {
 
-    return calculatorAngleMode === 'DEG'
-        ? result * 180 / Math.PI
-        : result;
-}
+        return;
+    }
 
-function calcAcos(value) {
-    const result = Math.acos(value);
 
-    return calculatorAngleMode === 'DEG'
-        ? result * 180 / Math.PI
-        : result;
-}
+    const chosen =
+        document.querySelector(
+            'input[name="quiz"]:checked'
+        );
 
-function calcAtan(value) {
-    const result = Math.atan(value);
 
-    return calculatorAngleMode === 'DEG'
-        ? result * 180 / Math.PI
-        : result;
-}
+    if (!chosen) {
 
-function factorial(value) {
-    if (
-        !Number.isInteger(value) ||
-        value < 0 ||
-        value > 170
-    ) {
-        throw new Error(
-            'Factorial range'
+        return setResult(
+            'quizResult',
+            'Please select an answer.'
         );
     }
 
-    let result = 1;
 
-    for (let i = 2; i <= value; i++) {
-        result *= i;
+    const questions =
+        getCurrentQuestions();
+
+
+    const correct =
+        Number(chosen.value) ===
+        questions[quizIndex][2];
+
+
+    if (correct) {
+
+        score++;
+
+        setResult(
+            'quizResult',
+            'Correct! Well done.'
+        );
+
+    } else {
+
+        setResult(
+            'quizResult',
+            'Incorrect. Try the next question.'
+        );
     }
 
-    return result;
+
+    answered = true;
+
+
+    if (
+        quizIndex <
+        questions.length - 1
+    ) {
+
+        $('quizBtn').textContent =
+            'Next Question';
+
+        $('quizBtn').onclick =
+            function () {
+
+                quizIndex++;
+
+                renderQuiz();
+
+                $('quizBtn').onclick =
+                    nextQuiz;
+            };
+
+        return;
+    }
+
+
+    const percentage =
+        Math.round(
+            score /
+            questions.length *
+            100
+        );
+
+
+    if (currentLevel < 3) {
+
+        setResult(
+            'quizResult',
+            'Level ' +
+            currentLevel +
+            ' complete! Score: ' +
+            score +
+            '/' +
+            questions.length +
+            ' (' +
+            percentage +
+            '%)'
+        );
+
+
+        $('quizBtn').textContent =
+            'Start Level ' +
+            (currentLevel + 1);
+
+
+        $('quizBtn').onclick =
+            function () {
+
+                currentLevel++;
+
+                quizIndex = 0;
+
+                score = 0;
+
+                answered = false;
+
+                renderQuiz();
+
+                $('quizBtn').onclick =
+                    nextQuiz;
+            };
+
+    } else {
+
+        setResult(
+            'quizResult',
+            'Quiz Complete! Final Score: ' +
+            score +
+            '/' +
+            questions.length +
+            ' (' +
+            percentage +
+            '%)'
+        );
+
+
+        $('quizBtn').textContent =
+            'Restart Quiz';
+
+
+        $('quizBtn').onclick =
+            function () {
+
+                currentLevel = 1;
+
+                quizIndex = 0;
+
+                score = 0;
+
+                answered = false;
+
+                renderQuiz();
+
+                $('quizBtn').onclick =
+                    nextQuiz;
+            };
+    }
 }
 
-function formatCalculatorNumber(value) {
-    if (Object.is(value, -0)) {
-        return '0';
-    }
 
-    if (Number.isInteger(value)) {
-        return String(value);
-    }
+const quizBtn =
+    $('quizBtn');
 
-    return Number(
-        value.toPrecision(12)
-    ).toString();
+
+if (quizBtn) {
+
+    quizBtn.onclick =
+        nextQuiz;
+
+    renderQuiz();
 }
 
-function calculatorInsert(value) {
-    const input = $('calcInput');
 
-    if (!input) return;
+/* =========================
+   365-DAY DAILY QUIZ
+   ========================= */
+
+const dailyQuizBank = [
+
+    [
+        'Which organ pumps blood throughout the body?',
+        ['Liver', 'Heart', 'Kidney', 'Lung'],
+        1
+    ],
+
+    [
+        'What is the basic unit of life?',
+        ['Tissue', 'Organ', 'Cell', 'Atom'],
+        2
+    ],
+
+    [
+        'Which vitamin is mainly produced in the skin by sunlight?',
+        ['Vitamin A', 'Vitamin B12', 'Vitamin C', 'Vitamin D'],
+        3
+    ],
+
+    [
+        'Which organ is mainly responsible for filtering blood?',
+        ['Heart', 'Kidney', 'Stomach', 'Lung'],
+        1
+    ],
+
+    [
+        'What is the chemical symbol for oxygen?',
+        ['O', 'Ox', 'C', 'Og'],
+        0
+    ],
+
+    [
+        'Which blood cells help fight infections?',
+ ['Red blood cells', 'White blood cells', 'Platelets', 'Plasma'],
+        1
+    ],
+
+    [
+        'What is the normal pH of blood approximately?',
+        ['5.5', '6.5', '7.4', '8.5'],
+        2
+    ],
+
+    [
+        'Which molecule carries oxygen in red blood cells?',
+        ['Insulin', 'Hemoglobin', 'Keratin', 'Collagen'],
+        1
+    ],
+
+    [
+        'Which organ produces insulin?',
+        ['Liver', 'Kidney', 'Pancreas', 'Lung'],
+        2
+    ],
+
+    [
+        'How many days are there in one week?',
+        ['5', '6', '7', '8'],
+        2
+    ],
+
+    [
+        'What is the normal resting heart rate of most adults?',
+        ['20–40 bpm', '60–100 bpm', '120–160 bpm', '180–200 bpm'],
+        1
+    ],
+
+    [
+        'Which part of the cell contains genetic material?',
+        ['Nucleus', 'Ribosome', 'Lysosome', 'Golgi body'],
+        0
+    ],
+
+    [
+        'Which organ produces bile?',
+        ['Heart', 'Liver', 'Kidney', 'Lung'],
+        1
+    ],
+
+    [
+        'What is the powerhouse of the cell?',
+        ['Nucleus', 'Mitochondria', 'Ribosome', 'Cell wall'],
+        1
+    ],
+
+    [
+        'Which blood component helps in clotting?',
+        ['Red blood cells', 'White blood cells', 'Platelets', 'Plasma'],
+        2
+    ],
+
+    [
+        'What is the chemical symbol for sodium?',
+        ['So', 'Na', 'S', 'Sd'],
+        1
+    ],
+
+    [
+        'Which part of the heart pumps oxygenated blood to the body?',
+        ['Left ventricle', 'Right atrium', 'Right ventricle', 'Left atrium'],
+        0
+    ],
+
+    [
+        'Which gas is mainly used by cells for aerobic respiration?',
+        ['Nitrogen', 'Oxygen', 'Helium', 'Hydrogen'],
+        1
+    ],
+
+    [
+        'What is 10 × 5?',
+        ['15', '40', '50', '60'],
+        2
+    ],
+
+    [
+        'Which organ stores urine?',
+        ['Kidney', 'Bladder', 'Liver', 'Stomach'],
+        1
+    ],
+
+    [
+        'Which receptor senses changes in arterial pressure?',
+        ['Chemoreceptor', 'Baroreceptor', 'Photoreceptor', 'Nociceptor'],
+        1
+    ],
+
+    [
+        'Which phase of the cardiac cycle involves ventricular contraction?',
+        ['Diastole', 'Systole', 'Filling', 'Relaxation'],
+        1
+    ],
+
+    [
+        'Which hormone increases sodium reabsorption in the kidney?',
+        ['Insulin', 'Aldosterone', 'Thyroxine', 'Melatonin'],
+        1
+    ],
+
+    [
+        'What is the main neurotransmitter released by most postganglionic parasympathetic neurons?',
+        ['Dopamine', 'Norepinephrine', 'Acetylcholine', 'Serotonin'],
+        2
+    ],
+
+    [
+        'Which part of the nephron mainly reabsorbs glucose?',
+        ['Collecting duct', 'Proximal convoluted tubule', 'Loop of Henle', 'Distal convoluted tubule'],
+        1
+    ],
+
+    [
+        'What is the normal resting membrane potential of a typical neuron?',
+        ['+30 mV', '0 mV', '-70 mV', '-10 mV'],
+        2
+    ],
+
+    [
+        'Which blood vessel carries oxygenated blood from the lungs to the heart?',
+        ['Pulmonary artery', 'Pulmonary vein', 'Aorta', 'Vena cava'],
+        1
+    ],
+
+    [
+        'Which enzyme begins protein digestion in the stomach?',
+        ['Amylase', 'Pepsin', 'Lipase', 'Trypsin'],
+        1
+    ],
+
+    [
+        'Which vitamin is essential for synthesis of clotting factors?',
+        ['Vitamin A', 'Vitamin C', 'Vitamin D', 'Vitamin K'],
+        3
+    ],
+
+    [
+        'Which ECG wave represents ventricular depolarization?',
+        ['P wave', 'QRS complex', 'T wave', 'U wave'],
+        1
+    ]
+];
+
+
+/* Daily quiz variables */
+
+let dailyQuizAnswered = false;
+let dailyQuizDayIndex = 0;
+
+
+/* Get current day number */
+
+function getDailyDayNumber() {
 
     const start =
-        input.selectionStart ??
-        input.value.length;
+        new Date(
+            new Date().getFullYear(),
+            0,
+            1
+        );
 
-    const end =
-        input.selectionEnd ??
-        input.value.length;
+    const today =
+        new Date();
 
-    input.value =
-        input.value.slice(0, start) +
-        value +
-        input.value.slice(end);
+    const difference =
+        today.getTime() -
+        start.getTime();
 
-    input.focus();
-
-    const position =
-        start + value.length;
-
-    input.setSelectionRange(
-        position,
-        position
+    return Math.floor(
+        difference / 86400000
     );
 }
 
-function calculateExpression() {
-    const input = $('calcInput');
 
-    if (!input) return;
+/* Get today's question */
 
-    let expression =
-        input.value.trim();
+function getDailyQuizQuestion() {
 
-    if (!expression) {
+    const dayNumber =
+        getDailyDayNumber();
+
+    dailyQuizDayIndex =
+        dayNumber % dailyQuizQuestions.length;
+
+    return dailyQuizQuestions[
+        dailyQuizDayIndex
+    ];
+}
+
+
+/* Render daily quiz */
+
+function renderDailyQuiz() {
+
+    const q =
+        getDailyQuizQuestion();
+
+    if (!q) return;
+
+    const progress =
+        $('dailyQuizProgress');
+
+    const question =
+        $('dailyQuizQuestion');
+
+    const options =
+        $('dailyQuizOptions');
+
+    const button =
+        $('dailyQuizBtn');
+
+    if (
+        !progress ||
+        !question ||
+        !options ||
+        !button
+    ) {
+        return;
+    }
+
+    progress.textContent =
+        'Day ' +
+        (dailyQuizDayIndex + 1) +
+        ' of 365';
+
+    question.textContent =
+        q.question;
+
+    options.innerHTML =
+        q.options.map(
+            function (option, index) {
+
+                return `
+                    <label>
+                        <input
+                            type="radio"
+                            name="dailyQuizAnswer"
+                            value="${index}"
+                        >
+                        ${option}
+                    </label>
+                `;
+            }
+        ).join('');
+
+    setResult(
+        'dailyQuizResult',
+        'Select an answer.'
+    );
+
+    button.textContent =
+        'Submit Answer';
+
+    button.disabled =
+        false;
+
+    button.onclick =
+        submitDailyQuiz;
+
+    dailyQuizAnswered =
+        false;
+}
+
+
+/* Submit daily quiz */
+
+function submitDailyQuiz() {
+
+    if (dailyQuizAnswered) {
+        return;
+    }
+
+    const selected =
+        document.querySelector(
+            'input[name="dailyQuizAnswer"]:checked'
+        );
+
+    if (!selected) {
+
         return setResult(
-            'calcResult',
-            'Please enter a calculation.'
+            'dailyQuizResult',
+            'Please select an answer.'
         );
     }
 
-    try {
+    const q =
+        getDailyQuizQuestion();
 
-        expression = expression
-            .replaceAll('×', '*')
-            .replaceAll('÷', '/')
-            .replaceAll('−', '-')
-            .replaceAll('π', 'PI')
-            .replace(/\be\b/g, 'E')
-            .replace(/\^/g, '**');
+    if (
+        Number(selected.value) ===
+        q.answer
+    ) {
 
-        /*
-         * Percentage:
-         * 50% becomes 50/100
-         */
-        expression =
-            expression.replace(
-                /(\d+(?:\.\d+)?)%/g,
-                '($1/100)'
+        setResult(
+            'dailyQuizResult',
+            'Correct! Well done.'
+        );
+
+    } else {
+
+        setResult(
+            'dailyQuizResult',
+            'Incorrect. Try again tomorrow.'
+        );
+    }
+
+    dailyQuizAnswered =
+        true;
+
+    const button =
+        $('dailyQuizBtn');
+
+    if (button) {
+
+        button.textContent =
+            'Completed for Today';
+
+        button.disabled =
+            true;
+    }
+}
+
+
+/* Start daily quiz */
+
+const dailyQuizBtn =
+    $('dailyQuizBtn');
+
+if (dailyQuizBtn) {
+    renderDailyQuiz();
+}
+
+
+/* =========================
+   TOOL SEARCH
+   ========================= */
+
+const toolSearch =
+    $('toolSearch');
+
+if (toolSearch) {
+
+    toolSearch.addEventListener(
+        'input',
+        function () {
+
+            const search =
+                this.value
+                    .trim()
+                    .toLowerCase();
+
+            const cards =
+                document.querySelectorAll(
+                    '#toolsGrid .tool-card'
+                );
+
+            cards.forEach(
+                function (card) {
+
+                    const text =
+                        card.textContent
+                            .toLowerCase();
+
+                    if (
+                        !search ||
+                        text.includes(search)
+                    ) {
+
+                        card.classList.remove(
+                            'hidden'
+                        );
+
+                    } else {
+
+                        card.classList.add(
+                            'hidden'
+                        );
+                    }
+                }
             );
+        }
+    );
+}
 
-        /*
-         * Supported scientific functions.
-         */
-        expression =
-            expression
-                .replace(/\bsin\(/g, 'SIN(')
-                .replace(/\bcos\(/g, 'COS(')
-                .replace(/\btan\(/g, 'TAN(')
-                .replace(/\basin\(/g, 'ASIN(')
-                .replace(/\bacos\(/g, 'ACOS(')
-                .replace(/\batan\(/g, 'ATAN(')
-                .replace(/\bsqrt\(/g, 'SQRT(')
-                .replace(/\blog\(/g, 'LOG(')
-                .replace(/\bln\(/g, 'LN(');
 
-        /*
-         * Factorial: 5!
-    
+/* =========================
+   INITIALIZE LISTS
+   ========================= */
+
+if (
+    $('gpaList') &&
+    $('gpaList').children.length === 0
+) {
+    addGpaSubject();
+}
+
+
+if (
+    $('cgpaList') &&
+    $('cgpaList').children.length === 0
+) {
+    addCgpaSemester();
+}
+
+
+if ($('aggregateList')) {
+    updateAggregateTitles();
+}
+
+
+/* =========================
+   END OF STUDYSMART TOOLS
+   ========================= */                    
 </script>
 </body></html>

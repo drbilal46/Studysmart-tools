@@ -286,70 +286,198 @@ $('calculateHealthyWeight').addEventListener('click', calculateHealthyWeight);
    DAILY QUIZ - 10 QUESTIONS
    ========================= */
 
-const dailyQuizQuestions = [
-    {
-        question: "Which organ pumps blood throughout the body?",
-        options: ["Liver", "Heart", "Kidney", "Lung"],
-        answer: 1
-    },
-    {
-        question: "What is the normal resting heart rate of most adults?",
-        options: ["20–40 bpm", "60–100 bpm", "120–160 bpm", "180–200 bpm"],
-        answer: 1
-    },
-    {
-        question: "Which vitamin is mainly produced in the skin by sunlight?",
-        options: ["Vitamin A", "Vitamin B12", "Vitamin C", "Vitamin D"],
-        answer: 3
-    },
-    {
-        question: "What is the basic unit of life?",
-        options: ["Tissue", "Organ", "Cell", "Atom"],
-        answer: 2
-    },
-    {
-        question: "Which organ is mainly responsible for filtering blood?",
-        options: ["Heart", "Kidney", "Stomach", "Lung"],
-        answer: 1
-    },
-    {
-        question: "What is the chemical symbol for oxygen?",
-        options: ["O", "Ox", "C", "Og"],
-        answer: 0
-    },
-    {
-        question: "Which blood cells help fight infections?",
-        options: ["Red blood cells", "White blood cells", "Platelets", "Plasma"],
-        answer: 1
-    },
-    {
-        question: "What is the normal pH of blood approximately?",
-        options: ["5.5", "6.5", "7.4", "8.5"],
-        answer: 2
-    },
-    {
-        question: "Which molecule carries oxygen in red blood cells?",
-        options: ["Insulin", "Hemoglobin", "Keratin", "Collagen"],
-        answer: 1
-    },
-    {
-        question: "Which organ produces insulin?",
-        options: ["Liver", "Kidney", "Pancreas", "Lung"],
-        answer: 2
-    }
+const dailyQuizQuestionSets = [
+    [
+        {
+            question: "Which organ pumps blood throughout the body?",
+            options: ["Liver", "Heart", "Kidney", "Lung"],
+            answer: 1
+        },
+        {
+            question: "What is the basic unit of life?",
+            options: ["Tissue", "Organ", "Cell", "Atom"],
+            answer: 2
+        },
+        {
+            question: "Which vitamin is mainly produced in the skin by sunlight?",
+            options: ["Vitamin A", "Vitamin B12", "Vitamin C", "Vitamin D"],
+            answer: 3
+        },
+        {
+            question: "Which organ is mainly responsible for filtering blood?",
+            options: ["Heart", "Kidney", "Stomach", "Lung"],
+            answer: 1
+        },
+        {
+            question: "What is the chemical symbol for oxygen?",
+            options: ["O", "Ox", "C", "Og"],
+            answer: 0
+        },
+        {
+            question: "Which blood cells help fight infections?",
+            options: ["Red blood cells", "White blood cells", "Platelets", "Plasma"],
+            answer: 1
+        },
+        {
+            question: "What is the normal pH of blood approximately?",
+            options: ["5.5", "6.5", "7.4", "8.5"],
+            answer: 2
+        },
+        {
+            question: "Which molecule carries oxygen in red blood cells?",
+            options: ["Insulin", "Hemoglobin", "Keratin", "Collagen"],
+            answer: 1
+        },
+        {
+            question: "Which organ produces insulin?",
+            options: ["Liver", "Kidney", "Pancreas", "Lung"],
+            answer: 2
+        },
+        {
+            question: "How many days are there in one week?",
+            options: ["5", "6", "7", "8"],
+            answer: 2
+        }
+    ],
+
+    [
+        {
+            question: "What is the normal resting heart rate of most adults?",
+            options: ["20–40 bpm", "60–100 bpm", "120–160 bpm", "180–200 bpm"],
+            answer: 1
+        },
+        {
+            question: "Which part of the cell contains genetic material?",
+            options: ["Nucleus", "Ribosome", "Lysosome", "Golgi body"],
+            answer: 0
+        },
+        {
+            question: "Which organ produces bile?",
+            options: ["Heart", "Liver", "Kidney", "Lung"],
+            answer: 1
+        },
+        {
+            question: "What is the powerhouse of the cell?",
+            options: ["Nucleus", "Mitochondria", "Ribosome", "Cell wall"],
+            answer: 1
+        },
+        {
+            question: "Which blood component helps in clotting?",
+            options: ["Red blood cells", "White blood cells", "Platelets", "Plasma"],
+            answer: 2
+        },
+        {
+            question: "What is the chemical symbol for sodium?",
+            options: ["So", "Na", "S", "Sd"],
+            answer: 1
+        },
+        {
+            question: "Which organ is responsible for pumping oxygenated blood to the body?",
+            options: ["Left ventricle", "Right atrium", "Right ventricle", "Left atrium"],
+            answer: 0
+        },
+        {
+            question: "Which gas is mainly used by cells for aerobic respiration?",
+            options: ["Nitrogen", "Oxygen", "Helium", "Hydrogen"],
+            answer: 1
+        },
+        {
+            question: "What is 10 × 5?",
+            options: ["15", "40", "50", "60"],
+            answer: 2
+        },
+        {
+            question: "Which organ stores urine?",
+            options: ["Kidney", "Bladder", "Liver", "Stomach"],
+            answer: 1
+        }
+    ],
+
+    [
+        {
+            question: "Which receptor senses changes in arterial pressure?",
+            options: ["Chemoreceptor", "Baroreceptor", "Photoreceptor", "Nociceptor"],
+            answer: 1
+        },
+        {
+            question: "Which phase of the cardiac cycle involves ventricular contraction?",
+            options: ["Diastole", "Systole", "Filling", "Relaxation"],
+            answer: 1
+        },
+        {
+            question: "Which hormone increases sodium reabsorption in the kidney?",
+            options: ["Insulin", "Aldosterone", "Thyroxine", "Melatonin"],
+            answer: 1
+        },
+        {
+            question: "What is the main neurotransmitter released by most postganglionic parasympathetic neurons?",
+            options: ["Dopamine", "Norepinephrine", "Acetylcholine", "Serotonin"],
+            answer: 2
+        },
+        {
+            question: "Which part of the nephron mainly reabsorbs glucose?",
+            options: ["Collecting duct", "Proximal convoluted tubule", "Loop of Henle", "Distal convoluted tubule"],
+            answer: 1
+        },
+        {
+            question: "What is the normal resting membrane potential of a typical neuron?",
+            options: ["+30 mV", "0 mV", "-70 mV", "-10 mV"],
+            answer: 2
+        },
+        {
+            question: "Which blood vessel carries oxygenated blood from the lungs to the heart?",
+            options: ["Pulmonary artery", "Pulmonary vein", "Aorta", "Vena cava"],
+            answer: 1
+        },
+        {
+            question: "Which enzyme begins protein digestion in the stomach?",
+            options: ["Amylase", "Pepsin", "Lipase", "Trypsin"],
+            answer: 1
+        },
+        {
+            question: "Which vitamin is essential for synthesis of clotting factors?",
+            options: ["Vitamin A", "Vitamin C", "Vitamin D", "Vitamin K"],
+            answer: 3
+        },
+        {
+            question: "Which ECG wave represents ventricular depolarization?",
+            options: ["P wave", "QRS complex", "T wave", "U wave"],
+            answer: 1
+        }
+    ]
 ];
 
 let dailyQuizIndex = 0;
 let dailyQuizScore = 0;
 let dailyQuizAnswered = false;
 
+function getDailyQuizQuestions() {
+    const today = new Date();
+
+    const dayNumber =
+        Math.floor(
+            Date.UTC(
+                today.getFullYear(),
+                today.getMonth(),
+                today.getDate()
+            ) / 86400000
+        );
+
+    return dailyQuizQuestionSets[
+        dayNumber % dailyQuizQuestionSets.length
+    ];
+}
+
 function renderDailyQuiz() {
-    const q = dailyQuizQuestions[dailyQuizIndex];
+
+    const questions = getDailyQuizQuestions();
+    const q = questions[dailyQuizIndex];
 
     $('dailyQuizProgress').textContent =
-        `Daily Quiz — Question ${dailyQuizIndex + 1} of ${dailyQuizQuestions.length}`;
+        `Daily Quiz — Question ${dailyQuizIndex + 1} of ${questions.length}`;
 
-    $('dailyQuizQuestion').textContent = q.question;
+    $('dailyQuizQuestion').textContent =
+        q.question;
 
     $('dailyQuizOptions').innerHTML =
         q.options.map((option, index) => `
@@ -363,11 +491,17 @@ function renderDailyQuiz() {
             </label>
         `).join('');
 
-    $('dailyQuizResult').textContent = 'Select an answer.';
-    $('dailyQuizBtn').textContent = 'Submit Answer';
-    $('dailyQuizBtn').disabled = false;
+    $('dailyQuizResult').textContent =
+        'Select an answer.';
 
-    dailyQuizAnswered = false;
+    $('dailyQuizBtn').textContent =
+        'Submit Answer';
+
+    $('dailyQuizBtn').disabled =
+        false;
+
+    dailyQuizAnswered =
+        false;
 }
 
 function submitDailyQuiz() {
@@ -387,43 +521,57 @@ function submitDailyQuiz() {
         return;
     }
 
-    const q = dailyQuizQuestions[dailyQuizIndex];
+    const questions =
+        getDailyQuizQuestions();
+
+    const q =
+        questions[dailyQuizIndex];
 
     if (Number(selected.value) === q.answer) {
+
         dailyQuizScore++;
 
         setResult(
             'dailyQuizResult',
             '✅ Correct! Well done.'
         );
+
     } else {
+
         setResult(
             'dailyQuizResult',
             '❌ Incorrect.'
         );
     }
 
-    dailyQuizAnswered = true;
+    dailyQuizAnswered =
+        true;
 
-    if (dailyQuizIndex < dailyQuizQuestions.length - 1) {
+    if (dailyQuizIndex < questions.length - 1) {
 
-        $('dailyQuizBtn').textContent = 'Next Question';
-        $('dailyQuizBtn').onclick = nextDailyQuiz;
+        $('dailyQuizBtn').textContent =
+            'Next Question';
+
+        $('dailyQuizBtn').onclick =
+            nextDailyQuiz;
 
     } else {
 
         const percentage =
             Math.round(
-                (dailyQuizScore / dailyQuizQuestions.length) * 100
+                (dailyQuizScore / questions.length) * 100
             );
 
         setResult(
             'dailyQuizResult',
-            `🎉 Daily Quiz Complete! Score: ${dailyQuizScore}/${dailyQuizQuestions.length} (${percentage}%)`
+            `🎉 Daily Quiz Complete! Score: ${dailyQuizScore}/${questions.length} (${percentage}%)`
         );
 
-        $('dailyQuizBtn').textContent = 'Restart Daily Quiz';
-        $('dailyQuizBtn').onclick = restartDailyQuiz;
+        $('dailyQuizBtn').textContent =
+            'Restart Daily Quiz';
+
+        $('dailyQuizBtn').onclick =
+            restartDailyQuiz;
     }
 }
 
@@ -433,7 +581,8 @@ function nextDailyQuiz() {
 
     renderDailyQuiz();
 
-    $('dailyQuizBtn').onclick = submitDailyQuiz;
+    $('dailyQuizBtn').onclick =
+        submitDailyQuiz;
 }
 
 function restartDailyQuiz() {
@@ -444,11 +593,13 @@ function restartDailyQuiz() {
 
     renderDailyQuiz();
 
-    $('dailyQuizBtn').onclick = submitDailyQuiz;
+    $('dailyQuizBtn').onclick =
+        submitDailyQuiz;
 }
 
-$('dailyQuizBtn').onclick = submitDailyQuiz;
+$('dailyQuizBtn').onclick =
+    submitDailyQuiz;
 
-renderDailyQuiz();          
+renderDailyQuiz();           
 </script>
 </body></html>

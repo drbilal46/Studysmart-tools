@@ -140,6 +140,85 @@
 <div class="card tool-card"><h3>📊 Percentage Calculator</h3><p>Calculate percentage from obtained and total marks.</p><div class="field"><label>Obtained Marks</label><input id="pctObtained" type="number" min="0" step="any"></div><div class="field"><label>Total Marks</label><input id="pctTotal" type="number" min="0.01" step="any"></div><button id="pctBtn">Calculate Percentage</button><div class="result" id="pctResult">Result will appear here</div></div>
 <div class="card tool-card"><h3>🎓 GPA Calculator</h3><p>Calculate weighted GPA for any number of subjects.</p><div id="gpaList"></div><button id="addGpa" type="button">➕ Add Subject</button><button id="calcGpa" type="button" class="secondary">Calculate GPA</button><div class="result" id="gpaResult">Enter GPA and credit hours</div></div>
 <div class="card tool-card"><h3>📚 CGPA Calculator</h3><p>Calculate weighted CGPA for any number of semesters.</p><div id="cgpaList"></div><button id="addCgpa" type="button">➕ Add Semester</button><button id="calcCgpa" type="button" class="secondary">Calculate CGPA</button><div class="result" id="cgpaResult">Enter semester GPA and credit hours</div></div>
+<div class="card tool-card">
+
+    <h3>📊 Aggregate Calculator</h3>
+
+    <p>Calculate aggregate using marks and custom weightage.</p>
+
+    <div id="aggregateList">
+
+        <div class="dynamic-item aggregate-item">
+
+            <div class="dynamic-title">Component 1</div>
+
+            <div class="field">
+                <label>Obtained Marks</label>
+                <input
+                    class="aggregate-obtained"
+                    type="number"
+                    min="0"
+                    step="any"
+                    placeholder="Example: 850"
+                >
+            </div>
+
+            <div class="field">
+                <label>Total Marks</label>
+                <input
+                    class="aggregate-total"
+                    type="number"
+                    min="0"
+                    step="any"
+                    placeholder="Example: 1100"
+                >
+            </div>
+
+            <div class="field">
+                <label>Weightage (%)</label>
+                <input
+                    class="aggregate-weight"
+                    type="number"
+                    min="0"
+                    max="100"
+                    step="any"
+                    placeholder="Example: 30"
+                >
+            </div>
+
+            <div class="dynamic-actions">
+                <button
+                    type="button"
+                    class="small-btn danger remove-aggregate"
+                >
+                    Remove
+                </button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <button
+        type="button"
+        id="addAggregate"
+        class="secondary"
+    >
+        + Add Component
+    </button>
+
+    <button
+        type="button"
+        id="calculateAggregate"
+    >
+        Calculate Aggregate
+    </button>
+
+    <div class="result" id="aggregateResult">
+        Aggregate will appear here
+    </div>
+
+   </div>
 <div class="card tool-card"><h3>⚖️ BMI Calculator</h3><p>Calculate BMI using weight and height.</p><div class="field"><label>Weight (kg)</label><input id="bmiWeight" type="number" min="0.1" step="0.1" placeholder="Example: 60"></div><div class="field"><label>Height (cm)</label><input id="bmiHeight" type="number" min="1" step="0.1" placeholder="Example: 165"></div><button id="bmiBtn">Calculate BMI</button><div class="result" id="bmiResult">Enter weight and height</div></div>
 <div class="card tool-card">
    <h3>⚖️ Healthy Weight Range</h3>
@@ -1240,5 +1319,262 @@ $('dailyQuizBtn').onclick =
     submitDailyQuiz;
 
 renderDailyQuiz();           
+/* =========================
+   AGGREGATE CALCULATOR
+   ========================= */
+
+function updateAggregateTitles() {
+
+    const rows = document.querySelectorAll(
+        '#aggregateList .aggregate-item'
+    );
+
+    rows.forEach((row, index) => {
+
+        const title = row.querySelector('.dynamic-title');
+
+        if (title) {
+            title.textContent =
+                'Component ' + (index + 1);
+        }
+
+    });
+}
+
+
+function addAggregateComponent() {
+
+    const list = $('aggregateList');
+
+    if (!list) return;
+
+    const item =
+        document.createElement('div');
+
+    item.className =
+        'dynamic-item aggregate-item';
+
+    item.innerHTML = `
+        <div class="dynamic-title">
+            Component ${list.children.length + 1}
+        </div>
+
+        <div class="field">
+            <label>Obtained Marks</label>
+            <input
+                class="aggregate-obtained"
+                type="number"
+                min="0"
+                step="any"
+                placeholder="Example: 850"
+            >
+        </div>
+
+        <div class="field">
+            <label>Total Marks</label>
+            <input
+                class="aggregate-total"
+                type="number"
+                min="0"
+                step="any"
+                placeholder="Example: 1100"
+            >
+        </div>
+
+        <div class="field">
+            <label>Weightage (%)</label>
+            <input
+                class="aggregate-weight"
+                type="number"
+                min="0"
+                max="100"
+                step="any"
+                placeholder="Example: 30"
+            >
+        </div>
+
+        <div class="dynamic-actions">
+            <button
+                type="button"
+                class="small-btn danger remove-aggregate"
+            >
+                Remove
+            </button>
+        </div>
+    `;
+
+    list.appendChild(item);
+
+    updateAggregateTitles();
+}
+
+
+function calculateAggregate() {
+
+    const rows =
+        [...document.querySelectorAll(
+            '#aggregateList .aggregate-item'
+        )];
+
+    if (rows.length === 0) {
+
+        return setResult(
+            'aggregateResult',
+            'Please add at least one component.'
+        );
+
+    }
+
+    let aggregate = 0;
+    let totalWeightage = 0;
+
+    for (const row of rows) {
+
+        const obtained =
+            parseFloat(
+                row.querySelector(
+                    '.aggregate-obtained'
+                ).value
+            );
+
+        const total =
+            parseFloat(
+                row.querySelector(
+                    '.aggregate-total'
+                ).value
+            );
+
+        const weight =
+            parseFloat(
+                row.querySelector(
+                    '.aggregate-weight'
+                ).value
+            );
+
+        if (
+            !Number.isFinite(obtained) ||
+            !Number.isFinite(total) ||
+            !Number.isFinite(weight) ||
+            total <= 0 ||
+            obtained < 0 ||
+            obtained > total ||
+            weight < 0 ||
+            weight > 100
+        ) {
+
+            return setResult(
+                'aggregateResult',
+                'Please enter valid marks and weightage for every component.'
+            );
+
+        }
+
+        aggregate +=
+            (obtained / total) * weight;
+
+        totalWeightage += weight;
+    }
+
+
+    if (totalWeightage <= 0) {
+
+        return setResult(
+            'aggregateResult',
+            'Please enter a valid weightage.'
+        );
+
+    }
+
+
+    if (Math.abs(totalWeightage - 100) > 0.000001) {
+
+        return setResult(
+            'aggregateResult',
+            'Total weightage must be exactly 100%. Current total: ' +
+            totalWeightage.toFixed(2) +
+            '%'
+        );
+
+    }
+
+
+    setResult(
+        'aggregateResult',
+        'Final Aggregate: ' +
+        aggregate.toFixed(2) +
+        '%'
+    );
+}
+
+
+/* Add Component button */
+
+const addAggregateButton =
+    $('addAggregate');
+
+if (addAggregateButton) {
+
+    addAggregateButton.addEventListener(
+        'click',
+        addAggregateComponent
+    );
+}
+
+
+/* Calculate Aggregate button */
+
+const calculateAggregateButton =
+    $('calculateAggregate');
+
+if (calculateAggregateButton) {
+
+    calculateAggregateButton.addEventListener(
+        'click',
+        calculateAggregate
+    );
+}
+
+
+/* Remove Component */
+
+const aggregateList =
+    $('aggregateList');
+
+if (aggregateList) {
+
+    aggregateList.addEventListener(
+        'click',
+        function(event) {
+
+            if (
+                event.target.classList.contains(
+                    'remove-aggregate'
+                )
+            ) {
+
+                const rows =
+                    aggregateList.children;
+
+                if (rows.length > 1) {
+
+                    event.target
+                        .closest('.aggregate-item')
+                        .remove();
+
+                    updateAggregateTitles();
+
+                } else {
+
+                    setResult(
+                        'aggregateResult',
+                        'At least one component is required.'
+                    );
+
+                }
+            }
+
+        }
+    );
+   }
 </script>
 </body></html>

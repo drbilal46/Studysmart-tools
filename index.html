@@ -149,7 +149,12 @@ const level3Questions=[
     ['Which vitamin is essential for synthesis of clotting factors?',['Vitamin A','Vitamin C','Vitamin D','Vitamin K'],3],
     ['Which ECG wave represents ventricular depolarization?',['P wave','QRS complex','T wave','U wave'],1]
 ];
-let quizIndex=0,score=0,answered=false;
+let currentLevel=1;let quizIndex=0;let score=0;let answered=false;
+function getCurrentQuestions(){
+    if(currentLevel===1)return level1Questions;
+    if(currentLevel===2)return level2Questions;
+    return level3Questions;
+   }
 function renderQuiz(){
     const questions = getCurrentQuestions();
     const q = questions[quizIndex];

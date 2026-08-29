@@ -19,6 +19,115 @@
 <meta name="description" content="StudySmart Tools offers free online GPA, CGPA, BMI, percentage, age, exam marks, discount, interest, unit conversion and student calculators. Simple tools for students worldwide.">
 <style>
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:#f5f7fb;color:#172033;line-height:1.6}header{position:sticky;top:0;z-index:10;background:#fff;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 10px #0001}.logo{font-size:22px;font-weight:700}.logo span,h1 span{color:#2563eb}nav a{margin-left:16px;text-decoration:none;color:#333}.hero{text-align:center;padding:50px 20px;background:linear-gradient(135deg,#eaf2ff,#fff)}.hero h1{font-size:38px;margin:0 0 10px}.hero p{max-width:760px;margin:auto;color:#596579}.container{max-width:1100px;margin:auto;padding:25px 18px}.section-title{text-align:center;font-size:28px}.search-box{max-width:650px;margin:0 auto 25px}.search-box input{width:100%;padding:14px;border:2px solid #d5dbe5;border-radius:10px;font-size:16px}.tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.card,.info{background:#fff;padding:22px;border-radius:15px;box-shadow:0 4px 18px #00000012}.card h3{margin:0 0 7px}.card p{color:#687386;font-size:14px}.field{margin:10px 0}.field label{display:block;font-size:14px;font-weight:700;margin-bottom:4px}input,select{width:100%;padding:11px;border:1px solid #d5dbe5;border-radius:8px;font-size:15px;background:#fff}button{width:100%;padding:12px;border:0;border-radius:8px;background:#2563eb;color:#fff;font-size:15px;cursor:pointer;margin-top:7px}.secondary{background:#475569}.danger{background:#dc2626}.small-btn{width:auto;padding:7px 11px;font-size:13px}.result{margin-top:12px;padding:12px;border-radius:8px;background:#eef5ff;font-weight:700;text-align:center;min-height:44px}.dynamic-item{border:1px solid #e1e6ef;background:#fafbfe;border-radius:10px;padding:12px;margin:10px 0}.dynamic-title{font-weight:700}.dynamic-actions{text-align:right}.quiz-question{font-weight:700;margin:12px 0}.quiz-options label{display:block;padding:9px;border:1px solid #e1e6ef;border-radius:8px;margin:7px 0;cursor:pointer}.quiz-options input{width:auto;margin-right:8px}.quiz-progress{color:#687386;font-size:13px}.info{margin-top:30px}.premium{margin-top:30px;background:#111827;color:#fff;text-align:center;padding:35px 20px;border-radius:18px}.premium p{color:#d1d5db}.premium button{max-width:250px;background:#f59e0b}footer{text-align:center;padding:30px 15px;margin-top:30px;background:#fff;color:#687386;font-size:14px}footer a{color:#2563eb;text-decoration:none}.hidden{display:none!important}@media(max-width:600px){.hero h1{font-size:30px}nav{display:none}.tools{grid-template-columns:1fr}}
+/* =========================
+   SCIENTIFIC CALCULATOR
+   ========================= */
+
+.scientific-calculator {
+    overflow: hidden;
+}
+
+.calculator-display input {
+    width: 100%;
+    padding: 16px;
+    border: 2px solid #d5dbe5;
+    border-radius: 10px;
+    font-size: 22px;
+    text-align: right;
+    background: #f8fafc;
+}
+
+.calculator-mode {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.calc-mode {
+    margin-top: 0;
+    background: #e2e8f0;
+    color: #172033;
+}
+
+.calc-mode.active {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.calculator-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 7px;
+    margin-top: 10px;
+}
+
+.calc-key {
+    margin: 0;
+    min-height: 46px;
+    padding: 8px 5px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.calc-key.number {
+    background: #ffffff;
+    color: #172033;
+    border: 1px solid #d5dbe5;
+}
+
+.calc-key.operator {
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.calc-key.function {
+    background: #eef5ff;
+    color: #172033;
+    border: 1px solid #d5dbe5;
+}
+
+.calc-key.control {
+    background: #dc2626;
+    color: #ffffff;
+}
+
+.calc-key.bracket {
+    background: #475569;
+    color: #ffffff;
+}
+
+.calc-key.equals {
+    background: #16a34a;
+    color: #ffffff;
+    grid-column: span 3;
+}
+
+.calc-key.zero {
+    grid-column: span 2;
+}
+
+.calc-key:hover {
+    opacity: 0.85;
+}
+
+@media (max-width: 600px) {
+
+    .calculator-grid {
+        gap: 5px;
+    }
+
+    .calc-key {
+        min-height: 43px;
+        padding: 6px 3px;
+        font-size: 13px;
+    }
+
+    .calculator-display input {
+        font-size: 19px;
+    }
+   }
 </style>
 </head>
 <body>
@@ -54,7 +163,85 @@
 <div class="card tool-card"><h3>💵 Simple Interest</h3><p>Calculate simple interest and total amount.</p><div class="field"><label>Principal</label><input id="principal" type="number" min="0" step="any"></div><div class="field"><label>Rate (%)</label><input id="rate" type="number" min="0" step="any"></div><div class="field"><label>Time (Years)</label><input id="years" type="number" min="0" step="any"></div><button id="interestBtn">Calculate Interest</button><div class="result" id="interestResult">Result will appear here</div></div>
 <div class="card tool-card"><h3>📝 Exam Marks Calculator</h3><p>Calculate percentage and grade.</p><div class="field"><label>Obtained Marks</label><input id="examObtained" type="number" min="0" step="any"></div><div class="field"><label>Total Marks</label><input id="examTotal" type="number" min="0.01" step="any"></div><button id="examBtn">Calculate Grade</button><div class="result" id="examResult">Result will appear here</div></div>
 <div class="card tool-card"><h3>📏 Unit Converter</h3><p>Convert common length units.</p><div class="field"><label>Value</label><input id="unitValue" type="number" step="any"></div><div class="field"><label>Conversion</label><select id="unitType"><option value="cm-m">Centimeter → Meter</option><option value="m-cm">Meter → Centimeter</option><option value="m-km">Meter → Kilometer</option><option value="km-m">Kilometer → Meter</option></select></div><button id="unitBtn">Convert</button><div class="result" id="unitResult">Result will appear here</div></div>
-<div class="card tool-card"><h3>🧮 Basic Calculator</h3><p>Calculate basic arithmetic safely.</p><div class="field"><label>Calculation</label><input id="calcInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Example: 25 + 5 × 2"></div><button id="calcBtn">Calculate</button><div class="result" id="calcResult">Result will appear here</div></div>
+<div class="card tool-card scientific-calculator">
+
+    <h3>🧮 Scientific Calculator</h3>
+
+    <p>
+        Basic and scientific calculations with keyboard support.
+    </p>
+
+    <div class="calculator-display">
+        <input
+            id="calcInput"
+            type="text"
+            inputmode="text"
+            autocomplete="off"
+            placeholder="0"
+            aria-label="Calculator display"
+        >
+    </div>
+
+    <div class="calculator-mode">
+        <button type="button" id="calcDegBtn" class="calc-mode active">DEG</button>
+        <button type="button" id="calcRadBtn" class="calc-mode">RAD</button>
+    </div>
+
+    <div class="calculator-grid">
+
+        <button type="button" class="calc-key function" data-calc="sin">sin</button>
+        <button type="button" class="calc-key function" data-calc="cos">cos</button>
+        <button type="button" class="calc-key function" data-calc="tan">tan</button>
+        <button type="button" class="calc-key function" data-calc="sqrt">√</button>
+        <button type="button" class="calc-key function" data-calc="square">x²</button>
+
+        <button type="button" class="calc-key function" data-calc="asin">sin⁻¹</button>
+        <button type="button" class="calc-key function" data-calc="acos">cos⁻¹</button>
+        <button type="button" class="calc-key function" data-calc="atan">tan⁻¹</button>
+        <button type="button" class="calc-key function" data-calc="log">log</button>
+        <button type="button" class="calc-key function" data-calc="ln">ln</button>
+
+        <button type="button" class="calc-key function" data-calc="pi">π</button>
+        <button type="button" class="calc-key function" data-calc="e">e</button>
+        <button type="button" class="calc-key function" data-calc="factorial">x!</button>
+        <button type="button" class="calc-key function" data-calc="inverse">1/x</button>
+        <button type="button" class="calc-key function" data-calc="power">xʸ</button>
+
+        <button type="button" class="calc-key control" data-calc="clear">AC</button>
+        <button type="button" class="calc-key control" data-calc="backspace">⌫</button>
+        <button type="button" class="calc-key operator" data-value="%">%</button>
+        <button type="button" class="calc-key operator" data-value="/">÷</button>
+        <button type="button" class="calc-key bracket" data-value="(">(</button>
+
+        <button type="button" class="calc-key number" data-value="7">7</button>
+        <button type="button" class="calc-key number" data-value="8">8</button>
+        <button type="button" class="calc-key number" data-value="9">9</button>
+        <button type="button" class="calc-key operator" data-value="*">×</button>
+        <button type="button" class="calc-key bracket" data-value=")">)</button>
+
+        <button type="button" class="calc-key number" data-value="4">4</button>
+        <button type="button" class="calc-key number" data-value="5">5</button>
+        <button type="button" class="calc-key number" data-value="6">6</button>
+        <button type="button" class="calc-key operator" data-value="-">−</button>
+        <button type="button" class="calc-key function" data-calc="sign">±</button>
+
+        <button type="button" class="calc-key number" data-value="1">1</button>
+        <button type="button" class="calc-key number" data-value="2">2</button>
+        <button type="button" class="calc-key number" data-value="3">3</button>
+        <button type="button" class="calc-key operator" data-value="+">+</button>
+        <button type="button" class="calc-key function" data-calc="ans">Ans</button>
+
+        <button type="button" class="calc-key number zero" data-value="0">0</button>
+        <button type="button" class="calc-key number" data-value=".">.</button>
+        <button type="button" id="calcBtn" class="calc-key equals">=</button>
+
+    </div>
+
+    <div class="result" id="calcResult">
+        Result will appear here
+    </div>
+
+   </div>
 <div class="card tool-card"><h3>🧠 Student Quiz</h3><p>Test your knowledge with 10 questions.</p><div class="quiz-progress" id="quizProgress"></div><div class="quiz-question" id="quizQuestion"></div><div class="quiz-options" id="quizOptions"></div><button id="quizBtn">Next Question</button><div class="result" id="quizResult">Your score will appear here</div></div>
 </div>
 <!-- DAILY QUIZ --><div class="card tool-card">
@@ -149,7 +336,451 @@ function convertUnit(){
         `${convertedValue.toFixed(2)} ${unit}`
     );
    }
-function calculateExpression(){let s=$('calcInput').value.trim().replaceAll('×','*').replaceAll('÷','/').replace(/[^0-9+\-*/().%\s]/g,'');if(!s||s!==$('calcInput').value.trim().replaceAll('×','*').replaceAll('÷','/').replace(/[^0-9+\-*/().%\s]/g,''))return setResult('calcResult','Invalid calculation. Use numbers and + − × ÷ only.');try{if(/[/*+\-]{2,}/.test(s.replace(/\s/g,'')))throw Error();const result=Function('"use strict";return ('+s+')')();if(!Number.isFinite(result))throw Error();setResult('calcResult','Result: '+result);}catch(e){setResult('calcResult','Invalid calculation.');}}
+/* =========================
+   SCIENTIFIC CALCULATOR
+   ========================= */
+
+let calculatorAngleMode = 'DEG';
+let calculatorAnswer = 0;
+
+function calculateExpression() {
+    const input = $('calcInput');
+
+    if (!input) return;
+
+    let expression = input.value.trim();
+
+    if (!expression) {
+        return setResult('calcResult', 'Please enter a calculation.');
+    }
+
+    try {
+        expression = expression
+            .replaceAll('×', '*')
+            .replaceAll('÷', '/')
+            .replaceAll('−', '-')
+            .replaceAll('π', 'Math.PI')
+            .replace(/\be\b/g, 'Math.E')
+            .replace(/\^/g, '**')
+            .replace(/%/g, '/100');
+
+        if (!/^[0-9+\-*/().\sA-Za-z]+$/.test(expression)) {
+            throw new Error('Invalid characters');
+        }
+
+        expression = expression
+            .replace(/\bsin\(/g, 'calcSin(')
+            .replace(/\bcos\(/g, 'calcCos(')
+            .replace(/\btan\(/g, 'calcTan(')
+            .replace(/\basin\(/g, 'calcAsin(')
+            .replace(/\bacos\(/g, 'calcAcos(')
+            .replace(/\batan\(/g, 'calcAtan(')
+            .replace(/\bsqrt\(/g, 'Math.sqrt(')
+            .replace(/\blog\(/g, 'Math.log10(')
+            .replace(/\bln\(/g, 'Math.log(');
+
+        if (/[A-Za-z]/.test(expression)) {
+            const allowed =
+                /^(?:Math\.PI|Math\.E|calcSin|calcCos|calcTan|calcAsin|calcAcos|calcAtan|Math\.sqrt|Math\.log10|Math\.log)/;
+
+            let testExpression = expression
+                .replaceAll('Math.PI', '')
+                .replaceAll('Math.E', '')
+                .replaceAll('calcSin', '')
+                .replaceAll('calcCos', '')
+                .replaceAll('calcTan', '')
+                .replaceAll('calcAsin', '')
+                .replaceAll('calcAcos', '')
+                .replaceAll('calcAtan', '')
+                .replaceAll('Math.sqrt', '')
+                .replaceAll('Math.log10', '')
+                .replaceAll('Math.log', '');
+
+            if (/[A-Za-z]/.test(testExpression)) {
+                throw new Error('Invalid function');
+            }
+        }
+
+        const result = Function(
+            'calcSin',
+            'calcCos',
+            'calcTan',
+            'calcAsin',
+            'calcAcos',
+            'calcAtan',
+            '"use strict"; return (' + expression + ')'
+        )(
+            calcSin,
+            calcCos,
+            calcTan,
+            calcAsin,
+            calcAcos,
+            calcAtan
+        );
+
+        if (!Number.isFinite(result)) {
+            throw new Error('Invalid result');
+        }
+
+        calculatorAnswer = result;
+
+        setResult(
+            'calcResult',
+            'Result: ' + formatCalculatorNumber(result)
+        );
+
+    } catch (error) {
+        setResult(
+            'calcResult',
+            'Invalid calculation.'
+        );
+    }
+}
+
+
+/* Angle conversion */
+
+function toRadians(value) {
+    return calculatorAngleMode === 'DEG'
+        ? value * Math.PI / 180
+        : value;
+}
+
+
+/* Trigonometric functions */
+
+function calcSin(value) {
+    return Math.sin(toRadians(value));
+}
+
+function calcCos(value) {
+    return Math.cos(toRadians(value));
+}
+
+function calcTan(value) {
+    return Math.tan(toRadians(value));
+}
+
+
+/* Inverse trigonometric functions */
+
+function calcAsin(value) {
+    const result = Math.asin(value);
+
+    return calculatorAngleMode === 'DEG'
+        ? result * 180 / Math.PI
+        : result;
+}
+
+function calcAcos(value) {
+    const result = Math.acos(value);
+
+    return calculatorAngleMode === 'DEG'
+        ? result * 180 / Math.PI
+        : result;
+}
+
+function calcAtan(value) {
+    const result = Math.atan(value);
+
+    return calculatorAngleMode === 'DEG'
+        ? result * 180 / Math.PI
+        : result;
+}
+
+
+/* Number formatting */
+
+function formatCalculatorNumber(value) {
+    if (Number.isInteger(value)) {
+        return String(value);
+    }
+
+    return Number(value.toPrecision(12)).toString();
+}
+
+
+/* Insert text into display */
+
+function calculatorInsert(value) {
+    const input = $('calcInput');
+
+    if (!input) return;
+
+    const start = input.selectionStart ?? input.value.length;
+    const end = input.selectionEnd ?? input.value.length;
+
+    input.value =
+        input.value.slice(0, start) +
+        value +
+        input.value.slice(end);
+
+    input.focus();
+
+    const cursorPosition = start + value.length;
+
+    input.setSelectionRange(
+        cursorPosition,
+        cursorPosition
+    );
+}
+
+
+/* Scientific button actions */
+
+function calculatorScientificAction(action) {
+
+    const input = $('calcInput');
+
+    if (!input) return;
+
+    const currentValue = input.value.trim();
+
+    if (action === 'clear') {
+        input.value = '';
+        calculatorAnswer = 0;
+        setResult(
+            'calcResult',
+            'Result will appear here'
+        );
+        input.focus();
+        return;
+    }
+
+    if (action === 'backspace') {
+        const start = input.selectionStart ?? input.value.length;
+        const end = input.selectionEnd ?? input.value.length;
+
+        if (start !== end) {
+            input.value =
+                input.value.slice(0, start) +
+                input.value.slice(end);
+
+            input.setSelectionRange(start, start);
+
+        } else if (start > 0) {
+
+            input.value =
+                input.value.slice(0, start - 1) +
+                input.value.slice(start);
+
+            input.setSelectionRange(
+                start - 1,
+                start - 1
+            );
+        }
+
+        input.focus();
+        return;
+    }
+
+    if (action === 'pi') {
+        calculatorInsert('π');
+        return;
+    }
+
+    if (action === 'e') {
+        calculatorInsert('e');
+        return;
+    }
+
+    if (action === 'ans') {
+        calculatorInsert(
+            formatCalculatorNumber(calculatorAnswer)
+        );
+        return;
+    }
+
+    if (action === 'sqrt') {
+        calculatorInsert('sqrt(');
+        return;
+    }
+
+    if (action === 'square') {
+        calculatorInsert('^2');
+        return;
+    }
+
+    if (action === 'power') {
+        calculatorInsert('^');
+        return;
+    }
+
+    if (action === 'sin') {
+        calculatorInsert('sin(');
+        return;
+    }
+
+    if (action === 'cos') {
+        calculatorInsert('cos(');
+        return;
+    }
+
+    if (action === 'tan') {
+        calculatorInsert('tan(');
+        return;
+    }
+
+    if (action === 'asin') {
+        calculatorInsert('asin(');
+        return;
+    }
+
+    if (action === 'acos') {
+        calculatorInsert('acos(');
+        return;
+    }
+
+    if (action === 'atan') {
+        calculatorInsert('atan(');
+        return;
+    }
+
+    if (action === 'log') {
+        calculatorInsert('log(');
+        return;
+    }
+
+    if (action === 'ln') {
+        calculatorInsert('ln(');
+        return;
+    }
+
+    if (action === 'inverse') {
+        calculatorInsert('1/(');
+        return;
+    }
+
+    if (action === 'sign') {
+        if (currentValue) {
+            input.value = '-(' + currentValue + ')';
+        } else {
+            input.value = '-';
+        }
+
+        input.focus();
+        return;
+    }
+
+    if (action === 'factorial') {
+
+        const value = Number(currentValue);
+
+        if (
+            !Number.isInteger(value) ||
+            value < 0 ||
+            value > 170
+        ) {
+            return setResult(
+                'calcResult',
+                'Factorial requires a whole number from 0 to 170.'
+            );
+        }
+
+        let result = 1;
+
+        for (let i = 2; i <= value; i++) {
+            result *= i;
+        }
+
+        calculatorAnswer = result;
+
+        setResult(
+            'calcResult',
+            'Result: ' + formatCalculatorNumber(result)
+        );
+
+        return;
+    }
+}
+
+
+/* Calculator keypad */
+
+document.querySelectorAll('.calc-key').forEach(button => {
+
+    button.addEventListener('click', function () {
+
+        const value = this.dataset.value;
+        const action = this.dataset.calc;
+
+        if (this.id === 'calcBtn') {
+            calculateExpression();
+            return;
+        }
+
+        if (value !== undefined) {
+            calculatorInsert(value);
+            return;
+        }
+
+        if (action) {
+            calculatorScientificAction(action);
+        }
+    });
+});
+
+
+/* DEG / RAD buttons */
+
+const calcDegBtn = $('calcDegBtn');
+const calcRadBtn = $('calcRadBtn');
+
+if (calcDegBtn) {
+
+    calcDegBtn.addEventListener('click', function () {
+
+        calculatorAngleMode = 'DEG';
+
+        calcDegBtn.classList.add('active');
+
+        if (calcRadBtn) {
+            calcRadBtn.classList.remove('active');
+        }
+    });
+}
+
+if (calcRadBtn) {
+
+    calcRadBtn.addEventListener('click', function () {
+
+        calculatorAngleMode = 'RAD';
+
+        calcRadBtn.classList.add('active');
+
+        if (calcDegBtn) {
+            calcDegBtn.classList.remove('active');
+        }
+    });
+}
+
+
+/* Keyboard support */
+
+const calculatorInput = $('calcInput');
+
+if (calculatorInput) {
+
+    calculatorInput.addEventListener(
+        'keydown',
+        function (event) {
+
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                calculateExpression();
+            }
+
+            if (event.key === 'Escape') {
+                event.preventDefault();
+                calculatorScientificAction('clear');
+            }
+
+            if (event.key === 'Backspace') {
+                return;
+            }
+        }
+    );
+   }
 const level1Questions=[['How many days are in one week?',['5','7','10','12'],1],['What is H₂O commonly called?',['Oxygen','Hydrogen','Water','Salt'],2],['How many hours are in one day?',['12','18','24','48'],2],['Which organ pumps blood?',['Liver','Heart','Kidney','Lung'],1],['What is 5 × 6?',['11','20','30','35'],2],['Which planet is known as the Red Planet?',['Earth','Mars','Venus','Jupiter'],1],['How many centimeters are in 1 meter?',['10','50','100','1000'],2],['What is 50% of 200?',['50','100','150','200'],1],['Which gas do humans need for normal respiration?',['Oxygen','Helium','Neon','Hydrogen'],0],['What is 2 + 8?',['8','9','10','12'],2]];
 const level2Questions=[
     ['Which part of the cell contains genetic material?',['Nucleus','Ribosome','Lysosome','Golgi body'],0],

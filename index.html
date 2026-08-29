@@ -323,22 +323,39 @@
    </div>
 <div class="card tool-card"><h3>🧠 Student Quiz</h3><p>Test your knowledge with 10 questions.</p><div class="quiz-progress" id="quizProgress"></div><div class="quiz-question" id="quizQuestion"></div><div class="quiz-options" id="quizOptions"></div><button id="quizBtn">Next Question</button><div class="result" id="quizResult">Your score will appear here</div></div>
 </div>
-<!-- DAILY QUIZ --><div class="card tool-card">
+<!-- 365-DAY DAILY QUIZ -->
+
+<div class="card tool-card">
+
     <h3>📅 Daily Quiz</h3>
-    <p>Answer 10 questions every day and test your knowledge.</p><div class="quiz-progress" id="dailyQuizProgress"></div>
 
-<div class="quiz-question" id="dailyQuizQuestion">
-    Loading today's quiz...
-</div>
+    <p>
+        Test your knowledge with one new question every day.
+    </p>
 
-<div class="quiz-options" id="dailyQuizOptions"></div>
+    <div class="quiz-progress" id="dailyQuizProgress">
+        Day 1 of 365
+    </div>
 
-<button type="button" id="dailyQuizBtn">
-    Submit Answer
-</button>
+    <div class="quiz-question" id="dailyQuizQuestion">
+        Loading today's quiz...
+    </div>
 
-<div class="result" id="dailyQuizResult">
-    Select an answer.
+    <div class="quiz-options" id="dailyQuizOptions">
+    </div>
+
+    <button
+        type="button"
+        id="dailyQuizBtn">
+        Submit Answer
+    </button>
+
+    <div
+        class="result"
+        id="dailyQuizResult">
+        Select an answer.
+    </div>
+
 </div>
 
 </div>

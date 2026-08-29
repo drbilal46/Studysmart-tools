@@ -89,7 +89,58 @@ function calculateAge(){const v=$('dob').value;if(!v)return setResult('ageResult
 function calculateDiscount(){const p=num('price'),d=num('discount');if(!Number.isFinite(p)||!Number.isFinite(d)||p<0||d<0||d>100)return setResult('discountResult','Please enter valid price and discount.');const saved=p*d/100;setResult('discountResult',`Discount: ${saved.toFixed(2)} | Final Price: ${(p-saved).toFixed(2)}`);}
 function calculateInterest(){const p=num('principal'),r=num('rate'),t=num('years');if(!Number.isFinite(p)||!Number.isFinite(r)||!Number.isFinite(t)||p<0||r<0||t<0)return setResult('interestResult','Please enter valid values.');const si=p*r*t/100;setResult('interestResult',`Simple Interest: ${si.toFixed(2)} | Total: ${(p+si).toFixed(2)}`);}
 function calculateExam(){const a=num('examObtained'),b=num('examTotal');if(!Number.isFinite(a)||!Number.isFinite(b)||a<0||b<=0||a>b)return setResult('examResult','Please enter valid marks.');const p=a/b*100,g=p>=80?'A+':p>=70?'A':p>=60?'B':p>=50?'C':p>=40?'D':'F';setResult('examResult',`Percentage: ${p.toFixed(2)}% | Grade: ${g}`);}
-function convertUnit(){const v=num('unitValue');if(!Number.isFinite(v))return setResult('unitResult','Please enter a valid value.');const type=$('unitType').value;const map={'cm-m':[v/100,'meters'],'m-cm':[v*100,'centimeters'],'m-km':[v/1000,'kilometers'],'km-m':[v*1000,'meters']};const [r,u]=map[type];setResult('unitResult',r+' '+u);}
+function convertUnit(){const v=num('unitValue');if(!Number.isFinite(v))return setResult('unitResult','Please enter a valid value.');const type=$('unitType').value;const map={'cm-m':[v/100,'meters'],'m-cm':[v*100,'centimeters'],'m-km':[v/1000,'kilometers'],'km-m':[v*1000,'meters']};const [r,u]=map[type];setResult('unitRes}ult',r+' '+u);const unitConversions = {
+    'mm-cm': v => [v / 10, 'centimeters'],
+    'cm-mm': v => [v * 10, 'millimeters'],
+    'cm-m': v => [v / 100, 'meters'],
+    'm-cm': v => [v * 100, 'centimeters'],
+    'm-km': v => [v / 1000, 'kilometers'],
+    'km-m': v => [v * 1000, 'meters'],
+    'inch-cm': v => [v * 2.54, 'centimeters'],
+    'cm-inch': v => [v / 2.54, 'inches'],
+    'ft-m': v => [v * 0.3048, 'meters'],
+    'm-ft': v => [v / 0.3048, 'feet'],
+    'mg-g': v => [v / 1000, 'grams'],
+    'g-mg': v => [v * 1000, 'milligrams'],
+    'g-kg': v => [v / 1000, 'kilograms'],
+    'kg-g': v => [v * 1000, 'grams'],
+    'kg-lb': v => [v * 2.20462, 'pounds'],
+    'lb-kg': v => [v / 2.20462, 'kilograms'],
+    'c-f': v => [(v * 9 / 5) + 32, '°F'],
+    'f-c': v => [(v - 32) * 5 / 9, '°C'],
+    'sec-min': v => [v / 60, 'minutes'],
+    'min-sec': v => [v * 60, 'seconds'],
+    'min-hr': v => [v / 60, 'hours'],
+    'hr-min': v => [v * 60, 'minutes'],
+    'hr-day': v => [v / 24, 'days'],
+    'day-hr': v => [v * 24, 'hours']
+};
+
+const originalConvertUnit = convertUnit;
+
+convertUnit = function(){
+    const v = num('unitValue');
+
+    if(!Number.isFinite(v)){
+        return setResult('unitResult','Please enter a valid value.');
+    }
+
+    const type = $('unitType').value;
+    const conversion = unitConversions[type];
+
+    if(!conversion){
+        return originalConvertUnit();
+    }
+
+    const [result, unit] = conversion(v);
+
+    setResult(
+        'unitResult',
+        `${result.toFixed(4)} ${unit}`
+    );
+};
+
+$('unitBtn').onclick = convertUnit;
 function calculateExpression(){let s=$('calcInput').value.trim().replaceAll('×','*').replaceAll('÷','/').replace(/[^0-9+\-*/().%\s]/g,'');if(!s||s!==$('calcInput').value.trim().replaceAll('×','*').replaceAll('÷','/').replace(/[^0-9+\-*/().%\s]/g,''))return setResult('calcResult','Invalid calculation. Use numbers and + − × ÷ only.');try{if(/[/*+\-]{2,}/.test(s.replace(/\s/g,'')))throw Error();const result=Function('"use strict";return ('+s+')')();if(!Number.isFinite(result))throw Error();setResult('calcResult','Result: '+result);}catch(e){setResult('calcResult','Invalid calculation.');}}
 const questions=[['How many days are in one week?',['5','7','10','12'],1],['What is H₂O commonly called?',['Oxygen','Hydrogen','Water','Salt'],2],['How many hours are in one day?',['12','18','24','48'],2],['Which organ pumps blood?',['Liver','Heart','Kidney','Lung'],1],['What is 5 × 6?',['11','20','30','35'],2],['Which planet is known as the Red Planet?',['Earth','Mars','Venus','Jupiter'],1],['How many centimeters are in 1 meter?',['10','50','100','1000'],2],['What is 50% of 200?',['50','100','150','200'],1],['Which gas do humans need for normal respiration?',['Oxygen','Helium','Neon','Hydrogen'],0],['What is 2 + 8?',['8','9','10','12'],2]];
 let quizIndex=0,score=0,answered=false;

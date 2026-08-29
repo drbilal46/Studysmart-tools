@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://drbilal46.github.io/Studysmart-tools/sitemap.xml

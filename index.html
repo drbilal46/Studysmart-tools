@@ -344,7 +344,6 @@ let dailyQuizScore = 0;
 let dailyQuizAnswered = false;
 
 function renderDailyQuiz() {
-
     const q = dailyQuizQuestions[dailyQuizIndex];
 
     $('dailyQuizProgress').textContent =
@@ -364,12 +363,8 @@ function renderDailyQuiz() {
             </label>
         `).join('');
 
-    $('dailyQuizResult').textContent =
-        'Select an answer.';
-
-    $('dailyQuizBtn').textContent =
-        'Submit Answer';
-
+    $('dailyQuizResult').textContent = 'Select an answer.';
+    $('dailyQuizBtn').textContent = 'Submit Answer';
     $('dailyQuizBtn').disabled = false;
 
     dailyQuizAnswered = false;
@@ -395,17 +390,65 @@ function submitDailyQuiz() {
     const q = dailyQuizQuestions[dailyQuizIndex];
 
     if (Number(selected.value) === q.answer) {
-
         dailyQuizScore++;
 
         setResult(
             'dailyQuizResult',
             '✅ Correct! Well done.'
         );
+    } else {
+        setResult(
+            'dailyQuizResult',
+            '❌ Incorrect.'
+        );
+    }
+
+    dailyQuizAnswered = true;
+
+    if (dailyQuizIndex < dailyQuizQuestions.length - 1) {
+
+        $('dailyQuizBtn').textContent = 'Next Question';
+        $('dailyQuizBtn').onclick = nextDailyQuiz;
 
     } else {
 
+        const percentage =
+            Math.round(
+                (dailyQuizScore / dailyQuizQuestions.length) * 100
+            );
+
         setResult(
             'dailyQuizResult',
+            `🎉 Daily Quiz Complete! Score: ${dailyQuizScore}/${dailyQuizQuestions.length} (${percentage}%)`
+        );
+
+        $('dailyQuizBtn').textContent = 'Restart Daily Quiz';
+        $('dailyQuizBtn').onclick = restartDailyQuiz;
+    }
+}
+
+function nextDailyQuiz() {
+
+    dailyQuizIndex++;
+
+    renderDailyQuiz();
+
+    $('dailyQuizBtn').onclick = submitDailyQuiz;
+}
+
+function restartDailyQuiz() {
+
+    dailyQuizIndex = 0;
+    dailyQuizScore = 0;
+    dailyQuizAnswered = false;
+
+    renderDailyQuiz();
+
+    $('dailyQuizBtn').onclick = submitDailyQuiz;
+}
+
+$('dailyQuizBtn').onclick = submitDailyQuiz;
+
+renderDailyQuiz();          
 </script>
 </body></html>

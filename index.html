@@ -147,24 +147,29 @@ function getCurrentQuestions(){
 }
 
 function renderQuiz(){
-    const questions=getCurrentQuestions();
-    const q=questions[quizIndex];
+    const questions = getCurrentQuestions();
+    const q = questions[quizIndex];
 
-    $('quizProgress').textContent=
-        `Level ${currentLevel} — Question ${quizIndex+1} of ${questions.length}`;
+    $('quizProgress').textContent =
+        `Level ${currentLevel} — Question ${quizIndex + 1} of ${questions.length}`;
 
-    $('quizQuestion').textContent=q[0];
+    $('quizQuestion').textContent = q[0];
 
-    $('quizOptions').innerHTML=q[1].map((option,index)=>
-        `<label><input type="radio" name="quiz" value="${index}"> ${option}</label>`
+    $('quizOptions').innerHTML = q[1].map((option, index) =>
+        `<label>
+            <input type="radio" name="quiz" value="${index}">
+            ${option}
+        </label>`
     ).join('');
 
-    $('quizBtn').textContent=
-        quizIndex===questions.length-1 ? 'Finish Quiz' : 'Next Question';
+    $('quizBtn').textContent =
+        quizIndex === questions.length - 1
+            ? 'Finish Quiz'
+            : 'Next Question';
 
-    setResult('quizResult','');
-    answered=false;
-}
+    setResult('quizResult', '');
+    answered = false;
+    }
 
 function nextQuiz(){
     if(answered)return;

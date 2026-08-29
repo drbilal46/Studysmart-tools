@@ -49,6 +49,27 @@
 <div class="card tool-card"><h3>🧮 Basic Calculator</h3><p>Calculate basic arithmetic safely.</p><div class="field"><label>Calculation</label><input id="calcInput" type="text" inputmode="decimal" autocomplete="off" placeholder="Example: 25 + 5 × 2"></div><button id="calcBtn">Calculate</button><div class="result" id="calcResult">Result will appear here</div></div>
 <div class="card tool-card"><h3>🧠 Student Quiz</h3><p>Test your knowledge with 10 questions.</p><div class="quiz-progress" id="quizProgress"></div><div class="quiz-question" id="quizQuestion"></div><div class="quiz-options" id="quizOptions"></div><button id="quizBtn">Next Question</button><div class="result" id="quizResult">Your score will appear here</div></div>
 </div>
+<!-- DAILY QUIZ -->
+<div class="card tool-card">
+    <h3>📅 Daily Quiz</h3>
+    <p>Answer today's question and test your knowledge.</p>
+
+    <div class="quiz-progress" id="dailyQuizProgress"></div>
+
+    <div class="quiz-question" id="dailyQuizQuestion">
+        Loading today's question...
+    </div>
+
+    <div class="quiz-options" id="dailyQuizOptions"></div>
+
+    <button type="button" id="dailyQuizBtn">
+        Submit Answer
+    </button>
+
+    <div class="result" id="dailyQuizResult">
+        Select an answer.
+    </div>
+</div>
 <section class="info" id="about"><h2>About StudySmart Tools</h2><p>StudySmart Tools is a free online platform created to provide simple and useful tools for students.</p><p>Our goal is to make everyday academic calculations easier and more accessible on mobile phones, tablets and computers.</p></section>
 <section class="premium" id="premium"><h2>🚀 Premium Study Tools</h2><p>Advanced MCQs, AI study tools, exam preparation resources and additional features are coming soon.</p><button id="premiumBtn">Coming Soon</button></section>
 </main>
@@ -263,5 +284,133 @@ $('cgpaList').addEventListener('click',e=>{if(e.target.classList.contains('remov
 $('toolSearch').addEventListener('input',()=>{const q=$('toolSearch').value.toLowerCase().trim();document.querySelectorAll('.tool-card').forEach(c=>c.classList.toggle('hidden',!c.innerText.toLowerCase().includes(q)));});
 addGpaSubject();addGpaSubject();addCgpaSemester();addCgpaSemester();renderQuiz();
 $('calculateHealthyWeight').addEventListener('click', calculateHealthyWeight);
+/* =========================
+   DAILY QUIZ
+   ========================= */
+
+const dailyQuizQuestions = [
+    {
+        question: "Which organ pumps blood throughout the body?",
+        options: ["Liver", "Heart", "Kidney", "Lung"],
+        answer: 1
+    },
+    {
+        question: "What is the normal resting heart rate of most adults?",
+        options: ["20–40 bpm", "60–100 bpm", "120–160 bpm", "180–200 bpm"],
+        answer: 1
+    },
+    {
+        question: "Which vitamin is mainly produced in the skin by sunlight?",
+        options: ["Vitamin A", "Vitamin B12", "Vitamin C", "Vitamin D"],
+        answer: 3
+    },
+    {
+        question: "What is the basic unit of life?",
+        options: ["Tissue", "Organ", "Cell", "Atom"],
+        answer: 2
+    },
+    {
+        question: "Which organ is mainly responsible for filtering blood?",
+        options: ["Heart", "Kidney", "Stomach", "Lung"],
+        answer: 1
+    },
+    {
+        question: "What is the chemical symbol for oxygen?",
+        options: ["O", "Ox", "C", "Og"],
+        answer: 0
+    },
+    {
+        question: "Which blood cells help fight infections?",
+        options: ["Red blood cells", "White blood cells", "Platelets", "Plasma"],
+        answer: 1
+    }
+];
+
+/* Get a question based on today's date */
+function getDailyQuizQuestion() {
+    const today = new Date();
+
+    const dayNumber =
+        today.getFullYear() * 10000 +
+        (today.getMonth() + 1) * 100 +
+        today.getDate();
+
+    const index =
+        dayNumber % dailyQuizQuestions.length;
+
+    return dailyQuizQuestions[index];
+}
+
+/* Show today's question */
+function renderDailyQuiz() {
+    const q = getDailyQuizQuestion();
+
+    $('dailyQuizQuestion').textContent = q.question;
+
+    $('dailyQuizOptions').innerHTML =
+        q.options.map((option, index) => `
+            <label>
+                <input
+                    type="radio"
+                    name="dailyQuizAnswer"
+                    value="${index}"
+                >
+                ${option}
+            </label>
+        `).join('');
+
+    $('dailyQuizProgress').textContent =
+        "Today's Daily Quiz";
+
+    $('dailyQuizResult').textContent =
+        "Select an answer.";
+
+    $('dailyQuizBtn').textContent =
+        "Submit Answer";
+
+    $('dailyQuizBtn').disabled = false;
+}
+
+/* Check today's answer */
+function submitDailyQuiz() {
+
+    const selected =
+        document.querySelector(
+            'input[name="dailyQuizAnswer"]:checked'
+        );
+
+    if (!selected) {
+        setResult(
+            'dailyQuizResult',
+            'Please select an answer.'
+        );
+        return;
+    }
+
+    const q = getDailyQuizQuestion();
+
+    if (Number(selected.value) === q.answer) {
+
+        setResult(
+            'dailyQuizResult',
+            '✅ Correct! Well done.'
+        );
+
+    } else {
+
+        setResult(
+            'dailyQuizResult',
+            '❌ Incorrect. Try again tomorrow!'
+        );
+    }
+
+    $('dailyQuizBtn').disabled = true;
+}
+
+/* Daily Quiz button */
+$('dailyQuizBtn').onclick = submitDailyQuiz;
+
+/* Load today's quiz */
+renderDailyQuiz();
 </script>
 </body></html>

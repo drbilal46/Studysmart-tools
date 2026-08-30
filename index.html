@@ -526,7 +526,533 @@ footer a{
         placeholder="Search a tool..."
         aria-label="Search a tool">
 </div>
+<!-- =========================================================
+     STUDYSMART TOOLS NAVIGATION
+     ========================================================= -->
 
+<div id="studySmartNavigation">
+
+    <div class="ss-navigation-header">
+        <h2>StudySmart Tools</h2>
+        <p>Choose a tool below to open it</p>
+    </div>
+
+    <div id="ssNavigationList"></div>
+
+</div>
+
+<style>
+
+/* =========================================================
+   STUDYSMART NAVIGATION
+   ========================================================= */
+
+#studySmartNavigation {
+    width: 100%;
+    max-width: 1150px;
+    margin: 25px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 5px 22px #00000012;
+}
+
+/* Header */
+
+.ss-navigation-header {
+    text-align: center;
+    margin-bottom: 18px;
+}
+
+.ss-navigation-header h2 {
+    margin: 0 0 5px;
+    font-size: 28px;
+    color: #172033;
+}
+
+.ss-navigation-header p {
+    margin: 0;
+    color: #687386;
+    font-size: 14px;
+}
+
+/* =========================================================
+   EACH TOOL SLOT
+   ========================================================= */
+
+.ss-tool-slot {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+/* =========================================================
+   TOOL BUTTON
+   ========================================================= */
+
+.ss-tool-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 15px 17px;
+
+    border: 1px solid #dbe2ec;
+    border-radius: 11px;
+
+    background: #f8fafc;
+    color: #172033;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+    text-align: left;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.ss-tool-button:hover {
+    background: #eef5ff;
+    border-color: #2563eb;
+}
+
+.ss-tool-button.active {
+    background: #2563eb;
+    color: #ffffff;
+    border-color: #2563eb;
+}
+
+/* Arrow */
+
+.ss-arrow {
+    font-size: 18px;
+    transition: transform 0.2s ease;
+}
+
+.ss-tool-button.active .ss-arrow {
+    transform: rotate(180deg);
+}
+
+/* =========================================================
+   TOOL CONTENT
+   ========================================================= */
+
+.ss-tool-content {
+    display: none;
+
+    width: 100%;
+    margin-top: 8px;
+
+    padding: 0;
+
+    background: transparent;
+}
+
+/*
+   When opened
+*/
+
+.ss-tool-content.open {
+    display: block;
+}
+
+/*
+   Remove old margins from cards while
+   they are inside navigation.
+*/
+
+.ss-tool-content > .card,
+.ss-tool-content > .tool-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+}
+
+/*
+   CGPA Target and Pomodoro already have
+   their own styling, so make them fit.
+*/
+
+.ss-tool-content > #cgpa-target-calculator,
+.ss-tool-content > #pomodoro-timer {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+}
+
+/* =========================================================
+   ORIGINAL TOOLS GRID IS HIDDEN
+   ========================================================= */
+
+#toolsGrid.ss-original-tools-hidden {
+    display: none !important;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    #studySmartNavigation {
+        margin: 18px 0;
+        padding: 12px;
+        border-radius: 14px;
+    }
+
+    .ss-navigation-header h2 {
+        font-size: 24px;
+    }
+
+    .ss-tool-button {
+        padding: 13px 14px;
+        font-size: 14px;
+    }
+
+    .ss-tool-content {
+        margin-top: 7px;
+    }
+
+}
+
+</style>
+
+
+<script>
+
+/* =========================================================
+   STUDYSMART TOOLS NAVIGATION SYSTEM
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const navigation =
+        document.getElementById("studySmartNavigation");
+
+    const navigationList =
+        document.getElementById("ssNavigationList");
+
+    const toolsGrid =
+        document.getElementById("toolsGrid");
+
+    if (!navigation || !navigationList) {
+        return;
+    }
+
+    /*
+     * Find every existing tool.
+     *
+     * This includes:
+     * Percentage
+     * GPA
+     * CGPA
+     * Aggregate
+     * BMI
+     * Healthy Weight
+     * Age
+     * Discount
+     * Interest
+     * Exam Marks
+     * Unit Converter
+     * Scientific Calculator
+     * Attendance
+     * Exam Countdown
+     * Grade
+     * CGPA Target
+     * Pomodoro
+     */
+
+    const allTools =
+        Array.from(
+            document.querySelectorAll(".tool-card")
+        );
+
+    /*
+     * Exclude Quiz tools.
+     */
+
+    const tools =
+        allTools.filter(function (tool) {
+
+            const text =
+                tool.textContent.toLowerCase();
+
+            const id =
+                (tool.id || "").toLowerCase();
+
+            const search =
+                (tool.getAttribute("data-search") || "")
+                .toLowerCase();
+
+            /*
+             * Student Quiz
+             */
+
+            if (
+                text.includes("student quiz") ||
+                text.includes("daily quiz") ||
+                text.includes("quiz")
+            ) {
+                return false;
+            }
+
+            if (
+                id.includes("student-quiz") ||
+                id.includes("studentquiz") ||
+                id.includes("daily-quiz") ||
+                id.includes("dailyquiz") ||
+                id.includes("quiz")
+            ) {
+                return false;
+            }
+
+            if (
+                search.includes("student quiz") ||
+                search.includes("daily quiz")
+            ) {
+                return false;
+            }
+
+            return true;
+
+        });
+
+
+    /*
+     * If there are no tools,
+     * stop here.
+     */
+
+    if (tools.length === 0) {
+        navigation.style.display = "none";
+        return;
+    }
+
+
+    /*
+     * Hide the original grid.
+     *
+     * The tools will now live
+     * inside the navigation.
+     */
+
+    if (toolsGrid) {
+        toolsGrid.classList.add(
+            "ss-original-tools-hidden"
+        );
+    }
+
+
+    /*
+     * Create a navigation slot
+     * for every calculator.
+     */
+
+    tools.forEach(function (tool, index) {
+
+        /*
+         * Get tool title.
+         */
+
+        const heading =
+            tool.querySelector("h1, h2, h3, h4");
+
+        let title = "";
+
+        if (heading) {
+            title =
+                heading.textContent.trim();
+        }
+
+        /*
+         * Fallback title
+         */
+
+        if (!title) {
+            title =
+                "Study Tool " + (index + 1);
+        }
+
+
+        /*
+         * Create slot.
+         */
+
+        const slot =
+            document.createElement("div");
+
+        slot.className =
+            "ss-tool-slot";
+
+
+        /*
+         * Create button.
+         */
+
+        const button =
+            document.createElement("button");
+
+        button.type = "button";
+
+        button.className =
+            "ss-tool-button";
+
+        button.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+
+        /*
+         * Button text
+         */
+
+        const titleSpan =
+            document.createElement("span");
+
+        titleSpan.textContent =
+            title;
+
+
+        /*
+         * Arrow
+         */
+
+        const arrow =
+            document.createElement("span");
+
+        arrow.className =
+            "ss-arrow";
+
+        arrow.textContent =
+            "▼";
+
+
+        button.appendChild(titleSpan);
+        button.appendChild(arrow);
+
+
+        /*
+         * Create calculator container.
+         */
+
+        const content =
+            document.createElement("div");
+
+        content.className =
+            "ss-tool-content";
+
+
+        /*
+         * Move the existing calculator
+         * inside its own navigation slot.
+         *
+         * IMPORTANT:
+         * We are NOT creating a new calculator.
+         *
+         * The original calculator,
+         * including its IDs and JavaScript,
+         * is being moved here.
+         */
+
+        content.appendChild(tool);
+
+
+        /*
+         * Add button + calculator
+         * to the slot.
+         */
+
+        slot.appendChild(button);
+        slot.appendChild(content);
+
+        navigationList.appendChild(slot);
+
+
+        /*
+         * Button click.
+         */
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const isOpen =
+                    content.classList.contains("open");
+
+
+                /*
+                 * If already open:
+                 * close ONLY this calculator.
+                 */
+
+                if (isOpen) {
+
+                    content.classList.remove("open");
+
+                    button.classList.remove("active");
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    return;
+                }
+
+
+                /*
+                 * Open this calculator.
+                 *
+                 * IMPORTANT:
+                 * We do NOT close any other calculator.
+                 */
+
+                content.classList.add("open");
+
+                button.classList.add("active");
+
+                button.setAttribute(
+                    "aria-expanded",
+                    "true"
+                );
+
+            }
+        );
+
+    });
+
+
+    /*
+     * Make sure the original tools
+     * do not remain outside navigation.
+     */
+
+    if (toolsGrid) {
+
+        /*
+         * Any tool that was moved out
+         * is no longer inside toolsGrid.
+         *
+         * Keep the grid hidden.
+         */
+
+        toolsGrid.classList.add(
+            "ss-original-tools-hidden"
+        );
+
+    }
+
+});
+
+</script>
+
+<!-- =========================================================
+     END STUDYSMART TOOLS NAVIGATION
+     ========================================================= -->
 <div class="tools" id="toolsGrid">
 
 <!-- =========================

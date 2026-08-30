@@ -1186,6 +1186,389 @@ footer a{
     </div>
 
 </div>
+<!-- CGPA CALCULATOR -->
+<section class="tool-card" id="cgpa-calculator">
+  <h2>CGPA Calculator</h2>
+  <p class="tool-description">
+    Calculate your CGPA easily using course grades and credit hours.
+  </p>
+
+  <div id="cgpaCourses">
+
+    <div class="cgpa-row">
+      <input type="text" placeholder="Subject Name" class="cgpa-subject">
+
+      <input type="number" min="0" step="0.5"
+             placeholder="Credit Hours" class="cgpa-credit">
+
+      <select class="cgpa-grade">
+        <option value="">Grade</option>
+        <option value="4.00">A+</option>
+        <option value="4.00">A</option>
+        <option value="3.70">A-</option>
+        <option value="3.30">B+</option>
+        <option value="3.00">B</option>
+        <option value="2.70">B-</option>
+        <option value="2.30">C+</option>
+        <option value="2.00">C</option>
+        <option value="1.70">C-</option>
+        <option value="1.30">D+</option>
+        <option value="1.00">D</option>
+        <option value="0.00">F</option>
+      </select>
+
+      <button type="button" class="remove-cgpa-row"
+              onclick="removeCGPARow(this)">×</button>
+    </div>
+
+  </div>
+
+  <div class="cgpa-buttons">
+    <button type="button" onclick="addCGPARow()">
+      + Add Subject
+    </button>
+
+    <button type="button" onclick="calculateCGPA()">
+      Calculate CGPA
+    </button>
+
+    <button type="button" onclick="resetCGPA()">
+      Reset
+    </button>
+  </div>
+
+  <div id="cgpaResult" class="cgpa-result" style="display:none;">
+    <div class="cgpa-score">
+      <span>Your CGPA</span>
+      <strong id="cgpaValue">0.00</strong>
+      <small>out of 4.00</small>
+    </div>
+
+    <div class="cgpa-summary">
+      <div>
+        <span>Total Credit Hours</span>
+        <strong id="totalCredits">0</strong>
+      </div>
+
+      <div>
+        <span>Total Grade Points</span>
+        <strong id="totalPoints">0.00</strong>
+      </div>
+    </div>
+
+    <p id="cgpaMessage"></p>
+  </div>
+</section>
+
+<style>
+  #cgpa-calculator {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 24px;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    font-family: Arial, sans-serif;
+  }
+
+  #cgpa-calculator h2 {
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 28px;
+  }
+
+  .tool-description {
+    text-align: center;
+    color: #666;
+    margin-bottom: 22px;
+  }
+
+  .cgpa-row {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 42px;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .cgpa-row input,
+  .cgpa-row select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #d5d5d5;
+    border-radius: 10px;
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: none;
+  }
+
+  .cgpa-row input:focus,
+  .cgpa-row select:focus {
+    border-color: #4f46e5;
+  }
+
+  .remove-cgpa-row {
+    border: none;
+    border-radius: 10px;
+    background: #fee2e2;
+    color: #dc2626;
+    font-size: 20px;
+    cursor: pointer;
+  }
+
+  .cgpa-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .cgpa-buttons button {
+    flex: 1;
+    min-width: 150px;
+    padding: 13px 16px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    background: #4f46e5;
+    color: white;
+  }
+
+  .cgpa-buttons button:hover {
+    opacity: 0.9;
+  }
+
+  .cgpa-result {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 15px;
+    background: #f8fafc;
+    text-align: center;
+  }
+
+  .cgpa-score span,
+  .cgpa-score small {
+    display: block;
+    color: #64748b;
+  }
+
+  .cgpa-score strong {
+    display: block;
+    margin: 5px 0;
+    font-size: 48px;
+    color: #4f46e5;
+  }
+
+  .cgpa-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .cgpa-summary div {
+    padding: 14px;
+    background: white;
+    border-radius: 10px;
+  }
+
+  .cgpa-summary span {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .cgpa-summary strong {
+    font-size: 20px;
+  }
+
+  #cgpaMessage {
+    margin-top: 18px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 650px) {
+    #cgpa-calculator {
+      margin: 20px 10px;
+      padding: 18px;
+    }
+
+    .cgpa-row {
+      grid-template-columns: 1fr;
+      padding: 14px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: #fafafa;
+    }
+
+    .remove-cgpa-row {
+      padding: 10px;
+    }
+
+    .cgpa-buttons {
+      flex-direction: column;
+    }
+
+    .cgpa-buttons button {
+      width: 100%;
+    }
+
+    .cgpa-summary {
+      grid-template-columns: 1fr;
+    }
+
+    .cgpa-score strong {
+      font-size: 40px;
+    }
+  }
+</style>
+
+<script>
+  function addCGPARow() {
+    const container = document.getElementById("cgpaCourses");
+
+    const row = document.createElement("div");
+    row.className = "cgpa-row";
+
+    row.innerHTML = `
+      <input type="text"
+             placeholder="Subject Name"
+             class="cgpa-subject">
+
+      <input type="number"
+             min="0"
+             step="0.5"
+             placeholder="Credit Hours"
+             class="cgpa-credit">
+
+      <select class="cgpa-grade">
+        <option value="">Grade</option>
+        <option value="4.00">A+</option>
+        <option value="4.00">A</option>
+        <option value="3.70">A-</option>
+        <option value="3.30">B+</option>
+        <option value="3.00">B</option>
+        <option value="2.70">B-</option>
+        <option value="2.30">C+</option>
+        <option value="2.00">C</option>
+        <option value="1.70">C-</option>
+        <option value="1.30">D+</option>
+        <option value="1.00">D</option>
+        <option value="0.00">F</option>
+      </select>
+
+      <button type="button"
+              class="remove-cgpa-row"
+              onclick="removeCGPARow(this)">×</button>
+    `;
+
+    container.appendChild(row);
+  }
+
+  function removeCGPARow(button) {
+    const rows = document.querySelectorAll(".cgpa-row");
+
+    if (rows.length > 1) {
+      button.parentElement.remove();
+    } else {
+      alert("At least one subject is required.");
+    }
+  }
+
+  function calculateCGPA() {
+    const credits = document.querySelectorAll(".cgpa-credit");
+    const grades = document.querySelectorAll(".cgpa-grade");
+
+    let totalCredits = 0;
+    let totalPoints = 0;
+    let validCourses = 0;
+
+    for (let i = 0; i < credits.length; i++) {
+      const credit = parseFloat(credits[i].value);
+      const grade = parseFloat(grades[i].value);
+
+      if (!isNaN(credit) && credit > 0 && !isNaN(grade)) {
+        totalCredits += credit;
+        totalPoints += credit * grade;
+        validCourses++;
+      }
+    }
+
+    if (validCourses === 0 || totalCredits === 0) {
+      alert("Please enter credit hours and select grades for at least one subject.");
+      return;
+    }
+
+    const cgpa = totalPoints / totalCredits;
+
+    document.getElementById("cgpaValue").textContent = cgpa.toFixed(2);
+    document.getElementById("totalCredits").textContent =
+      totalCredits.toFixed(1);
+
+    document.getElementById("totalPoints").textContent =
+      totalPoints.toFixed(2);
+
+    let message = "";
+
+    if (cgpa >= 3.50) {
+      message = "Excellent academic performance!";
+    } else if (cgpa >= 3.00) {
+      message = "Very good academic performance!";
+    } else if (cgpa >= 2.50) {
+      message = "Good effort. Keep improving!";
+    } else if (cgpa >= 2.00) {
+      message = "You can improve your CGPA with consistent study.";
+    } else {
+      message = "Keep working hard and focus on your upcoming courses.";
+    }
+
+    document.getElementById("cgpaMessage").textContent = message;
+    document.getElementById("cgpaResult").style.display = "block";
+  }
+
+  function resetCGPA() {
+    const container = document.getElementById("cgpaCourses");
+
+    container.innerHTML = `
+      <div class="cgpa-row">
+        <input type="text"
+               placeholder="Subject Name"
+               class="cgpa-subject">
+
+        <input type="number"
+               min="0"
+               step="0.5"
+               placeholder="Credit Hours"
+               class="cgpa-credit">
+
+        <select class="cgpa-grade">
+          <option value="">Grade</option>
+          <option value="4.00">A+</option>
+          <option value="4.00">A</option>
+          <option value="3.70">A-</option>
+          <option value="3.30">B+</option>
+          <option value="3.00">B</option>
+          <option value="2.70">B-</option>
+          <option value="2.30">C+</option>
+          <option value="2.00">C</option>
+          <option value="1.70">C-</option>
+          <option value="1.30">D+</option>
+          <option value="1.00">D</option>
+          <option value="0.00">F</option>
+        </select>
+
+        <button type="button"
+                class="remove-cgpa-row"
+                onclick="removeCGPARow(this)">×</button>
+      </div>
+    `;
+
+    document.getElementById("cgpaResult").style.display = "none";
+  }
+</script>
+<!-- END CGPA CALCULATOR -->
 <!-- =========================
      STUDENT QUIZ
      ========================= -->

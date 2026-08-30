@@ -1068,6 +1068,42 @@ footer a{
 
 </div>
 <!-- =========================
+     EXAM COUNTDOWN
+     ========================= -->
+
+<div class="card tool-card" data-search="exam countdown exam date timer days">
+
+    <h3>⏳ Exam Countdown</h3>
+
+    <p>
+        Find out how much time is left until your exam.
+    </p>
+
+    <div class="field">
+        <label>Exam Date</label>
+        <input
+            id="examCountdownDate"
+            type="date">
+    </div>
+
+    <div class="field">
+        <label>Exam Time</label>
+        <input
+            id="examCountdownTime"
+            type="time"
+            value="09:00">
+    </div>
+
+    <button id="examCountdownBtn">
+        Start Countdown
+    </button>
+
+    <div class="result" id="examCountdownResult">
+        Select your exam date and time.
+    </div>
+
+</div>
+<!-- =========================
      STUDENT QUIZ
      ========================= -->
 
@@ -3865,7 +3901,114 @@ document.getElementById("attendanceBtn")
     );
 
 });
+/* =========================================================
+   EXAM COUNTDOWN
+   ========================================================= */
 
+let examCountdownInterval = null;
+
+document.getElementById("examCountdownBtn")
+.addEventListener("click", function(){
+
+    const dateValue =
+        document.getElementById("examCountdownDate").value;
+
+    const timeValue =
+        document.getElementById("examCountdownTime").value;
+
+    if(!dateValue || !timeValue){
+
+        showResult(
+            "examCountdownResult",
+            "Please select the exam date and time."
+        );
+
+        return;
+    }
+
+    const examDate =
+        new Date(dateValue + "T" + timeValue);
+
+    if(!Number.isFinite(examDate.getTime())){
+
+        showResult(
+            "examCountdownResult",
+            "Please enter a valid exam date and time."
+        );
+
+        return;
+    }
+
+    if(examDate <= new Date()){
+
+        showResult(
+            "examCountdownResult",
+            "Please select a future exam date and time."
+        );
+
+        return;
+    }
+
+    if(examCountdownInterval){
+
+        clearInterval(examCountdownInterval);
+
+    }
+
+    function updateExamCountdown(){
+
+        const now = new Date();
+
+        const difference =
+            examDate.getTime() - now.getTime();
+
+        if(difference <= 0){
+
+            clearInterval(examCountdownInterval);
+
+            showResult(
+                "examCountdownResult",
+                "🎓 Exam Time! Good luck!"
+            );
+
+            return;
+        }
+
+        const totalSeconds =
+            Math.floor(difference / 1000);
+
+        const days =
+            Math.floor(totalSeconds / 86400);
+
+        const hours =
+            Math.floor((totalSeconds % 86400) / 3600);
+
+        const minutes =
+            Math.floor((totalSeconds % 3600) / 60);
+
+        const seconds =
+            totalSeconds % 60;
+
+        showResult(
+            "examCountdownResult",
+            "⏳ " +
+            days + " Days, " +
+            hours + " Hours, " +
+            minutes + " Minutes, " +
+            seconds + " Seconds"
+        );
+
+    }
+
+    updateExamCountdown();
+
+    examCountdownInterval =
+        setInterval(
+            updateExamCountdown,
+            1000
+        );
+
+});
 </script>
 
 </body>

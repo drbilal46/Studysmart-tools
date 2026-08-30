@@ -2810,76 +2810,135 @@ footer a{
 </div>
 
 </div>
-<!-- STUDYSMART FLASHCARD TOOL -->
-<section class="tool-card" id="flashcard-tool">
+<!-- STUDYSMART PROFESSIONAL FLASHCARD TOOL -->
+<section id="ss-flashcards">
 
-  <h2>Flashcard Study Tool</h2>
+  <div class="ss-fc-header">
+    <span class="ss-fc-badge">STUDY TOOL</span>
+    <h2>Flashcard Study Tool</h2>
+    <p>Create, study and review your own flashcards.</p>
+  </div>
 
-  <p class="flashcard-description">
-    Create, review and study your own flashcards easily.
-  </p>
+  <div class="ss-fc-create">
 
-  <div class="flashcard-form">
+    <div class="ss-fc-field">
+      <label for="ssFcCategory">Subject / Category</label>
 
-    <label>Question</label>
-    <textarea id="flashcardQuestion"
-      placeholder="Enter your question..."></textarea>
+      <select id="ssFcCategory">
+        <option value="General">General</option>
+        <option value="Anatomy">Anatomy</option>
+        <option value="Physiology">Physiology</option>
+        <option value="Pharmacology">Pharmacology</option>
+        <option value="Biochemistry">Biochemistry</option>
+        <option value="Organic Chemistry">Organic Chemistry</option>
+        <option value="Pharmaceutics">Pharmaceutics</option>
+        <option value="Medical">Medical</option>
+        <option value="Computer Science">Computer Science</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
 
-    <label>Answer</label>
-    <textarea id="flashcardAnswer"
-      placeholder="Enter the correct answer..."></textarea>
+    <div class="ss-fc-field">
+      <label for="ssFcQuestion">Question</label>
 
-    <button type="button" onclick="addFlashcard()">
+      <textarea
+        id="ssFcQuestion"
+        placeholder="Enter your question here..."
+      ></textarea>
+    </div>
+
+    <div class="ss-fc-field">
+      <label for="ssFcAnswer">Correct Answer</label>
+
+      <textarea
+        id="ssFcAnswer"
+        placeholder="Enter the correct answer here..."
+      ></textarea>
+    </div>
+
+    <button
+      type="button"
+      class="ss-fc-primary"
+      onclick="ssAddFlashcard()">
       + Add Flashcard
     </button>
 
   </div>
 
-  <div class="flashcard-controls">
 
-    <button type="button" onclick="showPreviousCard()">
-      ← Previous
-    </button>
+  <div id="ssFcStudy" class="ss-fc-study">
 
-    <button type="button" onclick="flipFlashcard()">
-      Show Answer
-    </button>
+    <div class="ss-fc-top">
 
-    <button type="button" onclick="showNextCard()">
-      Next →
-    </button>
+      <span id="ssFcCategoryDisplay">
+        General
+      </span>
 
-  </div>
-
-  <div id="flashcardDisplay" class="flashcard-display"
-       style="display:none;">
-
-    <div class="flashcard-counter" id="flashcardCounter">
-      Card 0 of 0
-    </div>
-
-    <div class="flashcard-box" onclick="flipFlashcard()">
-
-      <div class="flashcard-label" id="flashcardLabel">
-        Question
-      </div>
-
-      <div class="flashcard-text" id="flashcardText">
-        No flashcards yet.
-      </div>
+      <span id="ssFcCounter">
+        Card 0 of 0
+      </span>
 
     </div>
 
-    <button type="button"
-            class="delete-flashcard"
-            onclick="deleteCurrentFlashcard()">
+
+    <div
+      id="ssFcCard"
+      class="ss-fc-card"
+      onclick="ssFlipCard()">
+
+      <div id="ssFcSide" class="ss-fc-side">
+        QUESTION
+      </div>
+
+      <div
+        id="ssFcText"
+        class="ss-fc-text">
+        Add your first flashcard to begin.
+      </div>
+
+      <div class="ss-fc-hint">
+        Tap the card to reveal the answer
+      </div>
+
+    </div>
+
+
+    <div class="ss-fc-actions">
+
+      <button
+        type="button"
+        onclick="ssPreviousCard()">
+        ← Previous
+      </button>
+
+      <button
+        type="button"
+        onclick="ssFlipCard()">
+        Show Answer
+      </button>
+
+      <button
+        type="button"
+        onclick="ssNextCard()">
+        Next →
+      </button>
+
+    </div>
+
+
+    <button
+      type="button"
+      class="ss-fc-delete"
+      onclick="ssDeleteCard()">
       Delete Current Card
     </button>
 
   </div>
 
-  <div id="flashcardMessage"
-       class="flashcard-message">
+
+  <div
+    id="ssFcMessage"
+    class="ss-fc-message">
   </div>
 
 </section>
@@ -2887,160 +2946,220 @@ footer a{
 
 <style>
 
-#flashcard-tool {
-  max-width: 850px;
+#ss-flashcards {
+  max-width: 900px;
   margin: 30px auto;
-  padding: 25px;
-  background: #ffffff;
-  border-radius: 18px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
-  font-family: Arial, sans-serif;
+  padding: 26px;
   box-sizing: border-box;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.08);
+  font-family: Arial, sans-serif;
 }
 
-#flashcard-tool h2 {
+.ss-fc-header {
   text-align: center;
-  margin: 0 0 8px;
-  font-size: 28px;
-}
-
-.flashcard-description {
-  text-align: center;
-  color: #666;
   margin-bottom: 25px;
 }
 
-.flashcard-form label {
-  display: block;
-  margin: 12px 0 7px;
-  font-weight: 600;
+.ss-fc-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .5px;
 }
 
-.flashcard-form textarea {
+.ss-fc-header h2 {
+  margin: 10px 0 6px;
+  font-size: 30px;
+}
+
+.ss-fc-header p {
+  margin: 0;
+  color: #64748b;
+}
+
+.ss-fc-create {
+  padding: 20px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+}
+
+.ss-fc-field {
+  margin-bottom: 16px;
+}
+
+.ss-fc-field label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.ss-fc-field select,
+.ss-fc-field textarea {
   width: 100%;
-  min-height: 90px;
-  padding: 13px;
-  border: 1px solid #d5d5d5;
-  border-radius: 10px;
-  resize: vertical;
   box-sizing: border-box;
+  padding: 13px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
   font-size: 15px;
   outline: none;
 }
 
-.flashcard-form textarea:focus {
+.ss-fc-field textarea {
+  min-height: 90px;
+  resize: vertical;
+}
+
+.ss-fc-field select:focus,
+.ss-fc-field textarea:focus {
   border-color: #4f46e5;
 }
 
-.flashcard-form button,
-.flashcard-controls button,
-.delete-flashcard {
+.ss-fc-primary {
+  width: 100%;
+  padding: 14px;
   border: none;
   border-radius: 10px;
-  padding: 12px 17px;
-  cursor: pointer;
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.flashcard-form button {
-  width: 100%;
-  margin-top: 15px;
   background: #4f46e5;
   color: white;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.flashcard-controls {
-  display: flex;
-  gap: 10px;
-  margin-top: 20px;
+.ss-fc-primary:hover {
+  opacity: .9;
 }
 
-.flashcard-controls button {
-  flex: 1;
-  background: #eef2ff;
-  color: #3730a3;
-}
-
-.flashcard-display {
+.ss-fc-study {
   margin-top: 25px;
-  text-align: center;
+  display: none;
 }
 
-.flashcard-counter {
+.ss-fc-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 12px;
-  color: #64748b;
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
+  color: #64748b;
 }
 
-.flashcard-box {
-  min-height: 220px;
-  padding: 30px 20px;
-  border-radius: 16px;
-  background: #f8fafc;
+.ss-fc-card {
+  min-height: 260px;
+  padding: 30px 22px;
+  box-sizing: border-box;
+  border-radius: 18px;
   border: 2px solid #e2e8f0;
+  background: #f8fafc;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  text-align: center;
   cursor: pointer;
-  box-sizing: border-box;
+  user-select: none;
 }
 
-.flashcard-label {
-  font-size: 14px;
-  font-weight: 700;
-  color: #4f46e5;
+.ss-fc-side {
   margin-bottom: 15px;
-  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 800;
+  color: #4f46e5;
+  letter-spacing: 1px;
 }
 
-.flashcard-text {
-  font-size: 20px;
+.ss-fc-text {
+  max-width: 750px;
+  font-size: 22px;
   line-height: 1.6;
   color: #1e293b;
   word-break: break-word;
 }
 
-.delete-flashcard {
+.ss-fc-hint {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.ss-fc-actions {
+  display: flex;
+  gap: 10px;
   margin-top: 15px;
+}
+
+.ss-fc-actions button {
+  flex: 1;
+  padding: 13px;
+  border: none;
+  border-radius: 10px;
+  background: #eef2ff;
+  color: #3730a3;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ss-fc-delete {
+  display: block;
+  margin: 15px auto 0;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 9px;
   background: #fee2e2;
   color: #dc2626;
+  font-weight: 700;
+  cursor: pointer;
 }
 
-.flashcard-message {
-  text-align: center;
+.ss-fc-message {
   margin-top: 15px;
-  font-weight: 600;
+  text-align: center;
+  font-weight: 700;
   color: #475569;
+  min-height: 20px;
 }
 
-@media (max-width: 600px) {
 
-  #flashcard-tool {
+@media (max-width: 650px) {
+
+  #ss-flashcards {
     margin: 20px 10px;
     padding: 18px;
   }
 
-  #flashcard-tool h2 {
-    font-size: 24px;
+  .ss-fc-header h2 {
+    font-size: 25px;
   }
 
-  .flashcard-controls {
+  .ss-fc-actions {
     flex-direction: column;
   }
 
-  .flashcard-controls button {
+  .ss-fc-actions button {
     width: 100%;
   }
 
-  .flashcard-box {
-    min-height: 200px;
+  .ss-fc-card {
+    min-height: 220px;
   }
 
-  .flashcard-text {
-    font-size: 18px;
+  .ss-fc-text {
+    font-size: 19px;
+  }
+
+  .ss-fc-top {
+    flex-direction: column;
+    text-align: center;
   }
 
 }
@@ -3049,8 +3168,227 @@ footer a{
 
 
 <script>
-alert("Flashcard JavaScript is working!");
-</script>
+
+let ssFlashcards = [];
+let ssCurrentCard = 0;
+let ssShowingAnswer = false;
+
+
+function ssAddFlashcard() {
+
+  const category =
+    document.getElementById("ssFcCategory").value;
+
+  const question =
+    document.getElementById("ssFcQuestion").value.trim();
+
+  const answer =
+    document.getElementById("ssFcAnswer").value.trim();
+
+
+  if (!question || !answer) {
+
+    ssShowMessage(
+      "Please enter both the question and the correct answer."
+    );
+
+    return;
+  }
+
+
+  ssFlashcards.push({
+    category: category,
+    question: question,
+    answer: answer
+  });
+
+
+  ssCurrentCard = ssFlashcards.length - 1;
+  ssShowingAnswer = false;
+
+
+  document.getElementById("ssFcQuestion").value = "";
+  document.getElementById("ssFcAnswer").value = "";
+
+
+  ssUpdateCard();
+
+  ssShowMessage(
+    "Flashcard added successfully!"
+  );
+}
+
+
+function ssUpdateCard() {
+
+  const study =
+    document.getElementById("ssFcStudy");
+
+
+  if (ssFlashcards.length === 0) {
+
+    study.style.display = "none";
+
+    return;
+  }
+
+
+  study.style.display = "block";
+
+
+  const card =
+    ssFlashcards[ssCurrentCard];
+
+
+  document.getElementById(
+    "ssFcCounter"
+  ).textContent =
+    "Card " +
+    (ssCurrentCard + 1) +
+    " of " +
+    ssFlashcards.length;
+
+
+  document.getElementById(
+    "ssFcCategoryDisplay"
+  ).textContent =
+    card.category;
+
+
+  if (ssShowingAnswer) {
+
+    document.getElementById(
+      "ssFcSide"
+    ).textContent = "ANSWER";
+
+    document.getElementById(
+      "ssFcText"
+    ).textContent = card.answer;
+
+  } else {
+
+    document.getElementById(
+      "ssFcSide"
+    ).textContent = "QUESTION";
+
+    document.getElementById(
+      "ssFcText"
+    ).textContent = card.question;
+  }
+}
+
+
+function ssFlipCard() {
+
+  if (ssFlashcards.length === 0) {
+    return;
+  }
+
+
+  ssShowingAnswer =
+    !ssShowingAnswer;
+
+
+  ssUpdateCard();
+}
+
+
+function ssNextCard() {
+
+  if (ssFlashcards.length === 0) {
+    return;
+  }
+
+
+  ssCurrentCard++;
+
+
+  if (
+    ssCurrentCard >=
+    ssFlashcards.length
+  ) {
+    ssCurrentCard = 0;
+  }
+
+
+  ssShowingAnswer = false;
+
+  ssUpdateCard();
+}
+
+
+function ssPreviousCard() {
+
+  if (ssFlashcards.length === 0) {
+    return;
+  }
+
+
+  ssCurrentCard--;
+
+
+  if (ssCurrentCard < 0) {
+    ssCurrentCard =
+      ssFlashcards.length - 1;
+  }
+
+
+  ssShowingAnswer = false;
+
+  ssUpdateCard();
+}
+
+
+function ssDeleteCard() {
+
+  if (ssFlashcards.length === 0) {
+    return;
+  }
+
+
+  ssFlashcards.splice(
+    ssCurrentCard,
+    1
+  );
+
+
+  if (
+    ssCurrentCard >=
+    ssFlashcards.length
+  ) {
+    ssCurrentCard =
+      ssFlashcards.length - 1;
+  }
+
+
+  ssShowingAnswer = false;
+
+  ssUpdateCard();
+
+  ssShowMessage(
+    "Flashcard deleted."
+  );
+}
+
+
+function ssShowMessage(message) {
+
+  const box =
+    document.getElementById(
+      "ssFcMessage"
+    );
+
+
+  box.textContent = message;
+
+
+  setTimeout(function() {
+
+    box.textContent = "";
+
+  }, 2500);
+}
+
 </script>
 
 <!-- END STUDYSMART FLASHCARD TOOL -->

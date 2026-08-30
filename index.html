@@ -1557,6 +1557,447 @@ footer a{
   }
 </script>
 <!-- END CGPA TARGET CALCULATOR -->
+<!-- POMODORO STUDY TIMER -->
+<section class="tool-card" id="pomodoro-timer">
+
+  <h2>Pomodoro Study Timer</h2>
+
+  <p class="tool-description">
+    Focus on your studies with timed study and break sessions.
+  </p>
+
+  <div class="pomodoro-mode">
+    <button type="button" onclick="setPomodoroMode('study')">
+      Study
+    </button>
+
+    <button type="button" onclick="setPomodoroMode('short')">
+      Short Break
+    </button>
+
+    <button type="button" onclick="setPomodoroMode('long')">
+      Long Break
+    </button>
+  </div>
+
+  <div class="pomodoro-display">
+
+    <div id="pomodoroTime">
+      25:00
+    </div>
+
+    <div id="pomodoroStatus">
+      Study Session
+    </div>
+
+  </div>
+
+  <div class="pomodoro-controls">
+
+    <button type="button" onclick="startPomodoro()">
+      Start
+    </button>
+
+    <button type="button" onclick="pausePomodoro()">
+      Pause
+    </button>
+
+    <button type="button" onclick="resetPomodoro()">
+      Reset
+    </button>
+
+  </div>
+
+  <div class="pomodoro-settings">
+
+    <div>
+      <label>Study Minutes</label>
+      <input
+        type="number"
+        id="studyMinutes"
+        min="1"
+        max="120"
+        value="25">
+    </div>
+
+    <div>
+      <label>Short Break</label>
+      <input
+        type="number"
+        id="shortBreakMinutes"
+        min="1"
+        max="60"
+        value="5">
+    </div>
+
+    <div>
+      <label>Long Break</label>
+      <input
+        type="number"
+        id="longBreakMinutes"
+        min="1"
+        max="120"
+        value="15">
+    </div>
+
+  </div>
+
+  <div class="pomodoro-sessions">
+    Completed Sessions:
+    <strong id="completedSessions">0</strong>
+  </div>
+
+</section>
+
+<style>
+
+  #pomodoro-timer {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 24px;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+
+  #pomodoro-timer h2 {
+    margin-bottom: 8px;
+    font-size: 28px;
+  }
+
+  #pomodoro-timer .tool-description {
+    color: #666;
+    margin-bottom: 24px;
+  }
+
+  .pomodoro-mode {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+  }
+
+  .pomodoro-mode button {
+    padding: 11px 18px;
+    border: none;
+    border-radius: 10px;
+    background: #eef2ff;
+    color: #3730a3;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .pomodoro-mode button:hover {
+    opacity: 0.85;
+  }
+
+  .pomodoro-display {
+    padding: 25px;
+    border-radius: 18px;
+    background: #f8fafc;
+  }
+
+  #pomodoroTime {
+    font-size: 72px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #4f46e5;
+  }
+
+  #pomodoroStatus {
+    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #475569;
+  }
+
+  .pomodoro-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px 0;
+  }
+
+  .pomodoro-controls button {
+    min-width: 120px;
+    padding: 13px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #4f46e5;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .pomodoro-controls button:hover {
+    opacity: 0.9;
+  }
+
+  .pomodoro-settings {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .pomodoro-settings div {
+    text-align: left;
+  }
+
+  .pomodoro-settings label {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  .pomodoro-settings input {
+    width: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+    border: 1px solid #d5d5d5;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+  }
+
+  .pomodoro-settings input:focus {
+    border-color: #4f46e5;
+  }
+
+  .pomodoro-sessions {
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 10px;
+    background: #f8fafc;
+    color: #475569;
+  }
+
+  .pomodoro-sessions strong {
+    color: #4f46e5;
+    font-size: 18px;
+  }
+
+  @media (max-width: 650px) {
+
+    #pomodoro-timer {
+      margin: 20px 10px;
+      padding: 18px;
+    }
+
+    #pomodoroTime {
+      font-size: 52px;
+    }
+
+    .pomodoro-controls {
+      flex-direction: column;
+    }
+
+    .pomodoro-controls button {
+      width: 100%;
+    }
+
+    .pomodoro-settings {
+      grid-template-columns: 1fr;
+    }
+
+  }
+
+</style>
+
+<script>
+
+  let pomodoroTimer = null;
+
+  let pomodoroSeconds = 25 * 60;
+
+  let pomodoroMode = "study";
+
+  let completedPomodoroSessions = 0;
+
+
+  function getPomodoroMinutes(mode) {
+
+    if (mode === "study") {
+      return parseInt(
+        document.getElementById("studyMinutes").value
+      ) || 25;
+    }
+
+    if (mode === "short") {
+      return parseInt(
+        document.getElementById("shortBreakMinutes").value
+      ) || 5;
+    }
+
+    return parseInt(
+      document.getElementById("longBreakMinutes").value
+    ) || 15;
+  }
+
+
+  function setPomodoroMode(mode) {
+
+    pausePomodoro();
+
+    pomodoroMode = mode;
+
+    const minutes = getPomodoroMinutes(mode);
+
+    pomodoroSeconds = minutes * 60;
+
+    updatePomodoroDisplay();
+
+    if (mode === "study") {
+
+      document.getElementById("pomodoroStatus").textContent =
+        "Study Session";
+
+    } else if (mode === "short") {
+
+      document.getElementById("pomodoroStatus").textContent =
+        "Short Break";
+
+    } else {
+
+      document.getElementById("pomodoroStatus").textContent =
+        "Long Break";
+    }
+  }
+
+
+  function startPomodoro() {
+
+    if (pomodoroTimer !== null) {
+      return;
+    }
+
+    pomodoroTimer = setInterval(function () {
+
+      if (pomodoroSeconds > 0) {
+
+        pomodoroSeconds--;
+
+        updatePomodoroDisplay();
+
+      } else {
+
+        completePomodoroSession();
+
+      }
+
+    }, 1000);
+  }
+
+
+  function pausePomodoro() {
+
+    if (pomodoroTimer !== null) {
+
+      clearInterval(pomodoroTimer);
+
+      pomodoroTimer = null;
+    }
+  }
+
+
+  function resetPomodoro() {
+
+    pausePomodoro();
+
+    pomodoroSeconds =
+      getPomodoroMinutes(pomodoroMode) * 60;
+
+    updatePomodoroDisplay();
+  }
+
+
+  function completePomodoroSession() {
+
+    pausePomodoro();
+
+    if (pomodoroMode === "study") {
+
+      completedPomodoroSessions++;
+
+      document.getElementById("completedSessions").textContent =
+        completedPomodoroSessions;
+
+      alert("Study session completed! Time for a break.");
+
+      setPomodoroMode("short");
+
+    } else {
+
+      alert("Break completed! Time to focus again.");
+
+      setPomodoroMode("study");
+    }
+  }
+
+
+  function updatePomodoroDisplay() {
+
+    const minutes =
+      Math.floor(pomodoroSeconds / 60);
+
+    const seconds =
+      pomodoroSeconds % 60;
+
+    const formattedMinutes =
+      String(minutes).padStart(2, "0");
+
+    const formattedSeconds =
+      String(seconds).padStart(2, "0");
+
+    document.getElementById("pomodoroTime").textContent =
+      formattedMinutes + ":" + formattedSeconds;
+  }
+
+
+  document
+    .getElementById("studyMinutes")
+    .addEventListener("change", function () {
+
+      if (pomodoroMode === "study") {
+        resetPomodoro();
+      }
+
+    });
+
+
+  document
+    .getElementById("shortBreakMinutes")
+    .addEventListener("change", function () {
+
+      if (pomodoroMode === "short") {
+        resetPomodoro();
+      }
+
+    });
+
+
+  document
+    .getElementById("longBreakMinutes")
+    .addEventListener("change", function () {
+
+      if (pomodoroMode === "long") {
+        resetPomodoro();
+      }
+
+    });
+
+
+  updatePomodoroDisplay();
+
+</script>
+<!-- END POMODORO STUDY TIMER -->
 <!-- =========================
      STUDENT QUIZ
      ========================= -->

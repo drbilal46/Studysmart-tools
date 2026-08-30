@@ -2341,6 +2341,404 @@ footer a{
 </script>
 
 <!-- END AVERAGE CALCULATOR -->
+<!-- STUDY TIMER CALCULATOR -->
+<section class="tool-card" id="study-timer-calculator">
+
+  <h2>Study Timer Calculator</h2>
+
+  <p class="study-timer-description">
+    Calculate your total study time, break time, and net study time.
+  </p>
+
+  <div class="study-time-grid">
+
+    <div class="study-time-field">
+      <label for="studyStartTime">Start Time</label>
+      <input type="time" id="studyStartTime">
+    </div>
+
+    <div class="study-time-field">
+      <label for="studyEndTime">End Time</label>
+      <input type="time" id="studyEndTime">
+    </div>
+
+    <div class="study-time-field">
+      <label for="studyBreakTime">Break Time (minutes)</label>
+      <input
+        type="number"
+        id="studyBreakTime"
+        min="0"
+        step="1"
+        placeholder="Example: 30"
+      >
+    </div>
+
+  </div>
+
+  <div class="study-timer-buttons">
+
+    <button type="button" onclick="calculateStudyTime()">
+      Calculate Study Time
+    </button>
+
+    <button type="button" onclick="resetStudyTime()">
+      Reset
+    </button>
+
+  </div>
+
+  <div
+    id="studyTimerResult"
+    class="study-timer-result"
+    style="display:none;"
+  >
+
+    <div class="study-total-box">
+      <span>Net Study Time</span>
+      <strong id="netStudyTime">0h 0m</strong>
+    </div>
+
+    <div class="study-summary">
+
+      <div>
+        <span>Total Duration</span>
+        <strong id="totalStudyDuration">0h 0m</strong>
+      </div>
+
+      <div>
+        <span>Break Time</span>
+        <strong id="totalBreakTime">0m</strong>
+      </div>
+
+    </div>
+
+    <p id="studyTimerMessage"></p>
+
+  </div>
+
+</section>
+
+
+<style>
+
+  #study-timer-calculator {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+
+  #study-timer-calculator h2 {
+    text-align: center;
+    margin: 0 0 8px;
+    font-size: 28px;
+  }
+
+  .study-timer-description {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.5;
+  }
+
+  .study-time-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 14px;
+  }
+
+  .study-time-field label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .study-time-field input {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d5d5d5;
+    border-radius: 10px;
+    font-size: 15px;
+    box-sizing: border-box;
+    outline: none;
+  }
+
+  .study-time-field input:focus {
+    border-color: #4f46e5;
+  }
+
+  .study-timer-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 22px;
+  }
+
+  .study-timer-buttons button {
+    flex: 1;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    background: #4f46e5;
+    color: #ffffff;
+  }
+
+  .study-timer-buttons button:hover {
+    opacity: 0.9;
+  }
+
+  .study-timer-buttons button:last-child {
+    background: #64748b;
+  }
+
+  .study-timer-result {
+    margin-top: 25px;
+    padding: 22px;
+    border-radius: 15px;
+    background: #f8fafc;
+    text-align: center;
+  }
+
+  .study-total-box span {
+    display: block;
+    color: #64748b;
+    font-size: 15px;
+  }
+
+  .study-total-box strong {
+    display: block;
+    margin-top: 6px;
+    font-size: 44px;
+    color: #4f46e5;
+  }
+
+  .study-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .study-summary div {
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .study-summary span {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .study-summary strong {
+    font-size: 20px;
+    color: #222;
+  }
+
+  #studyTimerMessage {
+    margin-top: 18px;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  @media (max-width: 650px) {
+
+    #study-timer-calculator {
+      margin: 20px 10px;
+      padding: 18px;
+    }
+
+    #study-timer-calculator h2 {
+      font-size: 24px;
+    }
+
+    .study-time-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .study-timer-buttons {
+      flex-direction: column;
+    }
+
+    .study-timer-buttons button {
+      width: 100%;
+    }
+
+    .study-summary {
+      grid-template-columns: 1fr;
+    }
+
+    .study-total-box strong {
+      font-size: 38px;
+    }
+
+  }
+
+</style>
+
+
+<script>
+
+  function calculateStudyTime() {
+
+    const startTime =
+      document.getElementById("studyStartTime").value;
+
+    const endTime =
+      document.getElementById("studyEndTime").value;
+
+    const breakInput =
+      document.getElementById("studyBreakTime").value;
+
+    if (!startTime || !endTime) {
+
+      alert("Please enter both start time and end time.");
+
+      return;
+    }
+
+    let breakMinutes =
+      parseInt(breakInput, 10);
+
+    if (isNaN(breakMinutes)) {
+      breakMinutes = 0;
+    }
+
+    if (breakMinutes < 0) {
+      alert("Break time cannot be negative.");
+      return;
+    }
+
+    const startParts =
+      startTime.split(":").map(Number);
+
+    const endParts =
+      endTime.split(":").map(Number);
+
+    let startMinutes =
+      startParts[0] * 60 + startParts[1];
+
+    let endMinutes =
+      endParts[0] * 60 + endParts[1];
+
+    /*
+      If end time is earlier than start time,
+      assume the study session continues after midnight.
+    */
+
+    if (endMinutes <= startMinutes) {
+      endMinutes += 24 * 60;
+    }
+
+    const totalMinutes =
+      endMinutes - startMinutes;
+
+    if (breakMinutes >= totalMinutes) {
+
+      alert(
+        "Break time must be less than the total study duration."
+      );
+
+      return;
+    }
+
+    const netMinutes =
+      totalMinutes - breakMinutes;
+
+    const totalHours =
+      Math.floor(totalMinutes / 60);
+
+    const totalRemainingMinutes =
+      totalMinutes % 60;
+
+    const netHours =
+      Math.floor(netMinutes / 60);
+
+    const netRemainingMinutes =
+      netMinutes % 60;
+
+    document.getElementById("totalStudyDuration")
+      .textContent =
+      totalHours + "h " +
+      totalRemainingMinutes + "m";
+
+    document.getElementById("totalBreakTime")
+      .textContent =
+      breakMinutes + "m";
+
+    document.getElementById("netStudyTime")
+      .textContent =
+      netHours + "h " +
+      netRemainingMinutes + "m";
+
+    let message = "";
+
+    if (netMinutes >= 240) {
+
+      message =
+        "Excellent! You completed a strong study session.";
+
+    } else if (netMinutes >= 120) {
+
+      message =
+        "Great study session! Keep up the consistency.";
+
+    } else if (netMinutes >= 60) {
+
+      message =
+        "Good work! Try to maintain a consistent study routine.";
+
+    } else {
+
+      message =
+        "Keep going! Even short, focused study sessions matter.";
+
+    }
+
+    document.getElementById("studyTimerMessage")
+      .textContent = message;
+
+    document.getElementById("studyTimerResult")
+      .style.display = "block";
+  }
+
+
+  function resetStudyTime() {
+
+    document.getElementById("studyStartTime").value = "";
+
+    document.getElementById("studyEndTime").value = "";
+
+    document.getElementById("studyBreakTime").value = "";
+
+    document.getElementById("studyTimerResult")
+      .style.display = "none";
+
+    document.getElementById("netStudyTime")
+      .textContent = "0h 0m";
+
+    document.getElementById("totalStudyDuration")
+      .textContent = "0h 0m";
+
+    document.getElementById("totalBreakTime")
+      .textContent = "0m";
+
+    document.getElementById("studyTimerMessage")
+      .textContent = "";
+  }
+
+</script>
+
+<!-- END STUDY TIMER CALCULATOR -->
 <!-- =========================
      STUDENT QUIZ
      ========================= -->

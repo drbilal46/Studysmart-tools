@@ -3165,233 +3165,173 @@ footer a{
 }
 
 </style>
-
-
 <script>
+document.addEventListener("DOMContentLoaded", function () {
 
-let ssFlashcards = [];
-let ssCurrentCard = 0;
-let ssShowingAnswer = false;
+  let cards = [];
+  let current = 0;
+  let showingAnswer = false;
 
+  const question = document.getElementById("ssFcQuestion");
+  const answer = document.getElementById("ssFcAnswer");
+  const category = document.getElementById("ssFcCategory");
 
-function ssAddFlashcard() {
+  const study = document.getElementById("ssFcStudy");
+  const text = document.getElementById("ssFcText");
+  const side = document.getElementById("ssFcSide");
+  const counter = document.getElementById("ssFcCounter");
+  const categoryDisplay = document.getElementById("ssFcCategoryDisplay");
+  const message = document.getElementById("ssFcMessage");
 
-  const category =
-    document.getElementById("ssFcCategory").value;
+  const addButton =
+    document.querySelector(".ss-fc-primary");
 
-  const question =
-    document.getElementById("ssFcQuestion").value.trim();
+  const actionButtons =
+    document.querySelectorAll(".ss-fc-actions button");
 
-  const answer =
-    document.getElementById("ssFcAnswer").value.trim();
+  const deleteButton =
+    document.querySelector(".ss-fc-delete");
 
+  function showMessage(msg) {
+    message.textContent = msg;
 
-  if (!question || !answer) {
-
-    ssShowMessage(
-      "Please enter both the question and the correct answer."
-    );
-
-    return;
+    setTimeout(function () {
+      message.textContent = "";
+    }, 2500);
   }
 
+  function updateCard() {
 
-  ssFlashcards.push({
-    category: category,
-    question: question,
-    answer: answer
+    if (cards.length === 0) {
+      study.style.display = "none";
+      return;
+    }
+
+    study.style.display = "block";
+
+    const card = cards[current];
+
+    counter.textContent =
+      "Card " + (current + 1) + " of " + cards.length;
+
+    categoryDisplay.textContent = card.category;
+
+    if (showingAnswer) {
+
+      side.textContent = "ANSWER";
+      text.textContent = card.answer;
+
+    } else {
+
+      side.textContent = "QUESTION";
+      text.textContent = card.question;
+    }
+  }
+
+  function flipCard() {
+
+    if (cards.length === 0) {
+      showMessage("Please add a flashcard first.");
+      return;
+    }
+
+    showingAnswer = !showingAnswer;
+    updateCard();
+  }
+
+  addButton.addEventListener("click", function () {
+
+    const q = question.value.trim();
+    const a = answer.value.trim();
+
+    if (!q || !a) {
+      showMessage(
+        "Please enter both the question and answer."
+      );
+      return;
+    }
+
+    cards.push({
+      category: category.value,
+      question: q,
+      answer: a
+    });
+
+    current = cards.length - 1;
+    showingAnswer = false;
+
+    question.value = "";
+    answer.value = "";
+
+    updateCard();
+
+    showMessage("Flashcard added successfully!");
   });
 
+  actionButtons[0].addEventListener(
+    "click",
+    function () {
 
-  ssCurrentCard = ssFlashcards.length - 1;
-  ssShowingAnswer = false;
+      if (cards.length === 0) return;
 
+      current--;
 
-  document.getElementById("ssFcQuestion").value = "";
-  document.getElementById("ssFcAnswer").value = "";
+      if (current < 0) {
+        current = cards.length - 1;
+      }
 
-
-  ssUpdateCard();
-
-  ssShowMessage(
-    "Flashcard added successfully!"
-  );
-}
-
-
-function ssUpdateCard() {
-
-  const study =
-    document.getElementById("ssFcStudy");
-
-
-  if (ssFlashcards.length === 0) {
-
-    study.style.display = "none";
-
-    return;
-  }
-
-
-  study.style.display = "block";
-
-
-  const card =
-    ssFlashcards[ssCurrentCard];
-
-
-  document.getElementById(
-    "ssFcCounter"
-  ).textContent =
-    "Card " +
-    (ssCurrentCard + 1) +
-    " of " +
-    ssFlashcards.length;
-
-
-  document.getElementById(
-    "ssFcCategoryDisplay"
-  ).textContent =
-    card.category;
-
-
-  if (ssShowingAnswer) {
-
-    document.getElementById(
-      "ssFcSide"
-    ).textContent = "ANSWER";
-
-    document.getElementById(
-      "ssFcText"
-    ).textContent = card.answer;
-
-  } else {
-
-    document.getElementById(
-      "ssFcSide"
-    ).textContent = "QUESTION";
-
-    document.getElementById(
-      "ssFcText"
-    ).textContent = card.question;
-  }
-}
-
-
-function ssFlipCard() {
-
-  if (ssFlashcards.length === 0) {
-    return;
-  }
-
-
-  ssShowingAnswer =
-    !ssShowingAnswer;
-
-
-  ssUpdateCard();
-}
-
-
-function ssNextCard() {
-
-  if (ssFlashcards.length === 0) {
-    return;
-  }
-
-
-  ssCurrentCard++;
-
-
-  if (
-    ssCurrentCard >=
-    ssFlashcards.length
-  ) {
-    ssCurrentCard = 0;
-  }
-
-
-  ssShowingAnswer = false;
-
-  ssUpdateCard();
-}
-
-
-function ssPreviousCard() {
-
-  if (ssFlashcards.length === 0) {
-    return;
-  }
-
-
-  ssCurrentCard--;
-
-
-  if (ssCurrentCard < 0) {
-    ssCurrentCard =
-      ssFlashcards.length - 1;
-  }
-
-
-  ssShowingAnswer = false;
-
-  ssUpdateCard();
-}
-
-
-function ssDeleteCard() {
-
-  if (ssFlashcards.length === 0) {
-    return;
-  }
-
-
-  ssFlashcards.splice(
-    ssCurrentCard,
-    1
+      showingAnswer = false;
+      updateCard();
+    }
   );
 
-
-  if (
-    ssCurrentCard >=
-    ssFlashcards.length
-  ) {
-    ssCurrentCard =
-      ssFlashcards.length - 1;
-  }
-
-
-  ssShowingAnswer = false;
-
-  ssUpdateCard();
-
-  ssShowMessage(
-    "Flashcard deleted."
+  actionButtons[1].addEventListener(
+    "click",
+    flipCard
   );
-}
 
+  actionButtons[2].addEventListener(
+    "click",
+    function () {
 
-function ssShowMessage(message) {
+      if (cards.length === 0) return;
 
-  const box =
-    document.getElementById(
-      "ssFcMessage"
-    );
+      current++;
 
+      if (current >= cards.length) {
+        current = 0;
+      }
 
-  box.textContent = message;
+      showingAnswer = false;
+      updateCard();
+    }
+  );
 
+  document.getElementById("ssFcCard")
+    .addEventListener("click", flipCard);
 
-  setTimeout(function() {
+  deleteButton.addEventListener(
+    "click",
+    function () {
 
-    box.textContent = "";
+      if (cards.length === 0) return;
 
-  }, 2500);
-}
+      cards.splice(current, 1);
 
+      if (current >= cards.length) {
+        current = Math.max(0, cards.length - 1);
+      }
+
+      showingAnswer = false;
+
+      updateCard();
+
+      showMessage("Flashcard deleted.");
+    }
+  );
+
+});
 </script>
-
-<!-- END STUDYSMART FLASHCARD TOOL -->
 <!-- =========================
      ABOUT
      ========================= -->

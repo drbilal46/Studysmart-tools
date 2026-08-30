@@ -2782,11 +2782,17 @@ footer a{
   }
 
   .ss-tool-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.ss-tool-button {
+  width: 100%;
+  box-sizing: border-box;
+  text-align: center;
+    }
 
   .ss-tool-button {
     border: none;

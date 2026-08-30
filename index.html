@@ -3447,35 +3447,98 @@ function showResult(id, text){
     document.getElementById(id).innerHTML = text;
 }
 
-
 /* =========================================================
-   TOOL SEARCH
+   STUDYSMART TOOL SEARCH
+   Works with the new Navigation System
    ========================================================= */
 
 const toolSearch = document.getElementById("toolSearch");
 
-toolSearch.addEventListener("input", function(){
+if (toolSearch) {
 
-    const query = this.value.toLowerCase().trim();
+    toolSearch.addEventListener("input", function () {
 
-    document.querySelectorAll(".tool-card").forEach(function(card){
+        const query =
+            this.value
+                .toLowerCase()
+                .trim();
 
-        const text = card.innerText.toLowerCase();
-        const searchText = (card.dataset.search || "").toLowerCase();
+        /*
+         * Search inside the Navigation
+         */
 
-        if(
-            query === "" ||
-            text.includes(query) ||
-            searchText.includes(query)
-        ){
-            card.classList.remove("hidden");
-        }else{
-            card.classList.add("hidden");
-        }
+        const toolSlots =
+            document.querySelectorAll(
+                "#studySmartNavigation .ss-tool-slot"
+            );
+
+        toolSlots.forEach(function (slot) {
+
+            const button =
+                slot.querySelector(".ss-tool-button");
+
+            const content =
+                slot.querySelector(".ss-tool-content");
+
+            if (!button || !content) {
+                return;
+            }
+
+            /*
+             * Tool title
+             */
+
+            const title =
+                button.innerText
+                    .toLowerCase();
+
+            /*
+             * Complete calculator text
+             */
+
+            const text =
+                content.innerText
+                    .toLowerCase();
+
+            /*
+             * Search keywords
+             */
+
+            const searchText =
+                content.querySelector("[data-search]")
+                    ?.getAttribute("data-search")
+                    ?.toLowerCase() || "";
+
+            /*
+             * Check match
+             */
+
+            const match =
+                query === "" ||
+                title.includes(query) ||
+                text.includes(query) ||
+                searchText.includes(query);
+
+            /*
+             * Show / hide the complete
+             * navigation slot
+             */
+
+            if (match) {
+
+                slot.style.display = "";
+
+            } else {
+
+                slot.style.display = "none";
+
+            }
+
+        });
 
     });
 
-});
+    }
 
 
 /* =========================================================

@@ -2810,7 +2810,427 @@ footer a{
 </div>
 
 </div>
+<!-- STUDYSMART FLASHCARD TOOL -->
+<section class="tool-card" id="flashcard-tool">
 
+  <h2>Flashcard Study Tool</h2>
+
+  <p class="flashcard-description">
+    Create, review and study your own flashcards easily.
+  </p>
+
+  <div class="flashcard-form">
+
+    <label>Question</label>
+    <textarea id="flashcardQuestion"
+      placeholder="Enter your question..."></textarea>
+
+    <label>Answer</label>
+    <textarea id="flashcardAnswer"
+      placeholder="Enter the correct answer..."></textarea>
+
+    <button type="button" onclick="addFlashcard()">
+      + Add Flashcard
+    </button>
+
+  </div>
+
+  <div class="flashcard-controls">
+
+    <button type="button" onclick="showPreviousCard()">
+      ← Previous
+    </button>
+
+    <button type="button" onclick="flipFlashcard()">
+      Show Answer
+    </button>
+
+    <button type="button" onclick="showNextCard()">
+      Next →
+    </button>
+
+  </div>
+
+  <div id="flashcardDisplay" class="flashcard-display"
+       style="display:none;">
+
+    <div class="flashcard-counter" id="flashcardCounter">
+      Card 0 of 0
+    </div>
+
+    <div class="flashcard-box" onclick="flipFlashcard()">
+
+      <div class="flashcard-label" id="flashcardLabel">
+        Question
+      </div>
+
+      <div class="flashcard-text" id="flashcardText">
+        No flashcards yet.
+      </div>
+
+    </div>
+
+    <button type="button"
+            class="delete-flashcard"
+            onclick="deleteCurrentFlashcard()">
+      Delete Current Card
+    </button>
+
+  </div>
+
+  <div id="flashcardMessage"
+       class="flashcard-message">
+  </div>
+
+</section>
+
+
+<style>
+
+#flashcard-tool {
+  max-width: 850px;
+  margin: 30px auto;
+  padding: 25px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+#flashcard-tool h2 {
+  text-align: center;
+  margin: 0 0 8px;
+  font-size: 28px;
+}
+
+.flashcard-description {
+  text-align: center;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.flashcard-form label {
+  display: block;
+  margin: 12px 0 7px;
+  font-weight: 600;
+}
+
+.flashcard-form textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 13px;
+  border: 1px solid #d5d5d5;
+  border-radius: 10px;
+  resize: vertical;
+  box-sizing: border-box;
+  font-size: 15px;
+  outline: none;
+}
+
+.flashcard-form textarea:focus {
+  border-color: #4f46e5;
+}
+
+.flashcard-form button,
+.flashcard-controls button,
+.delete-flashcard {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 17px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.flashcard-form button {
+  width: 100%;
+  margin-top: 15px;
+  background: #4f46e5;
+  color: white;
+}
+
+.flashcard-controls {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.flashcard-controls button {
+  flex: 1;
+  background: #eef2ff;
+  color: #3730a3;
+}
+
+.flashcard-display {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.flashcard-counter {
+  margin-bottom: 12px;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.flashcard-box {
+  min-height: 220px;
+  padding: 30px 20px;
+  border-radius: 16px;
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.flashcard-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: #4f46e5;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+}
+
+.flashcard-text {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #1e293b;
+  word-break: break-word;
+}
+
+.delete-flashcard {
+  margin-top: 15px;
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.flashcard-message {
+  text-align: center;
+  margin-top: 15px;
+  font-weight: 600;
+  color: #475569;
+}
+
+@media (max-width: 600px) {
+
+  #flashcard-tool {
+    margin: 20px 10px;
+    padding: 18px;
+  }
+
+  #flashcard-tool h2 {
+    font-size: 24px;
+  }
+
+  .flashcard-controls {
+    flex-direction: column;
+  }
+
+  .flashcard-controls button {
+    width: 100%;
+  }
+
+  .flashcard-box {
+    min-height: 200px;
+  }
+
+  .flashcard-text {
+    font-size: 18px;
+  }
+
+}
+
+</style>
+
+
+<script>
+
+let flashcards = [];
+let currentFlashcard = 0;
+let showingAnswer = false;
+
+
+function addFlashcard() {
+
+  const question =
+    document.getElementById("flashcardQuestion").value.trim();
+
+  const answer =
+    document.getElementById("flashcardAnswer").value.trim();
+
+
+  if (!question || !answer) {
+
+    showFlashcardMessage(
+      "Please enter both a question and an answer."
+    );
+
+    return;
+  }
+
+
+  flashcards.push({
+    question: question,
+    answer: answer
+  });
+
+
+  currentFlashcard = flashcards.length - 1;
+  showingAnswer = false;
+
+
+  document.getElementById("flashcardQuestion").value = "";
+  document.getElementById("flashcardAnswer").value = "";
+
+
+  updateFlashcard();
+
+
+  showFlashcardMessage(
+    "Flashcard added successfully!"
+  );
+}
+
+
+function updateFlashcard() {
+
+  const display =
+    document.getElementById("flashcardDisplay");
+
+  if (flashcards.length === 0) {
+
+    display.style.display = "none";
+
+    return;
+  }
+
+
+  display.style.display = "block";
+
+
+  const card = flashcards[currentFlashcard];
+
+
+  document.getElementById("flashcardCounter").textContent =
+    "Card " + (currentFlashcard + 1) +
+    " of " + flashcards.length;
+
+
+  if (showingAnswer) {
+
+    document.getElementById("flashcardLabel").textContent =
+      "Answer";
+
+    document.getElementById("flashcardText").textContent =
+      card.answer;
+
+  } else {
+
+    document.getElementById("flashcardLabel").textContent =
+      "Question";
+
+    document.getElementById("flashcardText").textContent =
+      card.question;
+  }
+}
+
+
+function flipFlashcard() {
+
+  if (flashcards.length === 0) {
+    return;
+  }
+
+  showingAnswer = !showingAnswer;
+
+  updateFlashcard();
+}
+
+
+function showNextCard() {
+
+  if (flashcards.length === 0) {
+    return;
+  }
+
+  currentFlashcard++;
+
+  if (currentFlashcard >= flashcards.length) {
+    currentFlashcard = 0;
+  }
+
+  showingAnswer = false;
+
+  updateFlashcard();
+}
+
+
+function showPreviousCard() {
+
+  if (flashcards.length === 0) {
+    return;
+  }
+
+  currentFlashcard--;
+
+  if (currentFlashcard < 0) {
+    currentFlashcard = flashcards.length - 1;
+  }
+
+  showingAnswer = false;
+
+  updateFlashcard();
+}
+
+
+function deleteCurrentFlashcard() {
+
+  if (flashcards.length === 0) {
+    return;
+  }
+
+
+  flashcards.splice(currentFlashcard, 1);
+
+
+  if (currentFlashcard >= flashcards.length) {
+    currentFlashcard = flashcards.length - 1;
+  }
+
+
+  showingAnswer = false;
+
+  updateFlashcard();
+
+
+  showFlashcardMessage(
+    "Flashcard deleted."
+  );
+}
+
+
+function showFlashcardMessage(message) {
+
+  document.getElementById("flashcardMessage")
+    .textContent = message;
+
+
+  setTimeout(function() {
+
+    document.getElementById("flashcardMessage")
+      .textContent = "";
+
+  }, 2500);
+}
+
+</script>
+
+<!-- END STUDYSMART FLASHCARD TOOL -->
 <!-- =========================
      ABOUT
      ========================= -->

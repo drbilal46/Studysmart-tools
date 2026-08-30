@@ -1015,6 +1015,59 @@ footer a{
 </div>
 
 <!-- =========================
+     ATTENDANCE CALCULATOR
+     ========================= -->
+
+<div class="card tool-card" data-search="attendance calculator classes percentage">
+
+    <h3>📅 Attendance Calculator</h3>
+
+    <p>
+        Calculate your attendance percentage and find out
+        how many classes you need to attend.
+    </p>
+
+    <div class="field">
+        <label>Total Classes</label>
+        <input
+            id="attendanceTotal"
+            type="number"
+            min="1"
+            step="1"
+            placeholder="Example: 40">
+    </div>
+
+    <div class="field">
+        <label>Attended Classes</label>
+        <input
+            id="attendanceAttended"
+            type="number"
+            min="0"
+            step="1"
+            placeholder="Example: 30">
+    </div>
+
+    <div class="field">
+        <label>Required Attendance (%)</label>
+        <input
+            id="attendanceRequired"
+            type="number"
+            min="1"
+            max="100"
+            step="0.1"
+            value="75">
+    </div>
+
+    <button id="attendanceBtn">
+        Calculate Attendance
+    </button>
+
+    <div class="result" id="attendanceResult">
+        Result will appear here
+    </div>
+
+</div>
+<!-- =========================
      STUDENT QUIZ
      ========================= -->
 
@@ -3673,6 +3726,145 @@ console.log(
 console.log(
     "365 daily quiz days available."
 );
+/* =========================================================
+   ATTENDANCE CALCULATOR
+   ========================================================= */
+
+document.getElementById("attendanceBtn")
+.addEventListener("click", function(){
+
+    const total =
+        parseInt(
+            document.getElementById("attendanceTotal").value
+        );
+
+    const attended =
+        parseInt(
+            document.getElementById("attendanceAttended").value
+        );
+
+    const required =
+        parseFloat(
+            document.getElementById("attendanceRequired").value
+        );
+
+    if(
+        !Number.isFinite(total) ||
+        !Number.isFinite(attended) ||
+        !Number.isFinite(required)
+    ){
+
+        showResult(
+            "attendanceResult",
+            "Please enter all values."
+        );
+
+        return;
+    }
+
+    if(total <= 0){
+
+        showResult(
+            "attendanceResult",
+            "Total classes must be greater than 0."
+        );
+
+        return;
+    }
+
+    if(attended < 0 || attended > total){
+
+        showResult(
+            "attendanceResult",
+            "Attended classes cannot be greater than total classes."
+        );
+
+        return;
+    }
+
+    if(required <= 0 || required > 100){
+
+        showResult(
+            "attendanceResult",
+            "Required attendance must be between 1% and 100%."
+        );
+
+        return;
+    }
+
+    const currentPercentage =
+        (attended / total) * 100;
+
+    let message =
+        "Current Attendance: " +
+        formatNumber(currentPercentage) +
+        "%";
+
+    /*
+       Calculate additional classes needed
+       to reach the required attendance.
+    */
+
+    if(currentPercentage < required){
+
+        let additionalClasses = 0;
+
+        while(
+            ((attended + additionalClasses) /
+            (total + additionalClasses)) * 100
+            < required
+        ){
+
+            additionalClasses++;
+
+        }
+
+        message +=
+            "<br><br>You need to attend at least " +
+            additionalClasses +
+            " more class" +
+            (additionalClasses === 1 ? "" : "es") +
+            " to reach " +
+            formatNumber(required) +
+            "%.";
+
+    }else{
+
+        /*
+           Calculate how many future classes
+           can be missed while maintaining
+           the required attendance.
+        */
+
+        let canMiss = 0;
+
+        while(
+            (attended /
+            (total + canMiss + 1)) * 100
+            >= required
+        ){
+
+            canMiss++;
+
+        }
+
+        message +=
+            "<br><br>You can miss up to " +
+            canMiss +
+            " more class" +
+            (canMiss === 1 ? "" : "es") +
+            " and still maintain " +
+            formatNumber(required) +
+            "% attendance.";
+
+    }
+
+    showResult(
+        "attendanceResult",
+        message
+    );
+
+});
 
 </script>
 

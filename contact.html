@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Contact Us | StudySmart Tools</title><meta name="description" content="Contact StudySmart Tools for questions, feedback, technical support, suggestions, collaboration and business inquiries about our free student tools and calculators."><style>
+*{
+box-sizing:border-box;
+}
 
-<title>Contact Us | StudySmart Tools</title>
-<meta name="description" content="Contact StudySmart Tools for questions, feedback, suggestions or support about our free student tools and calculators.">
-<style>
 body{
 font-family:Arial,sans-serif;
 background:#f5f7fb;
@@ -31,7 +30,7 @@ color:#2563eb;
 }
 
 .container{
-max-width:700px;
+max-width:760px;
 margin:40px auto;
 padding:20px;
 }
@@ -39,22 +38,69 @@ padding:20px;
 .box{
 background:#fff;
 padding:30px;
-border-radius:15px;
+border-radius:16px;
 box-shadow:0 4px 18px rgba(0,0,0,.07);
 }
 
 h1{
 color:#2563eb;
+margin-top:0;
 }
 
-input,textarea{
+h2{
+font-size:20px;
+margin-top:30px;
+}
+
+.intro{
+color:#596579;
+}
+
+.contact-options{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:12px;
+margin:22px 0;
+}
+
+.contact-card{
+background:#f8fafc;
+border:1px solid #e1e6ef;
+border-radius:10px;
+padding:15px;
+}
+
+.contact-card strong{
+display:block;
+margin-bottom:4px;
+}
+
+.contact-card span{
+font-size:13px;
+color:#687386;
+}
+
+.email-box{
+background:#eef5ff;
+border-radius:10px;
+padding:16px;
+margin:20px 0;
+text-align:center;
+}
+
+.email-box a{
+font-weight:bold;
+font-size:16px;
+}
+
+input,select,textarea{
 width:100%;
 padding:12px;
-margin:8px 0;
+margin:7px 0 13px;
 border:1px solid #d5dbe5;
 border-radius:8px;
 font-size:15px;
-box-sizing:border-box;
+background:#fff;
 }
 
 textarea{
@@ -62,16 +108,50 @@ height:140px;
 resize:vertical;
 }
 
+label{
+font-size:14px;
+font-weight:bold;
+}
+
 button{
 width:100%;
-padding:12px;
+padding:13px;
 border:0;
 border-radius:8px;
 background:#2563eb;
 color:white;
 font-size:15px;
 cursor:pointer;
-margin-top:8px;
+margin-top:5px;
+}
+
+button:hover{
+opacity:.9;
+}
+
+.email-button{
+display:block;
+text-align:center;
+background:#2563eb;
+color:#fff;
+padding:12px;
+border-radius:8px;
+margin-top:12px;
+text-decoration:none;
+}
+
+.result{
+margin-top:15px;
+padding:12px;
+border-radius:8px;
+background:#eef5ff;
+font-weight:bold;
+text-align:center;
+}
+
+.back{
+display:inline-block;
+margin-top:25px;
 }
 
 a{
@@ -85,87 +165,146 @@ padding:25px;
 margin-top:40px;
 background:#fff;
 color:#687386;
+font-size:14px;
 }
-</style>
-</head>
 
-<body>
+@media(max-width:600px){
+.container{
+margin:20px auto;
+padding:12px;
+}
 
-<header>
+.box{
+padding:22px;
+}
 
-<div class="logo">
+.contact-options{
+grid-template-columns:1fr;
+}
+}
+</style></head><body><header><div class="logo">
 Study<span>Smart</span> Tools
-</div>
+</div></header><div class="container"><div class="box"><h1>Contact Us</h1><p class="intro">
+We are always happy to hear from our users. If you have a question,
+technical issue, suggestion, feedback, collaboration proposal or
+business inquiry, please feel free to contact us.
+</p><div class="contact-options"><div class="contact-card">
+<strong>💬 General Questions</strong>
+<span>Questions about StudySmart Tools and our student resources.</span>
+</div><div class="contact-card">
+<strong>🛠 Technical Support</strong>
+<span>Report errors, broken tools, calculation issues or website problems.</span>
+</div><div class="contact-card">
+<strong>💡 Feedback & Suggestions</strong>
+<span>Share your ideas to help us improve StudySmart Tools.</span>
+</div><div class="contact-card">
+<strong>🤝 Collaboration</strong>
+<span>Contact us regarding educational or content collaboration.</span>
+</div><div class="contact-card">
+<strong>💼 Business Inquiries</strong>
+<span>For professional, advertising or business-related inquiries.</span>
+</div></div><div class="email-box"><strong>Contact Email</strong>
 
-</header>
+<br><a href="mailto:doctorbilal052@gmail.com">
+doctorbilal052@gmail.com
+</a><a
+class="email-button"
+href="mailto:doctorbilal052@gmail.com?subject=StudySmart%20Tools%20Inquiry"
 
-<div class="container">
+«»
 
-<div class="box">
+📧 Email Us
+</a>
 
-<h1>Contact Us</h1>
-
-<p>
-Have a question, suggestion or feedback?
-We would love to hear from you.
-</p>
-
-<form onsubmit="sendMessage(event)">
+</div><h2>Send Us a Message</h2><form onsubmit="sendMessage(event)"><label for="name">Your Name</label>
 
 <input
 type="text"
 id="name"
-placeholder="Your Name"
+placeholder="Enter your name"
 required
->
+
+«»
+
+<label for="email">Your Email</label>
 
 <input
 type="email"
 id="email"
-placeholder="Your Email"
+placeholder="Enter your email address"
 required
->
+
+«»
+
+<label for="subject">Inquiry Type</label>
+
+<select id="subject" required><option value="">Select an option</option><option value="General Question">
+General Question
+</option><option value="Technical Issue">
+Technical Issue / Bug Report
+</option><option value="Feedback">
+Feedback & Suggestion
+</option><option value="Collaboration">
+Collaboration
+</option><option value="Business Inquiry">
+Business Inquiry
+</option></select><label for="message">Your Message</label>
 
 <textarea
 id="message"
-placeholder="Write your message..."
+placeholder="Write your message here..."
 required
-></textarea>
-
-<button type="submit">
+></textarea><button type="submit">
 Send Message
-</button>
+</button></form><div class="result hidden" id="result"></div><a class="back" href="index.html">
+← Back to StudySmart Tools
+</a></div></div><footer>© 2026 StudySmart Tools<br>
+Free student tools and resources for students worldwide.
 
-</form>
-
-<p id="result"></p>
-
-<br>
-
-<a href="index.html">← Back to StudySmart Tools</a>
-
-</div>
-
-</div>
-
-<footer>
-
-© 2026 StudySmart Tools
-
-</footer>
-
-<script>
+</footer><script>
 
 function sendMessage(event){
 
 event.preventDefault();
 
+const name =
+document.getElementById("name").value.trim();
+
+const email =
+document.getElementById("email").value.trim();
+
+const subject =
+document.getElementById("subject").value;
+
+const message =
+document.getElementById("message").value.trim();
+
+const emailSubject =
+encodeURIComponent(
+"StudySmart Tools - " + subject
+);
+
+const emailBody =
+encodeURIComponent(
+"Name: " + name +
+"\nEmail: " + email +
+"\nInquiry Type: " + subject +
+"\n\nMessage:\n" + message
+);
+
+const mailtoLink =
+"mailto:doctorbilal052@gmail.com" +
+"?subject=" + emailSubject +
+"&body=" + emailBody;
+
+window.location.href = mailtoLink;
+
+document.getElementById("result").classList.remove("hidden");
+
 document.getElementById("result").innerText =
-"Thank you! Your message has been received.";
+"Your email app is opening. Please send the prepared message.";
 
 }
 
-</script>
-
-</body>
+</script></body>
 </html>

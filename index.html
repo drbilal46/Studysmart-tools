@@ -2739,6 +2739,194 @@ footer a{
 </script>
 
 <!-- END STUDY TIMER CALCULATOR -->
+<!-- ============================= -->
+<!-- STUDYSMART TOOLS NAVIGATION -->
+<!-- ============================= -->
+
+<div id="studySmartNavigation">
+
+  <div class="ss-nav-header">
+    <h2>StudySmart Tools</h2>
+    <p>Select a tool to get started</p>
+  </div>
+
+  <div id="ssToolButtons" class="ss-tool-buttons"></div>
+
+</div>
+
+<style>
+  #studySmartNavigation {
+    max-width: 1100px;
+    margin: 25px auto;
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+    font-family: Arial, sans-serif;
+  }
+
+  .ss-nav-header {
+    text-align: center;
+    margin-bottom: 18px;
+  }
+
+  .ss-nav-header h2 {
+    margin: 0 0 6px;
+    font-size: 26px;
+  }
+
+  .ss-nav-header p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+  }
+
+  .ss-tool-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .ss-tool-button {
+    border: none;
+    padding: 11px 16px;
+    border-radius: 10px;
+    background: #f1f5f9;
+    color: #1e293b;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+
+  .ss-tool-button:hover {
+    transform: translateY(-1px);
+  }
+
+  .ss-tool-button.active {
+    background: #4f46e5;
+    color: white;
+  }
+
+  /* Hide all tools initially */
+  .ss-hidden-tool {
+    display: none !important;
+  }
+
+  @media (max-width: 600px) {
+    #studySmartNavigation {
+      margin: 15px 10px;
+      padding: 16px;
+    }
+
+    .ss-tool-buttons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .ss-tool-button {
+      width: 100%;
+      padding: 11px 8px;
+      font-size: 13px;
+    }
+  }
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+  const navigation = document.getElementById("studySmartNavigation");
+  const buttonContainer = document.getElementById("ssToolButtons");
+
+  /*
+    Find existing tools automatically.
+
+    Any section/div with class "tool-card"
+    will be treated as a StudySmart tool.
+  */
+  const tools = document.querySelectorAll(".tool-card");
+
+  if (tools.length === 0) {
+    navigation.style.display = "none";
+    return;
+  }
+
+  tools.forEach(function (tool, index) {
+
+    /*
+      Try to find the tool title
+    */
+    const heading = tool.querySelector("h1, h2, h3, h4");
+
+    let toolName = heading
+      ? heading.textContent.trim()
+      : "Study Tool " + (index + 1);
+
+    /*
+      Create navigation button
+    */
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "ss-tool-button";
+    button.textContent = toolName;
+
+    /*
+      Hide tool initially
+    */
+    tool.classList.add("ss-hidden-tool");
+
+    /*
+      Open selected tool
+    */
+    button.addEventListener("click", function () {
+
+      /*
+        Hide every tool
+      */
+      tools.forEach(function (item) {
+        item.classList.add("ss-hidden-tool");
+      });
+
+      /*
+        Remove active state
+      */
+      document
+        .querySelectorAll(".ss-tool-button")
+        .forEach(function (btn) {
+          btn.classList.remove("active");
+        });
+
+      /*
+        Show selected tool
+      */
+      tool.classList.remove("ss-hidden-tool");
+
+      button.classList.add("active");
+
+      /*
+        Smooth scroll to calculator
+      */
+      setTimeout(function () {
+        tool.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }, 50);
+
+    });
+
+    buttonContainer.appendChild(button);
+  });
+
+});
+</script>
+
+<!-- ============================= -->
+<!-- END STUDYSMART NAVIGATION -->
+<!-- ============================= -->
 <!-- =========================
      STUDENT QUIZ
      ========================= -->

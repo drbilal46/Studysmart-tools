@@ -1998,6 +1998,349 @@ footer a{
 
 </script>
 <!-- END POMODORO STUDY TIMER -->
+<!-- AVERAGE CALCULATOR -->
+<section class="tool-card" id="average-calculator">
+
+  <h2>Average Calculator</h2>
+
+  <p class="average-description">
+    Calculate the average of your numbers, marks, test scores, or grades easily.
+  </p>
+
+  <div class="average-input-area">
+
+    <label for="averageNumbers">
+      Enter Numbers
+    </label>
+
+    <textarea
+      id="averageNumbers"
+      placeholder="Example: 75, 82, 90, 68, 85"
+      rows="4"
+    ></textarea>
+
+    <small>
+      Separate numbers with commas, spaces, or new lines.
+    </small>
+
+  </div>
+
+  <div class="average-buttons">
+
+    <button type="button" onclick="calculateAverage()">
+      Calculate Average
+    </button>
+
+    <button type="button" onclick="resetAverage()">
+      Reset
+    </button>
+
+  </div>
+
+  <div
+    id="averageResult"
+    class="average-result"
+    style="display:none;"
+  >
+
+    <div class="average-main">
+
+      <span>Average</span>
+
+      <strong id="averageValue">
+        0.00
+      </strong>
+
+    </div>
+
+    <div class="average-summary">
+
+      <div>
+        <span>Numbers</span>
+        <strong id="averageCount">0</strong>
+      </div>
+
+      <div>
+        <span>Total</span>
+        <strong id="averageTotal">0.00</strong>
+      </div>
+
+    </div>
+
+    <p id="averageMessage"></p>
+
+  </div>
+
+</section>
+
+
+<style>
+
+  #average-calculator {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 18px;
+    background: #ffffff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+  }
+
+  #average-calculator h2 {
+    text-align: center;
+    margin: 0 0 8px;
+    font-size: 28px;
+  }
+
+  .average-description {
+    text-align: center;
+    color: #666;
+    margin: 0 0 25px;
+    line-height: 1.5;
+  }
+
+  .average-input-area {
+    margin-bottom: 20px;
+  }
+
+  .average-input-area label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  #averageNumbers {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #d5d5d5;
+    border-radius: 12px;
+    font-size: 16px;
+    resize: vertical;
+    box-sizing: border-box;
+    outline: none;
+    font-family: Arial, sans-serif;
+  }
+
+  #averageNumbers:focus {
+    border-color: #4f46e5;
+  }
+
+  .average-input-area small {
+    display: block;
+    margin-top: 7px;
+    color: #777;
+    font-size: 13px;
+  }
+
+  .average-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .average-buttons button {
+    flex: 1;
+    padding: 14px 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    background: #4f46e5;
+    color: #ffffff;
+  }
+
+  .average-buttons button:hover {
+    opacity: 0.9;
+  }
+
+  .average-buttons button:last-child {
+    background: #64748b;
+  }
+
+  .average-result {
+    margin-top: 25px;
+    padding: 22px;
+    border-radius: 15px;
+    background: #f8fafc;
+    text-align: center;
+  }
+
+  .average-main span {
+    display: block;
+    color: #64748b;
+    font-size: 15px;
+  }
+
+  .average-main strong {
+    display: block;
+    margin-top: 5px;
+    font-size: 48px;
+    color: #4f46e5;
+  }
+
+  .average-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .average-summary div {
+    padding: 15px;
+    background: #ffffff;
+    border-radius: 10px;
+  }
+
+  .average-summary span {
+    display: block;
+    color: #64748b;
+    font-size: 13px;
+    margin-bottom: 5px;
+  }
+
+  .average-summary strong {
+    font-size: 20px;
+    color: #222;
+  }
+
+  #averageMessage {
+    margin-top: 18px;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  @media (max-width: 600px) {
+
+    #average-calculator {
+      margin: 20px 10px;
+      padding: 18px;
+    }
+
+    #average-calculator h2 {
+      font-size: 24px;
+    }
+
+    .average-buttons {
+      flex-direction: column;
+    }
+
+    .average-buttons button {
+      width: 100%;
+    }
+
+    .average-summary {
+      grid-template-columns: 1fr;
+    }
+
+    .average-main strong {
+      font-size: 40px;
+    }
+
+  }
+
+</style>
+
+
+<script>
+
+  function calculateAverage() {
+
+    const input =
+      document.getElementById("averageNumbers").value.trim();
+
+    if (!input) {
+
+      alert("Please enter at least one number.");
+
+      return;
+    }
+
+    const numbers = input
+      .split(/[\s,]+/)
+      .map(Number)
+      .filter(number => !isNaN(number));
+
+    if (numbers.length === 0) {
+
+      alert("Please enter valid numbers.");
+
+      return;
+    }
+
+    const total = numbers.reduce(
+      (sum, number) => sum + number,
+      0
+    );
+
+    const average = total / numbers.length;
+
+    document.getElementById("averageValue").textContent =
+      average.toFixed(2);
+
+    document.getElementById("averageCount").textContent =
+      numbers.length;
+
+    document.getElementById("averageTotal").textContent =
+      total.toFixed(2);
+
+    let message = "";
+
+    if (average >= 90) {
+
+      message = "Excellent average! Keep up the great work.";
+
+    } else if (average >= 80) {
+
+      message = "Very good average! Keep improving.";
+
+    } else if (average >= 70) {
+
+      message = "Good average. Keep working consistently.";
+
+    } else if (average >= 60) {
+
+      message = "Fair average. You can improve with more practice.";
+
+    } else {
+
+      message = "Keep practicing and work toward a higher average.";
+
+    }
+
+    document.getElementById("averageMessage").textContent =
+      message;
+
+    document.getElementById("averageResult").style.display =
+      "block";
+  }
+
+
+  function resetAverage() {
+
+    document.getElementById("averageNumbers").value = "";
+
+    document.getElementById("averageResult").style.display =
+      "none";
+
+    document.getElementById("averageValue").textContent =
+      "0.00";
+
+    document.getElementById("averageCount").textContent =
+      "0";
+
+    document.getElementById("averageTotal").textContent =
+      "0.00";
+
+    document.getElementById("averageMessage").textContent =
+      "";
+  }
+
+</script>
+
+<!-- END AVERAGE CALCULATOR -->
 <!-- =========================
      STUDENT QUIZ
      ========================= -->

@@ -5150,66 +5150,70 @@ function loadStudentQuiz(){
 
 }
 
-document.getElementById("quizBtn")
-.addEventListener("click",function(){
+document.addEventListener("click", function(event){
 
-    const selected =
-        document.querySelector(
-            'input[name="studentQuiz"]:checked'
-        );
+    if(event.target && event.target.id === "quizBtn"){
 
-    if(!selected){
+        const selected =
+            document.querySelector(
+                'input[name="studentQuiz"]:checked'
+            );
 
-        showResult(
-            "quizResult",
-            "Please select an answer."
-        );
+        if(!selected){
 
-        return;
-    }
+            showResult(
+                "quizResult",
+                "Please select an answer."
+            );
 
-    const answer =
-        parseInt(selected.value);
+            return;
+        }
 
-    if(
-        answer ===
-        studentQuizQuestions[currentStudentQuestion].answer
-    ){
+        const answer =
+            parseInt(selected.value);
 
-        studentScore++;
+        if(
+            answer ===
+            studentQuizQuestions[currentStudentQuestion].answer
+        ){
 
-    }
+            studentScore++;
 
-    currentStudentQuestion++;
+        }
 
-    if(
-        currentStudentQuestion >=
-        studentQuizQuestions.length
-    ){
+        currentStudentQuestion++;
 
-        showResult(
-            "quizResult",
-            "Quiz complete! Score: " +
-            studentScore +
-            "/" +
+        if(
+            currentStudentQuestion >=
             studentQuizQuestions.length
-        );
+        ){
 
-        currentStudentQuestion = 0;
-        studentScore = 0;
+            showResult(
+                "quizResult",
+                "Quiz complete! Score: " +
+                studentScore +
+                "/" +
+                studentQuizQuestions.length
+            );
 
-    }else{
+            currentStudentQuestion = 0;
+            studentScore = 0;
 
-        showResult(
-            "quizResult",
-            "Answer recorded."
-        );
+        }else{
 
-        loadStudentQuiz();
+            showResult(
+                "quizResult",
+                "Answer recorded."
+            );
+
+            loadStudentQuiz();
+
+        }
 
     }
 
 });
+
 
 loadStudentQuiz();
 
@@ -6018,12 +6022,12 @@ function loadDailyQuiz(){
 
 }
 
+document.addEventListener("click", function(event){
 
-document.getElementById(
-    "dailyQuizBtn"
-).addEventListener(
-    "click",
-    function(){
+    if(
+        event.target &&
+        event.target.id === "dailyQuizBtn"
+    ){
 
         const daily =
             getDailyQuiz();
@@ -6080,11 +6084,14 @@ document.getElementById(
 
         dailyQuizAnswered = true;
 
-        this.innerText =
+        event.target.innerText =
             "View Today's Quiz Again";
 
     }
-);
+
+});
+
+            
 
 
 /* =========================================================

@@ -6565,7 +6565,124 @@ document.getElementById("calculateGrade")
     );
 
 });
-</script>
 
+</script>
+<script>
+/* =========================================================
+   STUDYSMART PROFESSIONAL SEARCH
+   Works with Navigation + Tool Cards
+   ========================================================= */
+
+(function () {
+
+    function initToolSearch() {
+
+        const searchInput =
+            document.getElementById("toolSearch");
+
+        if (!searchInput) return;
+
+        searchInput.addEventListener("input", function () {
+
+            const query =
+                this.value.trim().toLowerCase();
+
+            const slots =
+                document.querySelectorAll(".ss-tool-slot");
+
+            /*
+             * Navigation موجود ہے تو اسی کے tools search کریں
+             */
+            if (slots.length > 0) {
+
+                slots.forEach(function (slot) {
+
+                    const text =
+                        slot.textContent.toLowerCase();
+
+                    const tool =
+                        slot.querySelector(".tool-card");
+
+                    const id =
+                        tool && tool.id
+                            ? tool.id.toLowerCase()
+                            : "";
+
+                    const dataSearch =
+                        tool
+                            ? (
+                                tool.getAttribute("data-search") || ""
+                              ).toLowerCase()
+                            : "";
+
+                    const searchableText =
+                        text + " " + id + " " + dataSearch;
+
+                    const match =
+                        !query ||
+                        searchableText.includes(query);
+
+                    slot.style.display =
+                        match ? "" : "none";
+
+                });
+
+                return;
+            }
+
+            /*
+             * اگر Navigation موجود نہ ہو
+             * تو اصل tool cards search کریں
+             */
+            const tools =
+                document.querySelectorAll(".tool-card");
+
+            tools.forEach(function (tool) {
+
+                const text =
+                    tool.textContent.toLowerCase();
+
+                const id =
+                    (tool.id || "").toLowerCase();
+
+                const dataSearch =
+                    (
+                        tool.getAttribute("data-search") || ""
+                    ).toLowerCase();
+
+                const searchableText =
+                    text + " " + id + " " + dataSearch;
+
+                const match =
+                    !query ||
+                    searchableText.includes(query);
+
+                tool.style.display =
+                    match ? "" : "none";
+
+            });
+
+        });
+
+    }
+
+    /*
+     * Page completely loaded ہونے کے بعد search شروع کریں
+     */
+    if (document.readyState === "loading") {
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            initToolSearch
+        );
+
+    } else {
+
+        initToolSearch();
+
+    }
+
+})();
+</script>
 </body>
                </html>

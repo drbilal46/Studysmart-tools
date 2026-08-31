@@ -438,7 +438,7 @@ footer a{
     font-size:14px;
 }
 
-.locked{
+.locked{⁸
     opacity:.65;
     pointer-events:none;
 }
@@ -3428,131 +3428,253 @@ document.addEventListener("DOMContentLoaded", function () {
     </a>
 
 </footer>
-
-
 <script>
 
 /* =========================================================
-   STUDYSMART TOOLS
-   MAIN JAVASCRIPT
+   STUDYSMART TOOLS NAVIGATION SYSTEM
    ========================================================= */
 
-"use strict";
+document.addEventListener("DOMContentLoaded", function () {
 
+    const navigation =
+        document.getElementById("studySmartNavigation");
 
-/* =========================================================
-   HELPER FUNCTIONS
-   ========================================================= */
+    const navigationList =
+        document.getElementById("ssNavigationList");
 
-function getNumber(id){
-    return parseFloat(document.getElementById(id).value);
-}
+    const toolsGrid =
+        document.getElementById("toolsGrid");
 
-function formatNumber(number, decimals = 2){
-
-    if(!Number.isFinite(number)){
-        return "Invalid";
+    if (!navigation || !navigationList || !toolsGrid) {
+        return;
     }
 
-    return Number(number.toFixed(decimals)).toString();
-}
+    /*
+     * Get only calculator tools from the
+     * original tools grid.
+     *
+     * Quiz cards are NOT moved.
+     */
 
-function showResult(id, text){
-    document.getElementById(id).innerHTML = text;
-}
-
-/* =========================================================
-   STUDYSMART TOOL SEARCH
-   Works with the new Navigation System
-   ========================================================= */
-
-const toolSearch = document.getElementById("toolSearch");
-
-if (toolSearch) {
-
-    toolSearch.addEventListener("input", function () {
-
-        const query =
-            this.value
-                .toLowerCase()
-                .trim();
+    const tools = Array.from(
+        toolsGrid.querySelectorAll(".tool-card")
+    ).filter(function (tool) {
 
         /*
-         * Search inside the Navigation
+         * Do not move quiz cards.
          */
 
-        const toolSlots =
-            document.querySelectorAll(
-                "#studySmartNavigation .ss-tool-slot"
-            );
+        if (
+            tool.classList.contains("quiz-only-card") ||
+            tool.classList.contains("daily-quiz-card")
+        ) {
+            return false;
+        }
 
-        toolSlots.forEach(function (slot) {
+        const id =
+            (tool.id || "").toLowerCase();
 
-            const button =
-                slot.querySelector(".ss-tool-button");
+        const text =
+            tool.textContent.toLowerCase();
 
-            const content =
-                slot.querySelector(".ss-tool-content");
+        if (
+            id.includes("quiz") ||
+            text.includes("student quiz") ||
+            text.includes("daily quiz")
+        ) {
+            return false;
+        }
 
-            if (!button || !content) {
-                return;
-            }
-
-            /*
-             * Tool title
-             */
-
-            const title =
-                button.innerText
-                    .toLowerCase();
-
-            /*
-             * Complete calculator text
-             */
-
-            const text =
-                content.innerText
-                    .toLowerCase();
-
-            /*
-             * Search keywords
-             */
-
-            const searchText =
-                content.querySelector("[data-search]")
-                    ?.getAttribute("data-search")
-                    ?.toLowerCase() || "";
-
-            /*
-             * Check match
-             */
-
-            const match =
-                query === "" ||
-                title.includes(query) ||
-                text.includes(query) ||
-                searchText.includes(query);
-
-            /*
-             * Show / hide the complete
-             * navigation slot
-             */
-
-            if (match) {
-
-                slot.style.display = "";
-
-            } else {
-
-                slot.style.display = "none";
-
-            }
-
-        });
+        return true;
 
     });
 
+
+    /*
+     * If no tools exist,
+     * hide navigation.
+     */
+
+    if (tools.length === 0) {
+        navigation.style.display = "none";
+        return;
     }
+
+
+    /*
+     * Create navigation button
+     * for every calculator.
+     */
+
+    tools.forEach(function (tool, index) {
+
+        const heading =
+            tool.querySelector("h1, h2, h3, h4");
+
+        let title = "";
+
+        if (heading) {
+            title = heading.textContent.trim();
+        }
+
+        if (!title) {
+            title = "Study Tool " + (index + 1);
+        }
+
+
+        /*
+         * Create slot
+         */
+
+        const slot =
+            document.createElement("div");
+
+        slot.className =
+            "ss-tool-slot";
+
+
+        /*
+         * Create button
+         */
+
+        const button =
+            document.createElement("button");
+
+        button.type = "button";
+
+        button.className =
+            "ss-tool-button";
+
+        button.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+
+        /*
+         * Title
+         */
+
+        const titleSpan =
+            document.createElement("span");
+
+        titleSpan.textContent =
+            title;
+
+
+        /*
+         * Arrow
+         */
+
+        const arrow =
+            document.createElement("span");
+
+        arrow.className =
+            "ss-arrow";
+
+        arrow.textContent =
+            "▼";
+
+
+        button.appendChild(titleSpan);
+        button.appendChild(arrow);
+
+
+        /*
+         * Calculator content
+         */
+
+        const content =
+            document.createElement("div");
+
+        content.className =
+            "ss-tool-content";
+
+
+        /*
+         * Move calculator into navigation.
+         */
+
+        content.appendChild(tool);
+
+
+        /*
+         * Add everything to navigation.
+         */
+
+        slot.appendChild(button);
+
+        slot.appendChild(content);
+
+        navigationList.appendChild(slot);
+
+
+        /*
+         * Open / close calculator
+         */
+
+        button.addEventListener(
+            "click",
+            function () {
+
+                const isOpen =
+                    content.classList.contains("open");
+
+
+                if (isOpen) {
+
+                    content.classList.remove("open");
+
+                    button.classList.remove("active");
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                } else {
+
+                    content.classList.add("open");
+
+                    button.classList.add("active");
+
+                    button.setAttribute(
+                        "aria-expanded",
+                        "true"
+                    );
+
+                }
+
+            }
+        );
+
+    });
+
+
+    /*
+     * Hide only the now-empty
+     * original tools grid.
+     */
+
+    toolsGrid.classList.add(
+        "ss-original-tools-hidden"
+    );
+
+
+    /*
+     * IMPORTANT
+     *
+     * Everything after toolsGrid remains
+     * outside the navigation:
+     *
+     * Student Quiz
+     * Daily Quiz
+     * About
+     * Premium
+     * Footer
+     */
+
+});
 
 
 /* =========================================================

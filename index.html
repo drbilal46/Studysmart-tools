@@ -668,6 +668,67 @@ font-weight: 700;
     visibility: visible !important;
     opacity: 1 !important;
     }
+/* =========================
+PREMIUM STUDY GOAL
+========================= */
+
+.premium-goal {
+display: none;
+margin-top: 25px;
+padding: 20px;
+border-radius: 14px;
+background: #f8fafc;
+border: 1px solid #e5e7eb;
+text-align: left;
+}
+
+.premium-goal h3 {
+margin-top: 0;
+font-size: 20px;
+}
+
+.premium-goal p {
+line-height: 1.6;
+}
+
+.goal-options {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+gap: 14px;
+margin-top: 20px;
+}
+
+.goal-option {
+display: flex;
+flex-direction: column;
+align-items: flex-start;
+gap: 6px;
+padding: 16px;
+border: 1px solid #e5e7eb;
+border-radius: 12px;
+background: #ffffff;
+cursor: pointer;
+text-align: left;
+transition: 0.25s ease;
+}
+
+.goal-option:hover {
+transform: translateY(-2px);
+}
+
+.goal-option strong {
+font-size: 16px;
+}
+
+.goal-option span {
+font-size: 13px;
+line-height: 1.5;
+}
+
+.selected-goal {
+margin-top: 18px;
+font-weight: 700;
+}
 </style>
 </head>
 
@@ -3706,7 +3767,46 @@ document.addEventListener("DOMContentLoaded", function () {
     </div>
 
 </div>
+<!-- =========================
+     PREMIUM STUDY GOAL
+     ========================= --><div id="premiumGoal" class="premium-goal"><h3>🎯 آپ کا تعلیمی مقصد کیا ہے؟</h3>
 
+<p>
+    اپنا مقصد منتخب کریں تاکہ ہم آپ کے لیے مناسب
+    Premium Study Content پہلے دکھا سکیں۔
+</p>
+
+<div class="goal-options">
+
+    <button class="goal-option" data-goal="fsc">
+        📚
+        <strong>FSc / College</strong>
+        <span>FSc اور College کی تیاری</span>
+    </button>
+
+    <button class="goal-option" data-goal="entry">
+        🩺
+        <strong>MDCAT / Entry Test</strong>
+        <span>MDCAT، KMU-CAT اور دیگر Entry Tests</span>
+    </button>
+
+    <button class="goal-option" data-goal="university">
+        🎓
+        <strong>University Study</strong>
+        <span>University-level study material</span>
+    </button>
+
+    <button class="goal-option" data-goal="general">
+        🌐
+        <strong>General Learning</strong>
+        <span>Concepts اور عمومی learning</span>
+    </button>
+
+</div>
+
+<div id="selectedGoal" class="selected-goal"></div>
+
+     </div>
 </section></main>
         
 
@@ -7121,6 +7221,56 @@ premiumToggle.addEventListener("click", function () {
 });
 
     }
+/* =========================
+PREMIUM STUDY GOAL
+========================= */
+
+const premiumBtn =
+document.getElementById("premiumBtn");
+
+const premiumGoal =
+document.getElementById("premiumGoal");
+
+const selectedGoal =
+document.getElementById("selectedGoal");
+
+const goalOptions =
+document.querySelectorAll(".goal-option");
+
+if (premiumBtn && premiumGoal) {
+
+premiumBtn.addEventListener("click", function () {
+
+    premiumGoal.style.display = "block";
+
+    premiumGoal.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+});
+
+}
+
+goalOptions.forEach(function (option) {
+
+option.addEventListener("click", function () {
+
+    const goal = this.getAttribute("data-goal");
+
+    const goalNames = {
+        fsc: "📚 FSc / College",
+        entry: "🩺 MDCAT / Entry Test",
+        university: "🎓 University Study",
+        general: "🌐 General Learning"
+    };
+
+    selectedGoal.textContent =
+        "آپ نے منتخب کیا: " + goalNames[goal];
+
+});
+
+});
 </script>
 </body>
                </html>

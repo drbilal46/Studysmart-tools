@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Premium Study Dashboard - StudySmart Tools</title>
+
+<meta name="description"
+      content="StudySmart Tools Premium Study Dashboard for FSc, MDCAT, Entry Tests and University students.">
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: #f8fafc;
+        color: #111827;
+    }
+
+    .premium-header {
+        padding: 22px 18px;
+        background: #ffffff;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .back-btn {
+        border: none;
+        background: transparent;
+        font-size: 15px;
+        cursor: pointer;
+        padding: 8px 0;
+    }
+
+    .premium-container {
+        width: 100%;
+        max-width: 1100px;
+        margin: auto;
+        padding: 25px 18px 50px;
+    }
+
+    .premium-hero {
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 25px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .premium-hero h1 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 28px;
+    }
+
+    .premium-hero p {
+        line-height: 1.6;
+        margin-bottom: 0;
+    }
+
+    .goal-section {
+        margin-top: 25px;
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 25px;
+        border: 1px solid #e5e7eb;
+    }
+
+    .goal-section h2 {
+        margin-top: 0;
+    }
+
+    .goal-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .goal-option {
+        padding: 18px;
+        border: 1px solid #e5e7eb;
+        border-radius: 14px;
+        background: #ffffff;
+        cursor: pointer;
+        text-align: left;
+        transition: 0.25s ease;
+    }
+
+    .goal-option:hover {
+        transform: translateY(-2px);
+    }
+
+    .goal-option strong {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 16px;
+    }
+
+    .goal-option span {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .subjects-section {
+        display: none;
+        margin-top: 25px;
+    }
+
+    .subjects-section.show {
+        display: block;
+    }
+
+    .subjects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+        gap: 15px;
+        margin-top: 20px;
+    }
+
+    .subject-card {
+        padding: 20px;
+        border-radius: 15px;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        cursor: pointer;
+        text-align: left;
+    }
+
+    .subject-card strong {
+        display: block;
+        margin-top: 8px;
+        font-size: 17px;
+    }
+
+    .subject-card span {
+        display: block;
+        margin-top: 6px;
+        font-size: 13px;
+        line-height: 1.5;
+    }
+</style>
+
+</head><body><header class="premium-header">
+    <button class="back-btn" onclick="history.back()">
+        ← Back to StudySmart Tools
+    </button>
+</header><main class="premium-container"><section class="premium-hero">
+    <h1>🚀 StudySmart Tools Premium</h1>
+
+    <p>
+        Your complete study dashboard for FSc, MDCAT,
+        Entry Tests, University study and general learning.
+    </p>
+</section>
+
+
+<!-- =========================
+     STUDY GOAL
+     ========================= -->
+
+<section class="goal-section">
+
+    <h2>🎯 What is your study goal?</h2>
+
+    <p>
+        Select your goal so we can show the most relevant
+        Premium study resources first.
+    </p>
+
+    <div class="goal-options">
+
+        <button class="goal-option" data-goal="fsc">
+            📚
+            <strong>FSc / College</strong>
+            <span>FSc and college-level preparation</span>
+        </button>
+
+        <button class="goal-option" data-goal="entry">
+            🩺
+            <strong>MDCAT / Entry Test</strong>
+            <span>MDCAT, KMU-CAT and other entry-test preparation</span>
+        </button>
+
+        <button class="goal-option" data-goal="university">
+            🎓
+            <strong>University Study</strong>
+            <span>Detailed university-level study resources</span>
+        </button>
+
+        <button class="goal-option" data-goal="general">
+            🌐
+            <strong>General Learning</strong>
+            <span>Learn concepts and strengthen your knowledge</span>
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     PREMIUM SUBJECTS
+     ========================= -->
+
+<section id="subjectsSection" class="subjects-section">
+
+    <div class="premium-hero">
+
+        <h2>📚 Premium Study Subjects</h2>
+
+        <p id="goalMessage">
+            Select a subject to continue your study.
+        </p>
+
+        <div class="subjects-grid">
+
+            <div class="subject-card">
+                🧬
+                <strong>Biology</strong>
+                <span>
+                    Complete concepts, diagrams, MCQs,
+                    explanations and revision.
+                </span>
+            </div>
+
+            <div class="subject-card">
+                ⚛️
+                <strong>Physics</strong>
+                <span>
+                    Concepts, formulas, practice questions
+                    and exam preparation.
+                </span>
+            </div>
+
+            <div class="subject-card">
+                🧪
+                <strong>Chemistry</strong>
+                <span>
+                    Complete topic-based study and MCQ practice.
+                </span>
+            </div>
+
+            <div class="subject-card">
+                📐
+                <strong>Mathematics</strong>
+                <span>
+                    Concepts, problem solving and practice.
+                </span>
+            </div>
+
+            <div class="subject-card">
+                📖
+                <strong>English</strong>
+                <span>
+                    Grammar, vocabulary and exam preparation.
+                </span>
+            </div>
+
+            <div class="subject-card">
+                🩺
+                <strong>Medical & Pharmacy</strong>
+                <span>
+                    University-level medical and pharmacy study resources.
+                </span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main><script>
+
+    const goalOptions =
+        document.querySelectorAll(".goal-option");
+
+    const subjectsSection =
+        document.getElementById("subjectsSection");
+
+    const goalMessage =
+        document.getElementById("goalMessage");
+
+
+    goalOptions.forEach(function(option) {
+
+        option.addEventListener("click", function() {
+
+            const goal =
+                this.getAttribute("data-goal");
+
+            const goalNames = {
+
+                fsc: "FSc / College",
+                entry: "MDCAT / Entry Test",
+                university: "University Study",
+                general: "General Learning"
+
+            };
+
+            subjectsSection.classList.add("show");
+
+            goalMessage.textContent =
+                "Recommended study path for: "
+                + goalNames[goal];
+
+            subjectsSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        });
+
+    });
+
+</script></body>
+  </html>

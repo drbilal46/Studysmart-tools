@@ -1,0 +1,603 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Study Dashboard - StudySmart Tools</title><meta name="description"
+content="Personalized StudySmart Tools Premium dashboard for students.">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f8fafc;
+    color: #111827;
+}
+
+
+/* =========================
+   HEADER
+   ========================= */
+
+.dashboard-header {
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 22px 18px;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.dashboard-label {
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.dashboard-header h1 {
+    margin: 0;
+    font-size: 26px;
+}
+
+.dashboard-header p {
+    margin: 10px 0 0;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   MAIN
+   ========================= */
+
+.dashboard-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px 18px 50px;
+}
+
+
+/* =========================
+   WELCOME
+   ========================= */
+
+.welcome-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 23px;
+}
+
+.welcome-card h2 {
+    margin-top: 0;
+}
+
+
+/* =========================
+   QUICK STATS
+   ========================= */
+
+.stats-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(170px, 1fr));
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.stat-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 17px;
+}
+
+.stat-card strong {
+    display: block;
+    font-size: 21px;
+    margin-bottom: 5px;
+}
+
+.stat-card span {
+    font-size: 13px;
+}
+
+
+/* =========================
+   SUBJECT SECTION
+   ========================= */
+
+.subject-section {
+    margin-top: 25px;
+}
+
+.subject-section h2 {
+    margin-bottom: 6px;
+}
+
+.subject-section > p {
+    margin-top: 0;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   SUBJECT GRID
+   ========================= */
+
+.subject-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.subject-card {
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 16px;
+
+    padding: 20px;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.subject-card:hover {
+    transform: translateY(-2px);
+}
+
+.subject-icon {
+    font-size: 28px;
+}
+
+.subject-card h3 {
+    margin: 9px 0 6px;
+    font-size: 17px;
+}
+
+.subject-card p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   STUDY FEATURES
+   ========================= */
+
+.study-section {
+    margin-top: 25px;
+}
+
+.study-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(180px, 1fr));
+
+    gap: 12px;
+
+    margin-top: 18px;
+}
+
+.study-item {
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 13px;
+
+    padding: 16px;
+}
+
+.study-item strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.study-item span {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .dashboard-header h1 {
+        font-size: 23px;
+    }
+
+    .dashboard-container {
+        padding: 18px 12px 40px;
+    }
+
+    .welcome-card {
+        padding: 20px;
+    }
+
+}
+
+</style></head><body><!-- =========================
+     DASHBOARD HEADER
+     ========================= --><header class="dashboard-header"><div class="header-inner">
+
+    <div class="dashboard-label">
+        🚀 STUDYSMART TOOLS PREMIUM
+    </div>
+
+    <h1 id="dashboardTitle">
+        Study Dashboard
+    </h1>
+
+    <p id="dashboardSubtitle">
+        Your personalized study space.
+    </p>
+
+</div>
+
+</header><main class="dashboard-container"><!-- =========================
+     WELCOME
+     ========================= --><section class="welcome-card"><h2>📚 Your Study Dashboard</h2>
+
+<p id="welcomeMessage">
+    Welcome to your personalized Premium
+    study environment.
+</p>
+
+</section><!-- =========================
+     QUICK STATS
+     ========================= --><section class="stats-grid"><div class="stat-card">
+
+    <strong>0</strong>
+
+    <span>
+        Topics Completed
+    </span>
+
+</div>
+
+
+<div class="stat-card">
+
+    <strong>0</strong>
+
+    <span>
+        MCQs Attempted
+    </span>
+
+</div>
+
+
+<div class="stat-card">
+
+    <strong>0%</strong>
+
+    <span>
+        Overall Progress
+    </span>
+
+</div>
+
+
+<div class="stat-card">
+
+    <strong>0</strong>
+
+    <span>
+        Tests Completed
+    </span>
+
+</div>
+
+</section><!-- =========================
+     SUBJECTS
+     ========================= --><section class="subject-section"><h2>📚 Your Subjects</h2>
+
+<p>
+    Select a subject to continue your study.
+</p>
+
+
+<div class="subject-grid">
+
+
+    <div class="subject-card">
+
+        <div class="subject-icon">
+            🧬
+        </div>
+
+        <h3>Biology</h3>
+
+        <p>
+            Concepts, diagrams, notes,
+            MCQs, explanations and revision.
+        </p>
+
+    </div>
+
+
+    <div class="subject-card">
+
+        <div class="subject-icon">
+            ⚛️
+        </div>
+
+        <h3>Physics</h3>
+
+        <p>
+            Concepts, formulas,
+            problem solving and practice.
+        </p>
+
+    </div>
+
+
+    <div class="subject-card">
+
+        <div class="subject-icon">
+            🧪
+        </div>
+
+        <h3>Chemistry</h3>
+
+        <p>
+            Concepts, reactions,
+            MCQs and exam practice.
+        </p>
+
+    </div>
+
+
+    <div class="subject-card">
+
+        <div class="subject-icon">
+            📖
+        </div>
+
+        <h3>English</h3>
+
+        <p>
+            Grammar, vocabulary,
+            comprehension and practice.
+        </p>
+
+    </div>
+
+
+    <div class="subject-card">
+
+        <div class="subject-icon">
+            📐
+        </div>
+
+        <h3>Mathematics</h3>
+
+        <p>
+            Concepts, formulas,
+            problem solving and practice.
+        </p>
+
+    </div>
+
+
+    <div class="subject-card">
+
+        <div class="subject-icon">
+            🩺
+        </div>
+
+        <h3>Medical & Pharmacy</h3>
+
+        <p>
+            University-level medical
+            and pharmacy study resources.
+        </p>
+
+    </div>
+
+
+</div>
+
+</section><!-- =========================
+     STUDY FEATURES
+     ========================= --><section class="study-section"><h2>🎯 Study & Practice</h2>
+
+<div class="study-grid">
+
+
+    <div class="study-item">
+
+        📝
+
+        <strong>Topic Notes</strong>
+
+        <span>
+            Structured study notes.
+        </span>
+
+    </div>
+
+
+    <div class="study-item">
+
+        🖼️
+
+        <strong>Diagrams</strong>
+
+        <span>
+            Important labeled diagrams.
+        </span>
+
+    </div>
+
+
+    <div class="study-item">
+
+        🧠
+
+        <strong>MCQ Practice</strong>
+
+        <span>
+            Topic-wise question practice.
+        </span>
+
+    </div>
+
+
+    <div class="study-item">
+
+        💡
+
+        <strong>Explanations</strong>
+
+        <span>
+            Learn from every answer.
+        </span>
+
+    </div>
+
+
+    <div class="study-item">
+
+        📝
+
+        <strong>Mock Tests</strong>
+
+        <span>
+            Complete exam practice.
+        </span>
+
+    </div>
+
+
+    <div class="study-item">
+
+        🔄
+
+        <strong>Revision</strong>
+
+        <span>
+            Organized revision system.
+        </span>
+
+    </div>
+
+
+</div>
+
+</section></main><script>
+
+
+/* =========================
+   GET SELECTED GOAL
+   ========================= */
+
+const params =
+    new URLSearchParams(window.location.search);
+
+const selectedGoal =
+    params.get("goal");
+
+
+/* =========================
+   GOAL INFORMATION
+   ========================= */
+
+const goals = {
+
+    fsc: {
+        title: "📚 FSc / College Dashboard",
+        subtitle:
+            "Your FSc and college study preparation space.",
+        welcome:
+            "Prepare your concepts, practice questions and exams in one organized place."
+    },
+
+    entry: {
+        title: "🩺 MDCAT / Entry Test Dashboard",
+        subtitle:
+            "Your personalized entry-test preparation space.",
+        welcome:
+            "Practice important concepts, MCQs, diagrams and mock tests for your preparation."
+    },
+
+    university: {
+        title: "🎓 University Study Dashboard",
+        subtitle:
+            "Your university-level study space.",
+        welcome:
+            "Access detailed study resources, concepts, diagrams and practice material."
+    },
+
+    general: {
+        title: "🌐 General Learning Dashboard",
+        subtitle:
+            "Your personalized learning space.",
+        welcome:
+            "Strengthen your concepts and improve your knowledge through structured learning."
+    }
+
+};
+
+
+/* =========================
+   UPDATE DASHBOARD
+   ========================= */
+
+const dashboardTitle =
+    document.getElementById("dashboardTitle");
+
+const dashboardSubtitle =
+    document.getElementById("dashboardSubtitle");
+
+const welcomeMessage =
+    document.getElementById("welcomeMessage");
+
+
+if (selectedGoal && goals[selectedGoal]) {
+
+    dashboardTitle.textContent =
+        goals[selectedGoal].title;
+
+    dashboardSubtitle.textContent =
+        goals[selectedGoal].subtitle;
+
+    welcomeMessage.textContent =
+        goals[selectedGoal].welcome;
+
+} else {
+
+    dashboardTitle.textContent =
+        "📚 Study Dashboard";
+
+    dashboardSubtitle.textContent =
+        "Your personalized study space.";
+
+    welcomeMessage.textContent =
+        "Choose your study goal to get started.";
+
+}
+
+
+</script></body></html>

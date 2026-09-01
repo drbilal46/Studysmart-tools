@@ -912,52 +912,20 @@ const dashboardMessage =
     document.getElementById("dashboardMessage");
 
 
+const goalOptions =
+    document.querySelectorAll(".goal-option");
+
 goalOptions.forEach(function(option) {
 
-    option.addEventListener(
-        "click",
-        function() {
+    option.addEventListener("click", function() {
 
-            const goal =
-                this.getAttribute("data-goal");
+        const goal =
+            this.getAttribute("data-goal");
 
+        window.location.href =
+            "dashboard.html?goal=" + goal;
 
-            const goalNames = {
-
-                fsc:
-                    "FSc / College",
-
-                entry:
-                    "MDCAT / Entry Test",
-
-                university:
-                    "University Study",
-
-                general:
-                    "General Learning"
-
-            };
-
-
-            dashboardTitle.textContent =
-                "📚 " +
-                goalNames[goal] +
-                " Premium Dashboard";
-
-
-            dashboardMessage.textContent =
-                "Your personalized study dashboard is ready. Select a subject to continue.";
-
-
-            goalDashboard.classList.add("show");
-
-
-            goalDashboard.scrollIntoView({
-                behavior: "smooth"
-            });
-
-        }
-    );
+    });
 
 });
 

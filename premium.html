@@ -869,6 +869,7 @@ font-weight: 700;
 
 </section></main><script>
 
+<script>
 
 /* =========================
    UNLOCK PREMIUM
@@ -881,53 +882,48 @@ const goalSection =
     document.getElementById("goalSection");
 
 
-unlockPremiumBtn.addEventListener(
-    "click",
-    function() {
+if (unlockPremiumBtn && goalSection) {
 
-        goalSection.classList.add("show");
+    unlockPremiumBtn.addEventListener(
+        "click",
+        function() {
 
-        goalSection.scrollIntoView({
-            behavior: "smooth"
-        });
+            goalSection.classList.add("show");
 
-    }
-);
+            goalSection.scrollIntoView({
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+}
 
 
 /* =========================
-   GOAL SELECTION
+   GOAL → NEW DASHBOARD
    ========================= */
 
 const goalOptions =
     document.querySelectorAll(".goal-option");
 
-const goalDashboard =
-    document.getElementById("goalDashboard");
-
-const dashboardTitle =
-    document.getElementById("dashboardTitle");
-
-const dashboardMessage =
-    document.getElementById("dashboardMessage");
-
-
-const goalOptions =
-    document.querySelectorAll(".goal-option");
 
 goalOptions.forEach(function(option) {
 
-    option.addEventListener("click", function() {
+    option.addEventListener(
+        "click",
+        function() {
 
-        const goal =
-            this.getAttribute("data-goal");
+            const goal =
+                this.getAttribute("data-goal");
 
-        window.location.href =
-            "dashboard.html?goal=" + goal;
+            window.location.href =
+                "dashboard.html?goal=" + goal;
 
-    });
+        }
+    );
 
 });
 
-
+</script>
 </script></body></html>

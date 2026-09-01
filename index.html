@@ -6889,6 +6889,57 @@ document.getElementById("calculateGrade")
     }
 
 })();
+/* =========================================================
+PREMIUM TOGGLE
+========================================================= */
+
+const premiumToggle =
+document.getElementById("premiumToggle");
+
+const premiumContent =
+document.getElementById("premiumContent");
+
+const premiumArrow =
+document.getElementById("premiumArrow");
+
+if (premiumToggle && premiumContent) {
+
+premiumToggle.addEventListener("click", function () {
+
+    const isOpen =
+        premiumContent.classList.contains("open");
+
+    if (isOpen) {
+
+        premiumContent.classList.remove("open");
+
+        premiumToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        if (premiumArrow) {
+            premiumArrow.textContent = "▼";
+        }
+
+    } else {
+
+        premiumContent.classList.add("open");
+
+        premiumToggle.setAttribute(
+            "aria-expanded",
+            "true"
+        );
+
+        if (premiumArrow) {
+            premiumArrow.textContent = "▲";
+        }
+
+    }
+
+});
+
+    }
 </script>
 </body>
                </html>

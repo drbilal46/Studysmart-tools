@@ -4789,9 +4789,25 @@ document.querySelectorAll(
 
             else if(action === "sqrt"){
 
-                calcInput.value += "√(";
+    const value = parseFloat(calcInput.value);
 
-            }
+    if(Number.isFinite(value) && value >= 0){
+
+        const result = Math.sqrt(value);
+
+        calcInput.value =
+            formatNumber(result, 10);
+
+        calculatorAnswer = result;
+
+    } else {
+
+        calcResult.innerText =
+            "Please enter a valid positive number.";
+
+    }
+
+    }
 
             else if(action === "square"){
 

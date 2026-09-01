@@ -4644,39 +4644,38 @@ function factorial(n){
     return result;
 }
 
-
 function safeCalculate(expression){
 
     let exp = expression.trim();
 
+    /* Constants */
     exp = exp.replace(/π/g, "Math.PI");
+    exp = exp.replace(/\be\b/g, "Math.E");
 
+    /* Square root */
     exp = exp.replace(/√\(/g, "Math.sqrt(");
 
+    /* Power */
     exp = exp.replace(/\^/g, "**");
 
+    /* Percentage */
     exp = exp.replace(
         /(\d+(?:\.\d+)?)%/g,
         "($1/100)"
     );
 
+    /* Square */
     exp = exp.replace(
         /(\d+(?:\.\d+)?)²/g,
         "($1**2)"
     );
 
-    exp = exp.replace(
-        /\be\b/g,
-        "Math.E"
-    );
-
     /*
-     * Allow only numbers, operators,
-     * parentheses and approved Math functions.
+     * Allow numbers, operators, brackets
+     * and only approved Math functions/constants.
      */
-
     if (
-        !/^(?:(?:Math\.PI|Math\.E|Math\.sqrt)|[0-9+\-*/().\s%])+$/.test(exp)
+        !/^(?:(?:Math\.sqrt|Math\.PI|Math\.E)|[0-9+\-*/().\s%*]+)$/.test(exp)
     ) {
         throw new Error("Invalid expression");
     }
@@ -4693,7 +4692,8 @@ function safeCalculate(expression){
     }
 
     return result;
-        }
+    }
+
 
 
 function calculateScientific(){

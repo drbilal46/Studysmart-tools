@@ -3674,6 +3674,46 @@ document.addEventListener("DOMContentLoaded", function () {
     
 <script>
 /* =========================================================
+   STUDYSMART COMMON FUNCTIONS
+   ========================================================= */
+
+function getNumber(id) {
+
+    const element = document.getElementById(id);
+
+    if (!element) {
+        return NaN;
+    }
+
+    const value = parseFloat(element.value);
+
+    return Number.isFinite(value) ? value : NaN;
+}
+
+
+function showResult(id, message) {
+
+    const element = document.getElementById(id);
+
+    if (!element) {
+        console.error("Result element not found:", id);
+        return;
+    }
+
+    element.innerHTML = message;
+}
+
+
+function formatNumber(value, decimals = 2) {
+
+    if (!Number.isFinite(value)) {
+        return "0";
+    }
+
+    return Number(value).toFixed(decimals).replace(/\.?0+$/, "");
+}
+    
+/* =========================================================
    PERCENTAGE CALCULATOR
    ========================================================= */
 
@@ -4607,11 +4647,13 @@ function factorial(n){
 
 function safeCalculate(expression){
 
-    let exp = expression;
+    let exp = expression.trim();
 
-    exp = exp.replace(/π/g,String(Math.PI));
-    exp = exp.replace(/√/g,"Math.sqrt");
-    exp = exp.replace(/\^/g,"**");
+    exp = exp.replace(/π/g, "Math.PI");
+
+    exp = exp.replace(/√\(/g, "Math.sqrt(");
+
+    exp = exp.replace(/\^/g, "**");
 
     exp = exp.replace(
         /(\d+(?:\.\d+)?)%/g,
@@ -4625,10 +4667,17 @@ function safeCalculate(expression){
 
     exp = exp.replace(
         /\be\b/g,
-        String(Math.E)
+        "Math.E"
     );
 
-    if(!/^[0-9+\-*/().\s%^]+$/.test(exp)){
+    /*
+     * Allow only numbers, operators,
+     * parentheses and approved Math functions.
+     */
+
+    if (
+        !/^(?:(?:Math\.PI|Math\.E|Math\.sqrt)|[0-9+\-*/().\s%])+$/.test(exp)
+    ) {
         throw new Error("Invalid expression");
     }
 
@@ -4644,7 +4693,7 @@ function safeCalculate(expression){
     }
 
     return result;
-}
+        }
 
 
 function calculateScientific(){

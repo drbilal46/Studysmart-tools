@@ -1,316 +1,850 @@
-<!DOCTYPE html><html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Premium Study Dashboard - StudySmart Tools</title>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<meta name="description"
-      content="StudySmart Tools Premium Study Dashboard for FSc, MDCAT, Entry Tests and University students.">
+<title>Premium Study Dashboard - StudySmart Tools</title><meta name="description"
+content="StudySmart Tools Premium study resources for FSc, MDCAT, entry tests, university students and general learning.">
 
 <style>
-    * {
-        box-sizing: border-box;
-    }
 
-    body {
-        margin: 0;
-        font-family: Arial, sans-serif;
-        background: #f8fafc;
-        color: #111827;
-    }
+* {
+    box-sizing: border-box;
+}
 
-    .premium-header {
-        padding: 22px 18px;
-        background: #ffffff;
-        border-bottom: 1px solid #e5e7eb;
-    }
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f8fafc;
+    color: #111827;
+}
 
-    .back-btn {
-        border: none;
-        background: transparent;
-        font-size: 15px;
-        cursor: pointer;
-        padding: 8px 0;
-    }
+
+/* =========================
+   HEADER
+   ========================= */
+
+.premium-header {
+    padding: 18px;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.back-btn {
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    cursor: pointer;
+    padding: 8px 0;
+}
+
+
+/* =========================
+   MAIN CONTAINER
+   ========================= */
+
+.premium-container {
+    width: 100%;
+    max-width: 1100px;
+    margin: auto;
+    padding: 25px 18px 50px;
+}
+
+
+/* =========================
+   HERO
+   ========================= */
+
+.premium-hero {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px;
+    border: 1px solid #e5e7eb;
+}
+
+.premium-hero h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 28px;
+}
+
+.premium-hero p {
+    line-height: 1.6;
+}
+
+
+/* =========================
+   PREMIUM FEATURES
+   ========================= */
+
+.features-section {
+    margin-top: 22px;
+}
+
+.features-section h2 {
+    margin-bottom: 8px;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.feature-card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 15px;
+    padding: 18px;
+}
+
+.feature-icon {
+    font-size: 25px;
+    margin-bottom: 8px;
+}
+
+.feature-card strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 6px;
+}
+
+.feature-card span {
+    display: block;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   UNLOCK AREA
+   ========================= */
+
+.unlock-section {
+    margin-top: 25px;
+    padding: 25px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    text-align: center;
+}
+
+.unlock-section p {
+    line-height: 1.6;
+}
+
+#unlockPremiumBtn {
+    border: none;
+    padding: 14px 24px;
+    border-radius: 11px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+
+/* =========================
+   GOAL SECTION
+   ========================= */
+
+.goal-section {
+    display: none;
+
+    margin-top: 25px;
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px;
+    border: 1px solid #e5e7eb;
+}
+
+.goal-section.show {
+    display: block;
+}
+
+.goal-options {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.goal-option {
+    padding: 20px;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: 0.25s ease;
+}
+
+.goal-option:hover {
+    transform: translateY(-2px);
+}
+
+.goal-option strong {
+    display: block;
+
+    margin-top: 8px;
+    margin-bottom: 6px;
+
+    font-size: 16px;
+}
+
+.goal-option span {
+    display: block;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   GOAL DASHBOARD
+   ========================= */
+
+.goal-dashboard {
+    display: none;
+
+    margin-top: 25px;
+}
+
+.goal-dashboard.show {
+    display: block;
+}
+
+.dashboard-header {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+
+    padding: 25px;
+}
+
+.dashboard-header h2 {
+    margin-top: 0;
+}
+
+
+/* =========================
+   SUBJECTS
+   ========================= */
+
+.subjects-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(210px, 1fr));
+
+    gap: 15px;
+
+    margin-top: 20px;
+}
+
+.subject-card {
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    transition: 0.25s ease;
+}
+
+.subject-card:hover {
+    transform: translateY(-2px);
+}
+
+.subject-card .subject-icon {
+    font-size: 28px;
+}
+
+.subject-card strong {
+    display: block;
+
+    margin-top: 9px;
+
+    font-size: 17px;
+}
+
+.subject-card span {
+    display: block;
+
+    margin-top: 7px;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 600px) {
 
     .premium-container {
-        width: 100%;
-        max-width: 1100px;
-        margin: auto;
-        padding: 25px 18px 50px;
-    }
-
-    .premium-hero {
-        background: #ffffff;
-        border-radius: 18px;
-        padding: 25px;
-        border: 1px solid #e5e7eb;
+        padding: 18px 12px 40px;
     }
 
     .premium-hero h1 {
-        margin-top: 0;
-        margin-bottom: 10px;
-        font-size: 28px;
+        font-size: 24px;
     }
 
-    .premium-hero p {
-        line-height: 1.6;
-        margin-bottom: 0;
-    }
-
-    .goal-section {
-        margin-top: 25px;
-        background: #ffffff;
-        border-radius: 18px;
-        padding: 25px;
-        border: 1px solid #e5e7eb;
-    }
-
-    .goal-section h2 {
-        margin-top: 0;
-    }
-
-    .goal-options {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-        gap: 15px;
-        margin-top: 20px;
-    }
-
-    .goal-option {
-        padding: 18px;
-        border: 1px solid #e5e7eb;
-        border-radius: 14px;
-        background: #ffffff;
-        cursor: pointer;
-        text-align: left;
-        transition: 0.25s ease;
-    }
-
-    .goal-option:hover {
-        transform: translateY(-2px);
-    }
-
-    .goal-option strong {
-        display: block;
-        margin-bottom: 7px;
-        font-size: 16px;
-    }
-
-    .goal-option span {
-        font-size: 13px;
-        line-height: 1.5;
-    }
-
-    .subjects-section {
-        display: none;
-        margin-top: 25px;
-    }
-
-    .subjects-section.show {
-        display: block;
-    }
-
-    .subjects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-        gap: 15px;
-        margin-top: 20px;
-    }
-
-    .subject-card {
+    .premium-hero,
+    .goal-section,
+    .unlock-section,
+    .dashboard-header {
         padding: 20px;
-        border-radius: 15px;
-        background: #ffffff;
-        border: 1px solid #e5e7eb;
-        cursor: pointer;
-        text-align: left;
     }
 
-    .subject-card strong {
-        display: block;
-        margin-top: 8px;
-        font-size: 17px;
-    }
+}
 
-    .subject-card span {
-        display: block;
-        margin-top: 6px;
-        font-size: 13px;
-        line-height: 1.5;
-    }
-</style>
+</style></head><body><!-- =========================
+     HEADER
+     ========================= --><header class="premium-header"><button
+    class="back-btn"
+    onclick="history.back()">
 
-</head><body><header class="premium-header">
-    <button class="back-btn" onclick="history.back()">
-        ← Back to StudySmart Tools
-    </button>
-</header><main class="premium-container"><section class="premium-hero">
-    <h1>🚀 StudySmart Tools Premium</h1>
+    ← Back to StudySmart Tools
 
-    <p>
-        Your complete study dashboard for FSc, MDCAT,
-        Entry Tests, University study and general learning.
-    </p>
-</section>
+</button>
+
+</header><main class="premium-container"><!-- =========================
+     PREMIUM HERO
+     ========================= --><section class="premium-hero"><h1>🚀 StudySmart Tools Premium</h1>
+
+<p>
+    One Premium package with powerful study tools,
+    advanced practice, exam preparation and
+    structured learning resources for students
+    at every level.
+</p>
+
+</section><!-- =========================
+     PREMIUM FEATURES
+     ========================= --><section class="features-section"><h2>⭐ What is included in Premium?</h2>
+
+<p>
+    All advanced study features are included
+    in one Premium package.
+</p>
 
 
-<!-- =========================
-     STUDY GOAL
-     ========================= -->
+<div class="features-grid">
 
-<section class="goal-section">
 
-    <h2>🎯 What is your study goal?</h2>
+    <div class="feature-card">
 
-    <p>
-        Select your goal so we can show the most relevant
-        Premium study resources first.
-    </p>
+        <div class="feature-icon">🧠</div>
 
-    <div class="goal-options">
+        <strong>Advanced MCQ Bank</strong>
 
-        <button class="goal-option" data-goal="fsc">
-            📚
-            <strong>FSc / College</strong>
-            <span>FSc and college-level preparation</span>
-        </button>
-
-        <button class="goal-option" data-goal="entry">
-            🩺
-            <strong>MDCAT / Entry Test</strong>
-            <span>MDCAT, KMU-CAT and other entry-test preparation</span>
-        </button>
-
-        <button class="goal-option" data-goal="university">
-            🎓
-            <strong>University Study</strong>
-            <span>Detailed university-level study resources</span>
-        </button>
-
-        <button class="goal-option" data-goal="general">
-            🌐
-            <strong>General Learning</strong>
-            <span>Learn concepts and strengthen your knowledge</span>
-        </button>
+        <span>
+            Large topic-wise MCQ collection
+            for practice and preparation.
+        </span>
 
     </div>
 
-</section>
+
+    <div class="feature-card">
+
+        <div class="feature-icon">🎯</div>
+
+        <strong>Entry Test Preparation</strong>
+
+        <span>
+            MDCAT, KMU-CAT and other
+            entry-test preparation resources.
+        </span>
+
+    </div>
 
 
-<!-- =========================
-     PREMIUM SUBJECTS
-     ========================= -->
+    <div class="feature-card">
 
-<section id="subjectsSection" class="subjects-section">
+        <div class="feature-icon">🎓</div>
 
-    <div class="premium-hero">
+        <strong>University Study Material</strong>
 
-        <h2>📚 Premium Study Subjects</h2>
+        <span>
+            Detailed study resources for
+            university-level students.
+        </span>
 
-        <p id="goalMessage">
-            Select a subject to continue your study.
-        </p>
+    </div>
 
-        <div class="subjects-grid">
 
-            <div class="subject-card">
+    <div class="feature-card">
+
+        <div class="feature-icon">📚</div>
+
+        <strong>Advanced Topic Notes</strong>
+
+        <span>
+            Clear, structured and
+            exam-focused study notes.
+        </span>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">💡</div>
+
+        <strong>MCQ Explanations</strong>
+
+        <span>
+            Understand why an answer is
+            correct with useful explanations.
+        </span>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">🖼️</div>
+
+        <strong>Labeled Diagrams</strong>
+
+        <span>
+            Important concepts supported
+            with clear labeled diagrams.
+        </span>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">📝</div>
+
+        <strong>Full Mock Tests</strong>
+
+        <span>
+            Complete practice tests
+            for exam preparation.
+        </span>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">⏱️</div>
+
+        <strong>Timed Practice</strong>
+
+        <span>
+            Improve speed and
+            exam-time management.
+        </span>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">📊</div>
+
+        <strong>Progress Tracking</strong>
+
+        <span>
+            Track scores and
+            study performance.
+        </span>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">⭐</div>
+
+        <strong>Important Questions</strong>
+
+        <span>
+            Focus on important
+            exam-preparation areas.
+        </span>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">🔄</div>
+
+        <strong>Revision System</strong>
+
+        <span>
+            Organized revision
+            for better preparation.
+        </span>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">📄</div>
+
+        <strong>Premium Study Documents</strong>
+
+        <span>
+            Useful study resources
+            organized in one place.
+        </span>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">🔍</div>
+
+        <strong>Advanced Topic Search</strong>
+
+        <span>
+            Quickly find relevant
+            Premium study content.
+        </span>
+
+    </div>
+
+
+</div>
+
+</section><!-- =========================
+     UNLOCK
+     ========================= --><section class="unlock-section"><h2>💎 Ready to Start?</h2>
+
+<p>
+    Unlock the complete Premium study
+    experience and choose your learning goal.
+</p>
+
+<button
+    id="unlockPremiumBtn"
+    type="button">
+
+    💎 Unlock All Premium Tools
+
+</button>
+
+</section><!-- =========================
+     STUDY GOAL
+     ========================= --><section
+    id="goalSection"
+    class="goal-section"><h2>🎯 What is your study goal?</h2>
+
+<p>
+    Select your goal so we can prepare
+    the most relevant study dashboard for you.
+</p>
+
+
+<div class="goal-options">
+
+
+    <button
+        class="goal-option"
+        data-goal="fsc">
+
+        📚
+
+        <strong>FSc / College</strong>
+
+        <span>
+            FSc and college-level
+            study and exam preparation.
+        </span>
+
+    </button>
+
+
+    <button
+        class="goal-option"
+        data-goal="entry">
+
+        🩺
+
+        <strong>MDCAT / Entry Test</strong>
+
+        <span>
+            MDCAT, KMU-CAT and
+            other entry-test preparation.
+        </span>
+
+    </button>
+
+
+    <button
+        class="goal-option"
+        data-goal="university">
+
+        🎓
+
+        <strong>University Study</strong>
+
+        <span>
+            Detailed university-level
+            study resources.
+        </span>
+
+    </button>
+
+
+    <button
+        class="goal-option"
+        data-goal="general">
+
+        🌐
+
+        <strong>General Learning</strong>
+
+        <span>
+            Strengthen concepts and
+            improve general knowledge.
+        </span>
+
+    </button>
+
+
+</div>
+
+</section><!-- =========================
+     GOAL DASHBOARD
+     ========================= --><section
+    id="goalDashboard"
+    class="goal-dashboard"><div class="dashboard-header">
+
+    <h2 id="dashboardTitle">
+        📚 Your Study Dashboard
+    </h2>
+
+    <p id="dashboardMessage">
+        Choose a subject to continue.
+    </p>
+
+
+    <div class="subjects-grid">
+
+
+        <div class="subject-card">
+
+            <div class="subject-icon">
                 🧬
-                <strong>Biology</strong>
-                <span>
-                    Complete concepts, diagrams, MCQs,
-                    explanations and revision.
-                </span>
             </div>
 
-            <div class="subject-card">
-                ⚛️
-                <strong>Physics</strong>
-                <span>
-                    Concepts, formulas, practice questions
-                    and exam preparation.
-                </span>
-            </div>
+            <strong>Biology</strong>
 
-            <div class="subject-card">
-                🧪
-                <strong>Chemistry</strong>
-                <span>
-                    Complete topic-based study and MCQ practice.
-                </span>
-            </div>
-
-            <div class="subject-card">
-                📐
-                <strong>Mathematics</strong>
-                <span>
-                    Concepts, problem solving and practice.
-                </span>
-            </div>
-
-            <div class="subject-card">
-                📖
-                <strong>English</strong>
-                <span>
-                    Grammar, vocabulary and exam preparation.
-                </span>
-            </div>
-
-            <div class="subject-card">
-                🩺
-                <strong>Medical & Pharmacy</strong>
-                <span>
-                    University-level medical and pharmacy study resources.
-                </span>
-            </div>
+            <span>
+                Concepts, diagrams, MCQs,
+                explanations and revision.
+            </span>
 
         </div>
 
+
+        <div class="subject-card">
+
+            <div class="subject-icon">
+                ⚛️
+            </div>
+
+            <strong>Physics</strong>
+
+            <span>
+                Concepts, formulas,
+                problem solving and practice.
+            </span>
+
+        </div>
+
+
+        <div class="subject-card">
+
+            <div class="subject-icon">
+                🧪
+            </div>
+
+            <strong>Chemistry</strong>
+
+            <span>
+                Concepts, reactions,
+                practice and MCQs.
+            </span>
+
+        </div>
+
+
+        <div class="subject-card">
+
+            <div class="subject-icon">
+                📐
+            </div>
+
+            <strong>Mathematics</strong>
+
+            <span>
+                Concepts, formulas,
+                problem solving and practice.
+            </span>
+
+        </div>
+
+
+        <div class="subject-card">
+
+            <div class="subject-icon">
+                📖
+            </div>
+
+            <strong>English</strong>
+
+            <span>
+                Grammar, vocabulary,
+                comprehension and practice.
+            </span>
+
+        </div>
+
+
+        <div class="subject-card">
+
+            <div class="subject-icon">
+                🩺
+            </div>
+
+            <strong>Medical & Pharmacy</strong>
+
+            <span>
+                University-level medical
+                and pharmacy study resources.
+            </span>
+
+        </div>
+
+
     </div>
 
-</section>
+</div>
 
-</main><script>
-
-    const goalOptions =
-        document.querySelectorAll(".goal-option");
-
-    const subjectsSection =
-        document.getElementById("subjectsSection");
-
-    const goalMessage =
-        document.getElementById("goalMessage");
+</section></main><script>
 
 
-    goalOptions.forEach(function(option) {
+/* =========================
+   UNLOCK PREMIUM
+   ========================= */
 
-        option.addEventListener("click", function() {
+const unlockPremiumBtn =
+    document.getElementById("unlockPremiumBtn");
+
+const goalSection =
+    document.getElementById("goalSection");
+
+
+unlockPremiumBtn.addEventListener(
+    "click",
+    function() {
+
+        goalSection.classList.add("show");
+
+        goalSection.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+);
+
+
+/* =========================
+   GOAL SELECTION
+   ========================= */
+
+const goalOptions =
+    document.querySelectorAll(".goal-option");
+
+const goalDashboard =
+    document.getElementById("goalDashboard");
+
+const dashboardTitle =
+    document.getElementById("dashboardTitle");
+
+const dashboardMessage =
+    document.getElementById("dashboardMessage");
+
+
+goalOptions.forEach(function(option) {
+
+    option.addEventListener(
+        "click",
+        function() {
 
             const goal =
                 this.getAttribute("data-goal");
 
+
             const goalNames = {
 
-                fsc: "FSc / College",
-                entry: "MDCAT / Entry Test",
-                university: "University Study",
-                general: "General Learning"
+                fsc:
+                    "FSc / College",
+
+                entry:
+                    "MDCAT / Entry Test",
+
+                university:
+                    "University Study",
+
+                general:
+                    "General Learning"
 
             };
 
-            subjectsSection.classList.add("show");
 
-            goalMessage.textContent =
-                "Recommended study path for: "
-                + goalNames[goal];
+            dashboardTitle.textContent =
+                "📚 " +
+                goalNames[goal] +
+                " Premium Dashboard";
 
-            subjectsSection.scrollIntoView({
+
+            dashboardMessage.textContent =
+                "Your personalized study dashboard is ready. Select a subject to continue.";
+
+
+            goalDashboard.classList.add("show");
+
+
+            goalDashboard.scrollIntoView({
                 behavior: "smooth"
             });
 
-        });
+        }
+    );
 
-    });
+});
 
-</script></body>
-  </html>
+
+</script></body></html>

@@ -487,6 +487,156 @@ footer a{
         font-size:19px;
     }
 }
+/* =========================================================
+PREMIUM PROFESSIONAL TOGGLE
+========================================================= */
+
+.premium {
+width: 100%;
+margin: 30px 0;
+}
+
+.premium-toggle {
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between;
+
+padding: 16px 20px;
+
+border: none;
+border-radius: 12px;
+
+cursor: pointer;
+
+font-size: 18px;
+font-weight: 700;
+
+text-align: left;
+
+background: #f1f5f9;
+color: #111827;
+
+transition: 0.25s ease;
+
+}
+
+.premium-toggle:hover {
+transform: translateY(-1px);
+}
+
+.premium-arrow {
+font-size: 14px;
+transition: transform 0.25s ease;
+}
+
+/* Premium content hidden by default */
+
+.premium-content {
+display: none;
+
+margin-top: 15px;
+padding: 20px;
+
+border-radius: 14px;
+
+}
+
+/* Premium content opens */
+
+.premium-content.open {
+display: block;
+}
+
+/* Premium heading */
+
+.premium-content h2 {
+margin-top: 0;
+text-align: left;
+}
+
+/* Premium description */
+
+.premium-content > p {
+text-align: left;
+line-height: 1.6;
+}
+
+/* Premium tools grid */
+
+.premium-tools {
+display: grid;
+
+grid-template-columns:
+    repeat(auto-fit, minmax(220px, 1fr));
+
+gap: 15px;
+
+margin-top: 20px;
+
+}
+
+/* Individual Premium tool */
+
+.premium-tool {
+display: flex;
+flex-direction: column;
+
+gap: 6px;
+
+padding: 16px;
+
+border-radius: 12px;
+
+background: #f8fafc;
+
+border: 1px solid #e5e7eb;
+
+text-align: left;
+
+}
+
+.premium-tool strong {
+font-size: 16px;
+}
+
+.premium-tool span {
+font-size: 13px;
+line-height: 1.5;
+}
+
+/* Unlock button area */
+
+.premium-action {
+margin-top: 25px;
+
+padding-top: 20px;
+
+border-top: 1px solid #e5e7eb;
+
+text-align: center;
+
+}
+
+.premium-action p {
+margin-bottom: 15px;
+}
+
+/* Unlock button */
+
+#premiumBtn {
+border: none;
+
+padding: 13px 22px;
+
+border-radius: 10px;
+
+cursor: pointer;
+
+font-size: 16px;
+font-weight: 700;
+
+}
 </style>
 </head>
 

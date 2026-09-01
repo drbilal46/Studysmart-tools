@@ -884,18 +884,16 @@ const goalSection =
 
 if (unlockPremiumBtn && goalSection) {
 
-    unlockPremiumBtn.addEventListener(
-        "click",
-        function() {
+    unlockPremiumBtn.onclick = function() {
 
-            goalSection.classList.add("show");
+        goalSection.classList.add("show");
 
-            goalSection.scrollIntoView({
-                behavior: "smooth"
-            });
+        goalSection.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
 
-        }
-    );
+    };
 
 }
 
@@ -910,20 +908,22 @@ const goalOptions =
 
 goalOptions.forEach(function(option) {
 
-    option.addEventListener(
-        "click",
-        function() {
+    option.onclick = function() {
 
-            const goal =
-                this.getAttribute("data-goal");
+        const goal =
+            this.getAttribute("data-goal");
+
+        if (goal) {
 
             window.location.href =
-                "dashboard.html?goal=" + goal;
+                "./dashboard.html?goal=" + encodeURIComponent(goal);
 
         }
-    );
+
+    };
 
 });
+
 
 </script>
 </script></body></html>
